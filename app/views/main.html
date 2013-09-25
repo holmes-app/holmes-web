@@ -1,0 +1,25 @@
+<div class="main-view">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Add a new website</h1>
+        <p>
+          Enter the url for the page you want holmes to investigate. Please note that the validation of the website may take some minutes to complete.
+        </p>
+
+        <form class="add-page">
+          <div class="input-group input-group-lg">
+            <label for="url" class="input-group-addon">
+              <span class="glyphicon glyphicon-home"></span>
+            </label>
+
+            <input type="text" name="url" id="url" class="form-control input-lg" ng-model="model.url" placeholder="Enter page url...">
+
+            <div class="input-group-btn">
+              <button class="btn btn-default" ng-click="addPage(model.url)" type="button">add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>

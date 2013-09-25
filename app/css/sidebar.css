@@ -1,0 +1,20 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000032}}
+.current-jobs tr {
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000036}}
+.current-jobs .position {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000310}}
+.current-jobs .url {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000318}}
+.available-workers {
+  margin-top: -10px;
+}

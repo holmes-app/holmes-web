@@ -1,0 +1,20 @@
+.current-jobs {
+  tr {
+    cursor: pointer;
+  }
+
+  .position {
+    text-align: center;
+  }
+
+  .url {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.available-workers {
+  margin-top: -10px;
+}

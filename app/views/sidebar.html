@@ -1,0 +1,30 @@
+<div class="sidebar">
+  <h1><a href="http://github.com/heynemann/holmes-web">holmes</a></h1>
+  <div class="list-group">
+    <a href="/" data-ng-class="getClass('/')" class="list-group-item">home</a>
+    <a href="/page" data-ng-class="getClass('/page')" class="list-group-item">pages</a>
+  </div>
+
+  <h3>Current Jobs</h3>
+  <table class="table table-striped table-bordered table-hover current-jobs">
+    <thead>
+      <tr>
+        <th># in Q</th>
+        <th>Page</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr 
+        ng-class="worker.status == 'working' ? 'warning' : ''"
+        title="{{ worker.url }}" 
+        ng-repeat="worker in workers | orderBy: 'position'"
+      >
+        <td class="position">{{ worker.position }}</td>
+        <td>
+          <div class="url">{{ worker.url }}</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="badge pull-right available-workers">25 workers</span>
+</div>
