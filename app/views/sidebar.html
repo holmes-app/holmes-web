@@ -5,26 +5,41 @@
     <a href="/page" data-ng-class="getClass('/page')" class="list-group-item">pages</a>
   </div>
 
-  <h3>Current Jobs</h3>
-  <table class="table table-striped table-bordered table-hover current-jobs">
-    <thead>
-      <tr>
-        <th># in Q</th>
-        <th>Page</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr 
-        ng-class="worker.status == 'working' ? 'warning' : ''"
-        title="{{ worker.url }}" 
-        ng-repeat="worker in workers | orderBy: 'position'"
-      >
-        <td class="position">{{ worker.position }}</td>
-        <td>
-          <div class="url">{{ worker.url }}</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="badge pull-right available-workers">25 workers</span>
+  <div class="panel panel-primary common-violations">
+    <div class="panel-heading">
+      <h3 class="panel-title">Most Common Violations</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item"
+          data-ng-repeat="violation in mostCommonViolations | orderBy: '-count'"
+        >
+          <span class="badge">{{ violation.count }}</span>
+          <span class="text">{{ violation.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Workers <span class="badge worker-count pull-right">{{ workers.length }}</span></h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <a href="#" class="list-group-item"
+           data-ng-class="worker.status == 'working' ? 'active' : ''"
+           title="{{ worker.url }}" 
+           data-ng-repeat="worker in workers | orderBy: 'position'"
+        >
+          {{ worker.url }} <span class="badge">{{ worker.position }}</span>
+        </a>
+      </div>
+
+      <div class="subtitle pull-right">
+        <div class="square"></div>
+        <p class="text">active workers</p>
+      </div>
+    </div>
+  </div>
 </div>

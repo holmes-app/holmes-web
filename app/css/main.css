@@ -1,4 +1,53 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\000031}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\000033}}
 .add-page {
   margin-top: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\000038}}
+.last-violations a {
+  text-decoration: none;
+  color: #333;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000313}}
+.last-violations a:hover .panel {
+  opacity: 0.9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000319}}
+.last-violations > .panel-body {
+  margin-bottom: -20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000323}}
+.last-violations .panel {
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  -o-transition: all 100ms linear;
+  transition: all 100ms linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000325}}
+.last-violations .panel .panel-body {
+  min-height: 100px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000331}}
+.last-violations .panel-heading h3 {
+  width: 100%;
+  padding-bottom: 2px;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000340}}
+.last-violations .panel-heading .glyphicon {
+  margin-right: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000345}}
+.last-violations .panel-footer {
+  text-align: right;
+  font-size: 9px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000349}}
+.last-violations .panel-footer .glyphicon {
+  font-size: 11px;
+  line-height: 10px;
+  margin-right: 2px;
 }

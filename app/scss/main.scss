@@ -1,5 +1,55 @@
+@import "compass";
+
 .add-page {
   margin-top: 30px;
 }
 
+.last-violations {
+  a {
+    text-decoration: none;
+    color: #333;
 
+    &:hover {
+      .panel {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  > .panel-body {
+    margin-bottom: -20px;
+  }
+
+  .panel {
+    @include transition(all 100ms linear);
+    .panel-body {
+      min-height: 100px;
+    }
+  }
+
+  .panel-heading {
+    h3 {
+      width: 100%;
+      padding-bottom: 2px;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .glyphicon {
+      margin-right: 5px;
+    }
+  }
+
+  .panel-footer {
+    text-align: right;
+    font-size: 9px;
+
+    .glyphicon {
+      font-size: 11px;
+      line-height: 10px;
+      margin-right: 2px;
+    }
+  }
+}

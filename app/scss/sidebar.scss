@@ -15,6 +15,45 @@
   }
 }
 
-.available-workers {
-  margin-top: -10px;
+.worker-count {
+  vertical-align: top;
+  color: #007fff;
+  background-color: #fff;
+  margin-left: 2px;
+}
+
+.subtitle {
+  font-size: 0;
+  margin-bottom: -10px;
+
+  .square {
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background: #007fff;
+  }
+
+  .text {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+  }
+}
+
+.common-violations {
+  .badge {
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    width: 50px;
+    height: 20px;
+    right: 15px;
+  }
+
+  .text {
+    max-width: 110px;
+    display: block;
+  }
 }
