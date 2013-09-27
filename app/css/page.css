@@ -1,0 +1,13 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/page\.scss}line{font-family:\000031}}
+.pages-view {
+  padding-left: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/page\.scss}line{font-family:\000034}}
+.pages-view a {
+  color: #333;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/page\.scss}line{font-family:\000039}}
+.pages-view a:hover .panel {
+  opacity: 0.9;
+}

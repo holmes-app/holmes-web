@@ -2,7 +2,7 @@
 
 angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource'])
   .config ($routeProvider, $locationProvider) ->
-    $locationProvider.html5Mode(true)
+    #$locationProvider.html5Mode(true)
 
     $routeProvider
       .when '/',
@@ -11,5 +11,6 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource'])
       .when '/page',
         templateUrl: 'views/page.html'
         controller: 'PageCtrl'
-      .otherwise
-        redirectTo: '/'
+      .when '/page/:domainId',
+        templateUrl: 'views/report.html'
+        controller: 'ReportCtrl'

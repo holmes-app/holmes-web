@@ -1,1 +1,23 @@
-PAGE
+<div class="pages-view">
+  <h1>Domains</h1>
+
+  <div class="row">
+    <div class="col-lg-4"
+         data-ng-repeat="domain in domains"
+    >
+
+      <a href="#/page/{{ domain.id }}">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ domain.name }}</h3>
+          </div>
+          <div class="panel-body">
+            Total of {{ domain.violations }} violations accross {{ domain.pages }} pages.
+          </div>
+        </div>
+      </a>
+
+    </div> <!-- col-lg-4 -->
+
+  </div> <!-- row -->
+</div>

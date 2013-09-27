@@ -17,12 +17,13 @@ body {
 
 .main-area {
   position: relative;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   display: inline-block;
   vertical-align: top;
   width: 80%;
   font-size: 12px;
   padding: 20px;
+  padding-top: 0;
 }
 
 .alertify, .alertify-logs {
@@ -40,11 +41,11 @@ body {
     opacity: 0;
     top: -200%;
     left: 20px;
-    margin-right: 20px;
+    right: 20px;
 
     &.ng-enter-active {
       opacity: 1;
-      top: 20px;
+      top: 0;
       position: absolute;
     }
   }
@@ -52,7 +53,7 @@ body {
   &.ng-leave{
     opacity: 1;
     position: absolute;
-    top: 20px;
+    top: 0;
     left: 20px;
     right: 20px;
 

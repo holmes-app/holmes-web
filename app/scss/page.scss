@@ -1,0 +1,14 @@
+.pages-view {
+  padding-left: 20px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      .panel {
+        opacity: 0.9;
+      }
+    }
+  }
+}
