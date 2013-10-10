@@ -34,13 +34,24 @@ availableViolations = [
 ]
 
 angular.module('holmesApp')
-  .controller 'MainCtrl', ($scope, $timeout) ->
+  .controller 'MainCtrl', ($scope, $timeout, growl, $resource, Restangular) ->
     $scope.model =
+      isAddingPage: false
       url: ''
 
-    $scope.addPage = (url) ->
-      console.log(url)
-      alertify.success(url + ' successfully saved!')
+    $scope.addPage = () ->
+      url = $scope.model.url
+      $scope.model.isAddingPage = true
+
+      Page = $resource('/page')
+
+      page = new Page({url: url})
+      page.$save(->
+        growl.addSuccessMessage(url + ' successfully saved!')
+        $scope.model.url = ''
+        $scope.model.isAddingPage = false
+        $scope.addPageForm.$setPristine()
+      )
 
     $scope.violations = []
 

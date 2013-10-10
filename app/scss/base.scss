@@ -4,6 +4,11 @@ body {
   font-size: 0;
 }
 
+.growl {
+  z-index: 9999999;
+  font-size: 12px;
+}
+
 .sidebar {
   box-sizing: border-box;
   padding-left: 20px;

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
-  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource']).config(function($routeProvider, $locationProvider) {
-    return $routeProvider.when('/', {
+  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular']).config(function($routeProvider, $locationProvider, RestangularProvider, growlProvider) {
+    $routeProvider.when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     }).when('/page', {
@@ -11,6 +11,8 @@
       templateUrl: 'views/report.html',
       controller: 'ReportCtrl'
     });
+    RestangularProvider.setBaseUrl('http://local.holmes.com:2368/');
+    return growlProvider.globalTimeToLive(3000);
   });
 
 }).call(this);

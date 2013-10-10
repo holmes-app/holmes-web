@@ -57,3 +57,16 @@
   line-height: 10px;
   margin-right: 2px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000363}}
+.add-page .input-group.has-error {
+  margin-top: -1px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000366}}
+.add-page .input-group.has-error .input-group-addon {
+  height: 68px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\0000370}}
+.add-page .input-group.has-error .input-lg {
+  margin-top: 1px;
+}
