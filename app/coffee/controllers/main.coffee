@@ -34,23 +34,21 @@ availableViolations = [
 ]
 
 angular.module('holmesApp')
-  .controller 'MainCtrl', ($scope, $timeout, growl, $resource, Restangular) ->
+  .controller 'MainCtrl', ($scope, $timeout, growl, $resource, $http, Restangular) ->
+    $http.defaults.useXDomain = true
+
     $scope.model =
-      isAddingPage: false
       url: ''
 
     $scope.addPage = () ->
       url = $scope.model.url
-      $scope.model.isAddingPage = true
 
-      Page = $resource('/page')
-
-      page = new Page({url: url})
-      page.$save(->
-        growl.addSuccessMessage(url + ' successfully saved!')
+      pages = Restangular.all('page')
+      console.log(url)
+      page = pages.post({ url: url }).then((page) ->
+        $scope.addPageForm.url.$pristine = true
         $scope.model.url = ''
-        $scope.model.isAddingPage = false
-        $scope.addPageForm.$setPristine()
+        growl.addSuccessMessage(url + ' successfully saved!')
       )
 
     $scope.violations = []

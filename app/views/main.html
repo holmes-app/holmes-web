@@ -31,6 +31,36 @@
       </div>
     </div> <!-- jumbotron -->
 
+    <div class="panel panel-default last-reviews">
+      <div class="panel-heading">Last Reviews</div>
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="col-lg-4"
+               data-ng-repeat="review in reviews"
+          >
+
+            <a href="/page/{{ review.page.id }}">
+              <div class="panel panel-danger">
+                <div class="panel-body">
+                  <h3 class="panel-title" title="{{ review.page.url }}">
+                    <span class="glyphicon glyphicon-home"></span>
+                    {{ review.page.url }}
+                  </h3>
+                </div>
+                <div class="panel-footer">
+                  <span class="glyphicon glyphicon-time"></span>
+                  <time class="timeago" datetime="{{ review.created }}">{{ violation.createdString }}</time>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+ 
+
     <div class="panel panel-default last-violations">
       <div class="panel-heading">Last Violations</div>
       <div class="panel-body">

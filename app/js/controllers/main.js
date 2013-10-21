@@ -31,25 +31,23 @@
     }
   ];
 
-  angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, Restangular) {
+  angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, $http, Restangular) {
     var addViolation;
+    $http.defaults.useXDomain = true;
     $scope.model = {
-      isAddingPage: false,
       url: ''
     };
     $scope.addPage = function() {
-      var Page, page, url;
+      var page, pages, url;
       url = $scope.model.url;
-      $scope.model.isAddingPage = true;
-      Page = $resource('/page');
-      page = new Page({
+      pages = Restangular.all('page');
+      console.log(url);
+      return page = pages.post({
         url: url
-      });
-      return page.$save(function() {
-        growl.addSuccessMessage(url + ' successfully saved!');
+      }).then(function(page) {
+        $scope.addPageForm.url.$pristine = true;
         $scope.model.url = '';
-        $scope.model.isAddingPage = false;
-        return $scope.addPageForm.$setPristine();
+        return growl.addSuccessMessage(url + ' successfully saved!');
       });
     };
     $scope.violations = [];
