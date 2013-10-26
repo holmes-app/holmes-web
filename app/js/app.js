@@ -4,10 +4,13 @@
     $routeProvider.when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
-    }).when('/page', {
-      templateUrl: 'views/page.html',
-      controller: 'PageCtrl'
-    }).when('/page/:domainId', {
+    }).when('/domains', {
+      templateUrl: 'views/domains.html',
+      controller: 'DomainsCtrl'
+    }).when('/domains/:domainName', {
+      templateUrl: 'views/domain_details.html',
+      controller: 'DomainDetailsCtrl'
+    }).when('/pages/:pageId', {
       templateUrl: 'views/report.html',
       controller: 'ReportCtrl'
     });

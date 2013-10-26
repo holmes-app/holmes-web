@@ -1,18 +1,18 @@
-<div class="pages-view">
+<div class="domains-view">
   <h1>Domains</h1>
 
   <div class="row">
     <div class="col-lg-4"
-         data-ng-repeat="domain in domains"
+         data-ng-repeat="domain in model.domains"
     >
 
-      <a href="#/page/{{ domain.id }}">
+      <a href="#/domains/{{ domain.name }}/">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">{{ domain.name }}</h3>
           </div>
           <div class="panel-body">
-            Total of {{ domain.violations }} violations accross {{ domain.pages }} pages.
+            Total of {{ domain.violationCount }} violations accross {{ domain.pageCount }} pages.
           </div>
         </div>
       </a>

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "domains.js",
+  "sourceRoot": "",
+  "sources": [
+    "domains.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;CAAA,CAAA,UAAA;CAAA,CAEA,CAC6B,GAD7B,CAAO,EACuB,CAD9B,CAAA,EAAA;CAEI,CAAA,CAAe,CAAf,CAAA,CAAM;CAEC,EAAgB,EAAX,CAAN,CAAN,EAAuB,EAAvB;CAJJ,EAC6B;CAH7B"
+}
