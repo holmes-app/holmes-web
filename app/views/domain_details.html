@@ -1,18 +1,18 @@
 <div class="report-view">
-  <h1>g1.globo.com</h1>
+  <h1>{{ model.domainDetails.name }}</h1>
 
   <div class="row stats">
     <div class="col-lg-4">
-      <div class="title text-primary">3,402,234</div>
-      <div class="subtitle">violation points</div>
-    </div>
-    <div class="col-lg-4">
-      <div class="title text-primary">12,394</div>
-      <div class="subtitle">points</div>
-    </div>
-    <div class="col-lg-4">
-      <div class="title text-primary">5,304</div>
+      <div class="title text-primary">{{ model.domainDetails.pageCount }}</div>
       <div class="subtitle">pages</div>
+    </div>
+    <div class="col-lg-4">
+      <div class="title text-primary">{{ model.domainDetails.violationCount }}</div>
+      <div class="subtitle">violations</div>
+    </div>
+    <div class="col-lg-4">
+      <div class="title text-primary">{{ model.domainDetails.violationPoints }}</div>
+      <div class="subtitle">violation points</div>
     </div>
   </div>
 

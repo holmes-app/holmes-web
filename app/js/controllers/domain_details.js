@@ -1,7 +1,8 @@
 (function() {
   'use strict';
-  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, Restangular) {
-    return $scope.model = {};
+  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular) {
+    $scope.model = {};
+    return $scope.model.domainDetails = Restangular.one('domains', $routeParams.domainName).get();
   });
 
 }).call(this);
