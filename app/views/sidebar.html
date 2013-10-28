@@ -28,11 +28,11 @@
     <div class="panel-body">
       <div class="list-group">
         <a href="#" class="list-group-item"
-           data-ng-class="worker.status == 'working' ? 'active' : ''"
-           title="{{ worker.url }}" 
-           data-ng-repeat="worker in workers | orderBy: 'position'"
+           data-ng-class="worker.working == true ? 'active' : ''"
+           title="{{ worker.uuid }}"
+           data-ng-repeat="worker in workers"
         >
-          {{ worker.url }} <span class="badge">{{ worker.position }}</span>
+          {{ worker.uuid }}
         </a>
       </div>
 

@@ -5,17 +5,14 @@
       templateUrl: 'views/sidebar.html',
       restrict: 'E',
       scope: {},
-      controller: function($scope, $location) {
-        var i, _i;
-        $scope.workers = [];
-        for (i = _i = 12; _i >= 1; i = --_i) {
-          $scope.workers.push({
-            id: "Worker 2013012041203",
-            position: i,
-            status: i < 5 ? "working" : "waiting",
-            url: "http://www.globo.com"
+      controller: function($scope, Restangular, $location, $timeout) {
+        var getWorkers;
+        getWorkers = function() {
+          return Restangular.one('workers').getList().then(function(activeWorkers) {
+            return $scope.workers = activeWorkers;
           });
-        }
+        };
+        $timeout(getWorkers, 1000);
         $scope.mostCommonViolations = [
           {
             name: "Javascript total size is too big",

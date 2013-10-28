@@ -5,16 +5,13 @@ angular.module('holmesApp')
     templateUrl: 'views/sidebar.html',
     restrict: 'E',
     scope: {},
-    controller: ($scope, $location) ->
-      $scope.workers = []
-
-      for i in [12..1]
-        $scope.workers.push(
-          id: "Worker 2013012041203"
-          position: i
-          status: if i < 5 then "working" else "waiting"
-          url: "http://www.globo.com"
+    controller: ($scope, Restangular, $location, $timeout) ->
+      getWorkers = ->
+        Restangular.one('workers').getList().then((activeWorkers) ->
+          $scope.workers = activeWorkers
         )
+
+      $timeout(getWorkers, 5000)
 
       $scope.mostCommonViolations = [
         { name: "Javascript total size is too big", count: 948},
