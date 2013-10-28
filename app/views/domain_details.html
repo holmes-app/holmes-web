@@ -45,17 +45,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a href="#/pages/some-uuid">http://g1.globo.com/</a></td>
-        <td><a href="#/pages/some-uuid">20 mins ago</a></td>
-      </tr>
-      <tr>
-        <td><a href="#/pages/some-uuid">http://g1.globo.com/planeta-bizarro/</a></td>
-        <td><a href="#/pages/some-uuid">2 days ago</a></td>
-      </tr>
-      <tr>
-        <td><a href="#/pages/some-uuid">http://g1.globo.com/economia/</a></td>
-        <td><a href="#/pages/some-uuid">5 days ago</a></td>
+      <tr ng-repeat="page in model.pages">
+        <td><a href="#/pages/{{ page.uuid }}">{{ page.url }}</a></td>
+        <td><a href="#/pages/{{ page.uuid }}"><span am-time-ago="page.completedDate"></span></a></td>
       </tr>
     </tbody>
   </table>

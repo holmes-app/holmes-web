@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular'])
+angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment'])
   .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider) ->
     #$locationProvider.html5Mode(true)
 

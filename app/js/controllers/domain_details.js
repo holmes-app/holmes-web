@@ -2,8 +2,8 @@
   'use strict';
   var __hasProp = {}.hasOwnProperty;
 
-  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular) {
-    var isValidDate;
+  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, $timeout) {
+    var buildCharts, isValidDate, updateDomainDetails;
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
         return false;
@@ -11,11 +11,21 @@
       return !isNaN(d.getTime());
     };
     $scope.model = {};
-    $scope.model.domainDetails = Restangular.one('domains', $routeParams.domainName).get();
-    return Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then(function(violations) {
+    updateDomainDetails = function() {
+      Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
+        return $scope.model.domainDetails = domainDetails;
+      });
+      Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then(function(violations) {
+        violations = violations.violations;
+        return buildCharts(violations);
+      });
+      Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
+        return $scope.model.pages = domainData.pages;
+      });
+      return $timeout(updateDomainDetails, 5000);
+    };
+    buildCharts = function(violations) {
       var date, dt, obj, violationCount, violationCountData, violationPoints, violationPointsData;
-      violations = violations.violations;
-      console.log(violations);
       violationPoints = [];
       violationCount = [];
       for (date in violations) {
@@ -74,7 +84,8 @@
         });
         return chart;
       });
-    });
+    };
+    return updateDomainDetails();
   });
 
 }).call(this);
