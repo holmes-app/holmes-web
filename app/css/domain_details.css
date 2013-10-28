@@ -2,3 +2,15 @@
 .domain-details-view {
   padding-left: 20px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\000034}}
+.domain-details-view #violation-points-chart {
+  margin-top: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\000037}}
+.domain-details-view #violation-points-chart svg {
+  height: 350px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000313}}
+.domain-details-view #violation-count-chart svg {
+  height: 150px;
+}

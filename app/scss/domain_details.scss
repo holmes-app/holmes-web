@@ -1,3 +1,17 @@
 .domain-details-view {
   padding-left: 20px;
+
+  #violation-points-chart {
+    margin-top: 20px;
+
+    svg {
+      height: 350px;
+    }
+  }
+
+  #violation-count-chart {
+    svg {
+      height: 150px;
+    }
+  }
 }

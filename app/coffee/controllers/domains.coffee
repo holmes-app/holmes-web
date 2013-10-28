@@ -1,7 +1,13 @@
 'use strict'
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, Restangular) ->
+  .controller 'DomainsCtrl', ($scope, Restangular, $timeout) ->
     $scope.model = {}
 
-    $scope.model.domains = Restangular.all('domains').getList()
+    updateDomains = ->
+      Restangular.all('domains').getList().then((items) ->
+        $scope.model.domains = items
+      )
+      $timeout(updateDomains, 2000)
+
+    updateDomains()
