@@ -12,7 +12,7 @@
             return $scope.workers = activeWorkers;
           });
         };
-        $timeout(getWorkers, 3000);
+        $timeout(getWorkers, 5000);
         $scope.mostCommonViolations = [
           {
             name: "Javascript total size is too big",

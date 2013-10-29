@@ -29,10 +29,10 @@
       <div class="list-group">
         <a href="#/pages/{{ worker.page_uuid }}" class="list-group-item"
            data-ng-class="worker.working == true ? 'active' : ''"
-           title="{{ worker.page_url }}"
+           title="{{ worker.page_url || 'Worker UUID: ' + worker.uuid }}"
            data-ng-repeat="worker in workers"
         >
-          {{ worker.page_url }}
+          {{ worker.page_url || "Worker Idle" }}
         </a>
       </div>
 
