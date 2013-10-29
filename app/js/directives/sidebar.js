@@ -6,7 +6,7 @@
       restrict: 'E',
       scope: {},
       controller: function($scope, Restangular, $location, $timeout) {
-        var getWorkers;
+        var getMostCommonViolations, getWorkers;
         $scope.model = {};
         $scope.model.workers = [];
         getWorkers = function() {
@@ -16,30 +16,14 @@
           return $timeout(getWorkers, 2000);
         };
         getWorkers();
-        $scope.mostCommonViolations = [
-          {
-            name: "Javascript total size is too big",
-            count: 948
-          }, {
-            name: "Missing opengraph",
-            count: 19245
-          }, {
-            name: "Too many elements in page",
-            count: 4203
-          }, {
-            name: "Invalid HTML",
-            count: 10234
-          }, {
-            name: "Missing description metadata in header",
-            count: 7429
-          }, {
-            name: "No sitemap",
-            count: 23049
-          }, {
-            name: "Too many requests",
-            count: 2023
-          }
-        ];
+        $scope.model.mostCommonViolations = [];
+        getMostCommonViolations = function() {
+          Restangular.one('most-common-violations').getList().then(function(violations) {
+            return $scope.model.mostCommonViolations = violations;
+          });
+          return $timeout(getMostCommonViolations, 2000);
+        };
+        getMostCommonViolations();
         return $scope.getClass = function(path) {
           var isActive;
           isActive = $location.path().trim() === path.trim();

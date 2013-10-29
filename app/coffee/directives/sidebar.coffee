@@ -17,15 +17,14 @@ angular.module('holmesApp')
 
       getWorkers()
 
-      $scope.mostCommonViolations = [
-        { name: "Javascript total size is too big", count: 948},
-        { name: "Missing opengraph", count: 19245 },
-        { name: "Too many elements in page", count: 4203},
-        { name: "Invalid HTML", count: 10234 },
-        { name: "Missing description metadata in header", count: 7429},
-        { name: "No sitemap", count: 23049 },
-        { name: "Too many requests", count: 2023},
-      ]
+      $scope.model.mostCommonViolations = []
+      getMostCommonViolations = ->
+        Restangular.one('most-common-violations').getList().then((violations) ->
+          $scope.model.mostCommonViolations = violations
+        )
+        $timeout(getMostCommonViolations, 2000)
+
+      getMostCommonViolations()
 
       $scope.getClass = (path) ->
         isActive = $location.path().trim() == path.trim()
