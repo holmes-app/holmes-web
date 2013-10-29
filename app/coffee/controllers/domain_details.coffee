@@ -16,6 +16,7 @@ angular.module('holmesApp')
         violationCount: 0,
         violationPoints: 0
       },
+      pageCount: 0,
       pages: []
     }
 
@@ -24,18 +25,22 @@ angular.module('holmesApp')
         $scope.model.domainDetails = domainDetails
       )
 
+      Restangular.one('domains', $routeParams.domainName).getList('reviews').then((domainData) ->
+        $scope.model.pageCount = domainData.pageCount
+        $scope.model.pages = domainData.pages
+        $scope.model.pagesWithoutReview = domainData.pagesWithoutReview
+        $scope.model.pagesWithoutReviewCount = domainData.pagesWithoutReviewCount
+      )
+
+      $timeout(updateDomainDetails, 2000)
+
+    updateChartData = ->
       Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then((violations) ->
         violations = violations.violations
         buildCharts(violations)
       )
 
-      Restangular.one('domains', $routeParams.domainName).getList('reviews').then((domainData) ->
-        $scope.model.pages = domainData.pages
-        $scope.model.pagesWithoutReview = domainData.pagesWithoutReview
-      )
-
-      $timeout(updateDomainDetails, 5000)
-
+      $timeout(updateChartData, 10000)
 
     buildCharts = (violations) ->
       violationPoints = []
@@ -70,6 +75,9 @@ angular.module('holmesApp')
           color: '#2ca02c'
         }
       ]
+
+      console.log(violationPoints)
+      console.log(violationCount)
 
       nv.addGraph(->
         chart = nv.models.lineChart()
@@ -113,3 +121,4 @@ angular.module('holmesApp')
 
     buildCharts([])
     updateDomainDetails()
+    updateChartData()

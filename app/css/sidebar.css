@@ -2,18 +2,19 @@
 .workers .worker-item div {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
   width: 180px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000313}}
 .current-jobs tr {
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000317}}
 .current-jobs .position {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000320}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000321}}
 .current-jobs .url {
   width: 150px;
   white-space: nowrap;
@@ -21,7 +22,7 @@
   text-overflow: ellipsis;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000328}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000329}}
 .worker-count {
   vertical-align: top;
   color: #007fff;
@@ -29,12 +30,12 @@
   margin-left: 2px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000336}}
 .subtitle {
   font-size: 0;
   margin-bottom: -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000340}}
 .subtitle .square {
   display: inline-block;
   vertical-align: top;
@@ -43,14 +44,14 @@
   margin-right: 5px;
   background: #007fff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000348}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000349}}
 .subtitle .text {
   display: inline-block;
   vertical-align: top;
   font-size: 12px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000357}}
 .common-violations .badge {
   position: absolute;
   top: 50%;
@@ -59,7 +60,7 @@
   height: 20px;
   right: 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000365}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000366}}
 .common-violations .text {
   max-width: 110px;
   display: block;

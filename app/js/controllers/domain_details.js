@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty;
 
   angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, $timeout) {
-    var buildCharts, isValidDate, updateDomainDetails;
+    var buildCharts, isValidDate, updateChartData, updateDomainDetails;
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
         return false;
@@ -18,21 +18,27 @@
         violationCount: 0,
         violationPoints: 0
       },
+      pageCount: 0,
       pages: []
     };
     updateDomainDetails = function() {
       Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
         return $scope.model.domainDetails = domainDetails;
       });
+      Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
+        $scope.model.pageCount = domainData.pageCount;
+        $scope.model.pages = domainData.pages;
+        $scope.model.pagesWithoutReview = domainData.pagesWithoutReview;
+        return $scope.model.pagesWithoutReviewCount = domainData.pagesWithoutReviewCount;
+      });
+      return $timeout(updateDomainDetails, 2000);
+    };
+    updateChartData = function() {
       Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then(function(violations) {
         violations = violations.violations;
         return buildCharts(violations);
       });
-      Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
-        $scope.model.pages = domainData.pages;
-        return $scope.model.pagesWithoutReview = domainData.pagesWithoutReview;
-      });
-      return $timeout(updateDomainDetails, 5000);
+      return $timeout(updateChartData, 10000);
     };
     buildCharts = function(violations) {
       var date, dt, obj, violationCount, violationCountData, violationPoints, violationPointsData;
@@ -68,6 +74,8 @@
           color: '#2ca02c'
         }
       ];
+      console.log(violationPoints);
+      console.log(violationCount);
       nv.addGraph(function() {
         var chart;
         chart = nv.models.lineChart();
@@ -96,7 +104,8 @@
       });
     };
     buildCharts([]);
-    return updateDomainDetails();
+    updateDomainDetails();
+    return updateChartData();
   });
 
 }).call(this);

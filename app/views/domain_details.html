@@ -25,33 +25,34 @@
   </div>
 
 
-  <h2>Page Reviews</h2>
+  <h2 class="pull-left page-reviews-header">Page Reviews <span class="page-reviews-badge badge ng-binding">{{ model.pageCount }}</span></h2>
 
-  <form class="bs-example form-horizontal">
-    <fieldset>
-      <div class="form-group">
-        <div class="col-lg-4 pull-right">
-          <input type="text" class="form-control input-sm" id="inputURL" placeholder="URL to filter..." ng-model="model.reviewFilter">
-        </div>
+  <div class="filters form-group col-lg-6 pull-right">
+    <label for="urlFilter">
+      <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control" id="urlFilter" ng-model="model.reviewFilter" placeholder="URL to filter">
       </div>
-    </fieldset>
-  </form>
+    </label>
+  </div>
 
   <table class="table table-striped table-bordered table-hover reviews">
     <thead>
       <tr>
         <th class="url">URL</th>
+        <th class="violations">Violations</th>
         <th class="finished-at">Finished At</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-hide="model.pages">
-        <td colspan="2">No reviews made for this domain yet.</td>
+        <td colspan="3">No reviews made for this domain yet.</td>
       </tr>
 
-      <tr ng-repeat="page in model.pages | filter:model.reviewFilter | orderBy:'-completedDate'" ng-show="model.pages">
+      <tr ng-repeat="page in model.pages | filter:model.reviewFilter | orderBy:'-violationCount'" ng-show="model.pages">
         <td><a href="#/pages/{{ page.uuid }}">{{ page.url }}</a></td>
-        <td><a href="#/pages/{{ page.uuid }}"><span am-time-ago="page.completedDate"></span></a></td>
+        <td class="violations"><a href="#/pages/{{ page.uuid }}">{{ page.violationCount }}</a></td>
+        <td class="finished-at"><a href="#/pages/{{ page.uuid }}"><span am-time-ago="page.completedDate"></span></a></td>
       </tr>
     </tbody>
   </table>
@@ -60,6 +61,7 @@
   <p ng-hide="model.pagesWithoutReview">No pages without review yet.</p>
   <div class="list-group">
     <a ng-repeat="page in model.pagesWithoutReview" href="#/pages/{{ page.uuid }}" class="list-group-item">{{ page.url }}</a>
+    <p ng-show="model.pagesWithoutReviewCount" class="list-group-item">And {{ model.pagesWithoutReviewCount }} other pages.</p>
   </div>
 
 </div>
