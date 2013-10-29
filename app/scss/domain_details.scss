@@ -14,4 +14,19 @@
       height: 150px;
     }
   }
+
+  .reviews {
+    a {
+      display: block;
+      width: 100%;
+    }
+
+    .url {
+      width: 80%;
+    }
+
+    .finished-at {
+      width: 20%;
+    }
+  }
 }

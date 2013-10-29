@@ -6,12 +6,16 @@ angular.module('holmesApp')
     restrict: 'E',
     scope: {},
     controller: ($scope, Restangular, $location, $timeout) ->
+      $scope.model = {}
+
+      $scope.model.workers = []
       getWorkers = ->
         Restangular.one('workers').getList().then((activeWorkers) ->
-          $scope.workers = activeWorkers
+          $scope.model.workers = activeWorkers
         )
+        $timeout(getWorkers, 2000)
 
-      $timeout(getWorkers, 5000)
+      getWorkers()
 
       $scope.mostCommonViolations = [
         { name: "Javascript total size is too big", count: 948},

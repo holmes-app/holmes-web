@@ -7,12 +7,15 @@
       scope: {},
       controller: function($scope, Restangular, $location, $timeout) {
         var getWorkers;
+        $scope.model = {};
+        $scope.model.workers = [];
         getWorkers = function() {
-          return Restangular.one('workers').getList().then(function(activeWorkers) {
-            return $scope.workers = activeWorkers;
+          Restangular.one('workers').getList().then(function(activeWorkers) {
+            return $scope.model.workers = activeWorkers;
           });
+          return $timeout(getWorkers, 2000);
         };
-        $timeout(getWorkers, 5000);
+        getWorkers();
         $scope.mostCommonViolations = [
           {
             name: "Javascript total size is too big",

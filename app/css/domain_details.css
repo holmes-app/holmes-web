@@ -14,3 +14,16 @@
 .domain-details-view #violation-count-chart svg {
   height: 150px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000319}}
+.domain-details-view .reviews a {
+  display: block;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000324}}
+.domain-details-view .reviews .url {
+  width: 80%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000328}}
+.domain-details-view .reviews .finished-at {
+  width: 20%;
+}

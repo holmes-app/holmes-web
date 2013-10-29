@@ -8,7 +8,16 @@ angular.module('holmesApp')
         return false
       return !isNaN(d.getTime())
 
-    $scope.model = {}
+    $scope.model = {
+      domainDetails: {
+        name: $routeParams.domainName,
+        url: '',
+        pageCount: 0,
+        violationCount: 0,
+        violationPoints: 0
+      },
+      pages: []
+    }
 
     updateDomainDetails = ->
       Restangular.one('domains', $routeParams.domainName).get().then((domainDetails) ->
@@ -22,82 +31,85 @@ angular.module('holmesApp')
 
       Restangular.one('domains', $routeParams.domainName).getList('reviews').then((domainData) ->
         $scope.model.pages = domainData.pages
+        $scope.model.pagesWithoutReview = domainData.pagesWithoutReview
       )
 
       $timeout(updateDomainDetails, 5000)
 
+
     buildCharts = (violations) ->
-        violationPoints = []
-        violationCount = []
+      violationPoints = []
+      violationCount = []
 
-        for own date, obj of violations
-          dt = new Date(date)
-          if (!isValidDate(dt))
-            continue
+      for own date, obj of violations
+        dt = new Date(date)
+        if (!isValidDate(dt))
+          continue
 
-          violationPoints.push(
-            x: new Date(date),
-            y: obj.violation_points
-          )
-
-          violationCount.push(
-            x: new Date(date),
-            y: obj.violation_count
-          )
-
-        violationPointsData = [
-          {
-            values: violationPoints,
-            key: 'Violation Points',
-            color: '#ff7f0e'
-          }
-        ]
-        violationCountData = [
-          {
-            values: violationCount,
-            key: 'Violation Count',
-            color: '#2ca02c'
-          }
-        ]
-
-        nv.addGraph(->
-          chart = nv.models.lineChart()
-
-          chart.yAxis
-               .tickFormat(d3.format('.02f'))
-          chart.xAxis
-               .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
-
-          d3.select('#violation-count-chart svg')
-            .datum(violationCountData)
-            .transition().duration(500)
-            .call(chart)
-
-          nv.utils.windowResize(->
-            d3.select('#violation-count-chart svg').call(chart)
-          )
-
-          return chart
+        violationPoints.push(
+          x: new Date(date),
+          y: obj.violation_points
         )
 
-        nv.addGraph(->
-          chart = nv.models.lineChart()
-
-          chart.yAxis
-               .tickFormat(d3.format('.02f'))
-          chart.xAxis
-               .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
-
-          d3.select('#violation-points-chart svg')
-            .datum(violationPointsData)
-            .transition().duration(500)
-            .call(chart)
-
-          nv.utils.windowResize(->
-            d3.select('#violation-points-chart svg').call(chart)
-          )
-
-          return chart
+        violationCount.push(
+          x: new Date(date),
+          y: obj.violation_count
         )
 
+      violationPointsData = [
+        {
+          values: violationPoints,
+          key: 'Violation Points',
+          color: '#ff7f0e'
+        }
+      ]
+      violationCountData = [
+        {
+          values: violationCount,
+          key: 'Violation Count',
+          color: '#2ca02c'
+        }
+      ]
+
+      nv.addGraph(->
+        chart = nv.models.lineChart()
+
+        chart.yAxis
+             .tickFormat(d3.format('.02f'))
+        chart.xAxis
+             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+
+        d3.select('#violation-count-chart svg')
+          .datum(violationCountData)
+          .transition().duration(500)
+          .call(chart)
+
+        nv.utils.windowResize(->
+          d3.select('#violation-count-chart svg').call(chart)
+        )
+
+        return chart
+      )
+
+      nv.addGraph(->
+        chart = nv.models.lineChart()
+
+        chart.yAxis
+             .tickFormat(d3.format('.02f'))
+        chart.xAxis
+             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+
+        d3.select('#violation-points-chart svg')
+          .datum(violationPointsData)
+          .transition().duration(500)
+          .call(chart)
+
+        nv.utils.windowResize(->
+          d3.select('#violation-points-chart svg').call(chart)
+        )
+
+        return chart
+      )
+
+    buildCharts([])
     updateDomainDetails()

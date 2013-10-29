@@ -21,18 +21,23 @@
     </div>
   </div>
 
-  <div class="panel panel-primary" ng-show="workers.length">
+  <div class="workers panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Workers <span class="badge worker-count pull-right">{{ workers.length }}</span></h3>
+      <h3 class="panel-title">Workers <span class="badge worker-count pull-right">{{ model.workers.length }}</span></h3>
     </div>
     <div class="panel-body">
-      <div class="list-group">
-        <a href="#/pages/{{ worker.page_uuid }}" class="list-group-item"
+      <div class="list-group" ng-hide="model.workers.length">
+        <p>No available workers.</p>
+      </div>
+      <div class="list-group" ng-show="model.workers.length">
+        <a href="#/pages/{{ worker.page_uuid }}" class="list-group-item worker-item"
            data-ng-class="worker.working == true ? 'active' : ''"
            title="{{ worker.page_url || 'Worker UUID: ' + worker.uuid }}"
-           data-ng-repeat="worker in workers"
+           data-ng-repeat="worker in model.workers"
         >
+          <div>
           {{ worker.page_url || "Worker Idle" }}
+          </div>
         </a>
       </div>
 

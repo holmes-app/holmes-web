@@ -10,7 +10,16 @@
       }
       return !isNaN(d.getTime());
     };
-    $scope.model = {};
+    $scope.model = {
+      domainDetails: {
+        name: $routeParams.domainName,
+        url: '',
+        pageCount: 0,
+        violationCount: 0,
+        violationPoints: 0
+      },
+      pages: []
+    };
     updateDomainDetails = function() {
       Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
         return $scope.model.domainDetails = domainDetails;
@@ -20,7 +29,8 @@
         return buildCharts(violations);
       });
       Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
-        return $scope.model.pages = domainData.pages;
+        $scope.model.pages = domainData.pages;
+        return $scope.model.pagesWithoutReview = domainData.pagesWithoutReview;
       });
       return $timeout(updateDomainDetails, 5000);
     };
@@ -85,6 +95,7 @@
         return chart;
       });
     };
+    buildCharts([]);
     return updateDomainDetails();
   });
 
