@@ -14,7 +14,7 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-grow
       .when '/domains/:domainName',
         templateUrl: 'views/domain_details.html'
         controller: 'DomainDetailsCtrl'
-      .when '/pages/:pageId',
+      .when '/pages/:pageId/reviews/:reviewId',
         templateUrl: 'views/report.html'
         controller: 'ReportCtrl'
 

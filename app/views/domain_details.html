@@ -50,7 +50,7 @@
       </tr>
 
       <tr ng-repeat="page in model.pages | filter:model.reviewFilter | orderBy:'-violationCount'" ng-show="model.pages">
-        <td><a href="#/pages/{{ page.uuid }}">{{ page.url }}</a></td>
+        <td><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}">{{ page.url }}</a></td>
         <td class="violations"><a href="#/pages/{{ page.uuid }}">{{ page.violationCount }}</a></td>
         <td class="finished-at"><a href="#/pages/{{ page.uuid }}"><span am-time-ago="page.completedDate"></span></a></td>
       </tr>
