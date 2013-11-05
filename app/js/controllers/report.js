@@ -1,34 +1,16 @@
 (function() {
   'use strict';
+  var __hasProp = {}.hasOwnProperty;
+
   angular.module('holmesApp').controller('ReportCtrl', function($scope, $routeParams, Restangular, $timeout) {
-    var sinAndCos, updateDetails, updateReviews;
-    $('#reportTabs').tab();
-    sinAndCos = function() {
-      var cos, i, sin, _i;
-      sin = [];
-      cos = [];
-      for (i = _i = 0; _i <= 100; i = ++_i) {
-        sin.push({
-          x: i,
-          y: Math.sin(i / 10)
-        });
-        cos.push({
-          x: i,
-          y: .5 * Math.cos(i / 10)
-        });
+    var buildCharts, isValidDate, updateChartData, updateDetails, updateReviews;
+    isValidDate = function(d) {
+      if (Object.prototype.toString.call(d) !== "[object Date]") {
+        return false;
       }
-      return [
-        {
-          values: sin,
-          key: 'Sine Wave',
-          color: '#ff7f0e'
-        }, {
-          values: cos,
-          key: 'Cosine Wave',
-          color: '#2ca02c'
-        }
-      ];
+      return !isNaN(d.getTime());
     };
+    $('#reportTabs').tab();
     $scope.model = {
       details: {},
       reviews: {}
@@ -43,19 +25,77 @@
         return $scope.model.reviews = reviews;
       });
     };
-    nv.addGraph(function() {
-      var chart;
-      chart = nv.models.lineChart();
-      chart.xAxis.axisLabel('Time (ms)').tickFormat(d3.format(',r'));
-      chart.yAxis.axisLabel('Voltage (v)').tickFormat(d3.format('.02f'));
-      d3.select('#chart svg').datum(sinAndCos()).transition().duration(500).call(chart);
-      nv.utils.windowResize(function() {
-        return d3.select('#chart svg').call(chart);
+    updateChartData = function() {
+      return Restangular.one('page', $routeParams.pageId).getList('violations-per-day').then(function(violations) {
+        violations = violations.violations;
+        return buildCharts(violations);
       });
-      return chart;
-    });
+    };
+    buildCharts = function(violations) {
+      var date, dt, obj, violationCount, violationCountData, violationPoints, violationPointsData;
+      violationPoints = [];
+      violationCount = [];
+      for (date in violations) {
+        if (!__hasProp.call(violations, date)) continue;
+        obj = violations[date];
+        dt = new Date(date);
+        if (!isValidDate(dt)) {
+          continue;
+        }
+        violationPoints.push({
+          x: new Date(date),
+          y: obj.violation_points
+        });
+        violationCount.push({
+          x: new Date(date),
+          y: obj.violation_count
+        });
+      }
+      violationPointsData = [
+        {
+          values: violationPoints,
+          key: 'Violation Points',
+          color: '#ff7f0e'
+        }
+      ];
+      violationCountData = [
+        {
+          values: violationCount,
+          key: 'Violation Count',
+          color: '#2ca02c'
+        }
+      ];
+      nv.addGraph(function() {
+        var chart;
+        chart = nv.models.lineChart();
+        chart.yAxis.tickFormat(d3.format('.02f'));
+        chart.xAxis.tickFormat(function(d) {
+          return (d3.time.format("%d-%b-%Y"))(new Date(d));
+        });
+        d3.select('#violation-count-chart svg').datum(violationCountData).transition().duration(500).call(chart);
+        nv.utils.windowResize(function() {
+          return d3.select('#violation-count-chart svg').call(chart);
+        });
+        return chart;
+      });
+      return nv.addGraph(function() {
+        var chart;
+        chart = nv.models.lineChart();
+        chart.yAxis.tickFormat(d3.format('.02f'));
+        chart.xAxis.tickFormat(function(d) {
+          return (d3.time.format("%d-%b-%Y"))(new Date(d));
+        });
+        d3.select('#violation-points-chart svg').datum(violationPointsData).transition().duration(500).call(chart);
+        nv.utils.windowResize(function() {
+          return d3.select('#violation-points-chart svg').call(chart);
+        });
+        return chart;
+      });
+    };
+    buildCharts([]);
     updateDetails();
-    return updateReviews();
+    updateReviews();
+    return updateChartData();
   });
 
 }).call(this);

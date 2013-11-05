@@ -2,28 +2,13 @@
 
 angular.module('holmesApp')
   .controller 'ReportCtrl', ($scope, $routeParams, Restangular, $timeout) ->
+
+    isValidDate = (d) ->
+      if (Object.prototype.toString.call(d) != "[object Date]")
+        return false
+      return !isNaN(d.getTime())
+
     $('#reportTabs').tab()
-
-    sinAndCos = ->
-       sin = []
-       cos = []
-
-       for i in [0..100]
-         sin.push(x: i, y: Math.sin(i/10))
-         cos.push(x: i, y: .5 * Math.cos(i/10))
-
-       return [
-         {
-           values: sin,
-           key: 'Sine Wave',
-           color: '#ff7f0e'
-         },
-         {
-           values: cos,
-           key: 'Cosine Wave',
-           color: '#2ca02c'
-         }
-       ]
 
     $scope.model = {
       details: {},
@@ -40,28 +25,87 @@ angular.module('holmesApp')
         $scope.model.reviews = reviews
       )
 
-    nv.addGraph(->
-      chart = nv.models.lineChart()
-
-      chart.xAxis
-        .axisLabel('Time (ms)')
-        .tickFormat(d3.format(',r'))
-
-      chart.yAxis
-        .axisLabel('Voltage (v)')
-        .tickFormat(d3.format('.02f'))
-
-      d3.select('#chart svg')
-        .datum(sinAndCos())
-        .transition().duration(500)
-        .call(chart)
-
-      nv.utils.windowResize(->
-        d3.select('#chart svg').call(chart)
+    updateChartData = ->
+      Restangular.one('page', $routeParams.pageId).getList('violations-per-day').then((violations) ->
+        violations = violations.violations
+        buildCharts(violations)
       )
 
-      return chart
-    )
+    buildCharts = (violations) ->
+      violationPoints = []
+      violationCount = []
 
+      for own date, obj of violations
+        dt = new Date(date)
+        if (!isValidDate(dt))
+          continue
+
+        violationPoints.push(
+          x: new Date(date),
+          y: obj.violation_points
+        )
+
+        violationCount.push(
+          x: new Date(date),
+          y: obj.violation_count
+        )
+
+      violationPointsData = [
+        {
+          values: violationPoints,
+          key: 'Violation Points',
+          color: '#ff7f0e'
+        }
+      ]
+      violationCountData = [
+        {
+          values: violationCount,
+          key: 'Violation Count',
+          color: '#2ca02c'
+        }
+      ]
+
+      nv.addGraph(->
+        chart = nv.models.lineChart()
+
+        chart.yAxis
+             .tickFormat(d3.format('.02f'))
+        chart.xAxis
+             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+
+        d3.select('#violation-count-chart svg')
+          .datum(violationCountData)
+          .transition().duration(500)
+          .call(chart)
+
+        nv.utils.windowResize(->
+          d3.select('#violation-count-chart svg').call(chart)
+        )
+
+        return chart
+      )
+
+      nv.addGraph(->
+        chart = nv.models.lineChart()
+
+        chart.yAxis
+             .tickFormat(d3.format('.02f'))
+        chart.xAxis
+             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+
+        d3.select('#violation-points-chart svg')
+          .datum(violationPointsData)
+          .transition().duration(500)
+          .call(chart)
+
+        nv.utils.windowResize(->
+          d3.select('#violation-points-chart svg').call(chart)
+        )
+
+        return chart
+      )
+
+    buildCharts([])
     updateDetails()
     updateReviews()
+    updateChartData()
