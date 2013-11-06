@@ -46,7 +46,7 @@
 		      <tr ng-hide="model.details.facts">
 			<td colspan="3">No facts for this page yet.</td>
 		      </tr>
-		      <tr ng-repeat="fact in model.details.facts" ng-show="model.details.facts">
+		      <tr ng-repeat="fact in model.details.facts | filter:{'unit': '!values'}" ng-show="model.details.facts">
 			<td>{{ fact.title }}</td>
 			<td>{{ fact.value }}</td>
 		      </tr>
@@ -56,34 +56,26 @@
           </div>
        </div>
 
-        <div class="fact-table">
+       <div class="fact-table" ng-repeat="fact in model.details.facts | filter:{'unit': 'values'}">
           <div class="panel panel-default">
-            <div class="panel-heading">Meta Tags</div>
+	    <div class="panel-heading">{{ fact.title }}</div>
             <div class="panel-body">
-
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Value</th>
                   </tr>
+                    <th>Key</th>
+		    <th>Property</th>
+                    <th>Content</th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>description</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr>
-                    <td>keywords</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr>
-                    <td>application-name</td>
-                    <td>Column content</td>
-                  </tr>
+                  <tr ng-repeat="value in fact.value">
+		    <td>{{ value.key }}</td>
+		    <td>{{ value.property }}</td>
+		    <td>{{ value.content }}</td>
+	          </tr>
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>
