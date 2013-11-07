@@ -47,7 +47,7 @@
 		      </tr>
 		      <tr ng-repeat="fact in model.details.facts | filter:{'unit': '!values'}" ng-show="model.details.facts">
 			<td>{{ fact.title }}</td>
-			<td>{{ fact.value }}</td>
+			<td>{{ fact.value }}<span ng-if="fact.unit!='value'">{{ fact.unit }}</span></td>
 		      </tr>
 		    </tbody>
 		  </table>
