@@ -1,7 +1,7 @@
 'use strict'
 
-angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment'])
-  .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider) ->
+angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig'])
+  .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, timeToLive) ->
     #$locationProvider.html5Mode(true)
 
     $routeProvider
@@ -18,6 +18,6 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-grow
         templateUrl: 'views/report.html'
         controller: 'ReportCtrl'
 
-    RestangularProvider.setBaseUrl('http://local.holmes.com:2368/')
+    RestangularProvider.setBaseUrl(baseUrl)
 
-    growlProvider.globalTimeToLive(3000);
+    growlProvider.globalTimeToLive(timeToLive);

@@ -136,6 +136,21 @@ module.exports = (grunt) ->
           debugInfo: true
         }
       }
+    },
+    ngconstant: {
+      options: {
+        space: '  '
+      },
+
+      holmesConfig: [{
+        dest: 'app/js/config.js',
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        name: 'HolmesConfig',
+        constants: {
+          'baseUrl': 'http://local.holmes.com:2368/',
+          'timeToLive': 3000,
+        }
+      }],
     }
   )
 
@@ -144,12 +159,14 @@ module.exports = (grunt) ->
   ])
 
   grunt.registerTask('build', [
+    'ngconstant:holmesConfig',
     'coffee',
     'jshint',
     'compass'
   ])
 
   grunt.registerTask('run', [
+    'ngconstant:holmesConfig',
     'concurrent:server',
     'connect:livereload',
     'watch',
