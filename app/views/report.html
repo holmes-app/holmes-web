@@ -1,6 +1,12 @@
 <div class="report-view">
   <h1>Page: {{ model.details.page.url }}</h1>
 
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/domains/{{ model.details.domain }}">{{ model.details.domain }}</a></li>
+    <li class="active">{{ model.details.page.url }}</li>
+  </ol>
+
   <div class="row stats">
     <div class="col-lg-6">
       <div class="title text-primary">{{ model.details.violationCount }}</div>

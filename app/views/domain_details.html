@@ -1,6 +1,11 @@
 <div class="domain-details-view">
   <h1>{{ model.domainDetails.name }}</h1>
 
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li class="active">{{ model.domainDetails.name }}</li>
+  </ol>
+
   <div class="row stats">
     <div class="col-lg-4">
       <div class="title text-primary">{{ model.domainDetails.pageCount }}</div>
