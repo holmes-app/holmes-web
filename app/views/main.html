@@ -28,6 +28,21 @@
             </div>
           </div>
         </form>
+
+        <div class="warnings" ng-class="{'invalid': model.invalidUrl, 'turns-out': model.turnsOut}">
+          <div class="warning alert alert-dismissable alert-warning turns-out-warning" >
+            <button type="button" class="close" ng-click="clearForm()">×</button>
+            <h4>Turns out it was a redirect!</h4>
+            <p>The website you added was actually a redirect to {{ model.turnsOut }}. Do you want to add <a href="#" ng-click="model.url = model.turnsOut; addPage()" class="alert-link">{{ model.turnsOut }}</a> instead?</p>
+          </div>
+
+          <div class="warning alert alert-dismissable alert-danger invalid-warning">
+            <button type="button" class="close" ng-click="clearForm()">×</button>
+            <h4>Url not found!</h4>
+            <p>The website you added could not be found. Maybe you mispelled it?</p>
+          </div>
+        </div>
+
       </div>
     </div> <!-- jumbotron -->
 

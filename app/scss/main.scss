@@ -72,3 +72,31 @@
     }
   }
 }
+
+.warnings {
+  margin-top: 15px;
+  font-size: 12px;
+  height: 0;
+  overflow: hidden;
+  @include transition(all 300ms linear);
+
+  &.turns-out {
+    height: 77px;
+
+    .turns-out-warning {
+      display: block;
+    }
+  }
+
+  &.invalid {
+    height: 77px;
+
+    .invalid-warning {
+      display: block;
+    }
+  }
+
+  .warning {
+    display: none;
+  }
+}

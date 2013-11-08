@@ -36,7 +36,7 @@
         <a href="#/pages/{{ worker.page_uuid }}" class="list-group-item worker-item"
            data-ng-class="worker.working == true ? 'active' : ''"
            title="{{ worker.page_url || 'Worker UUID: ' + worker.uuid }}"
-           data-ng-repeat="worker in model.workers"
+           data-ng-repeat="worker in model.workers | orderBy:'page_url'"
         >
           <div>
           {{ worker.page_url || "Worker Idle" }}

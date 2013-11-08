@@ -34,20 +34,37 @@
   angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, $http, Restangular) {
     var addViolation;
     $http.defaults.useXDomain = true;
-    $scope.model = {
-      url: ''
+    $scope.clearForm = function() {
+      $scope.model = {
+        url: '',
+        turnsOut: '',
+        invalidUrl: ''
+      };
+      if ($scope.addPageForm) {
+        return $scope.addPageForm.url.$pristine = true;
+      }
     };
+    $scope.clearForm();
     $scope.addPage = function() {
       var page, pages, url;
       url = $scope.model.url;
+      $scope.model.turnsOut = '';
+      $scope.model.invalidUrl = '';
       pages = Restangular.all('page');
-      console.log(url);
       return page = pages.post({
         url: url
       }).then(function(page) {
-        $scope.addPageForm.url.$pristine = true;
-        $scope.model.url = '';
+        $scope.clearForm();
         return growl.addSuccessMessage(url + ' successfully saved!');
+      }, function(response) {
+        if (response.status === 400) {
+          if (response.data.reason === 'invalid_url') {
+            $scope.model.invalidUrl = response.data.url;
+          }
+          if (response.data.reason === 'redirect') {
+            return $scope.model.turnsOut = response.data.effectiveUrl;
+          }
+        }
       });
     };
     $scope.violations = [];
