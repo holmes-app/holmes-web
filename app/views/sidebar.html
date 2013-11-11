@@ -33,15 +33,14 @@
         <p>No available workers.</p>
       </div>
       <div class="list-group" ng-show="model.workers.length">
-        <a href="#/pages/{{ worker.page_uuid }}" class="list-group-item worker-item"
+        <div class="list-group-item worker-item"
            data-ng-class="worker.working == true ? 'active' : ''"
            title="{{ worker.page_url || 'Worker UUID: ' + worker.uuid }}"
-           data-ng-repeat="worker in model.workers | orderBy:'page_url'"
-        >
+           data-ng-repeat="worker in model.workers | orderBy:'page_url'">
           <div>
           {{ worker.page_url || "Worker Idle" }}
           </div>
-        </a>
+        </div>
       </div>
 
       <div class="subtitle pull-right">
