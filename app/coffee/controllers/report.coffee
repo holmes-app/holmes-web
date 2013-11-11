@@ -71,7 +71,7 @@ angular.module('holmesApp')
         chart.yAxis
              .tickFormat(d3.format('.02f'))
         chart.xAxis
-             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+             .tickFormat((d) -> return (d3.time.format("%d-%b"))(new Date(d)))
 
         d3.select('#violation-count-chart svg')
           .datum(violationCountData)
@@ -91,7 +91,7 @@ angular.module('holmesApp')
         chart.yAxis
              .tickFormat(d3.format('.02f'))
         chart.xAxis
-             .tickFormat((d) -> return (d3.time.format("%d-%b-%Y"))(new Date(d)))
+             .tickFormat((d) -> return (d3.time.format("%d-%b"))(new Date(d)))
 
         d3.select('#violation-points-chart svg')
           .datum(violationPointsData)

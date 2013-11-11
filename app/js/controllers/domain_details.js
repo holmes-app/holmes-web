@@ -81,7 +81,7 @@
         chart = nv.models.lineChart();
         chart.yAxis.tickFormat(d3.format('.02f'));
         chart.xAxis.tickFormat(function(d) {
-          return (d3.time.format("%d-%b-%Y"))(new Date(d));
+          return (d3.time.format("%d-%b"))(new Date(d));
         });
         d3.select('#violation-count-chart svg').datum(violationCountData).transition().duration(500).call(chart);
         nv.utils.windowResize(function() {
@@ -94,7 +94,7 @@
         chart = nv.models.lineChart();
         chart.yAxis.tickFormat(d3.format('.02f'));
         chart.xAxis.tickFormat(function(d) {
-          return (d3.time.format("%d-%b-%Y"))(new Date(d));
+          return (d3.time.format("%d-%b"))(new Date(d));
         });
         d3.select('#violation-points-chart svg').datum(violationPointsData).transition().duration(500).call(chart);
         nv.utils.windowResize(function() {
