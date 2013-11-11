@@ -1,6 +1,10 @@
 <div class="domains-view">
   <h1>Domains</h1>
 
+  <div class="list-group" ng-hide="model.domains">
+    <p>No domains found.</p>
+  </div>
+
   <div class="row">
     <div class="col-lg-4"
          data-ng-repeat="domain in model.domains track by domain.name"
