@@ -32,3 +32,11 @@ angular.module('holmesApp')
           if response.data.reason == 'redirect'
             $scope.model.turnsOut = response.data.effectiveUrl
       )
+
+    lastReviews = ->
+      Restangular.one('last-reviews').get().then((reviews) ->
+        $scope.model.last_reviews = reviews
+      )
+      $timeout(lastReviews, 2000)
+
+    lastReviews()

@@ -9,7 +9,7 @@
   margin-top: 20px;
 }
 
-.last-violations {
+.last-reviews {
   a {
     text-decoration: none;
     color: #333;
@@ -28,7 +28,7 @@
   .panel {
     @include transition(all 100ms linear);
     .panel-body {
-      min-height: 100px;
+      min-height: 80px;
     }
   }
 

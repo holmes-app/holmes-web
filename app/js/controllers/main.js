@@ -1,6 +1,7 @@
 (function() {
   'use strict';
   angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, $http, Restangular) {
+    var lastReviews;
     $http.defaults.useXDomain = true;
     $scope.clearForm = function() {
       $scope.model = {
@@ -13,7 +14,7 @@
       }
     };
     $scope.clearForm();
-    return $scope.addPage = function() {
+    $scope.addPage = function() {
       var page, pages, url;
       url = $scope.model.url;
       $scope.model.turnsOut = '';
@@ -35,6 +36,13 @@
         }
       });
     };
+    lastReviews = function() {
+      Restangular.one('last-reviews').get().then(function(reviews) {
+        return $scope.model.last_reviews = reviews;
+      });
+      return $timeout(lastReviews, 2000);
+    };
+    return lastReviews();
   });
 
 }).call(this);

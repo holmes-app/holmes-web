@@ -49,29 +49,30 @@
     <div class="panel panel-default last-reviews">
       <div class="panel-heading">Last Reviews</div>
       <div class="panel-body">
+        <div class="list-group" ng-hide="model.last_reviews">
+          <p>No available reviews.</p>
+        </div>
         <div class="row">
+          <div class="col-lg-4" data-ng-repeat="review in model.last_reviews">
 
-          <div class="col-lg-4"
-               data-ng-repeat="review in reviews"
-          >
-
-            <a href="/page/{{ review.page.id }}">
-              <div class="panel panel-danger">
+            <a href="#/pages/{{ review.page.uuid }}/reviews/{{ review.uuid }}/">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{ review.domain }} ({{ review.violationCount }} violations)</h3>
+                </div>
                 <div class="panel-body">
-                  <h3 class="panel-title" title="{{ review.page.url }}">
-                    <span class="glyphicon glyphicon-home"></span>
-                    {{ review.page.url }}
-                  </h3>
+                  {{ review.page.url }}
                 </div>
                 <div class="panel-footer">
                   <span class="glyphicon glyphicon-time"></span>
-                  <time class="timeago" datetime="{{ review.created }}">{{ violation.createdString }}</time>
+                  <span am-time-ago="review.completedDateISO"></span>
                 </div>
               </div>
-            </a>
-          </div>
 
-        </div>
+            </a>
+          </div> <!-- col-lg-4 -->
+        </div> <!-- row -->
+
       </div>
     </div>
 
