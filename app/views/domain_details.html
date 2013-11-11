@@ -65,7 +65,7 @@
   <h2>Pages without Review</h2>
   <p ng-hide="model.pagesWithoutReview">No pages without review yet.</p>
   <div class="list-group">
-    <a ng-repeat="page in model.pagesWithoutReview" href="#/pages/{{ page.uuid }}" class="list-group-item">{{ page.url }}</a>
+    <span ng-repeat="page in model.pagesWithoutReview" class="list-group-item">{{ page.url }}</span>
     <p ng-show="model.pagesWithoutReviewCount" class="list-group-item">And {{ model.pagesWithoutReviewCount }} other pages.</p>
   </div>
 
