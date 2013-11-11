@@ -74,36 +74,5 @@
         </div>
       </div>
     </div>
- 
 
-    <div class="panel panel-default last-violations">
-      <div class="panel-heading">Last Violations</div>
-      <div class="panel-body">
-        <div class="row">
-
-          <div class="col-lg-4"
-               data-ng-repeat="violation in violations"
-          >
-            <a href="/page/{{ violation.page }}/violations/{{ violation.id }}">
-              <div class="panel panel-danger">
-                <div class="panel-heading">
-                  <h3 class="panel-title" title="{{ violation.url }}">
-                    <span class="glyphicon glyphicon-home"></span>
-                    {{ violation.url }}
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  {{ violation.text }}
-                </div>
-                <div class="panel-footer">
-                  <span class="glyphicon glyphicon-time"></span>
-                  <time class="timeago" datetime="{{ violation.added }}">{{ violation.addedString }}</time>
-                </div>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </div>
 </div>
