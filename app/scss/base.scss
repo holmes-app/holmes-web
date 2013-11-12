@@ -69,3 +69,57 @@ body {
     }
   }
 }
+
+.menu {
+  font-size: 15px;
+}
+
+#footer {
+  margin-top: 40px;
+  background-color: #333;
+  height: 200px;
+  font-size: 0;
+
+  .logo {
+    display: inline-block;
+    vertical-align: top;
+
+    font-size: 12px;
+    background: url('../images/detective_small.png') 0 0 no-repeat;
+    width: 128px;
+    height: 128px;
+    opacity: 0.3;
+    margin-top: 36px;
+    margin-right: 15px;
+  }
+
+  .brand {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 42px;
+    color: #dedede;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-right: solid 1px #dedede;
+    margin-top: 22px;
+    padding-right: 60px;
+    margin-right: 60px;
+  }
+
+  .text {
+    display: inline-block;
+    vertical-align: top;
+
+    font-size: 12px;
+    margin-top: 70px;
+    color: #fff;
+
+    a {
+      color: #dedede;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}

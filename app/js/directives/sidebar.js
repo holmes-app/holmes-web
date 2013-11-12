@@ -5,9 +5,11 @@
       templateUrl: 'views/sidebar.html',
       restrict: 'E',
       scope: {},
-      controller: function($scope, Restangular, $location, $timeout) {
+      controller: function($scope, Restangular, $location, $timeout, growl) {
         var getMostCommonViolations, getWorkers;
-        $scope.model = {};
+        $scope.model = {
+          term: ''
+        };
         $scope.model.workers = [];
         getWorkers = function() {
           Restangular.one('workers').getList().then(function(activeWorkers) {
@@ -24,7 +26,7 @@
           return $timeout(getMostCommonViolations, 2000);
         };
         getMostCommonViolations();
-        return $scope.getClass = function(path) {
+        $scope.getClass = function(path) {
           var isActive;
           isActive = $location.path().trim() === path.trim();
           if (isActive) {
@@ -33,6 +35,20 @@
           if (!isActive) {
             return "";
           }
+        };
+        return $scope.search = function() {
+          var term;
+          term = $scope.model.term;
+          return Restangular.all('search').getList({
+            term: term
+          }).then(function(pages) {
+            if (pages.length === 0) {
+              growl.addErrorMessage("Page with URL " + term + " was not found!");
+            } else {
+              $location.path('/pages/' + pages[0].uuid + '/reviews/' + pages[0].reviewId);
+            }
+            return $scope.model.term = '';
+          });
         };
       }
     };

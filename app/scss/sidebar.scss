@@ -1,3 +1,7 @@
+.logo a {
+  text-decoration: none;
+}
+
 .workers {
   .worker-item {
     div {
@@ -54,6 +58,8 @@
 }
 
 .common-violations {
+  margin-top: 30px;
+
   .badge {
     position: absolute;
     top: 50%;
@@ -66,5 +72,20 @@
   .text {
     max-width: 110px;
     display: block;
+  }
+}
+
+.search {
+  width: 400px;
+  margin-right: 80px;
+  margin-top: 10px;
+
+  .search-button {
+    border: solid 1px #06c !important;
+    background-color: #06c !important;
+
+    &:hover {
+      background-color: #006ddb !important;
+    }
   }
 }

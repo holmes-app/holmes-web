@@ -1,9 +1,48 @@
-<div class="sidebar">
-  <h1><a href="http://github.com/heynemann/holmes-web">holmes</a></h1>
-  <div class="list-group">
-    <a href="#/" data-ng-class="getClass('/')" class="list-group-item">home</a>
-    <a href="#/domains" data-ng-class="getClass('/domains')" class="list-group-item">domains</a>
+<div class="navbar navbar-inverse menu">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#/">holmes</a>
   </div>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div class="search">
+          <div class="input-group input-group-sm search-box">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="text" class="form-control" ng-model="model.term" placeholder="Page URL">
+            <span class="input-group-btn">
+              <button class="btn btn-primary search-button" ng-click="search()" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </li>
+      <li data-ng-class="getClass('/')"><a href="#/">home</a></li>
+      <li data-ng-class="getClass('/domains')"><a href="#/domains">domains</a></li>
+    </ul>
+  </div><!-- /.nav-collapse -->
+</div>
+
+<div class="sidebar">
+  <!--<h1 class="logo"><a href="#/">holmes</a></h1>-->
+
+  <!--<h3>Search Review</h3>-->
+  <!--<div class="search">-->
+    <!--<div class="input-group input-group-sm search-box">-->
+      <!--<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>-->
+      <!--<input type="text" class="form-control" placeholder="Page URL">-->
+      <!--<span class="input-group-btn">-->
+        <!--<button class="btn btn-default" type="button">Go!</button>-->
+      <!--</span>-->
+    <!--</div>-->
+
+    <!--<div class="alert alert-dismissable alert-danger">-->
+      <!--<strong>Página não encontrada!</strong><div>Por favor tente novamente com a URL exata.</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="list-group">-->
+    <!--<a href="#/" data-ng-class="getClass('/')" class="list-group-item">home</a>-->
+    <!--<a href="#/domains" data-ng-class="getClass('/domains')" class="list-group-item">domains</a>-->
+  <!--</div>-->
 
   <div class="panel panel-primary common-violations">
     <div class="panel-heading">

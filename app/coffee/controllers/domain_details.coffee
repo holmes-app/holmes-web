@@ -76,9 +76,6 @@ angular.module('holmesApp')
         }
       ]
 
-      console.log(violationPoints)
-      console.log(violationCount)
-
       nv.addGraph(->
         chart = nv.models.lineChart()
 

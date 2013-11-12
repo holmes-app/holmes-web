@@ -5,8 +5,9 @@ angular.module('holmesApp')
     templateUrl: 'views/sidebar.html',
     restrict: 'E',
     scope: {},
-    controller: ($scope, Restangular, $location, $timeout) ->
-      $scope.model = {}
+    controller: ($scope, Restangular, $location, $timeout, growl) ->
+      $scope.model =
+        term: ''
 
       $scope.model.workers = []
       getWorkers = ->
@@ -30,4 +31,15 @@ angular.module('holmesApp')
         isActive = $location.path().trim() == path.trim()
         return "active" if isActive
         return "" unless isActive
+
+      $scope.search = ->
+        term = $scope.model.term
+        Restangular.all('search').getList({term: term}).then((pages) ->
+          if pages.length == 0
+            growl.addErrorMessage("Page with URL " + term + " was not found!")
+          else
+            $location.path('/pages/' + pages[0].uuid + '/reviews/' + pages[0].reviewId)
+
+          $scope.model.term = ''
+        )
   )

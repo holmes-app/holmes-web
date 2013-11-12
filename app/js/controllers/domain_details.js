@@ -74,8 +74,6 @@
           color: '#2ca02c'
         }
       ];
-      console.log(violationPoints);
-      console.log(violationCount);
       nv.addGraph(function() {
         var chart;
         chart = nv.models.lineChart();
