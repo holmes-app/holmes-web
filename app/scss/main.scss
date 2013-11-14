@@ -81,7 +81,7 @@
   @include transition(all 300ms linear);
 
   &.turns-out {
-    height: 77px;
+    height: auto;
 
     .turns-out-warning {
       display: block;
@@ -89,7 +89,7 @@
   }
 
   &.invalid {
-    height: 77px;
+    height: auto;
 
     .invalid-warning {
       display: block;

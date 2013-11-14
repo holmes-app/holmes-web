@@ -43,7 +43,7 @@
             term: term
           }).then(function(pages) {
             if (pages.length === 0) {
-              growl.addErrorMessage("Page with URL " + term + " was not found!");
+              growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!");
             } else {
               $location.path('/pages/' + pages[0].uuid + '/reviews/' + pages[0].reviewId);
             }

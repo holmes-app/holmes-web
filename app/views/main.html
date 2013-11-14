@@ -33,7 +33,7 @@
           <div class="warning alert alert-dismissable alert-warning turns-out-warning" >
             <button type="button" class="close" ng-click="clearForm()">×</button>
             <h4>Turns out it was a redirect!</h4>
-            <p>The website you added was actually a redirect to {{ model.turnsOut }}. Do you want to add <a href="#" ng-click="model.url = model.turnsOut; addPage()" class="alert-link">{{ model.turnsOut }}</a> instead?</p>
+            <p>The website you added was actually a redirect to {{ model.turnsOut }}. <a href="#/" ng-click="model.url = model.turnsOut; addPage()" class="alert-link">Do you want to add it instead</a>?</p>
           </div>
 
           <div class="warning alert alert-dismissable alert-danger invalid-warning">

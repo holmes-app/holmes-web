@@ -10,7 +10,7 @@ angular.module('holmesApp')
         turnsOut: ''
         invalidUrl: ''
 
-      $scope.addPageForm.url.$pristine = true if $scope.addPageForm
+      $scope.addPageForm.url.$pristine = true if $scope.addPageForm and $scope.addPageForm.url
 
     $scope.clearForm()
 
@@ -19,11 +19,9 @@ angular.module('holmesApp')
       $scope.model.turnsOut = ''
       $scope.model.invalidUrl = ''
 
-      pages = Restangular.all('page')
-      page = pages.post({ url: url }).then((page) ->
+      Restangular.all('page').post({ url: url }).then((page) ->
         $scope.clearForm()
-
-        growl.addSuccessMessage(url + ' successfully saved!')
+        growl.addSuccessMessage('Page successfully saved!')
       , (response) ->
         if response.status == 400
           if response.data.reason == 'invalid_url'

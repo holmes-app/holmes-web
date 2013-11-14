@@ -9,22 +9,21 @@
         turnsOut: '',
         invalidUrl: ''
       };
-      if ($scope.addPageForm) {
+      if ($scope.addPageForm && $scope.addPageForm.url) {
         return $scope.addPageForm.url.$pristine = true;
       }
     };
     $scope.clearForm();
     $scope.addPage = function() {
-      var page, pages, url;
+      var url;
       url = $scope.model.url;
       $scope.model.turnsOut = '';
       $scope.model.invalidUrl = '';
-      pages = Restangular.all('page');
-      return page = pages.post({
+      return Restangular.all('page').post({
         url: url
       }).then(function(page) {
         $scope.clearForm();
-        return growl.addSuccessMessage(url + ' successfully saved!');
+        return growl.addSuccessMessage('Page successfully saved!');
       }, function(response) {
         if (response.status === 400) {
           if (response.data.reason === 'invalid_url') {
