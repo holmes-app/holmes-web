@@ -21,6 +21,7 @@ body {
 }
 
 .main-area {
+  min-height: 550px;
   position: relative;
   @include box-sizing(border-box);
   display: inline-block;
