@@ -34,8 +34,16 @@
       }
     }
 
-    > .panel-body {
-      margin-bottom: -20px;
+    .violation {
+      .panel-body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100px;
+
+        .contents {
+          overflow-x: hidden;
+        }
+      }
     }
 
     .panel {

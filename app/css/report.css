@@ -1,49 +1,55 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\000033}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\000033}}
 .report-view {
   width: 100%;
   padding-left: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\000037}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\000037}}
 .report-view .page-reviews-badge {
   font-size: 26px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000311}}
 .report-view #violation-points-chart {
   margin-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000314}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000314}}
 .report-view #violation-points-chart svg {
   height: 350px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000320}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000320}}
 .report-view #violation-count-chart svg {
   height: 150px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000326}}
 .report-view .violations a {
   text-decoration: none;
   color: #333;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000331}}
 .report-view .violations a:hover .panel {
   opacity: 0.9;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000337}}
-.report-view .violations > .panel-body {
-  margin-bottom: -20px;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000338}}
+.report-view .violations .violation .panel-body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000343}}
+.report-view .violations .violation .panel-body .contents {
+  overflow-x: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000349}}
 .report-view .violations .panel {
   -webkit-transition: all 100ms linear;
   -moz-transition: all 100ms linear;
   -o-transition: all 100ms linear;
   transition: all 100ms linear;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000351}}
 .report-view .violations .panel .panel-body {
   min-height: 100px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000357}}
 .report-view .violations .panel-heading h3 {
   width: 100%;
   padding-bottom: 2px;
@@ -52,51 +58,51 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000366}}
 .report-view .violations .panel-heading .glyphicon {
   margin-right: 5px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000365}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000373}}
 .stats {
   font-size: 12px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000368}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000376}}
 .stats .title {
   text-align: center;
   font-size: 48px;
   font-weight: bold;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000374}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000382}}
 .stats .subtitle {
   text-align: center;
   font-size: 12px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000380}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000388}}
 #chart {
   margin: 40px 0;
   height: 400px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000395}}
 .see-also tr {
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000391}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000399}}
 .see-also .pager {
   margin: -25px auto 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000395}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003103}}
 .see-also .filters {
   margin-right: -15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\0000398}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003106}}
 .see-also .filters .glyphicon {
   font-size: 16px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003105}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003113}}
 .fact-row .fact-col {
   display: -moz-inline-stack;
   display: inline-block;
@@ -106,13 +112,13 @@
   *display: inline;
   width: 12%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003117}}
 .fact-row .fact-col .fact-value {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003115}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003123}}
 .fact-row .fact-col .fact-description {
   color: #999;
   font-size: 11px;
@@ -120,12 +126,12 @@
   text-transform: lowercase;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003124}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003132}}
 .fact {
   margin-top: 20px;
   font-size: 14px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003128}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003136}}
 .fact .fact-value {
   display: -moz-inline-stack;
   display: inline-block;
@@ -134,7 +140,7 @@
   zoom: 1;
   *display: inline;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003132}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003140}}
 .fact .fact-description {
   color: #999;
   margin-right: 5px;
@@ -146,27 +152,27 @@
   *display: inline;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003139}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003147}}
 .fact-table {
   margin-top: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003142}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003150}}
 .fact-table .panel-body {
   margin-bottom: -20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003156}}
 #reportTabs a {
   cursor: pointer;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003153}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003161}}
 #reportTabsContent {
   border: solid 1px #ddd;
   border-top: 0;
   padding: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003159}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/report\.scss}line{font-family:\00003167}}
 #reportTabsContent .current-report > h3, #reportTabsContent .see-also > h3 {
   margin-top: 0;
 }
