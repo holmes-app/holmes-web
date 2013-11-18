@@ -40,31 +40,31 @@
         <div class="fact-table">
           <div class="panel panel-default">
             <div class="panel-heading">Facts</div>
-              <div class="panel-body">
-                <table class="table table-striped table-bordered table-hover reviews">
-                  <thead>
-                    <tr>
-                      <th class="violations">Title</th>
-                      <th class="finished-at">Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-hide="model.details.facts">
-                      <td colspan="3">No facts for this page yet.</td>
-                    </tr>
-                    <tr ng-repeat="fact in model.details.facts | filter:{'unit': '!values'}" ng-show="model.details.facts">
-                      <td>{{ fact.title }}</td>
-                      <td>{{ fact.value }}<span ng-if="fact.unit != 'value'">{{ fact.unit }}</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-             </div>
+            <div class="panel-body">
+              <table class="table table-striped table-bordered table-hover reviews">
+                <thead>
+                  <tr>
+                    <th class="violations">Title</th>
+                    <th class="finished-at">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-hide="model.details.facts">
+                    <td colspan="3">No facts for this page yet.</td>
+                  </tr>
+                  <tr ng-repeat="fact in model.details.facts | filter:{'unit': '!values'}" ng-show="model.details.facts">
+                    <td>{{ fact.title }}</td>
+                    <td>{{ fact.value }}<span ng-if="fact.unit != 'value'">{{ fact.unit }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-       </div>
+        </div>
 
-       <div class="fact-table" ng-repeat="fact in model.details.facts | filter:{'unit': 'values'}">
+        <div class="fact-table" ng-repeat="fact in model.details.facts | filter:{'unit': 'values'}">
           <div class="panel panel-default">
-          <div class="panel-heading">{{ fact.title }}</div>
+            <div class="panel-heading">{{ fact.title }}</div>
             <div class="panel-body">
               <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -92,27 +92,26 @@
     <div class="tab-pane fade in" id="current-report-violations">
       <div class="current-report">
         <h3>Violations</h3>
-
         <div class="violations row">
           <div class="col-lg-4 violation" data-ng-repeat="violation in model.details.violations">
-              <div class="panel panel-danger">
-                <div class="panel-heading">
-                  <h3 class="panel-title" title="{{ violation.title }}">
-                    <span class="glyphicon glyphicon-home"></span>
-                    {{ violation.title }}
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  <div class="contents">
-                    {{ violation.description }}
-                  </div>
-                </div>
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title" title="{{ violation.title }}">
+                  <span class="glyphicon glyphicon-home"></span>
+                  {{ violation.title }}
+                </h3>
               </div>
+              <div class="panel-body">
+                <div class="contents">{{ violation.description }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div> <!-- current-report -->
-
     </div> <!-- tab-pane -->
+
+  </div> <!-- tab-content -->
+
 
   <h2 class="pull-left page-reviews-header">Reviews <span class="page-reviews-badge badge ng-binding">{{ model.reviews.length }}</span></h2>
 
@@ -129,8 +128,8 @@
       </tr>
 
       <tr ng-repeat="review in model.reviews | orderBy:'violationCount'" ng-show="model.reviews">
-  <td class="violations"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}">{{ review.violationCount }}</a></td>
-  <td class="finished-at"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}"><span am-time-ago="review.completedDate"></span></a></td>
+        <td class="violations"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}">{{ review.violationCount }}</a></td>
+        <td class="finished-at"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}"><span am-time-ago="review.completedDate"></span></a></td>
       </tr>
     </tbody>
   </table>
