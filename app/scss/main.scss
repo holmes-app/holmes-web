@@ -28,7 +28,9 @@
   .panel {
     @include transition(all 100ms linear);
     .panel-body {
-      min-height: 80px;
+      height: 120px;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   }
 

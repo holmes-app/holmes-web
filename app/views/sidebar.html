@@ -80,10 +80,10 @@
       <div class="list-group" ng-show="model.workers.length">
         <div class="list-group-item worker-item"
            data-ng-class="worker.working == true ? 'active' : ''"
-           title="{{ worker.page_url || 'Worker UUID: ' + worker.uuid }}"
-           data-ng-repeat="worker in model.workers | orderBy:'page_url'">
+           title="{{ worker.current_url || 'Worker UUID: ' + worker.uuid }}"
+           data-ng-repeat="worker in model.workers | orderBy:'current_url'">
           <div>
-          {{ worker.page_url || "Worker Idle" }}
+          {{ worker.current_url || "Worker Idle" }}
           </div>
         </div>
       </div>
