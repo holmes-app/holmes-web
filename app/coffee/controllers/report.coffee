@@ -21,7 +21,6 @@ angular.module('holmesApp')
 
         for fact in details.facts
           if fact.unit == 'values'
-            fact.value = JSON.parse(fact.value)
             for item in fact.value
               item.content = window.decodeURIComponent(window.escape(item.content))
           else

@@ -24,7 +24,6 @@
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           fact = _ref[_i];
           if (fact.unit === 'values') {
-            fact.value = JSON.parse(fact.value);
             _results.push((function() {
               var _j, _len1, _ref1, _results1;
               _ref1 = fact.value;
