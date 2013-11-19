@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig']).config(function($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, timeToLive) {
+  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService']).config(function($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, wsUrl, timeToLive) {
     $routeProvider.when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'

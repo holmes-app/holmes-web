@@ -1,7 +1,7 @@
 'use strict'
 
-angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig'])
-  .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, timeToLive) ->
+angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService'])
+  .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, wsUrl, timeToLive) ->
     #$locationProvider.html5Mode(true)
 
     $routeProvider
@@ -20,4 +20,8 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-grow
 
     RestangularProvider.setBaseUrl(baseUrl)
 
-    growlProvider.globalTimeToLive(timeToLive);
+    growlProvider.globalTimeToLive(timeToLive)
+
+    #WebSocketProvider
+      #.prefix('')
+      #.url(wsUrl)

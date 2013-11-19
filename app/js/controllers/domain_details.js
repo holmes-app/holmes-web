@@ -2,7 +2,7 @@
   'use strict';
   var __hasProp = {}.hasOwnProperty;
 
-  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, $timeout) {
+  angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, WebSocket) {
     var buildCharts, isValidDate, updateChartData, updateDomainDetails;
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
@@ -25,20 +25,18 @@
       Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
         return $scope.model.domainDetails = domainDetails;
       });
-      Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
+      return Restangular.one('domains', $routeParams.domainName).getList('reviews').then(function(domainData) {
         $scope.model.pageCount = domainData.pageCount;
         $scope.model.pages = domainData.pages;
         $scope.model.pagesWithoutReview = domainData.pagesWithoutReview;
         return $scope.model.pagesWithoutReviewCount = domainData.pagesWithoutReviewCount;
       });
-      return $timeout(updateDomainDetails, 2000);
     };
     updateChartData = function() {
-      Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then(function(violations) {
+      return Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then(function(violations) {
         violations = violations.violations;
         return buildCharts(violations);
       });
-      return $timeout(updateChartData, 10000);
     };
     buildCharts = function(violations) {
       var date, dt, obj, violationCount, violationCountData, violationPoints, violationPointsData;
@@ -103,7 +101,13 @@
     };
     buildCharts([]);
     updateDomainDetails();
-    return updateChartData();
+    updateChartData();
+    return WebSocket.on(function(message) {
+      if (message.type === 'new-page' || message.type === 'new-review') {
+        updateDomainDetails();
+        return updateChartData();
+      }
+    });
   });
 
 }).call(this);

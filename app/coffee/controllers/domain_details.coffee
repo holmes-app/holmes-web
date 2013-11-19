@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .controller 'DomainDetailsCtrl', ($scope, $routeParams, Restangular, $timeout) ->
+  .controller 'DomainDetailsCtrl', ($scope, $routeParams, Restangular, WebSocket) ->
 
     isValidDate = (d) ->
       if (Object.prototype.toString.call(d) != "[object Date]")
@@ -32,15 +32,12 @@ angular.module('holmesApp')
         $scope.model.pagesWithoutReviewCount = domainData.pagesWithoutReviewCount
       )
 
-      $timeout(updateDomainDetails, 2000)
 
     updateChartData = ->
       Restangular.one('domains', $routeParams.domainName).getList('violations-per-day').then((violations) ->
         violations = violations.violations
         buildCharts(violations)
       )
-
-      $timeout(updateChartData, 10000)
 
     buildCharts = (violations) ->
       violationPoints = []
@@ -119,3 +116,9 @@ angular.module('holmesApp')
     buildCharts([])
     updateDomainDetails()
     updateChartData()
+
+    WebSocket.on((message) ->
+      if message.type == 'new-page' or message.type == 'new-review'
+        updateDomainDetails()
+        updateChartData()
+    )

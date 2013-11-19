@@ -1,13 +1,16 @@
 'use strict'
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, Restangular, $timeout) ->
+  .controller 'DomainsCtrl', ($scope, Restangular, WebSocket) ->
     $scope.model = {}
 
     updateDomains = ->
       Restangular.all('domains').getList().then((items) ->
         $scope.model.domains = items
       )
-      $timeout(updateDomains, 2000)
 
     updateDomains()
+
+    WebSocket.on((message) ->
+      updateDomains() if message.type == 'new-domain'
+    )

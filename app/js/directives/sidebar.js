@@ -5,25 +5,23 @@
       templateUrl: 'views/sidebar.html',
       restrict: 'E',
       scope: {},
-      controller: function($scope, Restangular, $location, $timeout, growl) {
+      controller: function($scope, Restangular, $location, $timeout, growl, WebSocket) {
         var getMostCommonViolations, getWorkers;
         $scope.model = {
           term: ''
         };
         $scope.model.workers = [];
         getWorkers = function() {
-          Restangular.one('workers').getList().then(function(activeWorkers) {
+          return Restangular.one('workers').getList().then(function(activeWorkers) {
             return $scope.model.workers = activeWorkers;
           });
-          return $timeout(getWorkers, 2000);
         };
         getWorkers();
         $scope.model.mostCommonViolations = [];
         getMostCommonViolations = function() {
-          Restangular.one('most-common-violations').getList().then(function(violations) {
+          return Restangular.one('most-common-violations').getList().then(function(violations) {
             return $scope.model.mostCommonViolations = violations;
           });
-          return $timeout(getMostCommonViolations, 2000);
         };
         getMostCommonViolations();
         $scope.getClass = function(path) {
@@ -36,7 +34,7 @@
             return "";
           }
         };
-        return $scope.search = function() {
+        $scope.search = function() {
           var term;
           term = $scope.model.term;
           return Restangular.all('search').getList({
@@ -50,6 +48,14 @@
             return $scope.model.term = '';
           });
         };
+        return WebSocket.on(function(message) {
+          if (message.type === 'worker-status') {
+            getWorkers();
+          }
+          if (message.type === 'new-review') {
+            return getMostCommonViolations();
+          }
+        });
       }
     };
   });

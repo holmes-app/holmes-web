@@ -148,6 +148,7 @@ module.exports = (grunt) ->
         name: 'HolmesConfig',
         constants: {
           'baseUrl': 'http://local.holmes.com:2368/',
+          'wsUrl': 'ws://local.holmes.com:2368/events/',
           'timeToLive': 3000,
         }
       }],

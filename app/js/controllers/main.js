@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, $http, Restangular) {
+  angular.module('holmesApp').controller('MainCtrl', function($scope, $timeout, growl, $resource, $http, Restangular, WebSocket) {
     var lastReviews;
     $http.defaults.useXDomain = true;
     $scope.clearForm = function() {
@@ -36,12 +36,15 @@
       });
     };
     lastReviews = function() {
-      Restangular.one('last-reviews').get().then(function(reviews) {
+      return Restangular.one('last-reviews').get().then(function(reviews) {
         return $scope.model.last_reviews = reviews;
       });
-      return $timeout(lastReviews, 2000);
     };
-    return lastReviews();
+    lastReviews();
+    WebSocket.on(function(message) {
+      return lastReviews();
+    });
+    return true;
   });
 
 }).call(this);

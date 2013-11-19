@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .controller 'MainCtrl', ($scope, $timeout, growl, $resource, $http, Restangular) ->
+  .controller 'MainCtrl', ($scope, $timeout, growl, $resource, $http, Restangular, WebSocket) ->
     $http.defaults.useXDomain = true
 
     $scope.clearForm = ->
@@ -35,6 +35,12 @@ angular.module('holmesApp')
       Restangular.one('last-reviews').get().then((reviews) ->
         $scope.model.last_reviews = reviews
       )
-      $timeout(lastReviews, 2000)
+      #$timeout(lastReviews, 2000)
 
     lastReviews()
+
+    WebSocket.on((message) ->
+      lastReviews()
+    )
+
+    return true

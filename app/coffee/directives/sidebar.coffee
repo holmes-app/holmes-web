@@ -5,7 +5,7 @@ angular.module('holmesApp')
     templateUrl: 'views/sidebar.html',
     restrict: 'E',
     scope: {},
-    controller: ($scope, Restangular, $location, $timeout, growl) ->
+    controller: ($scope, Restangular, $location, $timeout, growl, WebSocket) ->
       $scope.model =
         term: ''
 
@@ -14,7 +14,6 @@ angular.module('holmesApp')
         Restangular.one('workers').getList().then((activeWorkers) ->
           $scope.model.workers = activeWorkers
         )
-        $timeout(getWorkers, 2000)
 
       getWorkers()
 
@@ -23,7 +22,6 @@ angular.module('holmesApp')
         Restangular.one('most-common-violations').getList().then((violations) ->
           $scope.model.mostCommonViolations = violations
         )
-        $timeout(getMostCommonViolations, 2000)
 
       getMostCommonViolations()
 
@@ -42,4 +40,10 @@ angular.module('holmesApp')
 
           $scope.model.term = ''
         )
+
+      WebSocket.on((message) ->
+        getWorkers() if message.type == 'worker-status'
+        getMostCommonViolations() if message.type == 'new-review'
+      )
+
   )

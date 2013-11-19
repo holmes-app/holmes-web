@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .controller 'ReportCtrl', ($scope, $routeParams, Restangular, $timeout) ->
+  .controller 'ReportCtrl', ($scope, $routeParams, Restangular) ->
 
     isValidDate = (d) ->
       if (Object.prototype.toString.call(d) != "[object Date]")
