@@ -1,6 +1,7 @@
 class WebSocketService
   constructor: (@wsUrl, @timeout) ->
-    @ws = new WebSocket(@wsUrl)
+    @ws = new ReconnectingWebSocket(@wsUrl) if ReconnectingWebSocket
+    @ws = new WebSocket(@wsUrl) unless ReconnectingWebSocket
     @handlers = []
 
     @ws.onmessage = @_onmessage.bind(this)
@@ -10,6 +11,7 @@ class WebSocketService
 
   _onmessage: (message) ->
     obj = JSON.parse(message.data)
+    #console.log(obj)
 
     for handler in @handlers
       handler(obj)

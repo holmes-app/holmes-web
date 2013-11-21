@@ -5,7 +5,12 @@
     function WebSocketService(wsUrl, timeout) {
       this.wsUrl = wsUrl;
       this.timeout = timeout;
-      this.ws = new WebSocket(this.wsUrl);
+      if (ReconnectingWebSocket) {
+        this.ws = new ReconnectingWebSocket(this.wsUrl);
+      }
+      if (!ReconnectingWebSocket) {
+        this.ws = new WebSocket(this.wsUrl);
+      }
       this.handlers = [];
       this.ws.onmessage = this._onmessage.bind(this);
     }
