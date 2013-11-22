@@ -120,5 +120,5 @@ angular.module('holmesApp')
     WebSocket.on((message) ->
       if message.type == 'new-page' or message.type == 'new-review'
         updateDomainDetails()
-        updateChartData()
+        #updateChartData()
     )

@@ -104,8 +104,7 @@
     updateChartData();
     return WebSocket.on(function(message) {
       if (message.type === 'new-page' || message.type === 'new-review') {
-        updateDomainDetails();
-        return updateChartData();
+        return updateDomainDetails();
       }
     });
   });

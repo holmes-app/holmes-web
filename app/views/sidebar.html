@@ -81,7 +81,7 @@
         <div class="list-group-item worker-item"
            data-ng-class="worker.working == true ? 'active' : ''"
            title="{{ worker.current_url || 'Worker UUID: ' + worker.uuid }}"
-           data-ng-repeat="worker in model.workers | orderBy:'current_url'">
+           data-ng-repeat="worker in model.workers track by worker.uuid | orderBy:'current_url'">
           <div>
           {{ worker.current_url || "Worker Idle" }}
           </div>
