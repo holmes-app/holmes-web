@@ -18,7 +18,11 @@
   .reviews {
     a {
       display: block;
+      max-width: 600px;
       width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .url {
@@ -47,5 +51,14 @@
   .page-reviews-header {
     margin-bottom: 20px;
     margin-top: 0;
+  }
+
+  .review-pager {
+    display: block;
+    margin-right: 2px;
+  }
+
+  .without-review {
+    margin-top: 80px;
   }
 }

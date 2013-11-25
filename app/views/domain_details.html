@@ -62,11 +62,21 @@
     </tbody>
   </table>
 
-  <h2>Pages without Review</h2>
-  <p ng-hide="model.pagesWithoutReview">No pages without review yet.</p>
-  <div class="list-group">
-    <span ng-repeat="page in model.pagesWithoutReview" class="list-group-item">{{ page.url }}</span>
-    <p ng-show="model.pagesWithoutReviewCount" class="list-group-item">And {{ model.pagesWithoutReviewCount }} other pages.</p>
+  <div class="row review-pager pull-right">
+    <ul class="pagination">
+      <li ng-if="model.currentPage > 1"><a ng-click="goToReviewPage(model.prevPage)">&laquo;</a></li>
+      <li ng-repeat="pageIndex in model.nextPages" ng-class="getClass(pageIndex)"><a ng-show="model.numberOfPages >= pageIndex" ng-click="goToReviewPage(pageIndex)">{{ pageIndex }}</a></li>
+      <li ng-if="model.currentPage < model.numberOfPages"><a ng-click="goToReviewPage(model.nextPage)">&raquo;</a></li>
+    </ul>
+  </div>
+
+  <div class="row without-review">
+    <h2>Pages without Review</h2>
+    <p ng-hide="model.pagesWithoutReview">No pages without review yet.</p>
+    <div class="list-group">
+      <span ng-repeat="page in model.pagesWithoutReview" class="list-group-item">{{ page.url }}</span>
+      <p ng-show="model.pagesWithoutReviewCount" class="list-group-item">And {{ model.pagesWithoutReviewCount }} other pages.</p>
+    </div>
   </div>
 
 </div>
