@@ -55,7 +55,15 @@
   display: block;
   margin-right: 2px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000359}}
+.domain-details-view .review-pager a {
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000364}}
+.domain-details-view .review-pager .active a {
+  cursor: default;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/domain_details\.scss}line{font-family:\0000370}}
 .domain-details-view .without-review {
   margin-top: 80px;
 }

@@ -147,4 +147,3 @@ angular.module('holmesApp')
     $scope.goToReviewPage = (pageIndex) ->
       $scope.model.currentPage = pageIndex
       updateReviews()
-      return false

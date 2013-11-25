@@ -141,8 +141,7 @@
     });
     return $scope.goToReviewPage = function(pageIndex) {
       $scope.model.currentPage = pageIndex;
-      updateReviews();
-      return false;
+      return updateReviews();
     };
   });
 
