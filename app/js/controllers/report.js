@@ -2,8 +2,11 @@
   'use strict';
   var __hasProp = {}.hasOwnProperty;
 
-  angular.module('holmesApp').controller('ReportCtrl', function($scope, $routeParams, Restangular) {
+  angular.module('holmesApp').controller('ReportCtrl', function($scope, $routeParams, Restangular, $sce) {
     var buildCharts, isValidDate, updateChartData, updateDetails, updateReviews;
+    $scope.asHtml = function(text) {
+      return $sce.trustAsHtml(text);
+    };
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
         return false;

@@ -9,6 +9,15 @@
   margin-top: 20px;
 }
 
+.breadcrumb {
+  li {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 .last-reviews {
   a {
     text-decoration: none;

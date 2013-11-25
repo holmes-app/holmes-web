@@ -53,7 +53,7 @@
           <p>No available reviews.</p>
         </div>
         <div class="row">
-          <div class="col-lg-4" data-ng-repeat="review in model.last_reviews">
+          <div class="col-lg-4" data-ng-repeat="review in model.last_reviews track by review.uuid">
 
             <a href="#/pages/{{ review.page.uuid }}/reviews/{{ review.uuid }}/">
               <div class="panel panel-primary">
@@ -68,8 +68,8 @@
                   <span am-time-ago="review.completedDateISO"></span>
                 </div>
               </div>
-
             </a>
+
           </div> <!-- col-lg-4 -->
         </div> <!-- row -->
 

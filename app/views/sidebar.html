@@ -60,7 +60,7 @@
       </div>
       <ul class="list-group">
         <li class="list-group-item"
-          data-ng-repeat="violation in model.mostCommonViolations | orderBy: '-count'"
+          data-ng-repeat="violation in model.mostCommonViolations track by violation.name | orderBy: '-count'"
         >
           <span class="badge">{{ violation.count }}</span>
           <span class="text">{{ violation.name }}</span>

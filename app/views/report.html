@@ -1,11 +1,11 @@
 <div class="report-view">
-  <h1>Page: {{ model.details.page.url }}</h1>
+  <h1 title="{{ model.details.page.url }}">Page: <a href="{{ model.details.page.url }}">{{ model.details.page.url }}</a></h1>
 
   <ol class="breadcrumb">
     <li><a href="#/">Home</a></li>
     <li><a href="#/domains/{{ model.details.domain }}">{{ model.details.domain }}</a></li>
     <li class="active">{{ model.details.completedDateISO | date:'dd MMM yyyy' }}</li>
-    <li class="active">{{ model.details.page.url }}</li>
+    <li class="active url" title="{{ model.details.page.url }}">{{ model.details.page.url }}</li>
   </ol>
 
   <div class="row stats">
@@ -94,19 +94,12 @@
       <div class="current-report">
         <h3>Violations</h3>
         <div class="violations row">
-          <div class="col-lg-4 violation" data-ng-repeat="violation in model.details.violations">
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <h3 class="panel-title" title="{{ violation.title }}">
-                  <span class="glyphicon glyphicon-home"></span>
-                  {{ violation.title }}
-                </h3>
-              </div>
-              <div class="panel-body">
-                <div class="contents">{{ violation.description }}</div>
-              </div>
-            </div>
-          </div>
+          <ul>
+            <li data-ng-repeat="violation in model.details.violations">
+              <h4>{{ violation.title }}</h4>
+              <p ng-bind-html="asHtml(violation.description)"></p>
+            </li>
+          </ul>
         </div>
       </div> <!-- current-report -->
     </div> <!-- tab-pane -->
@@ -128,7 +121,7 @@
         <td colspan="3">No reviews made for this page yet.</td>
       </tr>
 
-      <tr ng-repeat="review in model.reviews | orderBy:'violationCount'" ng-show="model.reviews">
+      <tr ng-repeat="review in model.reviews track by review.uuid | orderBy:'violationCount'" ng-show="model.reviews">
         <td class="violations"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}">{{ review.violationCount }}</a></td>
         <td class="finished-at"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}"><span am-time-ago="review.completedDate"></span></a></td>
       </tr>

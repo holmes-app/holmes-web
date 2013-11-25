@@ -4,6 +4,14 @@
   width: 100%;
   padding-left: 20px;
 
+  h1 {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 47px;
+  }
+
   .page-reviews-badge {
     font-size: 26px;
   }
@@ -23,25 +31,25 @@
   }
 
   .violations {
-    a {
-      text-decoration: none;
-      color: #333;
+    ul {
+      list-style: none;
 
-      &:hover {
-        .panel {
-          opacity: 0.9;
+      li {
+        margin-top: 20px;
+
+        &:first-child {
+          margin-top: 0;
         }
       }
     }
 
-    .violation {
-      .panel-body {
-        overflow-x: hidden;
-        overflow-y: auto;
-        height: 100px;
+    a {
+      text-decoration: none;
+      /*color: #333;*/
 
-        .contents {
-          overflow-x: hidden;
+      &:hover {
+        .panel {
+          opacity: 0.9;
         }
       }
     }
@@ -53,20 +61,6 @@
       }
     }
 
-    .panel-heading {
-      h3 {
-        width: 100%;
-        padding-bottom: 2px;
-        margin-bottom: -2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .glyphicon {
-        margin-right: 5px;
-      }
-    }
   }
 }
 
