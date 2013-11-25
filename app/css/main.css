@@ -112,3 +112,19 @@
 .warnings .warning {
   display: none;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\00003115}}
+.image-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  border: solid 3px #dedede;
+  border-radius: 3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/main\.scss}line{font-family:\00003123}}
+.image-preview img {
+  max-width: 300px;
+  max-height: 200px;
+  margin: 0 auto;
+}

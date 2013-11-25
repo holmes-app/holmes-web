@@ -32,11 +32,11 @@ angular.module('holmesApp')
 
       $scope.search = ->
         term = $scope.model.term
-        Restangular.all('search').getList({term: term}).then((pages) ->
-          if pages.length == 0
+        Restangular.all('search').getList({term: term}).then((page) ->
+          if page == null or page == undefined
             growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!")
           else
-            $location.path('/pages/' + pages[0].uuid + '/reviews/' + pages[0].reviewId)
+            $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId)
 
           $scope.model.term = ''
         )
