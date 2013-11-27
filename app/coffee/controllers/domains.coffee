@@ -12,5 +12,6 @@ angular.module('holmesApp')
     updateDomains()
 
     WebSocket.on((message) ->
+      console.log(message)
       updateDomains() if message.type == 'new-domain' or message.type == 'new-review' or message.type == 'new-page'
     )
