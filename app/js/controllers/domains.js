@@ -10,7 +10,8 @@
     };
     updateDomains();
     return WebSocket.on(function(message) {
-      if (message.type === 'new-domain') {
+      console.log(message);
+      if (message.type === 'new-domain' || message.type === 'new-review' || message.type === 'new-page') {
         return updateDomains();
       }
     });
