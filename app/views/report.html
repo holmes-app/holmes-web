@@ -4,7 +4,7 @@
   <ol class="breadcrumb">
     <li><a href="#/">Home</a></li>
     <li><a href="#/domains/{{ model.details.domain }}">{{ model.details.domain }}</a></li>
-    <li class="active">{{ model.details.completedDateISO | date:'dd MMM yyyy' }}</li>
+    <li class="active">{{ model.details.completedAt*1000 | date:'dd MMM yyyy' }}</li>
     <li class="active url" title="{{ model.details.page.url }}">{{ model.details.page.url }}</li>
   </ol>
 
@@ -123,7 +123,7 @@
 
       <tr ng-repeat="review in model.reviews track by review.uuid | orderBy:'violationCount'" ng-show="model.reviews">
         <td class="violations"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}">{{ review.violationCount }}</a></td>
-        <td class="finished-at"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}"><span am-time-ago="review.completedDate"></span></a></td>
+        <td class="finished-at"><a href="#/pages/{{ model.details.page.uuid }}/reviews/{{ review.uuid }}"><span am-time-ago="review.completedAt*1000"></span></a></td>
       </tr>
     </tbody>
   </table>
