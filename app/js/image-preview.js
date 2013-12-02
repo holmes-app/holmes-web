@@ -33,7 +33,6 @@
         };
         if (href) {
           extension = href.toLowerCase().substr(href.length - 4, 4);
-          console.log(extension);
           if (extension === '.gif' || extension === '.png' || extension === '.jpg' || extension === '.jpeg' || extension === '.webp') {
             container.html('<img src="' + href + '" />');
             updateContainerPosition(x, y);

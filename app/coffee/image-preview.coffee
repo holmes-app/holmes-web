@@ -27,7 +27,6 @@ class HoverImage
       if href
         extension = href.toLowerCase().substr(href.length - 4, 4)
 
-        console.log(extension)
         if extension == '.gif' or extension == '.png' or extension == '.jpg' or extension == '.jpeg' or extension == '.webp'
           container.html('<img src="' + href + '" />')
           updateContainerPosition(x, y)
