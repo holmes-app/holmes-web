@@ -50,25 +50,6 @@
     <!--<a href="#/domains" data-ng-class="getClass('/domains')" class="list-group-item">domains</a>-->
   <!--</div>-->
 
-  <div class="panel panel-primary common-violations">
-    <div class="panel-heading">
-      <h3 class="panel-title">Most Common Violations</h3>
-    </div>
-    <div class="panel-body">
-      <div class="list-group" ng-hide="model.mostCommonViolations.length">
-        <p>No available violations.</p>
-      </div>
-      <ul class="list-group">
-        <li class="list-group-item"
-          data-ng-repeat="violation in model.mostCommonViolations track by violation.name | orderBy: '-count'"
-        >
-          <span class="badge">{{ violation.count }}</span>
-          <span class="text">{{ violation.name }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
   <div class="workers panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Workers <span class="badge worker-count pull-right">{{ model.workers.length }}</span></h3>
