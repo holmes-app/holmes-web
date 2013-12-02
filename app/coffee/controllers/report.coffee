@@ -44,18 +44,18 @@ angular.module('holmesApp')
       violationPoints = []
       violationCount = []
 
-      for own date, obj of violations
-        dt = new Date(date)
+      for obj in violations
+        dt = new Date(obj.completedAt)
         if (!isValidDate(dt))
           continue
 
         violationPoints.push(
-          x: new Date(date),
+          x: new Date(obj.completedAt),
           y: obj.violation_points
         )
 
         violationCount.push(
-          x: new Date(date),
+          x: new Date(obj.completedAt),
           y: obj.violation_count
         )
 

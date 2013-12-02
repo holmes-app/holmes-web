@@ -1,7 +1,5 @@
 (function() {
   'use strict';
-  var __hasProp = {}.hasOwnProperty;
-
   angular.module('holmesApp').controller('ReportCtrl', function($scope, $routeParams, Restangular, $sce) {
     var buildCharts, isValidDate, updateChartData, updateDetails, updateReviews;
     $scope.asHtml = function(text) {
@@ -56,22 +54,21 @@
       });
     };
     buildCharts = function(violations) {
-      var date, dt, obj, violationCount, violationCountData, violationPoints, violationPointsData;
+      var dt, obj, violationCount, violationCountData, violationPoints, violationPointsData, _i, _len;
       violationPoints = [];
       violationCount = [];
-      for (date in violations) {
-        if (!__hasProp.call(violations, date)) continue;
-        obj = violations[date];
-        dt = new Date(date);
+      for (_i = 0, _len = violations.length; _i < _len; _i++) {
+        obj = violations[_i];
+        dt = new Date(obj.completedAt);
         if (!isValidDate(dt)) {
           continue;
         }
         violationPoints.push({
-          x: new Date(date),
+          x: new Date(obj.completedAt),
           y: obj.violation_points
         });
         violationCount.push({
-          x: new Date(date),
+          x: new Date(obj.completedAt),
           y: obj.violation_count
         });
       }
