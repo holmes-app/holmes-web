@@ -21,12 +21,6 @@ angular.module('holmesApp')
       Restangular.one('page', $routeParams.pageId).one('review', $routeParams.reviewId).get().then((details) ->
         $scope.model.details = details
 
-        for fact in details.facts
-          if fact.unit == 'values'
-            for item in fact.value
-              item.content = window.decodeURIComponent(window.escape(item.content))
-          else
-            fact.value = window.decodeURIComponent(window.escape(fact.value))
       )
 
     updateReviews = ->

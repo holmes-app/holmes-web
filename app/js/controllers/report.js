@@ -18,28 +18,7 @@
     };
     updateDetails = function() {
       return Restangular.one('page', $routeParams.pageId).one('review', $routeParams.reviewId).get().then(function(details) {
-        var fact, item, _i, _len, _ref, _results;
-        $scope.model.details = details;
-        _ref = details.facts;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          fact = _ref[_i];
-          if (fact.unit === 'values') {
-            _results.push((function() {
-              var _j, _len1, _ref1, _results1;
-              _ref1 = fact.value;
-              _results1 = [];
-              for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-                item = _ref1[_j];
-                _results1.push(item.content = window.decodeURIComponent(window.escape(item.content)));
-              }
-              return _results1;
-            })());
-          } else {
-            _results.push(fact.value = window.decodeURIComponent(window.escape(fact.value)));
-          }
-        }
-        return _results;
+        return $scope.model.details = details;
       });
     };
     updateReviews = function() {
