@@ -17,14 +17,6 @@ angular.module('holmesApp')
 
       getWorkers()
 
-      $scope.model.mostCommonViolations = []
-      getMostCommonViolations = ->
-        Restangular.one('most-common-violations').getList().then((violations) ->
-          $scope.model.mostCommonViolations = violations
-        )
-
-      getMostCommonViolations()
-
       $scope.getClass = (path) ->
         isActive = $location.path().trim() == path.trim()
         return "active" if isActive
@@ -43,7 +35,6 @@ angular.module('holmesApp')
 
       WebSocket.on((message) ->
         getWorkers() if message.type == 'worker-status'
-        getMostCommonViolations() if message.type == 'new-review'
       )
 
   )

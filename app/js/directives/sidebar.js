@@ -6,7 +6,7 @@
       restrict: 'E',
       scope: {},
       controller: function($scope, Restangular, $location, $timeout, growl, WebSocket) {
-        var getMostCommonViolations, getWorkers;
+        var getWorkers;
         $scope.model = {
           term: ''
         };
@@ -17,13 +17,6 @@
           });
         };
         getWorkers();
-        $scope.model.mostCommonViolations = [];
-        getMostCommonViolations = function() {
-          return Restangular.one('most-common-violations').getList().then(function(violations) {
-            return $scope.model.mostCommonViolations = violations;
-          });
-        };
-        getMostCommonViolations();
         $scope.getClass = function(path) {
           var isActive;
           isActive = $location.path().trim() === path.trim();
@@ -50,10 +43,7 @@
         };
         return WebSocket.on(function(message) {
           if (message.type === 'worker-status') {
-            getWorkers();
-          }
-          if (message.type === 'new-review') {
-            return getMostCommonViolations();
+            return getWorkers();
           }
         });
       }
