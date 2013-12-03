@@ -76,13 +76,13 @@ angular.module('holmesApp')
         chart.xAxis
              .tickFormat((d) -> return (d3.time.format("%d-%b"))(new Date(d)))
 
-        d3.select('#violation-count-chart svg')
+        d3.select('#report-violation-count-chart svg')
           .datum(violationCountData)
           .transition().duration(500)
           .call(chart)
 
         nv.utils.windowResize(->
-          d3.select('#violation-count-chart svg').call(chart)
+          d3.select('#report-violation-count-chart svg').call(chart)
         )
 
         return chart
@@ -96,13 +96,13 @@ angular.module('holmesApp')
         chart.xAxis
              .tickFormat((d) -> return (d3.time.format("%d-%b"))(new Date(d)))
 
-        d3.select('#violation-points-chart svg')
+        d3.select('#report-violation-points-chart svg')
           .datum(violationPointsData)
           .transition().duration(500)
           .call(chart)
 
         nv.utils.windowResize(->
-          d3.select('#violation-points-chart svg').call(chart)
+          d3.select('#report-violation-points-chart svg').call(chart)
         )
 
         return chart
