@@ -1,0 +1,29 @@
+.worker {
+  .title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 270px;
+  }
+}
+
+
+.worker {
+    .idle {
+        background: #CCC;
+    }
+}
+
+.worker {
+  .body{
+    overflow-wrap: break-word;
+  }
+}
+
+.worker {
+    .lastping {
+        color: #BBB;
+        font-size: 10px;
+    }
+}
+

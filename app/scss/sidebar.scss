@@ -2,17 +2,6 @@
   text-decoration: none;
 }
 
-.workers {
-  .worker-item {
-    div {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      width: 180px;
-    }
-  }
-}
-
 .current-jobs {
   tr {
     cursor: pointer;

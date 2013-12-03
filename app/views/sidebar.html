@@ -52,7 +52,11 @@
 
   <div class="workers panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Workers <span class="badge worker-count pull-right">{{ model.workers.length }}</span></h3>
+      <h3 class="panel-title">
+        <a href="#/workers">
+         Workers <span class="badge worker-count pull-right">{{ model.workers.length }}</span>
+        </a>
+      </h3>
     </div>
     <div class="panel-body">
       <div class="list-group" ng-hide="model.workers.length">
@@ -60,14 +64,6 @@
       </div>
       <div class="list-group" ng-show="model.workers.length">
         <p>{{ model.workers.length }} available workers.</p>
-        <!--<div class="list-group-item worker-item"-->
-           <!--data-ng-class="worker.working == true ? 'active' : ''"-->
-           <!--title="{{ worker.current_url || 'Worker UUID: ' + worker.uuid }}"-->
-           <!--data-ng-repeat="worker in model.workers track by worker.uuid | orderBy:'current_url'">-->
-          <!--<div>-->
-          <!--{{ worker.current_url || "Worker Idle" }}-->
-          <!--</div>-->
-        <!--</div>-->
       </div>
 
       <!--<div class="subtitle pull-right">-->

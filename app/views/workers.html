@@ -1,0 +1,22 @@
+<div class="workers-view">
+  <h1>Workers</h1>
+
+  <div class="list-group" ng-hide="model.workers">
+    <p>No available workers.</p>
+  </div>
+
+  <div class="row workers">
+    <div class="col-lg-4 worker" data-ng-repeat="worker in model.workers track by worker.uuid">
+        <div class="panel panel-primary" >
+          <div class="panel-heading">
+            <h3 class="panel-title title" title="{{ 'Worker UUID: ' + worker.uuid }}">
+              <div>{{ worker.current_url || "idle"}}</div>
+          </div>
+          <div class="panel-body body">
+            <a href="{{ worker.current_url}}">{{ worker.current_url}}</a>
+            <div class="lastping">Last Ping: {{ worker.last_ping | date:'dd MMM yyyy' }}</div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

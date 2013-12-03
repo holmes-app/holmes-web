@@ -13,6 +13,9 @@
     }).when('/pages/:pageId/reviews/:reviewId', {
       templateUrl: 'views/report.html',
       controller: 'ReportCtrl'
+    }).when('/workers', {
+      templateUrl: 'views/workers.html',
+      controller: 'WorkersCtrl'
     });
     RestangularProvider.setBaseUrl(baseUrl);
     return growlProvider.globalTimeToLive(timeToLive);

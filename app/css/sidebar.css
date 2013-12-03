@@ -1,25 +1,17 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000031}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000031}}
 .logo a {
   text-decoration: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000037}}
-.workers .worker-item div {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 180px;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\000036}}
 .current-jobs tr {
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000310}}
 .current-jobs .position {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000314}}
 .current-jobs .url {
   width: 150px;
   white-space: nowrap;
@@ -27,7 +19,7 @@
   text-overflow: ellipsis;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000322}}
 .worker-count {
   vertical-align: top;
   color: #007fff;
@@ -35,12 +27,12 @@
   margin-left: 2px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000340}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000329}}
 .subtitle {
   font-size: 0;
   margin-bottom: -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000344}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000333}}
 .subtitle .square {
   display: inline-block;
   vertical-align: top;
@@ -49,18 +41,18 @@
   margin-right: 5px;
   background: #007fff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000353}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000342}}
 .subtitle .text {
   display: inline-block;
   vertical-align: top;
   font-size: 12px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000349}}
 .common-violations {
   margin-top: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000352}}
 .common-violations .badge {
   position: absolute;
   top: 50%;
@@ -69,24 +61,24 @@
   height: 20px;
   right: 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000361}}
 .common-violations .text {
   max-width: 110px;
   display: block;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000367}}
 .search {
   width: 400px;
   margin-right: 80px;
   margin-top: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000372}}
 .search .search-button {
   border: solid 1px #06c !important;
   background-color: #06c !important;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/heynemann\/Dropbox\/dev\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000376}}
 .search .search-button:hover {
   background-color: #006ddb !important;
 }

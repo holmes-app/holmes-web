@@ -16,7 +16,10 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-grow
         controller: 'DomainDetailsCtrl'
       .when '/pages/:pageId/reviews/:reviewId',
         templateUrl: 'views/report.html'
-        controller: 'ReportCtrl'
+        controller: 'ReportCtrl',
+      .when '/workers',
+        templateUrl: 'views/workers.html'
+        controller: 'WorkersCtrl'
 
     RestangularProvider.setBaseUrl(baseUrl)
 

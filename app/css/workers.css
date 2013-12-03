@@ -1,0 +1,23 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\000032}}
+.worker .title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 270px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000312}}
+.worker .idle {
+  background: #CCC;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000318}}
+.worker .body {
+  overflow-wrap: break-word;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000324}}
+.worker .lastping {
+  color: #BBB;
+  font-size: 10px;
+}
