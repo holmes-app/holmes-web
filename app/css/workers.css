@@ -1,4 +1,4 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\000032}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\000032}}
 .worker .title {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -6,18 +6,23 @@
   width: 270px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000312}}
 .worker .idle {
   background: #CCC;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000318}}
 .worker .body {
   overflow-wrap: break-word;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000324}}
 .worker .lastping {
   color: #BBB;
   font-size: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/workers\.scss}line{font-family:\0000331}}
+.worker .panel-body {
+  min-height: 120px;
 }
