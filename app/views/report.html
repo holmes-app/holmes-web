@@ -87,7 +87,7 @@
         <h3>Violations</h3>
         <div class="violations row">
           <ul>
-            <li data-ng-repeat="violation in model.details.violations">
+            <li data-ng-repeat="violation in model.details.violations | orderBy:'-points'">
               <h4>{{ violation.title }}</h4>
               <p ng-bind-html="asHtml(violation.description)"></p>
             </li>
