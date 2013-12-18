@@ -28,11 +28,17 @@
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000329}}
+#workers-chart svg {
+  height: 200px;
+  width: 200px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000334}}
 .subtitle {
   font-size: 0;
   margin-bottom: -10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000338}}
 .subtitle .square {
   display: inline-block;
   vertical-align: top;
@@ -41,18 +47,18 @@
   margin-right: 5px;
   background: #007fff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000347}}
 .subtitle .text {
   display: inline-block;
   vertical-align: top;
   font-size: 12px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000354}}
 .common-violations {
   margin-top: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000357}}
 .common-violations .badge {
   position: absolute;
   top: 50%;
@@ -61,24 +67,24 @@
   height: 20px;
   right: 15px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000361}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000366}}
 .common-violations .text {
   max-width: 110px;
   display: block;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000372}}
 .search {
   width: 400px;
   margin-right: 80px;
   margin-top: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000377}}
 .search .search-button {
   border: solid 1px #06c !important;
   background-color: #06c !important;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/sidebar\.scss}line{font-family:\0000381}}
 .search .search-button:hover {
   background-color: #006ddb !important;
 }

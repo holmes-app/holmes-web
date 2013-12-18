@@ -9,32 +9,43 @@ angular.module('holmesApp')
       $scope.model =
         term: ''
 
-      $scope.model.workers = []
-      getWorkers = ->
-        Restangular.one('workers').getList().then((activeWorkers) ->
-          $scope.model.workers = activeWorkers
+      $scope.model.workers_total = 0
+
+      getWorkersInfo = ->
+        Restangular.one('workers').one('info').get().then((data) ->
+          $scope.model.workers_total = data.total
+
+          updateChart(data.active, data.inactive)
         )
 
-      getWorkers()
+      drawChart = ->
+        nv.addGraph(->
+          chart = nv.models.pieChart()
+                           .showLabels(false)
+                           .tooltips(false)
+                           .donut(true)
 
-      $scope.getClass = (path) ->
-        isActive = $location.path().trim() == path.trim()
-        return "active" if isActive
-        return "" unless isActive
-
-      $scope.search = ->
-        term = $scope.model.term
-        Restangular.all('search').getList({term: term}).then((page) ->
-          if page == null or page == undefined
-            growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!")
-          else
-            $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId)
-
-          $scope.model.term = ''
+          $scope.model.chart = chart
         )
+
+      updateChart = (active, inactive) ->
+        d3.select('#workers-chart svg')
+            .datum(chartData(active, inactive))
+            .transition()
+            .duration(1200)
+            .call($scope.model.chart)
+
+      chartData = (active, inactive) ->
+        return [{ x: "Active",   y: active },
+                { x: "Inactive", y: inactive}]
+
+      drawChart()
+      getWorkersInfo()
 
       WebSocket.on((message) ->
-        getWorkers() if message.type == 'worker-status'
+        getWorkersInfo() if message.type == 'worker-status'
       )
+
+      return true
 
   )

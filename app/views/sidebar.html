@@ -54,22 +54,14 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <a href="#/workers">
-         Workers <span class="badge worker-count pull-right">{{ model.workers.length }}</span>
+         Workers <span class="badge worker-count pull-right">{{ model.workers_total }}</span>
         </a>
       </h3>
     </div>
     <div class="panel-body">
-      <div class="list-group" ng-hide="model.workers.length">
-        <p>No available workers.</p>
+      <div class="list-group">
+        <div id="workers-chart"><svg></svg></div>
       </div>
-      <div class="list-group" ng-show="model.workers.length">
-        <p>{{ model.workers.length }} available workers.</p>
-      </div>
-
-      <!--<div class="subtitle pull-right">-->
-        <!--<div class="square"></div>-->
-        <!--<p class="text">active workers</p>-->
-      <!--</div>-->
     </div>
   </div>
 </div>
