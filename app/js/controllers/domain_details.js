@@ -64,8 +64,7 @@
     WebSocket.on(function(message) {
       if (message.type === 'new-page' || message.type === 'new-review') {
         updateDomainDetails();
-        updateReviews();
-        return updateChartData();
+        return updateReviews();
       }
     });
     return $scope.goToReviewPage = function(pageIndex) {

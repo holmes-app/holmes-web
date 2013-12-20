@@ -58,7 +58,6 @@ angular.module('holmesApp')
       if message.type == 'new-page' or message.type == 'new-review'
         updateDomainDetails()
         updateReviews()
-        updateChartData()
     )
 
     $scope.goToReviewPage = (pageIndex) ->
