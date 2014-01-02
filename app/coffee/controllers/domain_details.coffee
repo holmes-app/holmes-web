@@ -21,14 +21,23 @@ angular.module('holmesApp')
         violationCount: 0,
         violationPoints: 0
       },
+      pageCount: 0,
       currentPage: 1,
       numberOfPages: 0,
+      reviewedPercentage: 0.0,
       pages: []
     }
+
+    updatePercentage = ->
+        $scope.model.reviewedPercentage = Math.round(
+          ($scope.model.pageCount / $scope.model.domainDetails.pageCount * 100) * 100
+        ) / 100
 
     updateDomainDetails = ->
       Restangular.one('domains', $routeParams.domainName).get().then((domainDetails) ->
         $scope.model.domainDetails = domainDetails
+
+        updatePercentage()
       )
 
     updateReviews = ->
@@ -36,8 +45,6 @@ angular.module('holmesApp')
         $scope.model.pageCount = domainData.pageCount
         $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10)
         $scope.model.pages = domainData.pages
-        $scope.model.pagesWithoutReview = domainData.pagesWithoutReview
-        $scope.model.pagesWithoutReviewCount = domainData.pagesWithoutReviewCount
 
         $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] if $scope.model.currentPage < 6
 
@@ -49,6 +56,8 @@ angular.module('holmesApp')
 
           for i in [$scope.model.currentPage - 4 .. $scope.model.currentPage + 4] by 1
             $scope.model.nextPages.push(i)
+
+        updatePercentage()
       )
 
     updateDomainDetails()
