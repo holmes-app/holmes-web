@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, WebSocket) {
-    var isValidDate, updateDomainDetails, updatePercentage, updateReviews;
+    var isValidDate, updateDomainDetails, updatePager, updatePercentage, updateReviews;
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
         return false;
@@ -37,28 +37,33 @@
     updateDomainDetails = function() {
       return Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
         $scope.model.domainDetails = domainDetails;
-        return updatePercentage();
+        updatePercentage();
+        return updatePager(domainDetails);
       });
+    };
+    updatePager = function(domainData) {
+      var i, _i, _ref, _ref1, _results;
+      $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10);
+      $scope.model.pageCount = domainData.pageCount;
+      if ($scope.model.currentPage < 6) {
+        $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      }
+      $scope.model.prevPage = Math.max(1, $scope.model.currentPage - 5);
+      $scope.model.nextPage = Math.max(6, Math.min($scope.model.numberOfPages, $scope.model.currentPage + 5));
+      if ($scope.model.currentPage >= 6) {
+        $scope.model.nextPages = [];
+        _results = [];
+        for (i = _i = _ref = $scope.model.currentPage - 4, _ref1 = $scope.model.currentPage + 4; _i <= _ref1; i = _i += 1) {
+          _results.push($scope.model.nextPages.push(i));
+        }
+        return _results;
+      }
     };
     updateReviews = function() {
       return Restangular.one('domains', $routeParams.domainName).getList('reviews', {
         current_page: $scope.model.currentPage
       }).then(function(domainData) {
-        var i, _i, _ref, _ref1;
-        $scope.model.pageCount = domainData.pageCount;
-        $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10);
         $scope.model.pages = domainData.pages;
-        if ($scope.model.currentPage < 6) {
-          $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        }
-        $scope.model.prevPage = Math.max(1, $scope.model.currentPage - 5);
-        $scope.model.nextPage = Math.max(6, Math.min($scope.model.numberOfPages, $scope.model.currentPage + 5));
-        if ($scope.model.currentPage >= 6) {
-          $scope.model.nextPages = [];
-          for (i = _i = _ref = $scope.model.currentPage - 4, _ref1 = $scope.model.currentPage + 4; _i <= _ref1; i = _i += 1) {
-            $scope.model.nextPages.push(i);
-          }
-        }
         return updatePercentage();
       });
     };

@@ -38,14 +38,12 @@ angular.module('holmesApp')
         $scope.model.domainDetails = domainDetails
 
         updatePercentage()
+        updatePager(domainDetails)
       )
 
-    updateReviews = ->
-      Restangular.one('domains', $routeParams.domainName).getList('reviews', {current_page: $scope.model.currentPage}).then((domainData) ->
-        $scope.model.pageCount = domainData.pageCount
+    updatePager = (domainData) ->
         $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10)
-        $scope.model.pages = domainData.pages
-
+        $scope.model.pageCount = domainData.pageCount
         $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] if $scope.model.currentPage < 6
 
         $scope.model.prevPage = Math.max(1, $scope.model.currentPage - 5)
@@ -56,6 +54,10 @@ angular.module('holmesApp')
 
           for i in [$scope.model.currentPage - 4 .. $scope.model.currentPage + 4] by 1
             $scope.model.nextPages.push(i)
+
+    updateReviews = ->
+      Restangular.one('domains', $routeParams.domainName).getList('reviews', {current_page: $scope.model.currentPage}).then((domainData) ->
+        $scope.model.pages = domainData.pages
 
         updatePercentage()
       )
