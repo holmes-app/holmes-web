@@ -11,6 +11,19 @@
           term: ''
         };
         $scope.model.workers_total = 0;
+        $scope.search = function() {
+          var term;
+          term = $scope.model.term;
+          return Restangular.all('search').getList({
+            term: term
+          }).then(function(page) {
+            if (page === null || page === void 0) {
+              return growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!");
+            } else {
+              return $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId);
+            }
+          });
+        };
         getWorkersInfo = function() {
           return Restangular.one('workers').one('info').get().then(function(data) {
             $scope.model.workers_total = data.total;

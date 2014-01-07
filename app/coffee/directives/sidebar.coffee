@@ -11,6 +11,16 @@ angular.module('holmesApp')
 
       $scope.model.workers_total = 0
 
+      $scope.search = ->
+        term = $scope.model.term
+        Restangular.all('search').getList({term: term}).then((page) ->
+          if page == null or page == undefined
+            growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!")
+          else
+            $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId)
+
+        )
+
       getWorkersInfo = ->
         Restangular.one('workers').one('info').get().then((data) ->
           $scope.model.workers_total = data.total
