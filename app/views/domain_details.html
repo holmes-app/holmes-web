@@ -20,15 +20,6 @@
 
   <h2 class="pull-left page-reviews-header">Page Reviews <span class="page-reviews-badge badge ng-binding">{{ model.domainDetails.reviewCount | number }} ({{ model.domainDetails.reviewPercentage }}%)</span></h2>
 
-  <div class="filters form-group col-lg-6 pull-right">
-    <label for="urlFilter">
-      <div class="input-group">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-          <input type="text" class="form-control" id="urlFilter" ng-model="model.reviewFilter" placeholder="URL to filter">
-      </div>
-    </label>
-  </div>
-
   <table class="table table-striped table-bordered table-hover reviews">
     <thead>
       <tr>
