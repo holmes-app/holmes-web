@@ -43,9 +43,9 @@
       </tr>
 
       <tr ng-repeat="page in model.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.pages">
-        <td><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}">{{ page.url }}</a></td>
-        <td class="violations"><a href="#/pages/{{ page.uuid }}">{{ page.violationCount }}</a></td>
-        <td class="finished-at"><a href="#/pages/{{ page.uuid }}"><span am-time-ago="page.completedAt*1000"></span></a></td>
+        <td><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.url }}</a></td>
+        <td class="violations"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
+        <td class="finished-at"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
       </tr>
     </tbody>
   </table>
