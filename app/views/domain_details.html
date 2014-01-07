@@ -9,16 +9,16 @@
 
   <div class="row stats">
     <div class="col-lg-6">
-      <div class="title text-primary">{{ model.domainDetails.pageCount }}</div>
+      <div class="title text-primary">{{ model.domainDetails.pageCount | number }}</div>
       <div class="subtitle">pages</div>
     </div>
     <div class="col-lg-6">
-      <div class="title text-primary">{{ model.domainDetails.violationCount }}</div>
+      <div class="title text-primary">{{ model.domainDetails.violationCount | number }}</div>
       <div class="subtitle">violations</div>
     </div>
   </div>
 
-  <h2 class="pull-left page-reviews-header">Page Reviews <span class="page-reviews-badge badge ng-binding">{{ model.domainDetails.reviewCount }} ({{ model.domainDetails.reviewPercentage }}%)</span></h2>
+  <h2 class="pull-left page-reviews-header">Page Reviews <span class="page-reviews-badge badge ng-binding">{{ model.domainDetails.reviewCount | number }} ({{ model.domainDetails.reviewPercentage }}%)</span></h2>
 
   <div class="filters form-group col-lg-6 pull-right">
     <label for="urlFilter">

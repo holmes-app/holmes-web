@@ -10,11 +10,11 @@
 
   <div class="row stats">
     <div class="col-lg-6">
-      <div class="title text-primary">{{ model.details.violationCount }}</div>
+      <div class="title text-primary">{{ model.details.violationCount | number }}</div>
       <div class="subtitle">violations</div>
     </div>
     <div class="col-lg-6">
-      <div class="title text-primary">{{ model.details.violationPoints }}</div>
+      <div class="title text-primary">{{ model.details.violationPoints | number }}</div>
       <div class="subtitle">points</div>
     </div>
   </div>
