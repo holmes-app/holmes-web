@@ -14,11 +14,12 @@ angular.module('holmesApp')
       $scope.search = ->
         term = $scope.model.term
         Restangular.all('search').getList({term: term}).then((page) ->
-          if page == null or page == undefined
-            growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!")
-          else
+          page = JSON.parse(page) if typeof page == 'string'
+          if page?
             $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId)
-
+          else
+            growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!")
+          $scope.model.term = ''
         )
 
       getWorkersInfo = ->

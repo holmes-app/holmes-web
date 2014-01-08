@@ -17,11 +17,15 @@
           return Restangular.all('search').getList({
             term: term
           }).then(function(page) {
-            if (page === null || page === void 0) {
-              return growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!");
-            } else {
-              return $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId);
+            if (typeof page === 'string') {
+              page = JSON.parse(page);
             }
+            if (page != null) {
+              $location.path('/pages/' + page.uuid + '/reviews/' + page.reviewId);
+            } else {
+              growl.addErrorMessage("Page with URL " + term + " was not found or does not have any reviews associated with it!");
+            }
+            return $scope.model.term = '';
           });
         };
         getWorkersInfo = function() {
