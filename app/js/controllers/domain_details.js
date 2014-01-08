@@ -43,8 +43,10 @@
     };
     updatePager = function(domainData) {
       var i, _i, _ref, _ref1, _results;
-      $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10);
-      $scope.model.pageCount = domainData.pageCount;
+      if (domainData != null) {
+        $scope.model.numberOfPages = Math.ceil(domainData.reviewCount / 10);
+        $scope.model.pageCount = domainData.pageCount;
+      }
       if ($scope.model.currentPage < 6) {
         $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       }
@@ -77,7 +79,8 @@
     });
     return $scope.goToReviewPage = function(pageIndex) {
       $scope.model.currentPage = pageIndex;
-      return updateReviews();
+      updateReviews();
+      return updatePager();
     };
   });
 

@@ -42,8 +42,10 @@ angular.module('holmesApp')
       )
 
     updatePager = (domainData) ->
-        $scope.model.numberOfPages = Math.ceil(domainData.pageCount / 10)
-        $scope.model.pageCount = domainData.pageCount
+        if domainData?
+            $scope.model.numberOfPages = Math.ceil(domainData.reviewCount / 10)
+            $scope.model.pageCount = domainData.pageCount
+
         $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] if $scope.model.currentPage < 6
 
         $scope.model.prevPage = Math.max(1, $scope.model.currentPage - 5)
@@ -74,3 +76,4 @@ angular.module('holmesApp')
     $scope.goToReviewPage = (pageIndex) ->
       $scope.model.currentPage = pageIndex
       updateReviews()
+      updatePager()
