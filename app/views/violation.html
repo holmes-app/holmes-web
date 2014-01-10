@@ -1,0 +1,38 @@
+<div class="violation-details-view">
+
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/violations/">Violations</a></li>
+    <li class="active">{{ model.violation.title }}</li>
+  </ol>
+
+  <h1>Violation: {{ model.violation.title }} <span class="reviews-badge badge ng-binding">{{ model.violation.reviewCount}}</span></h1>
+
+  <table class="table table-striped table-bordered table-hover reviews">
+    <thead>
+      <tr>
+        <th class="url">URL</th>
+        <th class="finished-at">Finished At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-hide="model.violation.reviews">
+        <td colspan="3">No reviews for pages with this violation yet.</td>
+      </tr>
+
+      <tr ng-repeat="review in model.violation.reviews track by review.uuid" ng-show="model.violation.reviews">
+        <td><a href="#/pages/{{ review.page.uuid }}/reviews/{{ review.uuid }}/">{{ review.page.url }}</a></td>
+        <td class="finished-at"><a href="#/pages/{{ review.page.uuid }}/reviews/{{ review.uuid }}/"><span am-time-ago="review.page.completedAt*1000"></span></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row review-pager pull-right" ng-show="model.numberOfPages > 1">
+    <ul class="pagination">
+      <li ng-if="model.currentPage > 1"><a ng-click="goToReviewPage(model.prevPage)">&laquo;</a></li>
+      <li ng-repeat="pageIndex in model.nextPages" ng-class="getClass(pageIndex)"><a ng-show="model.numberOfPages >= pageIndex" ng-click="goToReviewPage(pageIndex)">{{ pageIndex }}</a></li>
+      <li ng-if="model.currentPage < model.numberOfPages"><a ng-click="goToReviewPage(model.nextPage)">&raquo;</a></li>
+    </ul>
+  </div>
+
+</div>

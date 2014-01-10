@@ -16,6 +16,12 @@
     }).when('/workers', {
       templateUrl: 'views/workers.html',
       controller: 'WorkersCtrl'
+    }).when('/violations', {
+      templateUrl: 'views/violations.html',
+      controller: 'ViolationsCtrl'
+    }).when('/violations/:keyName', {
+      templateUrl: 'views/violation.html',
+      controller: 'ViolationCtrl'
     });
     RestangularProvider.setBaseUrl(baseUrl);
     return growlProvider.globalTimeToLive(timeToLive);

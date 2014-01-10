@@ -1,0 +1,26 @@
+.violation-details-view {
+  .reviews {
+    a {
+      display: block;
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .url {
+      width: 70%;
+    }
+
+    .violations {
+      width: 15%;
+      text-align: center;
+    }
+
+    .finished-at {
+      width: 15%;
+      text-align: center;
+    }
+  }
+}
