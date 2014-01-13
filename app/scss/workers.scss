@@ -5,30 +5,31 @@
       white-space: nowrap;
       width: 270px;
   }
-}
 
+  .panel-body {
+    min-height: 150px;
 
-.worker {
-    .idle {
-        background: #CCC;
+    a {
+      max-height: 86px;
+      display: block;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
-}
+  }
 
-.worker {
+  .idle {
+    background: #CCC;
+  }
+
   .body{
     overflow-wrap: break-word;
   }
-}
 
-.worker {
-    .lastping {
-        color: #BBB;
-        font-size: 10px;
-    }
-}
+  .lastping {
+    color: #BBB;
+    font-size: 10px;
+  }
 
-.worker {
-    .panel-body {
-        min-height: 150px;
-    }
+  .panel-body {
+  }
 }
