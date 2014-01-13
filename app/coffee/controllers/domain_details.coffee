@@ -69,9 +69,11 @@ angular.module('holmesApp')
     updateDomainDetails()
     updateReviews()
 
-    $scope.$watch('model.reviewFilter', ->
+    throttled = $.debounce(500, ->
       updateReviews()
     )
+
+    $scope.$watch('model.reviewFilter', throttled)
 
     WebSocket.on((message) ->
       if message.type == 'new-page' or message.type == 'new-review'

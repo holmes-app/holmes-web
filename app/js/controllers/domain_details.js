@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular.module('holmesApp').controller('DomainDetailsCtrl', function($scope, $routeParams, Restangular, WebSocket) {
-    var isValidDate, updateDomainDetails, updatePager, updatePercentage, updateReviews;
+    var isValidDate, throttled, updateDomainDetails, updatePager, updatePercentage, updateReviews;
     isValidDate = function(d) {
       if (Object.prototype.toString.call(d) !== "[object Date]") {
         return false;
@@ -74,9 +74,10 @@
     };
     updateDomainDetails();
     updateReviews();
-    $scope.$watch('model.reviewFilter', function() {
+    throttled = $.debounce(500, function() {
       return updateReviews();
     });
+    $scope.$watch('model.reviewFilter', throttled);
     WebSocket.on(function(message) {
       if (message.type === 'new-page' || message.type === 'new-review') {
         updateDomainDetails();
