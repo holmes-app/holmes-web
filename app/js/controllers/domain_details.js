@@ -29,7 +29,8 @@
       currentPage: 1,
       numberOfPages: 0,
       reviewedPercentage: 0.0,
-      pages: []
+      pages: [],
+      reviewFilter: ''
     };
     updatePercentage = function() {
       return $scope.model.reviewedPercentage = Math.round(($scope.model.pageCount / $scope.model.domainDetails.pageCount * 100) * 100) / 100;
@@ -63,14 +64,19 @@
     };
     updateReviews = function() {
       return Restangular.one('domains', $routeParams.domainName).getList('reviews', {
-        current_page: $scope.model.currentPage
+        current_page: $scope.model.currentPage,
+        term: $scope.model.reviewFilter
       }).then(function(domainData) {
         $scope.model.pages = domainData.pages;
-        return updatePercentage();
+        updatePercentage();
+        return updatePager(domainData);
       });
     };
     updateDomainDetails();
     updateReviews();
+    $scope.$watch('model.reviewFilter', function() {
+      return updateReviews();
+    });
     WebSocket.on(function(message) {
       if (message.type === 'new-page' || message.type === 'new-review') {
         updateDomainDetails();

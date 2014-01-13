@@ -25,7 +25,8 @@ angular.module('holmesApp')
       currentPage: 1,
       numberOfPages: 0,
       reviewedPercentage: 0.0,
-      pages: []
+      pages: [],
+      reviewFilter: ''
     }
 
     updatePercentage = ->
@@ -43,8 +44,8 @@ angular.module('holmesApp')
 
     updatePager = (domainData) ->
         if domainData?
-            $scope.model.numberOfPages = Math.ceil(domainData.reviewCount / 10)
-            $scope.model.pageCount = domainData.pageCount
+          $scope.model.numberOfPages = Math.ceil(domainData.reviewCount / 10)
+          $scope.model.pageCount = domainData.pageCount
 
         $scope.model.nextPages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] if $scope.model.currentPage < 6
 
@@ -58,14 +59,19 @@ angular.module('holmesApp')
             $scope.model.nextPages.push(i)
 
     updateReviews = ->
-      Restangular.one('domains', $routeParams.domainName).getList('reviews', {current_page: $scope.model.currentPage}).then((domainData) ->
+      Restangular.one('domains', $routeParams.domainName).getList('reviews', {current_page: $scope.model.currentPage, term: $scope.model.reviewFilter}).then((domainData) ->
         $scope.model.pages = domainData.pages
 
         updatePercentage()
+        updatePager(domainData)
       )
 
     updateDomainDetails()
     updateReviews()
+
+    $scope.$watch('model.reviewFilter', ->
+      updateReviews()
+    )
 
     WebSocket.on((message) ->
       if message.type == 'new-page' or message.type == 'new-review'

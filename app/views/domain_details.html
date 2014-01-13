@@ -20,28 +20,39 @@
 
   <h2 class="pull-left page-reviews-header">Page Reviews <span class="page-reviews-badge badge ng-binding">{{ model.domainDetails.reviewCount | number }} ({{ model.domainDetails.reviewPercentage }}%)</span></h2>
 
-  <table class="table table-striped table-bordered table-hover reviews">
-    <thead>
-      <tr>
-        <th class="url">URL</th>
-        <th class="violations">Violations</th>
-        <th class="finished-at">Finished At</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-hide="model.pages">
-        <td colspan="3">No reviews made for this domain yet.</td>
-      </tr>
+  <div class="filters form-group col-lg-6 pull-right">
+    <label for="urlFilter">
+      <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control" id="urlFilter" ng-model="model.reviewFilter" placeholder="URL starts with">
+      </div>
+    </label>
+  </div>
 
-      <tr ng-repeat="page in model.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.pages">
-        <td><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.url }}</a></td>
-        <td class="violations"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
-        <td class="finished-at"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="results">
+    <table class="table table-striped table-bordered table-hover reviews">
+      <thead>
+        <tr>
+          <th class="url">URL</th>
+          <th class="violations">Violations</th>
+          <th class="finished-at">Finished At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-hide="model.pages">
+          <td colspan="3">No reviews made for this domain yet.</td>
+        </tr>
 
-  <div class="row review-pager pull-right">
+        <tr ng-repeat="page in model.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.pages">
+          <td><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.url }}</a></td>
+          <td class="violations"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
+          <td class="finished-at"><a href="#/pages/{{ page.uuid }}/reviews/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row review-pager pull-right" ng-show="model.numberOfPages > 1">
     <ul class="pagination">
       <li ng-if="model.currentPage > 1"><a ng-click="goToReviewPage(model.prevPage)">&laquo;</a></li>
       <li ng-repeat="pageIndex in model.nextPages" ng-class="getClass(pageIndex)"><a ng-show="model.numberOfPages >= pageIndex" ng-click="goToReviewPage(pageIndex)">{{ pageIndex }}</a></li>
