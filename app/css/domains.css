@@ -1,17 +1,26 @@
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000031}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000031}}
 .domains-view {
   padding-left: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000034}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000034}}
 .domains-view a {
   color: #333;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000039}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\000039}}
 .domains-view a:hover .panel {
   opacity: 0.9;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\0000315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\0000315}}
 .domains-view .panel-body {
   min-height: 70px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\0000319}}
+.domains-view .inactive .panel-primary {
+  border-color: #CCC;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/evandrof\/Projects\/holmes-web\/app\/scss\/domains\.scss}line{font-family:\0000322}}
+.domains-view .inactive .panel-heading {
+  background-color: #CCC;
+  border-color: #CCC;
 }

@@ -19,7 +19,8 @@ angular.module('holmesApp')
         pageCount: 0,
         numberofPages: 0
         violationCount: 0,
-        violationPoints: 0
+        violationPoints: 0,
+        is_active: true
       },
       pageCount: 0,
       currentPage: 1,
@@ -80,6 +81,10 @@ angular.module('holmesApp')
         updateDomainDetails()
         updateReviews()
     )
+
+    $scope.changeDomainStatus = ->
+      Restangular.one('domains', $routeParams.domainName).post('change-status').then(updateDomainDetails())
+
 
     $scope.goToReviewPage = (pageIndex) ->
       $scope.model.currentPage = pageIndex

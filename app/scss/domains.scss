@@ -16,4 +16,12 @@
     min-height: 70px;
   }
 
+  .inactive .panel-primary {
+      border-color: #CCC;
+  }
+  .inactive .panel-heading {
+      background-color: #CCC;
+      border-color: #CCC;
+  }
+
 }

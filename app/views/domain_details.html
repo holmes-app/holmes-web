@@ -59,4 +59,10 @@
       <li ng-if="model.currentPage < model.numberOfPages"><a ng-click="goToReviewPage(model.nextPage)">&raquo;</a></li>
     </ul>
   </div>
+
+  <button ng-click="changeDomainStatus()">
+    {{ model.domainDetails.is_active ? 'Stop reviewing': 'Reactive domain reviewing' }}
+  </button>
+
 </div>
+

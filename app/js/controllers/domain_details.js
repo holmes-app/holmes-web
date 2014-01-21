@@ -23,7 +23,8 @@
         pageCount: 0,
         numberofPages: 0,
         violationCount: 0,
-        violationPoints: 0
+        violationPoints: 0,
+        is_active: true
       },
       pageCount: 0,
       currentPage: 1,
@@ -84,6 +85,9 @@
         return updateReviews();
       }
     });
+    $scope.changeDomainStatus = function() {
+      return Restangular.one('domains', $routeParams.domainName).post('change-status').then(updateDomainDetails());
+    };
     return $scope.goToReviewPage = function(pageIndex) {
       $scope.model.currentPage = pageIndex;
       updateReviews();
