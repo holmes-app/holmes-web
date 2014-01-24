@@ -60,7 +60,7 @@
     </ul>
   </div>
 
-  <div class="row pull-left stop-review-button">
+  <div class="row pull-left stop-review-button" ng-show="model.numberOfPages > 0">
       <button class="btn btn-sm" ng-class="model.domainDetails.is_active ? 'btn-danger' : 'btn-success'" ng-click="changeDomainStatus()">
         {{ model.domainDetails.is_active ? 'Stop reviewing': 'Start reviewing' }}
       </button>
