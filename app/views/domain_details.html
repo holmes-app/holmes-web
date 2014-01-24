@@ -60,10 +60,11 @@
     </ul>
   </div>
 
-  <br class="fixclear">
-  <button ng-click="changeDomainStatus()">
-    {{ model.domainDetails.is_active ? 'Stop reviewing': 'Reactive domain reviewing' }}
-  </button>
+  <div class="row pull-left stop-review-button">
+      <button class="btn btn-sm" ng-class="model.domainDetails.is_active ? 'btn-danger' : 'btn-success'" ng-click="changeDomainStatus()">
+        {{ model.domainDetails.is_active ? 'Stop reviewing': 'Start reviewing' }}
+      </button>
+  </div>
 
 </div>
 
