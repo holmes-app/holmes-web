@@ -1,30 +1,17 @@
 {
   "name": "holmes",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.0",
-    "jquery": "2.0.3",
-    "bootstrap-sass": "3.0.0",
-    "angular-route": "1.2.0",
-    "angular-animate": "1.2.0",
-    "angular-resource": "1.2.0",
-    "angular-cookies": "~1.0.8",
-    "angular-sanitize": "1.2.0",
-    "nvd3": "1.1.12-beta",
-    "d3": "3.3.5",
-    "lodash": "~2.2.1",
-    "restangular": "1.1.6",
-    "angular-growl": "0.3.1",
-    "angular-moment": "0.4.1",
-    "angular-websocket": "~0.0.1",
-    "jquery-throttle-debounce": "*"
+    "angular": "1.2.6",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "angular-resource": "1.2.6",
+    "angular-cookies": "1.2.6",
+    "angular-sanitize": "1.2.6",
+    "angular-route": "1.2.6"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.0-rc.1",
-    "angular-scenario": "~1.2.0-rc.1"
-  },
-  "resolutions": {
-    "angular": "1.2.0",
-    "lodash": "~2.2.1"
+    "angular-mocks": "1.2.6",
+    "angular-scenario": "1.2.6"
   }
 }

@@ -4,4 +4,7 @@ setup:
 	@bower install
 
 run:
-	@grunt run
+	@grunt serve
+
+unit:
+	@grunt test

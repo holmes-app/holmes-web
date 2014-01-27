@@ -1,79 +1,36 @@
-<div class="main-view">
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">holmes web</h3>
+</div>
 
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Add a new website</h1>
-        <p>
-          Enter the url for the page you want holmes to investigate. Please note that the validation of the website may take some minutes to complete.
-        </p>
+<div class="jumbotron">
+  <h1>'Allo, 'Allo!</h1>
+  <p class="lead">
+    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
+    Always a pleasure scaffolding your apps.
+  </p>
+  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
+</div>
 
-        <form class="add-page" name="addPageForm" novalidate data-ng-submit="addPageForm.url.$valid && addPage()">
-          <div class="input-group input-group-lg" ng-class="(addPageForm.url.$pristine || addPageForm.url.$valid) ? '': 'has-error'">
-            <label for="url" class="input-group-addon">
-              <span class="glyphicon glyphicon-home"></span>
-            </label>
+<div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
 
-            <input 
-              required
-              type="url"
-              name="url"
-              id="url" 
-              class="form-control input-lg"
-              ng-model="model.url"
-              ng-disabled="model.isAddingPage"
-              placeholder="Enter page url..." />
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
 
-            <div class="input-group-btn">
-              <button class="btn btn-default" ng-disabled="!addPageForm.$valid || model.isAddingPage" ng-click="addPage()" type="button">add</button>
-            </div>
-          </div>
-        </form>
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+</div>
 
-        <div class="warnings" ng-class="{'invalid': model.invalidUrl, 'turns-out': model.turnsOut}">
-          <div class="warning alert alert-dismissable alert-warning turns-out-warning" >
-            <button type="button" class="close" ng-click="clearForm()">×</button>
-            <h4>Turns out it was a redirect!</h4>
-            <p>The website you added was actually a redirect to {{ model.turnsOut }}. <a href="#/" ng-click="model.url = model.turnsOut; addPage()" class="alert-link">Do you want to add it instead</a>?</p>
-          </div>
-
-          <div class="warning alert alert-dismissable alert-danger invalid-warning">
-            <button type="button" class="close" ng-click="clearForm()">×</button>
-            <h4>Url not found!</h4>
-            <p>The website you added could not be found. Maybe you mispelled it?</p>
-          </div>
-        </div>
-
-      </div>
-    </div> <!-- jumbotron -->
-
-    <div class="panel panel-default last-reviews">
-      <div class="panel-heading">Last Reviews</div>
-      <div class="panel-body">
-        <div class="list-group" ng-hide="model.last_reviews">
-          <p>No available reviews.</p>
-        </div>
-        <div class="row">
-          <div class="col-lg-4" data-ng-repeat="review in model.last_reviews track by review.uuid">
-
-            <a href="#/pages/{{ review.page.uuid }}/reviews/{{ review.uuid }}/">
-              <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">{{ review.domain }} ({{ review.violationCount }} violations)</h3>
-                </div>
-                <div class="panel-body">
-                  {{ review.page.url }}
-                </div>
-                <div class="panel-footer">
-                  <span class="glyphicon glyphicon-time"></span>
-                  <span am-time-ago="review.completedAt*1000"></span>
-                </div>
-              </div>
-            </a>
-
-          </div> <!-- col-lg-4 -->
-        </div> <!-- row -->
-
-      </div>
-    </div>
-
+<div class="footer">
+  <p>♥ from the Yeoman team</p>
 </div>
