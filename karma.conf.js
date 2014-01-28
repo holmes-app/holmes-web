@@ -20,7 +20,7 @@ module.exports = function(config) {
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'app/views/**/*.html',
-      'test/mock/**/*.coffee',
+      //'test/mock/**/*.coffee',
       'test/spec/**/*.coffee'
     ],
 
