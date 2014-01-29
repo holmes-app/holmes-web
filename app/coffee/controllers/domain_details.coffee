@@ -20,14 +20,16 @@ angular.module('holmesApp')
         numberofPages: 0
         violationCount: 0,
         violationPoints: 0,
-        is_active: true
+        is_active: true,
+        statusCodeInfo: [],
       },
       pageCount: 0,
       currentPage: 1,
       numberOfPages: 0,
       reviewedPercentage: 0.0,
       pages: [],
-      reviewFilter: ''
+      reviewFilter: '',
+      numberOfRequests: 0,
     }
 
     updatePercentage = ->
@@ -37,6 +39,15 @@ angular.module('holmesApp')
 
     updateDomainDetails = ->
       Restangular.one('domains', $routeParams.domainName).get().then((domainDetails) ->
+
+        for i in domainDetails.statusCodeInfo
+            $scope.model.numberOfRequests += i.total
+
+        for i in domainDetails.statusCodeInfo
+            i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(4)
+
+        console.log(domainDetails.statusCodeInfo)
+
         $scope.model.domainDetails = domainDetails
 
         updatePercentage()

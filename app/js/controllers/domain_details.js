@@ -24,20 +24,34 @@
         numberofPages: 0,
         violationCount: 0,
         violationPoints: 0,
-        is_active: true
+        is_active: true,
+        statusCodeInfo: []
       },
       pageCount: 0,
       currentPage: 1,
       numberOfPages: 0,
       reviewedPercentage: 0.0,
       pages: [],
-      reviewFilter: ''
+      reviewFilter: '',
+      numberOfRequests: 0
     };
     updatePercentage = function() {
       return $scope.model.reviewedPercentage = Math.round(($scope.model.pageCount / $scope.model.domainDetails.pageCount * 100) * 100) / 100;
     };
     updateDomainDetails = function() {
       return Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
+        var i, _i, _j, _len, _len1, _ref, _ref1;
+        _ref = domainDetails.statusCodeInfo;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          i = _ref[_i];
+          $scope.model.numberOfRequests += i.total;
+        }
+        _ref1 = domainDetails.statusCodeInfo;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          i = _ref1[_j];
+          i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(4);
+        }
+        console.log(domainDetails.statusCodeInfo);
         $scope.model.domainDetails = domainDetails;
         updatePercentage();
         return updatePager(domainDetails);
