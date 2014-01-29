@@ -30,4 +30,44 @@ header {
       @include common-sprite(logo, $dimensions: true);
     }
   }
+
+  .toolbar {
+    float: right;
+  }
+
+  navbar {
+    li {
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 18px;
+
+      a {
+        display: block;
+        padding: 0 29px;
+        font-size: 16px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        color: #f4f4f4;
+        text-decoration: none;
+        border-right: solid 1px #666;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &:first-child {
+        a {
+          padding-left: 0;
+        }
+      }
+
+      &:last-child {
+        a {
+          padding-right: 0;
+          border-right: 0;
+        }
+      }
+    }
+  }
 }
