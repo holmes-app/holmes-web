@@ -41,6 +41,7 @@
     updateDomainDetails = function() {
       return Restangular.one('domains', $routeParams.domainName).get().then(function(domainDetails) {
         var i, _i, _j, _len, _len1, _ref, _ref1;
+        $scope.model.numberOfRequests = 0;
         _ref = domainDetails.statusCodeInfo;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           i = _ref[_i];

@@ -40,6 +40,7 @@ angular.module('holmesApp')
     updateDomainDetails = ->
       Restangular.one('domains', $routeParams.domainName).get().then((domainDetails) ->
 
+        $scope.model.numberOfRequests = 0
         for i in domainDetails.statusCodeInfo
             $scope.model.numberOfRequests += i.total
 
