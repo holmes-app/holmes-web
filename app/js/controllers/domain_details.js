@@ -51,7 +51,6 @@
           i = _ref1[_j];
           i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(4);
         }
-        console.log(domainDetails.statusCodeInfo);
         $scope.model.domainDetails = domainDetails;
         updatePercentage();
         return updatePager(domainDetails);
