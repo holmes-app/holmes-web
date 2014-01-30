@@ -31,7 +31,15 @@
           <td colspan="2">No reviews made for this domain yet.</td>
         </tr>
         <tr ng-repeat="status in model.domainDetails.statusCodeInfo track by status.code" ng-show="model.domainDetails.statusCodeInfo">
-          <td>{{ status.code }}</td>
+            <td>
+              <div ng-if="status.code != 200">
+                <a href="#/domains/{{ model.domainDetails.name }}/requests/{{ status.code }}/">{{ status.code }}</a>
+
+              </div>
+              <div ng-if="status.code == 200">
+                {{ status.code }}
+              </div>
+          </td>
           <td>{{ status.percentage }} ({{ status.total }})</td>
         </tr>
       </tbody>

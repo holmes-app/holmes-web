@@ -1,0 +1,43 @@
+<div class="requests-view">
+  <h1>{{ model.domainName  }} ({{ model.statusCode }})</h1>
+
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li><a href="#/domains/">Domains</a></li>
+    <li><a href="#/domains/{{ model.domainName }}/">{{ model.domainName }}</a></li>
+    <li class="active">Status Code</li>
+    <li class="active">{{ model.statusCode }}</li>
+</ol>
+
+  <div class="results">
+    <table class="table table-striped table-bordered table-hover reviews">
+      <thead>
+        <tr>
+          <th class="review-url">Review URL</th>
+          <th class="url">URL with status code {{ model.statusCode }}</th>
+          <th class="finished-at">Finished At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-hide="model.requests">
+          <td colspan="3">No reviews made for this domain yet.</td>
+        </tr>
+
+        <tr ng-repeat="request in model.requests track by request.id" ng-show="model.requests">
+          <td><a href="{{ request.review_url }}" target="_blank">{{ request.review_url }}</a></td>
+          <td><a href="{{ request.url }}" target="_blank">{{ request.url }}</a></td>
+          <td><span am-time-ago="request.completed_date*1000"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row requests-pager pull-right" ng-show="model.numberOfPages > 1">
+    <ul class="pagination">
+      <li ng-if="model.currentPage > 1"><a ng-click="goToRequestPage(model.prevPage)">&laquo;</a></li>
+      <li ng-repeat="pageIndex in model.nextPages" ng-class="getClass(pageIndex)"><a ng-show="model.numberOfPages >= pageIndex" ng-click="goToRequestPage(pageIndex)">{{ pageIndex }}</a></li>
+      <li ng-if="model.currentPage < model.numberOfPages"><a ng-click="goToRequestPage(model.nextPage)">&raquo;</a></li>
+    </ul>
+  </div>
+
+</div>

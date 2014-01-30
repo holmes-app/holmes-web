@@ -1,0 +1,13 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/requests\.scss}line{font-family:\000033}}
+.requests-view .requests-pager {
+  display: block;
+  margin-right: 2px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/requests\.scss}line{font-family:\000036}}
+.requests-view .requests-pager a {
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/marcelo\.vieira\/work\/holmes-web\/app\/scss\/requests\.scss}line{font-family:\0000311}}
+.requests-view .requests-pager .active a {
+  cursor: default;
+}

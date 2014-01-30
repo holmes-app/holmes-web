@@ -10,6 +10,9 @@
     }).when('/domains/:domainName', {
       templateUrl: 'views/domain_details.html',
       controller: 'DomainDetailsCtrl'
+    }).when('/domains/:domainName/requests/:statusCode', {
+      templateUrl: 'views/requests.html',
+      controller: 'RequestDomainCtrl'
     }).when('/pages/:pageId/reviews/:reviewId', {
       templateUrl: 'views/report.html',
       controller: 'ReportCtrl'
