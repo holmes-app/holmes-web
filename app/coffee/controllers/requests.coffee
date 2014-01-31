@@ -10,6 +10,7 @@ angular.module('holmesApp')
     $scope.model = {
       domainName: $routeParams.domainName,
       statusCode: $routeParams.statusCode,
+      statusCodeTitle: '',
       requestsDetails: {
         url: '',
         review_url: '',
@@ -24,6 +25,7 @@ angular.module('holmesApp')
     updateRequestsDetails = ->
       Restangular.one('domains', $routeParams.domainName).one('requests', $routeParams.statusCode).get({current_page: $scope.model.currentPage}).then((requestsDetails) ->
         $scope.model.requests = requestsDetails.requests
+        $scope.model.statusCodeTitle = requestsDetails.statusCodeTitle
         updatePager(requestsDetails)
       )
 

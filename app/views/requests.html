@@ -1,12 +1,12 @@
 <div class="requests-view">
-  <h1>{{ model.domainName  }} ({{ model.statusCode }})</h1>
+  <h1>{{ model.domainName  }} - {{ model.statusCodeTitle }} ({{ model.statusCode }})</h1>
 
   <ol class="breadcrumb">
     <li><a href="#/">Home</a></li>
     <li><a href="#/domains/">Domains</a></li>
     <li><a href="#/domains/{{ model.domainName }}/">{{ model.domainName }}</a></li>
     <li class="active">Status Code</li>
-    <li class="active">{{ model.statusCode }}</li>
+    <li class="active">{{ model.statusCodeTitle }} ({{ model.statusCode }})</li>
 </ol>
 
   <div class="results">

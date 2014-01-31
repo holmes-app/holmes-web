@@ -13,6 +13,7 @@
     $scope.model = {
       domainName: $routeParams.domainName,
       statusCode: $routeParams.statusCode,
+      statusCodeTitle: '',
       requestsDetails: {
         url: '',
         review_url: '',
@@ -28,6 +29,7 @@
         current_page: $scope.model.currentPage
       }).then(function(requestsDetails) {
         $scope.model.requests = requestsDetails.requests;
+        $scope.model.statusCodeTitle = requestsDetails.statusCodeTitle;
         return updatePager(requestsDetails);
       });
     };
