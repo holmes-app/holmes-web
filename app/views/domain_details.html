@@ -23,23 +23,23 @@
       <thead>
         <tr>
           <th class="status-code">Status Code</th>
-          <th class="parcentage-of-requests">% of Requests</th>
+          <th class="parcentage-of-requests">Number of Requests</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-hide="model.domainDetails.statusCodeInfo">
           <td colspan="2">No reviews made for this domain yet.</td>
         </tr>
-        <tr ng-repeat="status in model.domainDetails.statusCodeInfo track by status.code" ng-show="model.domainDetails.statusCodeInfo">
+        <tr ng-repeat="item in model.domainDetails.statusCodeInfo  | orderBy:'-total'" ng-show="model.domainDetails.statusCodeInfo">
             <td>
-              <div ng-if="status.code != 200">
-                  <a href="#/domains/{{ model.domainDetails.name }}/requests/{{ status.code }}/">{{ status.title }} ({{ status.code }})</a>
+              <div ng-if="item.code != 200">
+                  <a href="#/domains/{{ model.domainDetails.name }}/requests/{{ item.code }}/">{{ item.title }} ({{ item.code }})</a>
               </div>
-              <div ng-if="status.code == 200">
-                {{ status.title }} ({{ status.code }})
+              <div ng-if="item.code == 200">
+                {{ item.title }} ({{ item.code }})
               </div>
           </td>
-          <td>{{ status.percentage }} ({{ status.total }})</td>
+          <td>{{ item.total }} ({{ item.percentage }}%)</td>
         </tr>
       </tbody>
     </table>

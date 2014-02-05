@@ -45,7 +45,7 @@ angular.module('holmesApp')
             $scope.model.numberOfRequests += i.total
 
         for i in domainDetails.statusCodeInfo
-            i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(4)
+            i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(2)
 
         $scope.model.domainDetails = domainDetails
 

@@ -50,7 +50,7 @@
         _ref1 = domainDetails.statusCodeInfo;
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
           i = _ref1[_j];
-          i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(4);
+          i['percentage'] = parseFloat(i.total * 100 / $scope.model.numberOfRequests).toFixed(2);
         }
         $scope.model.domainDetails = domainDetails;
         updatePercentage();
