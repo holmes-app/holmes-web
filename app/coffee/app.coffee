@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService'])
+angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService', 'directive.g+signin', 'ngCookies'])
   .config ($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, wsUrl, timeToLive) ->
     #$locationProvider.html5Mode(true)
 
@@ -29,6 +29,9 @@ angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-grow
       .when '/violations/:keyName',
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'
+      .when '/delimiters',
+        templateUrl: 'views/delimiter.html'
+        controller: 'DelimiterCtrl'
 
     RestangularProvider.setBaseUrl(baseUrl)
 

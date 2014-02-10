@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService']).config(function($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, wsUrl, timeToLive) {
+  angular.module('holmesApp', ['ngRoute', 'ngAnimate', 'ngResource', 'angular-growl', 'restangular', 'angularMoment', 'HolmesConfig', 'WebSocketService', 'directive.g+signin', 'ngCookies']).config(function($routeProvider, $locationProvider, RestangularProvider, growlProvider, baseUrl, wsUrl, timeToLive) {
     $routeProvider.when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
@@ -25,6 +25,9 @@
     }).when('/violations/:keyName', {
       templateUrl: 'views/violation.html',
       controller: 'ViolationCtrl'
+    }).when('/delimiters', {
+      templateUrl: 'views/delimiter.html',
+      controller: 'DelimiterCtrl'
     });
     RestangularProvider.setBaseUrl(baseUrl);
     return growlProvider.globalTimeToLive(timeToLive);

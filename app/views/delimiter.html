@@ -1,0 +1,44 @@
+<div>
+
+  <h1>Delimiters</h1>
+
+  <ol class="breadcrumb">
+    <li><a href="#/">Home</a></li>
+    <li>Delimiters</li>
+  </ol>
+
+  <h2>Add</h2>
+
+  <form class="form-inline" role="form" name="addDelimiterForm" data-ng-submit="addDelimiter()">
+    <div class="form-group">
+      <input required type="url" class="form-control" name="url" id="url" class="input" ng-model="model.url" placeholder="url" />
+    </div>
+    <div class="form-group">
+      <input required type="number" min="0" class="form-control" name="value" id="value" class="input" ng-model="model.value" placeholder="value" />
+</div>
+    <button class="btn btn-default" ng-disabled="!addDelimiterForm.$valid" ng-click="addDelimiter()" type="button">add</button>
+  </form>
+
+  <h2>Delimiters List</h2>
+
+  <div class="requests-info">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="status-code">URL</th>
+          <th class="parcentage-of-requests">Number of concurrent requests</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-hide="model.delimiterDetails">
+          <td colspan="2">No urls.</td>
+        </tr>
+        <tr ng-repeat="item in model.delimiterDetails" ng-show="model.delimiterDetails">
+          <td>{{ item.url }}</td>
+          <td>{{ item.value | number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -17,7 +17,8 @@
     "angular-growl": "0.3.1",
     "angular-moment": "0.4.1",
     "angular-websocket": "~0.0.1",
-    "jquery-throttle-debounce": "*"
+    "jquery-throttle-debounce": "*",
+    "angular-directive.g-signin": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0-rc.1",

@@ -24,11 +24,19 @@
       <li data-ng-class="getClass('/')"><a href="#/">home</a></li>
       <li data-ng-class="getClass('/domains')"><a href="#/domains">domains</a></li>
       <li data-ng-class="getClass('/violations')"><a href="#/violations">violations</a></li>
-    </ul>
+      <li data-ng-class="getClass('/delimiters')"><a href="#/delimiters">delimiters</a></li>
+      <li>
+        <div ng-app="directive.g+signin" ng-hide="model.access_token">
+          <google-plus-signin clientid="968129569472-1smbhidqeo3kpdj029cehmnp8qh808kv" scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"></google-plus-signin>
+        </div>
+         <a href="javascript:gapi.auth.signOut();" ng-show="model.access_token">Logout</a>
+      </li>
+  </ul>
   </div><!-- /.nav-collapse -->
 </div>
 
 <div class="sidebar">
+
   <!--<h1 class="logo"><a href="#/">holmes</a></h1>-->
 
   <!--<h3>Search Review</h3>-->

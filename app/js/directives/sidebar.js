@@ -5,11 +5,23 @@
       templateUrl: 'views/sidebar.html',
       restrict: 'E',
       scope: {},
-      controller: function($scope, Restangular, $location, $timeout, growl, WebSocket) {
+      controller: function($scope, Restangular, $location, $timeout, growl, WebSocket, $cookieStore) {
         var chartData, drawChart, getWorkersInfo, updateChart;
         $scope.model = {
           term: ''
         };
+        $scope.$on('event:google-plus-signin-success', function(event, authResult) {
+          return event.targetScope.$apply(function() {
+            $scope.model.access_token = authResult.access_token;
+            return $cookieStore.put('HOLMES_AUTH_TOKEN', authResult.access_token);
+          });
+        });
+        $scope.$on('event:google-plus-signin-failure', function(event, authResult) {
+          return event.targetScope.$apply(function() {
+            $scope.model.access_token = '';
+            return $cookieStore.remove('HOLMES_AUTH_TOKEN');
+          });
+        });
         $scope.model.workers_total = 0;
         $scope.search = function() {
           var term;
