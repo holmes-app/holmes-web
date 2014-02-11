@@ -48,5 +48,47 @@
     <script src="scripts/directives/headersearch.js"></script>
     <script src="scripts/directives/headeraddpage.js"></script>
     <!-- endbuild -->
+
+    <script>
+/*
+   THIS CODE IS HERE BECAUSE IT'S FREAKING HARD TO CONFIGURE NVD3. PLEASE DO NOT ERASE IT.
+
+      var lastElement = null;
+
+      var enlarge = function(ev, element){
+            if (lastElement) {
+            lastElement.style.webkitTransform = 'scale(1.0)';
+            }
+            element = d3.event.toElement;
+            console.log(element);
+
+        if (element.nodeName == 'text' || element.nodeName == 'rect') {
+          element = element.parentNode;
+        }
+        
+        element = element.parentNode;
+            lastElement = element;
+            element.style.webkitTransform = "scale(1.2)";
+          };
+
+      nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value })
+            .donut(true)
+            .showLabels(true);
+
+          d3.select("#chart svg")
+               .datum(data)
+               .transition().duration(1200)
+               .call(chart);
+
+        return chart;
+      }, function() {
+        d3.selectAll(".nv-slice").on('mouseover', enlarge);
+        d3.selectAll(".nv-label").on('mouseover', enlarge);
+      });
+      */
+    </script>
 </body>
 </html>
