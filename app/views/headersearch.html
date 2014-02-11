@@ -1,3 +1,16 @@
 <div class="header-search">
-  <a href="#" class="search-button"><i></i></a>
+  <a class="search-button" ng-click="toggleSearch()"><i></i></a>
+  <div class="search-form" ng-class="model.searchFormVisible ? 'visible' : ''">
+    <div class="container">
+      <div class="title"><strong>Search a</strong> website</div>
+      <form>
+        <input 
+          type="text"
+          placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
+          name="page" />
+        <div class="arrow"><i></i></div>
+      </form>
+    </div>
+  </div>
+
 </div>

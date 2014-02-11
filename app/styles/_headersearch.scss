@@ -1,12 +1,12 @@
 .header-search {
     display: inline-block;
     vertical-align: top;
-    margin-right: 108px;
 
     .search-button {
         display: block;
         width: 65px;
         height: 50px;
+        cursor: pointer;
 
         i {
           display: block;
@@ -15,4 +15,73 @@
           @include common-sprite(search, $dimensions: true);
         }
     }
+}
+
+.search-form {
+  position: absolute;
+  top: -20px;
+  left: 0;
+
+  height: 70px;
+  width: 100%;
+  background-color: #318d90;
+  @include transition(top 250ms ease-in-out);
+  z-index: -1;
+
+  &.visible {
+    top: 50px;
+  }
+
+  .title, form {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .title {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      font-style: italic;
+      color: #fff;
+      margin: 27px 36px 0 65px;
+      width: 180px;
+
+      strong {
+        font-weight: 700;
+      }
+  }
+
+  form {
+    position: relative;
+    margin-top: 15px;
+
+    input {
+      width: 720px;
+      height: 40px;
+      @include box-sizing(border-box);
+      padding-left: 10px;
+      border: solid 1px #ddd;
+      font-style: italic;
+      font-size: 14px;
+      color: #999;
+      outline: none;
+    }
+
+    .arrow {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+
+      i {
+        margin: 12px 0 0 18px;
+        height: 16px;
+        width: 8px;
+        display: block;
+        @include common-sprite(input-arrow, $dimensions: true);
+      }
+    }
+  }
 }

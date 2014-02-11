@@ -1,3 +1,15 @@
 <div class="header-add-page">
-  <a href="#" class="add-page-button"><i></i></a>
+  <a class="add-page-button" ng-click="toggleAddPage()"><i></i></a>
+  <div class="add-page-form" ng-class="model.addPageFormVisible ? 'visible' : ''">
+    <div class="container">
+      <div class="title"><strong>Add a new</strong> website</div>
+      <form>
+        <input 
+          type="text"
+          placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
+          name="page" />
+        <div class="arrow"><i></i></div>
+      </form>
+    </div>
+  </div>
 </div>

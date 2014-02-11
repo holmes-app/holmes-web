@@ -6,5 +6,15 @@ angular.module('holmesApp')
     restrict: 'E'
     replace: true,
     link: (scope, element, attrs) ->
-      #element.text 'this is the headerbar directive'
+      scope.model = scope.model or {}
+
+      scope.model.addPageFormVisible = false
+      scope.toggleAddPage = ->
+        scope.model.addPageFormVisible = !scope.model.addPageFormVisible
+        scope.model.searchFormVisible = false
+
+      scope.model.searchFormVisible = false
+      scope.toggleSearch = ->
+        scope.model.addPageFormVisible = false
+        scope.model.searchFormVisible = !scope.model.searchFormVisible
   )
