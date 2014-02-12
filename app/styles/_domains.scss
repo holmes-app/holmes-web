@@ -1,0 +1,122 @@
+.domains-view {
+  margin-top: 40px;
+
+  .domains-container {
+    margin-top: 50px;
+    overflow: hidden;
+    max-height: 300px;
+    @include transition(max-height 250ms ease-in-out);
+  }
+
+  .show-domains, .hide-domains {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 32px;
+    cursor: pointer;
+
+    .text {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 30px;
+      margin-top: 4px;
+      margin-right: 10px;
+    }
+
+    .icon {
+      width: 31px;
+      height: 31px;
+      border-width: 1px;
+      border-style: solid;
+      position: relative;
+
+      i {
+        display: block;
+        position: absolute;
+        top: 11px;
+        left: 11px;
+      }
+    }
+  }
+
+  .show-domains .icon i {
+    @include common-sprite(arrow-down, $dimensions: true);
+  }
+
+  .hide-domains {
+    .icon {
+      background-color: $blue;
+
+      i {
+        @include common-sprite(arrow-up, $dimensions: true);
+      }
+    }
+  }
+
+  .domains {
+    li {
+      width: 506px;
+      border-style: solid;
+      border-width: 1px;
+      margin-right: 42px;
+      margin-bottom: 20px;
+      @include box-sizing(border-box);
+      @include transition(background-color 100ms linear);
+
+      a {
+        padding: 16px 18px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        @include box-sizing(border-box);
+      }
+
+      &:hover {
+        background-color: #eef4f4;
+      }
+
+      &:nth-child(even) {
+        margin-right: 0;
+      }
+
+      .stats {
+        margin-top: 23px;
+      }
+
+      .stat {
+        font-family: 'Open Sans', sans-serif;
+        width: 100px;
+        margin-right: 18px;
+
+        &:nth-child(4) {
+          margin-right: 0;
+        }
+
+        .label {
+          font-size: 14px;
+          font-weight: 700;
+          color: #989898;
+          margin-bottom: 3px;
+        }
+
+        .value {
+          font-size: 20px;
+          font-weight: 100;
+          color: #6f6f6f;
+        }
+      }
+    }
+  }
+
+  .violations-container {
+    .toolbar {
+      position: relative;
+    }
+
+    .options {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

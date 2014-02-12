@@ -1,0 +1,77 @@
+<div class="domains-view">
+  <h1>Domains</h1>
+
+  <div class="domains-container" style="max-height: {{ model.domainsVisible ? (model.domains.length * 159) : 300}}px">
+    <ul class="domains">
+      <li class="ib light-blue-border" ng-repeat="domain in model.domains track by domain.id">
+        <a href="#/domains/{{ domain.id }}">
+          <h2 class="blue">{{ domain.name }}</h2>
+          <div class="stats">
+
+            <div class="stat ib">
+              <p class="label">pages</p>
+              <p class="value">{{ domain.pageCount | number }}</p>
+            </div>
+
+            <div class="stat ib">
+              <p class="label">violations</p>
+              <p class="value">{{ domain.violationCount | number }}</p>
+            </div>
+
+            <div class="stat ib center">
+              <p class="label">error %</p>
+              <p class="value">{{ domain.errorPercentage | number }}%</p>
+            </div>
+
+            <div class="stat ib">
+              <p class="label">avg resp time</p>
+              <p class="value">{{ domain.averageResponseTime | number }}ms</p>
+            </div>
+
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <a class="pull-right blue hide-domains fs0" ng-show="model.domainsVisible" ng-click="model.toggleDomainVisibility()">
+    <span class="text ib">HIDE</span>
+    <span class="icon ib blue-border round"><i></i></span>
+  </a>
+  <a class="pull-right blue show-domains fs0" ng-hide="model.domainsVisible" ng-click="model.toggleDomainVisibility()">
+    <span class="text ib">SHOW ALL</span>
+    <span class="icon ib blue-border round"><i></i></span>
+  </a>
+
+  <div class="cb"></div>
+
+  <div class="violations-container">
+    <div class="toolbar">
+      <h2>Violations</h2>
+      <div class="options">
+        <div class="option ib groups">GROUPS</div>
+        <div class="option ib frequency">FREQUENCY</div>
+        <div class="option ib search"><input type="text" name="q" /></div>
+      </div>
+    </div>
+
+    <div class="groups-container">
+      <div class="most-frequent">
+        <ul>
+          <li ng-repeat="violation in model.mostFrequentViolations track by violation.key | orderBy:'position'">
+            <div class="number">#{{ violation.position }}</div>
+            <div class="name">{{ violation.name }}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="least-frequent">
+        <ul>
+          <li ng-repeat="violation in model.mostFrequentViolations track by violation.key | orderBy:'position'">
+            <div class="number">#{{ violation.position }}</div>
+            <div class="name">{{ violation.name }}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
