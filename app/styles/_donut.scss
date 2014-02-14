@@ -1,12 +1,13 @@
 .donut {
   position: relative;
+  display: block;
 
-  .chart {
+  .donut-chart {
     width: 100%;
     height: 100%;
   }
 
-  .label {
+  .donut-label {
     position: absolute;
     top: 50%;
     left: 50%;

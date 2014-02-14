@@ -1,0 +1,42 @@
+.domain-view {
+  .values {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .violations-container {
+    min-height: 500px;
+  }
+
+  .chart-container {
+    width: 354px;
+    height: 354px;
+    margin-left: 155px;
+    margin-top: 70px;
+    margin-right: 142px;
+
+    .donut-label {
+      text-transform: lowercase;
+    }
+  }
+
+  .details {
+    margin-top: 72px;
+
+    li {
+      font-family: 'Open Sans', sans-serif;
+
+      h4 {
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 18px;
+        margin-bottom: 44px;
+      }
+    }
+  }
+}

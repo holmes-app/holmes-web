@@ -1,9 +1,9 @@
 'use strict'
 
 angular.module('holmesApp')
-  .directive('donut', () ->
+  .directive('donut', ($rootScope) ->
     restrict: 'E'
-    template: '<div class="donut"><div class="chart"></div><div class="label"></div></div>'
+    template: '<div class="donut"><div class="donut-chart"></div><div class="donut-label"></div></div>'
     replace: true
     scope:
         data: '=' # list of data object to use for graph
@@ -11,9 +11,10 @@ angular.module('holmesApp')
         width: '='
         height: '='
     link: (scope, element, attrs) ->
-      chartElement = element.find('.chart')
-      labelElement = element.find('.label')
+      chartElement = element.find('.donut-chart')
+      labelElement = element.find('.donut-label')
 
+      label = attrs.label
       data = scope.data
       onSelect = scope.onselect
       width = scope.width
@@ -32,19 +33,38 @@ angular.module('holmesApp')
         '#f2ce51',
         '#ffd955'
       ]
+      
+      executeOnSelect = (value, data) ->
+        return unless onSelect?
+
+        if(!$rootScope.$$phase)
+          scope.$apply(->
+            onSelect(value, data)
+          )
+        else
+          onSelect()
 
       setData = ->
         element.css('width', width).css('height', height)
-        Morris.Donut(
+        donut = Morris.Donut(
           element: chartElement
           data: data
           colors: colors
           formatter: (value, data) ->
-            onSelect(value, data) if onSelect
+            executeOnSelect(value, data)
             labelElement.html(data.label)
             return Morris.commas(value, data)
         )
 
+        deselect = ->
+          for segment in donut.segments
+            segment.deselect()
+
+          executeOnSelect(null, null)
+          labelElement.html(label)
+
+        element.bind('mouseleave', deselect)
+        deselect()
 
       attrs.$observe('data', setData); # lets just observe only the data because it is 
                                        # bad to use many observers, anyway this won't work

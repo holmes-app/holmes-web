@@ -1,26 +1,50 @@
 $light-blue: #cae2e3;
 $blue: #318d90;
+$light-grey: #ddd;
+$grey: #999;
+$mid-grey: #666;
+$dark-grey: #333;
 
-.blue {
-  color: $blue;
+$color1: #9d0000;
+$color2: #bd0000;
+$color3: #d23939;
+$color4: #df5a49;
+$color5: #e78442;
+$color6: #ff9f42;
+$color7: #ffbd54;
+$color8: #f2ce51;
+$color9: #ffd955;
+
+@mixin colorize($theme, $color) {
+  .#{ $theme } {
+    color: $color;
+  }
+
+  .#{ $theme }-border {
+    border-color: $color;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .#{ $theme }-bg {
+    background-color: $color;
+  }
 }
 
-.blue-border {
-  border-color: $blue;
-}
+@include colorize('light-blue', $light-blue);
+@include colorize('blue', $blue);
+@include colorize('light-grey', $light-grey);
+@include colorize('grey', $grey);
+@include colorize('mid-grey', $mid-grey);
+@include colorize('dark-grey', $dark-grey);
 
-.blue-bg {
-  background-color: $blue;
-}
-
-.light-blue {
-  color: $light-blue;
-}
-
-.light-blue-border {
-  border-color: $light-blue;
-}
-
-.light-blue-bg {
-  background-color: $light-blue;
-}
+// colors for charts and headers
+@include colorize('color1', $color1);
+@include colorize('color2', $color2);
+@include colorize('color3', $color3);
+@include colorize('color4', $color4);
+@include colorize('color5', $color5);
+@include colorize('color6', $color6);
+@include colorize('color7', $color7);
+@include colorize('color8', $color8);
+@include colorize('color9', $color9);

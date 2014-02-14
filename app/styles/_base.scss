@@ -9,6 +9,14 @@
   float: right;
 }
 
+.abs {
+  position: absolute;
+}
+
+.rel {
+  position: relative;
+}
+
 .ib {
   display: inline-block;
   vertical-align: top;
@@ -55,4 +63,31 @@ h2 {
 
 .fs0 {
   font-size: 0;
+}
+
+.round-button {
+  width: 31px;
+  height: 31px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+
+  i {
+    display: block;
+    position: absolute;
+    top: 11px;
+    left: 11px;
+  }
+}
+
+.view {
+  z-index: 0;
+  position: relative;
+  margin-top: 40px;
+}
+
+.under-hover:hover {
+  text-decoration: underline;
 }

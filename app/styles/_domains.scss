@@ -1,11 +1,9 @@
 .domains-view {
-  margin-top: 40px;
-
   .domains-container {
     margin-top: 50px;
     overflow: hidden;
     max-height: 300px;
-    @include transition(max-height 250ms ease-in-out);
+    @include transition(max-height 500ms ease-in-out);
   }
 
   .show-domains, .hide-domains {
@@ -23,20 +21,6 @@
       margin-right: 10px;
     }
 
-    .icon {
-      width: 31px;
-      height: 31px;
-      border-width: 1px;
-      border-style: solid;
-      position: relative;
-
-      i {
-        display: block;
-        position: absolute;
-        top: 11px;
-        left: 11px;
-      }
-    }
   }
 
   .show-domains .icon i {
@@ -45,9 +29,9 @@
 
   .hide-domains {
     .icon {
-      background-color: $blue;
-
       i {
+        top: 10px;
+        left: 10px;
         @include common-sprite(arrow-up, $dimensions: true);
       }
     }
@@ -56,8 +40,6 @@
   .domains {
     li {
       width: 506px;
-      border-style: solid;
-      border-width: 1px;
       margin-right: 42px;
       margin-bottom: 20px;
       @include box-sizing(border-box);
@@ -109,14 +91,220 @@
   }
 
   .violations-container {
+    position: relative;
+
     .toolbar {
       position: relative;
+    }
+
+    a {
+      cursor: pointer;
     }
 
     .options {
       position: absolute;
       right: 0;
       top: 0;
+
+      .option {
+        margin-right: 31px;
+
+        .label {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+          padding-left: 11px;
+          padding-top: 11px;
+        }
+
+        &.search {
+          margin-right: 0;
+        }
+      }
+
+      .groups {
+        i {
+          top: 9px;
+          left: 9px;
+          @include common-sprite(groups, $dimensions: true);
+        }
+
+        &.selected, &:hover {
+          .round-button {
+            background-color: $blue;
+          }
+
+          i {
+            @include common-sprite(groups-selected, $dimensions: true);
+          }
+        }
+      }
+
+      .frequency {
+        i {
+          top: 10px;
+          left: 9px;
+          @include common-sprite(frequent, $dimensions: true);
+        }
+
+        &.selected, &:hover {
+          .round-button {
+            background-color: $blue;
+          }
+
+          i {
+            @include common-sprite(frequent-selected, $dimensions: true);
+          }
+        }
+      }
+
+      .search {
+        position: relative;
+
+        input {
+          @include box-sizing(border-box);
+          width: 335px;
+          height: 30px;
+          font-family: 'Open Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          padding-left: 14px;
+          outline: none;
+        }
+
+        i {
+          position: absolute;
+          top: 9px;
+          right: 10px;
+          @include common-sprite(search-icon, $dimensions: true);
+        }
+      }
     }
+
+    .frequency-container, .groups-container {
+      width: 100%;
+      opacity: 1;
+      visibility: visible;
+      margin-top: 30px;
+      margin-bottom: 40px;
+      height: auto;
+      @include transition(all 250ms linear);
+
+      &.hidden {
+        position: absolute;
+        top: 45px;
+        left: 0;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+    }
+
+    .most-frequent, .least-frequent {
+      li {
+        width: auto;
+        margin-bottom: 22px;
+
+        a {
+          display: block;
+
+          &:hover {
+            .name {
+              color: $blue;
+            }
+          }
+        }
+
+        .number, .name {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 300;
+          font-size: 20px;
+        }
+
+        .number {
+          font-weight: 700;
+          width: 45px;
+        }
+      }
+    }
+
+    .most-frequent {
+      width: 850px;
+      margin: 0 auto;
+
+      ul {
+        @include column-count(2);
+      }
+    }
+
+    .least-frequent {
+      width: auto;
+      margin: 0 auto;
+
+      ul {
+        margin-top: 49px;
+        @include column-count(3);
+      }
+
+      li {
+        .number, .name {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .groups-container {
+      .group {
+        @include column-count(3);
+
+        > li {
+          border-width: 0;
+          border-style: none;
+          border-left-width: 1px;
+          border-left-style: solid;
+          padding-left: 20px;
+          margin-bottom: 42px;
+          display: inline-block;
+          vertical-align: top;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        h3 {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 400;
+          font-size: 24px;
+          margin-bottom: 16px;
+        }
+
+        .group-violations {
+          > li {
+            margin-bottom: 6px;
+
+            a {
+              display: block;
+
+              &:hover {
+                .name {
+                  color: $blue;
+                }
+              }
+            }
+
+            .name {
+              font-family: 'Open Sans', sans-serif;
+              font-weight: 300;
+              font-size: 14px;
+              line-height: 27px;
+            }
+          }
+        }
+
+      }
+    }
+
   }
 }

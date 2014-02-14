@@ -15,7 +15,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/morris.js/morris.css"></script>
+    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -27,6 +27,13 @@
 
     <div class="container" ng-view=""></div>
 
+    <footer>
+      <div class="container light-grey fs0">
+        <p class="ib">holmes is a free open-source project and is composed of <a class="blue under-hover" href="http://github.com/heynemann/holmes-web/">holmes-web (v1.0.2)</a> and <a class="blue under-hover" href="http://github.com/heynemann/holmes-api/">holmes-api</a> <a class="blue under-hover" href="http://github.com/heynemann/holmes-api/">(click to view version)</a>.</p>
+        <p class="ib pull-right">Copyright <a class="blue under-hover" href="http://opensource.globo.com">globo.com</a> - MIT Licensed - 2013</p>
+      </div>
+    </footer>
+
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -34,14 +41,14 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.min.js"></script>
-    <script src="bower_components/raphael/raphael-min.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/morris.js/morris.min.js"></script>
+    <script src="bower_components/raphael/raphael.js"></script>
+    <script src="bower_components/morris.js/morris.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -53,48 +60,8 @@
     <script src="scripts/directives/headeraddpage.js"></script>
     <script src="scripts/directives/donut.js"></script>
     <script src="scripts/controllers/domains.js"></script>
+    <script src="scripts/controllers/domain.js"></script>
     <!-- endbuild -->
 
-    <script>
-/*
-   THIS CODE IS HERE BECAUSE IT'S FREAKING HARD TO CONFIGURE NVD3. PLEASE DO NOT ERASE IT.
-
-      var lastElement = null;
-
-      var enlarge = function(ev, element){
-            if (lastElement) {
-            lastElement.style.webkitTransform = 'scale(1.0)';
-            }
-            element = d3.event.toElement;
-            console.log(element);
-
-        if (element.nodeName == 'text' || element.nodeName == 'rect') {
-          element = element.parentNode;
-        }
-        
-        element = element.parentNode;
-            lastElement = element;
-            element.style.webkitTransform = "scale(1.2)";
-          };
-
-      nv.addGraph(function() {
-        var chart = nv.models.pieChart()
-            .x(function(d) { return d.label })
-            .y(function(d) { return d.value })
-            .donut(true)
-            .showLabels(true);
-
-          d3.select("#chart svg")
-               .datum(data)
-               .transition().duration(1200)
-               .call(chart);
-
-        return chart;
-      }, function() {
-        d3.selectAll(".nv-slice").on('mouseover', enlarge);
-        d3.selectAll(".nv-label").on('mouseover', enlarge);
-      });
-      */
-    </script>
 </body>
 </html>

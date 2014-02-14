@@ -1,0 +1,72 @@
+<div class="view domain-view">
+  <div class="info rel">
+    <h2>g1.globo.com</h2>
+    <div class="values pull-right fs0">
+      <ul>
+        <li class="ib">
+          <p class="title">pages</p>
+          <p class="value">2.404.009</p>
+        </li>
+        <li class="ib">
+          <p class="title">violations</p>
+          <p class="value">11.618.783</p>
+        </li>
+        <li class="ib">
+          <p class="title">reviewed</p>
+          <p class="value">97.24%</p>
+        </li>
+        <li class="ib" title="HTTP request error percentage">
+          <p class="title">error %</p>
+          <p class="value">5.42%</p>
+        </li>
+        <li class="ib" title="average response time in ms">
+          <p class="title">avg resp time</p>
+          <p class="value">40ms</p>
+        </li>
+    </div>
+
+    <div class="cb"></div>
+  </div>
+
+  <div class="violations-container">
+    <div class="chart-container ib">
+      <donut label="violation types" data="model.domainViolations" onselect="model.onSelect"></donut>
+    </div>
+    <div class="details ib">
+      <ul>
+        <li ng-repeat="detail in model.details track by detail.title">
+          <h4 ng-class="'color' + ($index + 1)">{{ detail.percentage }}% {{detail.title}}</h4>
+          <p class="grey">{{ detail.pageCount | number }} pages</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-reviews-container">
+    <div class="header">
+      <div class="title ib">Page Reviews <span class="percentage">(90.87%)</span></div>
+      <div class="search fs0">
+        <span class="domain">g1.globo.com/</span>
+        <span class="directory"><input type="text" name="search" /></span>
+      </div>
+    </div>
+    <div class="data">
+      <table>
+        <thead>
+          <th class="url">URL</th>
+          <th class="violations">Violations</th>
+          <th class="finished-at">Finished at</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="url">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</td>
+            <td class="violations">12</td>
+            <td class="finished-at">2 days ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <pager pagecount="model.reviews.pageCount" current="1" pagesize="10"></page>
+</div>
