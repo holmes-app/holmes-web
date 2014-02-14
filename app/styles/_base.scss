@@ -91,3 +91,59 @@ h2 {
 .under-hover:hover {
   text-decoration: underline;
 }
+
+table {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  width: 100%;
+
+  thead {
+    width: 100%;
+    th {
+      font-size: 22px;
+      color: #666;
+      padding-bottom: 20px;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  tbody {
+    width: 100%;
+    tr {
+      &:nth-child(odd) {
+        background-color: #f7f7f7;
+      }
+
+      td {
+        height: 39px;
+        font-size: 14px;
+
+        a {
+          color: $blue;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &:first-child {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+input[type='text'] {
+  @include box-sizing(border-box);
+  height: 30px;
+  border: solid 1px #ddd;
+  padding-left: 10px;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  color: #999;
+}

@@ -44,6 +44,18 @@ angular.module('holmesApp')
         else
           onSelect()
 
+      currentLabel = null
+
+      setLabel = (label) ->
+        return if label == currentLabel
+
+        currentLabel = label
+        labelElement.stop(true, true).fadeOut(
+          duration: 200
+          complete: ->
+            labelElement.stop(true, true).html(label).fadeIn(200)
+        )
+
       setData = ->
         element.css('width', width).css('height', height)
         donut = Morris.Donut(
@@ -52,7 +64,7 @@ angular.module('holmesApp')
           colors: colors
           formatter: (value, data) ->
             executeOnSelect(value, data)
-            labelElement.html(data.label)
+            setLabel(data.label)
             return Morris.commas(value, data)
         )
 
@@ -61,7 +73,7 @@ angular.module('holmesApp')
             segment.deselect()
 
           executeOnSelect(null, null)
-          labelElement.html(label)
+          setLabel(label)
 
         element.bind('mouseleave', deselect)
         deselect()

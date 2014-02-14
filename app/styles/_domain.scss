@@ -39,4 +39,98 @@
       }
     }
   }
+
+  .selected-category {
+    font-family: 'Open Sans', sans-serif;
+
+    padding-left: 18px;
+    border-width: 0;
+    border-left-style: solid;
+    border-left-width: 3px;
+
+    h4 {
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -1px;
+      margin-bottom: 5px;
+    }
+
+    .page-count {
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: -1px;
+      margin-bottom: 23px;
+    }
+
+    .category {
+      li {
+        display: table-row;
+
+        p {
+          margin-bottom: 17px;
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+        }
+
+        .occurrences {
+          display: table-cell;
+          padding-right: 10px;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .page-reviews-container {
+    .header {
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+      border-width: 0;
+      border-style: none;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    .title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 38px;
+      font-weight: 300;
+      color: #555;
+
+      .percentage {
+        font-size: 28px;
+        color: #999;
+      }
+    }
+
+    .search {
+      top: 12px;
+      right: 0;
+
+      .directory {
+        margin-top: -3px;
+
+        input {
+          width: 330px;
+          outline: none;
+        }
+
+        i {
+          position: absolute;
+          top: 9px;
+          right: 9px;
+          @include common-sprite(search-icon, $dimensions: true);
+        }
+      }
+
+      .domain {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        font-size: 24px;
+        color: #9b9b9b;
+        margin-right: 15px;
+      }
+    }
+  }
 }

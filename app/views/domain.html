@@ -30,43 +30,54 @@
 
   <div class="violations-container">
     <div class="chart-container ib">
-      <donut label="violation types" data="model.domainViolations" onselect="model.onSelect"></donut>
+      <donut label="violation types" data="model.domainCategories" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
-      <ul>
-        <li ng-repeat="detail in model.details track by detail.title">
-          <h4 ng-class="'color' + ($index + 1)">{{ detail.percentage }}% {{detail.title}}</h4>
-          <p class="grey">{{ detail.pageCount | number }} pages</p>
+      <ul class="categories" ng-hide="model.selectedCategory">
+        <li ng-repeat="category in model.domainCategories track by category.label">
+          <h4 ng-class="'color' + ($index + 1)">{{ category.value }}% {{category.label}}</h4>
+          <p class="grey">{{ category.pageCount | number }} pages</p>
         </li>
       </ul>
+
+      <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
+        <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage }}% {{ model.selectedCategory.title }}</h4>
+        <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} pages</p>
+        <ul class="category">
+          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
+            <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.occurrences | number }}</p>
+            <p class="dark-grey ib title">{{ detail.title }}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <div class="page-reviews-container">
-    <div class="header">
+    <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage">(90.87%)</span></div>
-      <div class="search fs0">
-        <span class="domain">g1.globo.com/</span>
-        <span class="directory"><input type="text" name="search" /></span>
+      <div class="search fs0 abs">
+        <span class="domain ib">g1.globo.com/</span>
+        <span class="directory ib rel"><input type="text" name="search" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
     </div>
     <div class="data">
       <table>
         <thead>
           <th class="url">URL</th>
-          <th class="violations">Violations</th>
-          <th class="finished-at">Finished at</th>
+          <th class="violations center">Violations</th>
+          <th class="finished-at center">Finished at</th>
         </thead>
         <tbody>
-          <tr>
-            <td class="url">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</td>
-            <td class="violations">12</td>
-            <td class="finished-at">2 days ago</td>
+          <tr ng-repeat="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]">
+            <td class="url"><a href="#">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</a></td>
+            <td class="violations center">12</td>
+            <td class="finished-at center">2 days ago</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <pager pagecount="model.reviews.pageCount" current="1" pagesize="10"></page>
+  <pager pagecount="model.reviews.pageCount" current="1" pagesize="10" pagechange="model.updateReviews"></page>
 </div>
