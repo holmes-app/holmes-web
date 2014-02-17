@@ -41,16 +41,16 @@ class DomainCtrl
       violations: @violationData[@domainCategories[0].id]
 
   onSelect: (value, data) =>
-    #if data?
-      #console.log(data)
-      #@selectedCategory =
-        #title: data.label
-        #percentage: data.value
-        #pageCount: data.pageCount
-        #color: data.color
-        #violations: @violationData[data.id]
-    #else
-      #@selectedCategory = null
+    if data?
+      console.log(data)
+      @selectedCategory =
+        title: data.label
+        percentage: data.value
+        pageCount: data.pageCount
+        color: data.color
+        violations: @violationData[data.id]
+    else
+      @selectedCategory = null
 
   updateReviews: (currentPage, pageSize) ->
     console.log(currentPage, pageSize)
