@@ -5,33 +5,60 @@
   <div class="info rel">
 
     <div class="violations ib">
-      <p class="title">violations</p>
-      <p class="value">{{ model.review.violationCount }}</p>
+      <p class="title mid-grey">violations</p>
+      <p class="value grey">{{ model.review.violationCount | number }}</p>
     </div>
 
     <div class="points ib">
-      <p class="title">points</p>
-      <p class="value">{{ model.review.points }}</p>
+      <p class="title mid-grey">points</p>
+      <p class="value grey">{{ model.review.points | number }}</p>
     </div>
 
-    <div class="reviews ib pull-right">
-      <div class="review-count">
-        <p class="title">reviews</p>
-        <p class="value">{{ model.reviews.length }}</p>
+    <div class="reviews ib pull-right fs0">
+      <div class="review-count ib">
+        <p class="title mid-grey">reviews</p>
+        <p class="value grey">{{ model.reviews.length | number }}</p>
       </div>
 
-      <div class="violations">
-        <div class="row first">
-          <div class="title">violations</div>
-          <div ng-repeat="review in model.reviews" class="value">{{ review.violationCount }}</div>
+      <div class="violations ib">
+        <div class="table">
+          <div class="tr row first">
+            <div class="td title">violations</div>
+            <div ng-repeat="review in model.reviews" class="td value"><a href="#/domains/{{ model.domainId }}/{{ review.id }}">{{ review.violationCount }}</a></div>
+          </div>
+          <div class="tr row">
+            <div class="td title">finished at</div>
+            <div ng-repeat="review in model.reviews" class="td value">
+              <a href="#/domains/{{ model.domainId }}/{{ review.id }}">
+                <span class="time" am-time-ago="review.finishedAt"></span>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <div class="title">finished at</div>
-          <div ng-repeat="review in model.reviews" class="value">{{ review.finishedAt }}</div>
-        </div>
+      </div>
     </div>
 
     <div class="cb"></div>
+
+    <div class="review-data">
+      <div class="tabs">
+        <div class="tab-header ib" ng-class="model.violationsVisible ? 'selected' : ''">
+          <a ng-click="model.showViolations()">violations</a>
+        </div>
+        <div class="tab-header ib" ng-class="model.factsVisible ? 'selected' : ''">
+          <a ng-click="console.log('wtf'); model.showFacts()">facts</a>
+        </div>
+      </div>
+
+      <div class="tabs-container">
+        <div ng-show="model.violationsVisible" class="tab">
+          violations
+        </div>
+        <div ng-show="model.factsVisible" class="tab">
+          facts
+        </div>
+      </div>
+    </div>
 
   </div>
 

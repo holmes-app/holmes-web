@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainCtrl
-  constructor: (@scope) ->
+  constructor: (@scope, @domainId) ->
     @selectedCategory = null
 
     @domainCategories = [
@@ -42,7 +42,6 @@ class DomainCtrl
 
   onSelect: (value, data) =>
     if data?
-      console.log(data)
       @selectedCategory =
         title: data.label
         percentage: data.value
@@ -56,5 +55,5 @@ class DomainCtrl
     console.log(currentPage, pageSize)
 
 angular.module('holmesApp')
-  .controller 'DomainCtrl', ($scope) ->
-    $scope.model = new DomainCtrl($scope)
+  .controller 'DomainCtrl', ($scope, $routeParams) ->
+    $scope.model = new DomainCtrl($scope, $routeParams.domainId)

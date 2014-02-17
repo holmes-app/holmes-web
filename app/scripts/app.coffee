@@ -1,10 +1,11 @@
 'use strict'
 
-angular.module('holmesApp', [
+app = angular.module('holmesApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'angularMoment'
 ])
   .config ($routeProvider) ->
     $routeProvider

@@ -34,6 +34,10 @@
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 a {
   text-decoration: none;
 }
@@ -146,4 +150,33 @@ input[type='text'] {
   font-style: italic;
   font-size: 14px;
   color: #999;
+}
+
+div.table {
+  display: table;
+  border-collapse: collapse;
+}
+
+div.tr {
+  display: table-row;
+}
+
+div.td {
+  display: table-cell;
+}
+
+.tab {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  display: block !important;
+  @include transition(opacity 200ms linear);
+}
+
+.tab.ng-hide {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

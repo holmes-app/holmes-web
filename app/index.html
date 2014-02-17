@@ -49,6 +49,27 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/raphael/raphael.js"></script>
     <script src="bower_components/morris.js/morris.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script>
+    moment.lang('en', {
+      relativeTime : {
+          future : "in %s",
+          past : "%s",
+          s : "a few secs",
+          m : "a min",
+          mm : "%d mins",
+          h : "an hour",
+          hh : "%d hs",
+          d : "a day",
+          dd : "%d days",
+          M : "a month",
+          MM : "%d months",
+          y : "an year",
+          yy : "%d years"
+        }
+    });
+    </script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

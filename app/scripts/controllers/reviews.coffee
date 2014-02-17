@@ -2,13 +2,14 @@
 
 class ReviewsCtrl
   constructor: (@scope, @domainId, @reviewId) ->
-    console.log(@domainId, @reviewId)
-    
+    @factsVisible = false
+    @violationsVisible = true
+
     @reviews = [
-      { id: 1, violationCount: 4, finishedAt: '2012-10-10 10:10:10' },
-      { id: 2, violationCount: 5, finishedAt: '2012-10-10 10:10:10' },
-      { id: 3, violationCount: 6, finishedAt: '2012-10-10 10:10:10' },
-      { id: 4, violationCount: 5, finishedAt: '2012-10-10 10:10:10' },
+      { id: 1, violationCount: 4, finishedAt: '2014-02-17T18:42:50Z' },
+      { id: 2, violationCount: 5, finishedAt: '2014-02-17T17:42:50Z' },
+      { id: 3, violationCount: 6, finishedAt: '2014-02-16T18:42:50Z' },
+      { id: 4, violationCount: 5, finishedAt: '2013-12-16T18:42:50Z' },
     ]
 
     @review =
@@ -76,6 +77,13 @@ class ReviewsCtrl
       points: 2392
       violationCount: 12
 
+  showFacts: ->
+    @factsVisible = true
+    @violationsVisible = false
+
+  showViolations: ->
+    @factsVisible = false
+    @violationsVisible = true
 
 angular.module('holmesApp')
   .controller 'ReviewsCtrl', ($scope, $routeParams) ->
