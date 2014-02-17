@@ -10,13 +10,14 @@ angular.module('holmesApp', [
     $routeProvider
       .when '/',
         redirectTo: '/domains'
-        #templateUrl: 'views/main.html'
-        #controller: 'MainCtrl'
       .when '/domains',
         templateUrl: 'views/domains.html'
         controller: 'DomainsCtrl'
       .when '/domains/:domainId',
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
+      .when '/domains/:domainId/reviews/:reviewId',
+        templateUrl: 'views/reviews.html'
+        controller: 'ReviewsCtrl'
       .otherwise
         redirectTo: '/'

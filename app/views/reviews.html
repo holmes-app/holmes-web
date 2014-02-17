@@ -1,0 +1,38 @@
+<div class="view review-view">
+
+  <h2 title="{{ model.review.url }}"><a class="blue" href="{{ model.review.url }}">{{ model.review.url }}</a></h2>
+
+  <div class="info rel">
+
+    <div class="violations ib">
+      <p class="title">violations</p>
+      <p class="value">{{ model.review.violationCount }}</p>
+    </div>
+
+    <div class="points ib">
+      <p class="title">points</p>
+      <p class="value">{{ model.review.points }}</p>
+    </div>
+
+    <div class="reviews ib pull-right">
+      <div class="review-count">
+        <p class="title">reviews</p>
+        <p class="value">{{ model.reviews.length }}</p>
+      </div>
+
+      <div class="violations">
+        <div class="row first">
+          <div class="title">violations</div>
+          <div ng-repeat="review in model.reviews" class="value">{{ review.violationCount }}</div>
+        </div>
+        <div class="row">
+          <div class="title">finished at</div>
+          <div ng-repeat="review in model.reviews" class="value">{{ review.finishedAt }}</div>
+        </div>
+    </div>
+
+    <div class="cb"></div>
+
+  </div>
+
+</div>
