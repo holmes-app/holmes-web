@@ -14,10 +14,12 @@ class ReviewsCtrl
 
     @review =
       url: 'http://g1.globo.com/politica/noticia/2014/01/planalto-anuncia-ida-de-mercadante-para-outro-partido.html'
-      violations: {
-        'seo': {
-          percentage: 40,
-          violationCount: 2,
+      violations: [
+        {
+          label: 'seo violations'
+          value: 40,
+          percentage: 40
+          violationCount: 2
           violations: [
             {
               title: 'Broken link(s) found.'
@@ -35,7 +37,9 @@ class ReviewsCtrl
             }
           ]
         },
-        'http': {
+        {
+          label: 'http violations',
+          value: 30,
           percentage: 30,
           violationCount: 2,
           violations: [
@@ -55,24 +59,36 @@ class ReviewsCtrl
             }
           ]
         }
-      },
+      ],
       facts: [
-        'seo': [
-          { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-          { title: 'invalid links', value: [], type: 'list', data: [] },
-        ],
-        'http': [
-          { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-          { title: 'invalid links', value: [], type: 'list', data: [] },
-        ],
-        'performance': [
-          { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-          { title: 'invalid links', value: [], type: 'list', data: [] },
-        ],
-        'semantics': [
-          { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-          { title: 'invalid links', value: [], type: 'list', data: [] },
-        ]
+        {
+          label: 'seo'
+          facts: [
+            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { title: 'invalid links', value: [], type: 'list', data: [] },
+          ]
+        },
+        {
+          label: 'http'
+          facts: [
+            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { title: 'invalid links', value: [], type: 'list', data: [] },
+          ]
+        },
+        {
+          label: 'performance'
+          facts: [
+            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { title: 'invalid links', value: [], type: 'list', data: [] },
+          ]
+        },
+        {
+          label: 'semantics'
+          facts: [
+            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { title: 'invalid links', value: [], type: 'list', data: [] },
+          ]
+        }
       ]
       points: 2392
       violationCount: 12

@@ -42,7 +42,7 @@
 
     <div class="review-data">
       <div class="tabs">
-        <div class="tab-header ib" ng-class="model.violationsVisible ? 'selected' : ''">
+        <div class="tab-header ib grey" ng-class="model.violationsVisible ? 'selected' : ''">
           <a ng-click="model.showViolations()">violations</a>
         </div>
         <div class="tab-header ib" ng-class="model.factsVisible ? 'selected' : ''">
@@ -52,7 +52,17 @@
 
       <div class="tabs-container">
         <div ng-show="model.violationsVisible" class="tab">
-          violations
+          <div class="chart-container ib">
+            <donut label="violation types" data="model.review.violations"></donut>
+          </div>
+          <div class="details ib">
+            <ul class="violations">
+              <li ng-repeat="category in model.review.violations track by category.label">
+                <h4 ng-class="'color' + ($index + 1)">{{ category.percentage }}% {{category.label}}</h4>
+                <p class="grey">{{ category.violations.length | number }} violations</p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div ng-show="model.factsVisible" class="tab">
           facts
