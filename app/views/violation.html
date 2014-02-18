@@ -4,12 +4,52 @@
     <div class="fs0 abs abs-right toolbar">
       <div class="ib">
         <h3 class="mid-grey">domains</h3>
-        <p class="grey">{{ model.violation.domains }}</p>
+        <p class="grey">{{ model.violation.domains.length }}</p>
       </div>
       <div class="ib">
         <h3 class="mid-grey">pages</h3>
         <p class="grey">{{ model.violation.pageCount }}</p>
       </div>
     </div>
+  </div>
+
+  <div class="domains">
+    <ul>
+      <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.id">
+        <h3 class="grey ib">{{ domain.label }}</h3>
+        <p class="ib"><horizontal percentage="domain.percentage"></horizontal></p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reviews">
+    <div class="page-reviews-container">
+      <div class="header rel light-grey-border">
+        <div class="title ib">Reviews with this violation</div>
+        <div class="search fs0 abs">
+          <span class="domain ib">g1.globo.com/</span>
+          <span class="directory ib rel"><input type="text" name="search" placeholder="enter a directory to filter reviews..."><i></i></span>
+        </div>
+      </div>
+      <div class="data">
+        <table>
+          <thead>
+            <tr><th class="url">URL</th>
+            <th class="violations center">Violations</th>
+            <th class="finished-at center">Finished at</th>
+          </tr></thead>
+          <tbody>
+            <tr ng-repeat="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]" class="ng-scope">
+              <td class="url"><a href="#/domains/1/reviews/2">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</a></td>
+              <td class="violations center">12</td>
+              <td class="finished-at center">2 days ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <pager pagecount="model.violation.pageCount" current="1" pagesize="10" pagechange="model.updateReviews"></page>
+
   </div>
 </div>

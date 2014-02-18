@@ -12,8 +12,8 @@ class Pager
 
   getOptions: ->
     @options.visiblePageCount = @scope.visiblepagecount || 10
-    @options.pageCount = @scope.pagecount
     @options.pageSize = @scope.pagesize || 10
+    @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
     @options.currentPage = @scope.current || 1
     @options.onPageChange = @scope.pagechange
 
