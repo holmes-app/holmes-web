@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @DomainFcty) ->
+  constructor: (@scope, @DomainsFcty) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
@@ -24,7 +24,7 @@ class DomainsCtrl
     @mostFrequentVisible = true
 
   getDomainData: ->
-    @domains = @DomainFcty.all('').getList('').$object
+    @domains = @DomainsFcty.all('').getList().$object
 
   getMostFrequentViolations: ->
     @mostFrequentViolations = [
@@ -286,6 +286,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, DomainFcty) ->
+  .controller 'DomainsCtrl', ($scope, DomainsFcty) ->
 
-    $scope.model = new DomainsCtrl($scope, DomainFcty)
+    $scope.model = new DomainsCtrl($scope, DomainsFcty)

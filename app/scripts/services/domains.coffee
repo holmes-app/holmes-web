@@ -1,6 +1,6 @@
 'use strict'
 
 angular.module('holmesApp')
-  .factory 'DomainFcty', (Restangular) ->
+  .factory 'DomainsFcty', (Restangular) ->
     Restangular.withConfig (RestangularConfigurer) ->
       RestangularConfigurer.setBaseUrl(RestangularConfigurer.baseUrl + '/domains')
