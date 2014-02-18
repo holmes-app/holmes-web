@@ -2,12 +2,12 @@
 
 app = angular.module('holmesApp', [
   'ngCookies',
-  'ngResource',
   'ngSanitize',
   'ngRoute',
-  'angularMoment'
+  'angularMoment',
+  'restangular'
 ])
-  .config ($routeProvider) ->
+  .config ($routeProvider, RestangularProvider, ConfigConst) ->
     $routeProvider
       .when '/',
         redirectTo: '/domains'
@@ -25,3 +25,4 @@ app = angular.module('holmesApp', [
         controller: 'ViolationCtrl'
       .otherwise
         redirectTo: '/'
+    RestangularProvider.setBaseUrl(ConfigConst.baseUrl)

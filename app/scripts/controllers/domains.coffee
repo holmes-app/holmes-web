@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope) ->
+  constructor: (@scope, @DomainFcty) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
@@ -24,72 +24,7 @@ class DomainsCtrl
     @mostFrequentVisible = true
 
   getDomainData: ->
-    @domains = [
-      {
-        id: 1
-        name: 'g1.globo.com'
-        pageCount: 14004009
-        violationCount: 110618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 2
-        name: 'ego.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 3
-        name: 'globoesporte.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 4
-        name: 'gshow.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 5
-        name: 'g1.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 6
-        name: 'ego.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 7
-        name: 'globoesporte.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      },
-      {
-        id: 8
-        name: 'gshow.globo.com'
-        pageCount: 404009
-        violationCount: 1618783
-        errorPercentage: 3
-        averageResponseTime: 40
-      }
-    ]
+    @domains = @DomainFcty.all('').getList('').$object
 
   getMostFrequentViolations: ->
     @mostFrequentViolations = [
@@ -351,6 +286,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope) ->
+  .controller 'DomainsCtrl', ($scope, DomainFcty) ->
 
-    $scope.model = new DomainsCtrl($scope)
+    $scope.model = new DomainsCtrl($scope, DomainFcty)
