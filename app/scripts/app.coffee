@@ -14,7 +14,7 @@ app = angular.module('holmesApp', [
       .when '/domains',
         templateUrl: 'views/domains.html'
         controller: 'DomainsCtrl'
-      .when '/domains/:domainId',
+      .when '/domains/:domainName',
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
       .when '/domains/:domainId/reviews/:reviewId',

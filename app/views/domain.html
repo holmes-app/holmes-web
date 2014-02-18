@@ -1,28 +1,24 @@
 <div class="view domain-view">
   <div class="info rel">
-    <h2>g1.globo.com</h2>
-    <div class="values pull-right fs0">
-      <ul>
-        <li class="ib">
-          <p class="title">pages</p>
-          <p class="value">2.404.009</p>
-        </li>
-        <li class="ib">
-          <p class="title">violations</p>
-          <p class="value">11.618.783</p>
-        </li>
-        <li class="ib">
-          <p class="title">reviewed</p>
-          <p class="value">97.24%</p>
-        </li>
-        <li class="ib" title="HTTP request error percentage">
-          <p class="title">error %</p>
-          <p class="value">5.42%</p>
-        </li>
-        <li class="ib" title="average response time in ms">
-          <p class="title">avg resp time</p>
-          <p class="value">40ms</p>
-        </li>
+    <h2>{{ model.domain_details.name }}</h2>
+
+    <div class="fs0 abs abs-right toolbar">
+      <div class="ib">
+        <h3 class="mid-grey">pages</h3>
+        <p class="grey ng-binding">{{ model.domain_details.pageCount | number }}</p>
+      </div>
+      <div class="ib">
+        <h3 class="mid-grey">violations</h3>
+        <p class="grey ng-binding">{{ model.domain_details.violationCount | number }}</p>
+      </div>
+      <div class="ib">
+        <h3 class="mid-grey">error</h3>
+        <p class="grey ng-binding"></p>
+      </div>
+      <div class="ib">
+        <h3 class="mid-grey">avg resp time</h3>
+        <p class="grey ng-binding"></p>
+      </div>
     </div>
 
     <div class="cb"></div>
@@ -55,10 +51,10 @@
 
   <div class="page-reviews-container">
     <div class="header rel light-grey-border">
-      <div class="title ib">Page Reviews <span class="percentage">(90.87%)</span></div>
+      <div class="title ib">Page Reviews <span class="percentage">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs">
-        <span class="domain ib">g1.globo.com/</span>
-        <span class="directory ib rel"><input type="text" name="search" placeholder="enter a directory to filter reviews..." /><i></i></span>
+        <span class="domain ib">{{ model.domain_details.name }}/</span>
+        <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
     </div>
     <div class="data">
@@ -69,15 +65,18 @@
           <th class="finished-at center">Finished at</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]">
-            <td class="url"><a href="#/domains/1/reviews/2">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</a></td>
-            <td class="violations center">12</td>
-            <td class="finished-at center">2 days ago</td>
+          <tr ng-hide="model.reviews">
+            <td colspan="3">No reviews made for this domain yet.</td>
+          </tr>
+          <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
+            <td class="url"><a href="#/domains/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.url }}</a></td>
+            <td class="violations center"><a href="#/domains/{{ page.uuid }}/reviews/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
+            <td class="finished-at center"><a href="#/domains/{{ page.uuid }}/reviews/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <pager pagecount="model.reviews.pageCount" current="1" pagesize="10" pagechange="model.updateReviews"></page>
+  <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="10" pagechange="model.updateReviews" ng-show="model.numberOfPages > 1"></page>
 </div>

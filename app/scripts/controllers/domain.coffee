@@ -1,8 +1,15 @@
 'use strict'
 
 class DomainCtrl
-  constructor: (@scope, @domainId) ->
+  constructor: (@scope, @DomainsFcty, @domainName) ->
     @selectedCategory = null
+    @numberOfPages = 0
+    @reviewCount = 0
+    @reviewFilter = ''
+    @reviews = {}
+
+    @getReviewsData()
+    @getDomainDetails()
 
     @domainCategories = [
       { id: 1, label: 'SEO Violations', value: 31.79, pageCount: 198542, color: 'color1' },
@@ -30,15 +37,22 @@ class DomainCtrl
       3: mockViolations
       4: mockViolations
 
-    @reviews =
-      pageCount: 50
-
     @selectedCategory =
       title: @domainCategories[0].label
       percentage: @domainCategories[0].value
       pageCount: @domainCategories[0].pageCount
       color: @domainCategories[0].color
       violations: @violationData[@domainCategories[0].id]
+
+  getReviewsData: (currentPage, pageSize) ->
+    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: @reviewFilter}).then (data) =>
+      @reviews = data
+      @reviewCount = @reviews.reviewCount
+      @numberOfPages = @reviewCount
+
+  getDomainDetails: ->
+    @DomainsFcty.one(@domainName).get().then (data) =>
+      @domain_details = data
 
   onSelect: (value, data) =>
     if data?
@@ -51,9 +65,9 @@ class DomainCtrl
     else
       @selectedCategory = null
 
-  updateReviews: (currentPage, pageSize) ->
-    console.log(currentPage, pageSize)
+  updateReviews: (currentPage, pageSize) =>
+    @getReviewsData(currentPage, pageSize)
 
 angular.module('holmesApp')
-  .controller 'DomainCtrl', ($scope, $routeParams) ->
-    $scope.model = new DomainCtrl($scope, $routeParams.domainId)
+  .controller 'DomainCtrl', ($scope, DomainsFcty, $routeParams) ->
+    $scope.model = new DomainCtrl($scope, DomainsFcty, $routeParams.domainName)

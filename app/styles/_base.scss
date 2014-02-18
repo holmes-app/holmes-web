@@ -101,6 +101,8 @@ h2 {
   text-decoration: underline;
 }
 
+
+
 table {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -116,6 +118,11 @@ table {
       &:first-child {
         padding-left: 20px;
       }
+
+      &.violations {
+        width: 180px;
+      }
+
     }
   }
 
@@ -131,7 +138,13 @@ table {
         font-size: 14px;
 
         a {
+          overflow: hidden;
+          max-width: 720px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
           color: $blue;
+          padding-bottom: 2px;
 
           &:hover {
             text-decoration: underline;
@@ -253,6 +266,29 @@ div.td {
     &:hover {
       background-color: #eef4f4;
     }
+  }
+}
 
+.toolbar {
+  font-family: 'Open Sans', sans-serif;
+
+  .ib:last-child {
+    h3 {
+      margin-right: 0;
+    }
+  }
+
+  top: -13px;
+
+  h3 {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 9px;
+    margin-right: 40px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 30px;
   }
 }
