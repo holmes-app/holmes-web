@@ -20,5 +20,8 @@ app = angular.module('holmesApp', [
       .when '/domains/:domainId/reviews/:reviewId',
         templateUrl: 'views/reviews.html'
         controller: 'ReviewsCtrl'
+      .when '/violations/:violationKey',
+        templateUrl: 'views/violation.html'
+        controller: 'ViolationCtrl'
       .otherwise
         redirectTo: '/'
