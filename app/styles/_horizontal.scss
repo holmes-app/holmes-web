@@ -1,8 +1,17 @@
 .horizontal-bar {
   width: 100%;
+  font-family: 'Open Sans', sans-serif;
 
   .value {
+    @include box-sizing(border-box);
+
     height: 30px;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 30px;
     background-color: $blue;
+    color: $light-grey;
+    text-align: right;
+    padding-right: 10px;
   }
 }

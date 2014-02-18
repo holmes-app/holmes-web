@@ -17,7 +17,7 @@
     <ul>
       <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.id">
         <h3 class="grey ib">{{ domain.label }}</h3>
-        <p class="ib"><horizontal percentage="domain.percentage"></horizontal></p>
+        <p class="ib"><horizontal percentage="domain.percentage" value="domain.value"></horizontal></p>
       </li>
     </ul>
   </div>
