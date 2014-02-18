@@ -22,6 +22,7 @@ class ReviewsCtrl
           violationCount: 2
           violations: [
             {
+              key: 'broken.links.found'
               title: 'Broken link(s) found.'
               description: '''This page contains broken links (the urls failed to load or timed-out after 10 seconds).
                This can lead your site to lose rating with Search Engines and is misleading to users.'''
@@ -29,6 +30,7 @@ class ReviewsCtrl
               data: ['http://www.globo.com']
             },
             {
+              key: 'disallow.robots'
               title: 'Disallow: / in Robots'
               description: '''This page contains broken links (the urls failed to load or timed-out after 10 seconds).
                This can lead your site to lose rating with Search Engines and is misleading to users.'''
@@ -44,6 +46,7 @@ class ReviewsCtrl
           violationCount: 2,
           violations: [
             {
+              key: 'broken.images'
               title: 'Broken image(s) found.'
               description: '''This page contains broken links (the urls failed to load or timed-out after 10 seconds).
                This can lead your site to lose rating with Search Engines and is misleading to users.'''
@@ -51,6 +54,7 @@ class ReviewsCtrl
               data: ['http://s2.glbimg.com/U6prwoy9yJX7dolZGoLdlbq29kI=/155xorig/smart/filters:strip_icc()/s2.glbimg.com/QGjEkg7m7BfrKogqGVBin5UcYc8=/605x245:1795x1283/155x135/s.glbimg.com/jo/g1/f/original/2014/02/14/criciuma_1.jpg', 'http://s2.glbimg.com/uG4ISmUf4frYTfrNG1fJMUhspp0=/155xorig/smart/filters:strip_icc()/s2.glbimg.com/JUYXe8YUpx-WfXgTVH_qAhgSexw=/0x73:448x464/155x135/s.glbimg.com/en/ho/f/original/2014/02/14/joelhos.jpg']
             },
             {
+              key: 'broken.links'
               title: 'Broken link(s) found.'
               description: '''This page contains broken links (the urls failed to load or timed-out after 10 seconds).
                This can lead your site to lose rating with Search Engines and is misleading to users.'''
@@ -64,29 +68,29 @@ class ReviewsCtrl
         {
           label: 'seo'
           facts: [
-            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-            { title: 'invalid links', value: [], type: 'list', data: [] },
+            { key: 'total.invalid.links', title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { key: 'invalid.links', title: 'invalid links', value: [], type: 'list', data: [] },
           ]
         },
         {
           label: 'http'
           facts: [
-            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-            { title: 'invalid links', value: [], type: 'list', data: [] },
+            { key: 'total.invalid.links', title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { key: 'invalid.links', title: 'invalid links', value: [], type: 'list', data: [] },
           ]
         },
         {
           label: 'performance'
           facts: [
-            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-            { title: 'invalid links', value: [], type: 'list', data: [] },
+            { key: 'total.invalid.links', title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { key: 'invalid.links', title: 'invalid links', value: [], type: 'list', data: [] },
           ]
         },
         {
           label: 'semantics'
           facts: [
-            { title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
-            { title: 'invalid links', value: [], type: 'list', data: [] },
+            { key: 'total.invalid.links', title: 'total invalid links', value: 'this page has 0 invalid links', type: 'value', data: 0 },
+            { key: 'invalid.links', title: 'invalid links', value: [], type: 'list', data: [] },
           ]
         }
       ]

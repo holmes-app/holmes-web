@@ -63,9 +63,38 @@
               </li>
             </ul>
           </div>
+
+          <div class="categories violation-categories">
+            <div class="category" ng-repeat="category in model.review.violations track by category.label">
+              <h3 ng-class="'color' + ($index + 1)">{{ category.label }}</h3>
+              <ul>
+                <li ng-repeat="violation in category.violations track by violation.key">
+                  <h4>{{ violation.title }}</h4>
+                  <p class="mid-grey">{{ violation.description }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div ng-show="model.factsVisible" class="tab">
-          facts
+          <div class="fact-category" ng-repeat="category in model.review.facts track by category.label">
+            <h3>{{ category.label }}</h3>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>title</th>
+                  <th>value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="fact in category.facts track by fact.key">
+                  <td class="title grey">{{ fact.title }}</td>
+                  <td class="fact-value grey">{{ fact.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
