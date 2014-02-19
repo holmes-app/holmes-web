@@ -26,3 +26,9 @@ app = angular.module('holmesApp', [
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)
+
+  .run(($rootScope, $window) ->
+    $rootScope.$on('$viewContentLoaded', ->
+      $window.scrollTo(0, 0)
+    )
+  )
