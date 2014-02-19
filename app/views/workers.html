@@ -1,0 +1,21 @@
+<div class="view status-view status-workers-view">
+  <h1>Status</h1>
+  <statusbar></statusbar>
+
+  <horizontal 
+    percentage="model.activeWorkersPercentage"
+    value="model.activeWorkers.length"
+    total="model.workerCount"
+    showtotal="true">
+  </horizontal>
+
+  <ul class="boxes workers">
+    <li class="box worker" ng-repeat="worker in model.activeWorkers track by worker.id">
+      <a href="{{ worker.url }}">
+        <h2 class="blue ng-binding">{{ worker.domain.name }}</h2>
+        <p class="url">{{ worker.url }}</p>
+        <p class="timeago">last ping: <span class="time" am-time-ago="worker.lastPing"></span> ago</p>
+      </a>
+    </li>
+  </ul>
+</div>

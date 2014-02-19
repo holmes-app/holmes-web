@@ -2,8 +2,9 @@
   <h1>Domains</h1>
 
   <div class="domains-container" style="max-height: {{ model.domainsVisible ? (model.domains.length * 159) : 300}}px">
-    <ul class="domains">
-      <li class="ib light-blue-border" ng-repeat="domain in model.domains track by domain.id">
+    <ul class="boxes domains">
+      <li class="box ib" ng-repeat="domain in model.domains track by domain.id">
+
         <a href="#/domains/{{ domain.name }}">
           <h2 class="blue">{{ domain.name }}</h2>
           <div class="stats">

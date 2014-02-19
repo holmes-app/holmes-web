@@ -23,6 +23,11 @@ app = angular.module('holmesApp', [
       .when '/violations/:violationKey',
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'
+      .when '/status',
+        redirectTo: '/status/workers'
+      .when '/status/workers',
+        templateUrl: 'views/workers.html'
+        controller: 'WorkersCtrl'
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)

@@ -38,27 +38,7 @@
 
   .domains {
     li {
-      width: 506px;
-      margin-right: 42px;
-      margin-bottom: 20px;
-      @include box-sizing(border-box);
       @include transition(background-color 100ms linear);
-
-      a {
-        padding: 16px 18px;
-        display: block;
-        width: 100%;
-        height: 100%;
-        @include box-sizing(border-box);
-      }
-
-      &:hover {
-        background-color: #eef4f4;
-      }
-
-      &:nth-child(even) {
-        margin-right: 0;
-      }
 
       .stats {
         margin-top: 23px;
