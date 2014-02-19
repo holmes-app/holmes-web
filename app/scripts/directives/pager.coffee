@@ -9,6 +9,7 @@ class Pager
     @gatherElements()
     @updatePager()
     @bindEvents()
+    @watchScope()
 
   getOptions: ->
     @options.visiblePageCount = @scope.visiblepagecount || 10
@@ -33,12 +34,25 @@ class Pager
     @elements.previous.on 'click', (ev) =>
       @options.currentPage -= @options.visiblePageCount
       @options.currentPage = 1 if @options.currentPage < 0
+      @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
 
     @elements.next.on 'click', (ev) =>
       @options.currentPage += @options.visiblePageCount
       @options.currentPage = @options.pageCount if @options.currentPage > @options.pageCount
+      @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
+
+  watchScope: ->
+    @scope.$watch('pagecount', =>
+      @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
+      @updatePager()
+    )
+    @scope.$watch('pagesize', =>
+      @options.pageSize = @scope.pagesize || 10
+      @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
+      @updatePager()
+    )
 
   updatePager: ->
     @elements.pages.html('')
