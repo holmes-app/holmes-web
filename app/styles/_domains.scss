@@ -9,7 +9,6 @@
   .show-domains, .hide-domains {
     display: block;
     margin-top: 14px;
-    margin-bottom: 32px;
     cursor: pointer;
 
     .text {
@@ -92,6 +91,7 @@
 
   .violations-container {
     position: relative;
+    margin-top: 32px;
 
     .toolbar {
       position: relative;
