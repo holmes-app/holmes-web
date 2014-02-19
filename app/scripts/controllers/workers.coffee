@@ -17,13 +17,13 @@ class WorkersCtrl
 
 
 angular.module('holmesApp')
-  .controller 'WorkersCtrl', ($scope, $timeout) ->
+  .controller 'WorkersCtrl', ($scope) ->
     $scope.model = new WorkersCtrl($scope)
 
-    randomizePercentage = ->
-      percentage = Math.random()
-      console.log percentage
-      $scope.model.activeWorkersPercentage = percentage
-      $timeout(randomizePercentage, 1000)
+    #randomizePercentage = ->
+      #percentage = Math.random()
+      #console.log percentage
+      #$scope.model.activeWorkersPercentage = percentage
+      #$timeout(randomizePercentage, 1000)
 
-    randomizePercentage()
+    #randomizePercentage()

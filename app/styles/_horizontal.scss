@@ -23,12 +23,12 @@
   }
 
   .value-label {
-    top: -44px;
+    top: -40px;
     @include transition(right 400ms ease-in);
   }
 
   .total-label {
-    top: -28px;
+    top: -24px;
   }
 
   .value-label, .total-label {

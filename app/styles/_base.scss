@@ -193,23 +193,25 @@ div.td {
 .tab-header {
   position: relative;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #555;
   margin-right: 40px;
-  min-width: 85px;
+  /*min-width: 85px;*/
   height: 37px;
   cursor: pointer;
 
   a {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    min-width: 85px;
     height: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    color: #555;
     border-bottom: solid 2px transparent;
     @include transition(border-color 100ms linear);
+    white-space: nowrap;
   }
 
   &.selected a {
