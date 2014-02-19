@@ -212,6 +212,10 @@ div.td {
     border-bottom: solid 2px transparent;
     @include transition(border-color 100ms linear);
     white-space: nowrap;
+
+    &:hover {
+      color: $blue;
+    }
   }
 
   &.selected a {
