@@ -1,0 +1,42 @@
+.status-workers-view {
+  font-family: 'Open Sans', sans-serif;
+
+  h1 {
+    margin-bottom: 40px;
+    border-bottom: 0;
+    font-size: 38px;
+    font-weight: 300;
+    color: #555;
+  }
+
+  .workers {
+    margin-top: 30px;
+  }
+
+  .horizontal-bar {
+    height: 50px;
+    background-color: $light-grey;
+
+    .value, .total {
+      line-height: 50px;
+    }
+  }
+
+  .box {
+    .url {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      color: $blue;
+    }
+
+    .timeago {
+      font-weight: 300;
+      font-size: 14px;
+      font-style: italic;
+      color: #6f6f6f;
+    }
+  }
+
+}

@@ -2,7 +2,7 @@
 
 class WorkersCtrl
   constructor: (@scope) ->
-    @activeWorkersPercentage = 0.8
+    @activeWorkersPercentage = 0.9
     @activeWorkers = []
     @workerCount = 20
 
@@ -17,5 +17,13 @@ class WorkersCtrl
 
 
 angular.module('holmesApp')
-  .controller 'WorkersCtrl', ($scope) ->
+  .controller 'WorkersCtrl', ($scope, $timeout) ->
     $scope.model = new WorkersCtrl($scope)
+
+    randomizePercentage = ->
+      percentage = Math.random()
+      console.log percentage
+      $scope.model.activeWorkersPercentage = percentage
+      $timeout(randomizePercentage, 1000)
+
+    randomizePercentage()
