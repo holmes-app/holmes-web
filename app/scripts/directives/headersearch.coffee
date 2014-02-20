@@ -7,6 +7,5 @@ angular.module('holmesApp')
     replace: true,
     link: (scope, element, attrs) ->
       body = $('body')
-      console.log(body)
       body.append($(element).find('.search-form').detach())
   )
