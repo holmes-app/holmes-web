@@ -290,5 +290,21 @@ div.td {
   p {
     font-weight: 300;
     font-size: 30px;
+
+    .url {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      color: $blue;
+    }
+
+    .timeago {
+      font-weight: 300;
+      font-size: 14px;
+      font-style: italic;
+      color: #6f6f6f;
+    }
   }
 }
