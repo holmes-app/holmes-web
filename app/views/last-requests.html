@@ -1,0 +1,29 @@
+<div class="view status-view status-last-requests-view">
+  <h1>Status</h1>
+  <statusbar index="4"></statusbar>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="dark-grey">URL</th>
+        <th class="dark-grey center">response time</th>
+        <th class="dark-grey center">status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="review in model.reviews">
+        <td class="url blue"><a href="{{ request.url }}"><span>{{ request.url }}</span></td>
+        <td class="dark-grey center">{{ request.responseTime | number }}</td>
+        <td class="timeago dark-grey center"><span class="time" am-time-ago="request.date"></span> ago</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pager 
+    pagecount="model.requestCount"
+    current="1"
+    pagesize="10"
+    pagechange="model.updateRequests"
+    ng-show="model.requestCount > 10"
+  ></page>
+</div>
