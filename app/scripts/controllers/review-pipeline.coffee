@@ -3,7 +3,7 @@
 class ReviewPipelineCtrl
   constructor: (@scope) ->
     @reviews = []
-    @reviewCount = 200
+    @reviewCount = 20
 
     for i in [1..10]
       @reviews.push(
