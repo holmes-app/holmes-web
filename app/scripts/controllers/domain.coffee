@@ -5,11 +5,13 @@ class DomainCtrl
     @selectedCategory = null
     @numberOfPages = 0
     @reviewCount = 0
+    @domain_url = ''
     @reviewFilter = ''
     @reviews = {}
 
     @getReviewsData()
     @getDomainDetails()
+    @watchScope()
 
     @domainCategories = [
       { id: 1, label: 'SEO Violations', value: 31.79, pageCount: 198542, color: 'color1' },
@@ -45,7 +47,8 @@ class DomainCtrl
       violations: @violationData[@domainCategories[0].id]
 
   getReviewsData: (currentPage, pageSize) ->
-    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: @reviewFilter}).then (data) =>
+    filter = @domain_url + @reviewFilter
+    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: filter}).then (data) =>
       @reviews = data
       @reviewCount = @reviews.reviewCount
       @numberOfPages = @reviewCount
@@ -53,6 +56,7 @@ class DomainCtrl
   getDomainDetails: ->
     @DomainsFcty.one(@domainName).get().then (data) =>
       @domain_details = data
+      @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
 
   onSelect: (value, data) =>
     if data?
@@ -67,6 +71,13 @@ class DomainCtrl
 
   updateReviews: (currentPage, pageSize) =>
     @getReviewsData(currentPage, pageSize)
+
+  watchScope: ->
+    updateReviewData = $.debounce(500, =>
+      @getReviewsData()
+    )
+
+    @scope.$watch('model.reviewFilter', updateReviewData)
 
 angular.module('holmesApp')
   .controller 'DomainCtrl', ($scope, DomainsFcty, $routeParams) ->
