@@ -154,6 +154,17 @@ table {
         &:first-child {
           padding-left: 20px;
         }
+
+        &.url {
+          span {
+            display: block;
+            max-width: 780px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-bottom: 2px;
+          }
+        }
       }
     }
   }

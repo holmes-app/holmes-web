@@ -31,6 +31,9 @@ app = angular.module('holmesApp', [
       .when '/status/last-reviews',
         templateUrl: 'views/last-reviews.html'
         controller: 'LastReviewsCtrl'
+      .when '/status/pipeline',
+        templateUrl: 'views/review-pipeline.html'
+        controller: 'ReviewPipelineCtrl'
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)

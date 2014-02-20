@@ -1,0 +1,27 @@
+<div class="view status-view status-last-reviews-view">
+  <h1>Status</h1>
+  <statusbar index="3"></statusbar>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="dark-grey">URL</th>
+        <th class="dark-grey center">estimated time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="review in model.reviews">
+        <td class="url blue"><a href="{{ review.url }}"><span>{{ review.url }}</span></td>
+        <td class="timeago dark-grey center"><span class="time" am-time-ago="review.date"></span> ago</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pager 
+    pagecount="model.reviewCount"
+    current="1"
+    pagesize="10"
+    pagechange="model.updateReviews"
+    ng-show="model.reviewCount > 10"
+  ></page>
+</div>
