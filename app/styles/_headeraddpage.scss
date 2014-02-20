@@ -29,7 +29,7 @@
   width: 100%;
   background-color: #318d90;
   @include transition(top 250ms ease-in-out);
-  z-index: -1;
+  z-index: 500;
 
   &.visible {
     top: 50px;

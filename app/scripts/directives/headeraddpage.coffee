@@ -6,4 +6,6 @@ angular.module('holmesApp')
     restrict: 'E'
     replace: true
     link: (scope, element, attrs) ->
+      body = $('body')
+      body.append($(element).find('.add-page-form').detach())
   )
