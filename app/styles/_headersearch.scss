@@ -8,9 +8,11 @@
         height: 50px;
         cursor: pointer;
 
+        padding-top: 16px;
+        @include box-sizing(border-box);
+
         i {
           display: block;
-          margin-top: 16px;
           margin-left: 23px;
           @include common-sprite(search, $dimensions: true);
         }

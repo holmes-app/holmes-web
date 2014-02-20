@@ -10,10 +10,11 @@
     display: block;
     width: 49px;
     height: 50px;
+    padding-top: 16px;
+    @include box-sizing(border-box);
 
     i {
       display: block;
-      margin-top: 16px;
       margin-left: 24px;
       @include common-sprite(add, $dimensions: true);
     }
