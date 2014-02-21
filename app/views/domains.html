@@ -26,7 +26,7 @@
 
             <div class="stat ib right">
               <p class="label">avg resp time</p>
-              <p class="value">{{ domain.averageResponseTime | number }}ms</p>
+              <p class="value">{{ domain.averageResponseTime * 1000 | number }}ms</p>
             </div>
 
           </div>
@@ -66,10 +66,10 @@
 
     <div class="groups-container" ng-class="model.groupsVisible ? '' : 'hidden'">
       <ul class="group">
-        <li ng-repeat="group in model.groupData track by group.name" ng-class="'color' + ($index + 1) + '-border'">
-          <h3 ng-class="'color' + ($index + 1)">{{ group.name }}</h3>
+        <li ng-repeat="(name, group) in model.groupData track by name" ng-class="'color' + ($index + 1) + '-border'">
+          <h3 ng-class="'color' + ($index + 1)">{{ name }}</h3>
           <ul class="group-violations">
-            <li ng-repeat="violation in group.violations track by violation.key | orderBy:'position'">
+            <li ng-repeat="violation in group track by violation.key | orderBy:'count':desc">
               <a href="#/violations/{{ violation.key }}">
                 <div class="name dark-grey ib">{{ violation.name }}</div>
               </a>
@@ -83,9 +83,9 @@
 
       <div class="most-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.mostFrequentViolations track by violation.key | orderBy:'position'">
+          <li ng-repeat="violation in model.mostFrequentViolations track by violation.key | orderBy:'count':desc">
             <a href="#/violations/{{ violation.key }}" class="fs0">
-              <div class="number mid-grey ib">#{{ violation.position }}</div>
+              <div class="number mid-grey ib">#{{ $index + 1 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
             </a>
           </li>
@@ -94,9 +94,9 @@
 
       <div class="least-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.leastFrequentViolations track by violation.key | orderBy:'position'">
+          <li ng-repeat="violation in model.leastFrequentViolations track by violation.key | orderBy:'count':desc">
             <a href="#/violations/{{ violation.key }}" class="fs0">
-              <div class="number mid-grey ib">#{{ violation.position }}</div>
+              <div class="number mid-grey ib">#{{ $index + 11 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
             </a>
           </li>
