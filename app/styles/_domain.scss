@@ -1,11 +1,21 @@
 .domain-view {
 
   h2 {
-    font-size: 55px;
+    font-size: 50px;
   }
 
   .toolbar {
     margin-top: 10px;
+
+    .ib {
+      margin-right: 15px;
+
+      p {
+        font-size: 20px;
+      }
+
+    }
+
   }
 
   .values {
