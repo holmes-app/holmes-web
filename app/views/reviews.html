@@ -1,17 +1,17 @@
 <div class="view review-view">
 
-  <h2 title="{{ model.review.url }}"><a class="blue" href="{{ model.review.url }}">{{ model.review.url }}</a></h2>
+  <h2 title="{{ model.review.url }}"><a class="blue" href="{{ model.review_details.page.url }}">{{ model.review_details.page.url }}</a></h2>
 
   <div class="info rel">
 
     <div class="violations ib">
       <p class="title mid-grey">violations</p>
-      <p class="value grey">{{ model.review.violationCount | number }}</p>
+      <p class="value grey">{{ model.review_details.violationCount | number }}</p>
     </div>
 
     <div class="points ib">
       <p class="title mid-grey">points</p>
-      <p class="value grey">{{ model.review.points | number }}</p>
+      <p class="value grey">{{ model.review_details.violationPoints| number }}</p>
     </div>
 
     <div class="reviews ib pull-right fs0">
@@ -24,13 +24,15 @@
         <div class="table">
           <div class="tr row first">
             <div class="td title">violations</div>
-            <div ng-repeat="review in model.reviews" class="td value"><a href="#/domains/{{ model.domainId }}/{{ review.id }}">{{ review.violationCount }}</a></div>
+            <div ng-repeat="review in model.reviews" class="td value">
+              <a href="#/page/{{ model.pageId }}/review/{{ review.uuid }}">{{ review.violationCount }}</a>
+            </div>
           </div>
           <div class="tr row">
             <div class="td title">finished at</div>
             <div ng-repeat="review in model.reviews" class="td value">
-              <a href="#/domains/{{ model.domainId }}/{{ review.id }}">
-                <span class="time" am-time-ago="review.finishedAt"></span>
+              <a href="#/page/{{ model.pageId }}/review/{{ review.uuid }}">
+                <span class="time" am-time-ago="review.completedAt*1000"></span>
               </a>
             </div>
           </div>
@@ -52,33 +54,33 @@
 
       <div class="tabs-container">
         <div ng-show="model.violationsVisible" class="tab">
-          <div class="chart-container ib">
-            <donut label="violation types" data="model.review.violations"></donut>
+          <div class="chart-container ib" ng-if="model.violations">
+            <donut label="violation types" data="model.violations"></donut>
           </div>
           <div class="details ib">
             <ul class="violations">
-              <li ng-repeat="category in model.review.violations track by category.label">
-                <h4 ng-class="'color' + ($index + 1)">{{ category.percentage }}% {{category.label}}</h4>
-                <p class="grey">{{ category.violations.length | number }} violations</p>
+              <li ng-repeat="violations in model.violations | orderBy: '-value'">
+              <h4 ng-class="'color' + ($index + 1)">{{ violations.value | number:2 }}% {{ violations.label }}</h4>
+                <p class="grey">{{ violations.violations.length | number }} violations</p>
               </li>
             </ul>
           </div>
 
           <div class="categories violation-categories">
-            <div class="category" ng-repeat="category in model.review.violations track by category.label">
-              <h3 ng-class="'color' + ($index + 1)">{{ category.label }}</h3>
+            <div class="category" ng-repeat="violations in model.violations | orderBy : '-value' ">
+              <h3 ng-class="'color' + ($index + 1)">{{ violations.label }}</h3>
               <ul>
-                <li ng-repeat="violation in category.violations track by violation.key">
+                <li ng-repeat="violation in violations.violations">
                   <h4>{{ violation.title }}</h4>
-                  <p class="mid-grey">{{ violation.description }}</p>
+                  <p class="mid-grey" ng-bind-html="model.asHtml(violation.description)"></p>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div ng-show="model.factsVisible" class="tab">
-          <div class="fact-category" ng-repeat="category in model.review.facts track by category.label">
-            <h3>{{ category.label }}</h3>
+          <div class="fact-category" ng-repeat="(facts_category, facts_list) in model.facts track by facts_category">
+            <h3>{{ facts_category }}</h3>
 
             <table>
               <thead>
@@ -88,7 +90,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="fact in category.facts track by fact.key">
+                <tr ng-repeat="fact in facts_list track by fact.key">
                   <td class="title grey">{{ fact.title }}</td>
                   <td class="fact-value grey">{{ fact.value }}</td>
                 </tr>
