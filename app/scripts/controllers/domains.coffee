@@ -22,7 +22,6 @@ class DomainsCtrl
     @mostFrequentVisible = false
 
   showMostFrequent: ->
-    console.log(@mostFrequentVisible)
     @groupsVisible = false
     @mostFrequentVisible = true
 
