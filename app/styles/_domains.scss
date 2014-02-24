@@ -8,7 +8,6 @@
 
   .show-domains, .hide-domains {
     display: block;
-    margin-top: 14px;
     cursor: pointer;
 
     .text {
@@ -42,6 +41,7 @@
 
       .stats {
         margin-top: 23px;
+        font-size: 0;
       }
 
       .stat {
