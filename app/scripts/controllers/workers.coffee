@@ -1,24 +1,24 @@
 'use strict'
 
 class WorkersCtrl
-  constructor: (@scope) ->
-    @activeWorkersPercentage = 0.9
-    @activeWorkers = []
-    @workerCount = 20
+  constructor: (@scope, @WorkersFcty) ->
+    @workers = []
+    @activeWorkersPercentage = 0
 
-    for i in [1..16]
-      @activeWorkers.push(
-        id: i
-        domain:
-          name: 'g1.globo.com'
-        url: 'http://mentakingup2muchspaceonthetrain.tumblr.com/'
-        lastPing: '2014-02-16T18:42:50Z'
-      )
+    @getWorkers()
 
+
+  getWorkers: ->
+    @WorkersFcty.all('').getList().then( (data) =>
+      @workers = data
+      @workerCount = @workers.length
+      @activeWorkers = _.filter(@workers, {'working': true}).length
+      @activeWorkersPercentage = @activeWorkers / @workerCount
+    )
 
 angular.module('holmesApp')
-  .controller 'WorkersCtrl', ($scope) ->
-    $scope.model = new WorkersCtrl($scope)
+  .controller 'WorkersCtrl',  ($scope, WorkersFcty) ->
+    $scope.model = new WorkersCtrl($scope, WorkersFcty)
 
     #randomizePercentage = ->
       #percentage = Math.random()

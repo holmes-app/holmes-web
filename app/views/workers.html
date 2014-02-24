@@ -2,22 +2,24 @@
   <h1>Status</h1>
   <statusbar index="1"></statusbar>
 
-  <horizontal 
-    percentage="model.activeWorkersPercentage"
-    value="model.activeWorkers.length"
-    total="model.workerCount"
-    showtotal="true"
-    valuelabel="active workers"
-    totallabel="inactive workers"
-  >
-  </horizontal>
+  <div ng-if="model.workerCount">
+    <horizontal
+      percentage="model.activeWorkersPercentage"
+      value="model.activeWorkers"
+      total="model.workerCount"
+      showtotal="true"
+      valuelabel="active workers"
+      totallabel="inactive workers"
+    >
+    </horizontal>
+  </div>
 
   <ul class="boxes workers">
-    <li class="box worker" ng-repeat="worker in model.activeWorkers track by worker.id">
-      <a href="{{ worker.url }}">
-        <h2 class="blue ng-binding">{{ worker.domain.name }}</h2>
-        <p class="url">{{ worker.url }}</p>
-        <p class="timeago">last ping: <span class="time" am-time-ago="worker.lastPing"></span> ago</p>
+    <li class="box worker" ng-repeat="worker in model.workers track by worker.uuid">
+      <a href="{{ worker.current_url }}">
+        <h2 class="blue ng-binding">{{ worker.domain_name }}</h2>
+        <p class="url">{{ worker.current_url || "idle" }}</p>
+        <p class="timeago">last ping: <span class="time" am-time-ago="worker.last_ping"></span> ago</p>
       </a>
     </li>
   </ul>

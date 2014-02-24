@@ -285,6 +285,11 @@ div.td {
       font-size: 14px;
       line-height: 17px;
       color: $blue;
+      max-width: 780px;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .timeago {
