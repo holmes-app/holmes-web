@@ -3,11 +3,11 @@
   <statusbar index="2"></statusbar>
 
   <ul class="boxes last-reviews">
-    <li class="box worker" ng-repeat="review in model.lastReviews track by review.id">
-      <a href="/domains/{{ review.pageId }}/reviews/{{ review.id }}">
-        <h2 class="blue ng-binding">{{ review.domainName }}</h2>
-        <p class="url">{{ review.url }}</p>
-        <p class="timeago"><span class="time" am-time-ago="review.date"></span> ago</p>
+    <li class="box worker" ng-repeat="review in model.lastReviews">
+      <a href="#/page/{{ review.page.uuid }}/review/{{ review.uuid }}">
+        <h2 class="blue ng-binding">{{ review.domain }}</h2>
+        <p class="url">{{ review.page.url }}</p>
+        <p class="timeago"><span class="time" am-time-ago="review.completedAt*1000"></span> ago</p>
       </a>
     </li>
   </ul>
