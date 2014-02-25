@@ -11,19 +11,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="review in model.reviews">
+      <tr ng-repeat="request in model.requests">
         <td class="url blue"><a href="{{ request.url }}"><span>{{ request.url }}</span></td>
-        <td class="dark-grey center">{{ request.responseTime | number }}</td>
-        <td class="timeago dark-grey center"><span class="time" am-time-ago="request.date"></span> ago</td>
+        <td class="dark-grey center">{{ request.response_time | number }}ms</td>
+        <td class="dark-grey center">{{ request.status_code }}</td>
       </tr>
     </tbody>
   </table>
 
-  <pager 
-    pagecount="model.requestCount"
-    current="1"
+  <pager
+    pagecount="model.requestsCount"
+    current="model.currentPage"
     pagesize="10"
-    pagechange="model.updateRequests"
-    ng-show="model.requestCount > 10"
+    pagechange="model.updateLastRequests"
+    ng-show="model.requestsCount > 10"
   ></page>
 </div>
