@@ -1,42 +1,38 @@
 'use strict'
 
 class ViolationCtrl
-  constructor: (@scope, @violationKey) ->
+  constructor: (@scope, @violationKey, @ViolationFcty) ->
+    @pageFilter = null
+    @violation = {}
+    @ViolationFcty.one(@violationKey).get({page_size: 10}).then(@_fillReviews)
+    @ViolationFcty.one(@violationKey, 'domains').get('').then(@_fillViolation)
+    @watchScope()
 
-    @violation =
-      label: 'SiteMap file contains unencoded links'
-      domains: [
-        {
-          id: 1
-          value: 73,
-          percentage: 1.0         # this should be calculated by percentage of the max value (ask if you don't understand)
-          label: 'g1.globo.com'
-        },
-        {
-          id: 2
-          value: 50
-          percentage: 0.8
-          label: 'globoesporte.globo.com'
-        },
-        {
-          id: 3
-          value: 20
-          percentage: 0.5
-          label: 'gshow.globo.com'
-        },
-        {
-          id: 4
-          value: 10
-          percentage: 0.3
-          label: 'techtudo.globo.com'
-        }
-      ],
-      pageCount: 153
+  _fillReviews: (violation) =>
+    @violation.reviews = violation.reviews
 
-  updateReviews: ->
+  _fillViolation: (violation) =>
+    max_value = _.map(
+      violation.domains
+      (domain) -> domain.count).sort((x, y) -> x - y).pop()
+    @violation.domains = _.map(
+      violation.domains
+      (domain) -> {
+        name: domain.name
+        value: domain.count
+        percentage: domain.count / this
+      }
+      max_value)
+    @violation.label = violation.title
+    @violation.pageCount = violation.total
 
+  updateReviews: (currentPage, pageSize) =>
+    @ViolationFcty.one(@violationKey).get({page_size: pageSize, current_page: currentPage, page_filter: @pageFilter}).then(@_fillReviews)
+
+  watchScope: ->
+    updateReviews = $.debounce 500, => @updateReviews()
+    @scope.$watch('model.pageFilter', updateReviews)
 
 angular.module('holmesApp')
-  .controller 'ViolationCtrl', ($scope, $routeParams) ->
-    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey)
-
+  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty) ->
+    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty)

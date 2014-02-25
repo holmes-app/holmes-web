@@ -14,9 +14,9 @@
   </div>
 
   <div class="domains">
-    <ul>
-      <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.id">
-        <h3 class="grey ib">{{ domain.label }}</h3>
+    <ul nodata="model.violation.domains">
+      <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.name">
+        <h3 class="grey ib">{{ domain.name }}</h3>
         <p class="ib"><horizontal percentage="domain.percentage" value="domain.value"></horizontal></p>
       </li>
     </ul>
@@ -27,29 +27,32 @@
       <div class="header rel light-grey-border">
         <div class="title ib">Reviews with this violation</div>
         <div class="search fs0 abs">
-          <span class="domain ib">g1.globo.com/</span>
-          <span class="directory ib rel"><input type="text" name="search" placeholder="enter a directory to filter reviews..."><i></i></span>
+          <span class="directory ib rel"><input type="text" ng-model="model.pageFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
         </div>
       </div>
       <div class="data">
         <table>
           <thead>
             <tr><th class="url">URL</th>
-            <th class="violations center">Violations</th>
             <th class="finished-at center">Finished at</th>
           </tr></thead>
           <tbody>
-            <tr ng-repeat="item in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]" class="ng-scope">
-              <td class="url"><a href="#/domains/1/reviews/2">/brasileirao-serie-a/noticia/2011/10/policiamento-nos-clubes-imagens-imagens-dado-dia-24...</a></td>
-              <td class="violations center">12</td>
-              <td class="finished-at center">2 days ago</td>
+            <tr ng-repeat="review in model.violation.reviews" class="ng-scope">
+              <td class="url"><a href="#/domains/{{review.domain_name}}/reviews/{{review.uuid}}">{{review.page.url}}</a></td>
+              <td class="finished-at center"><span am-time-ago="review.page.completedAt * 1000"></span> ago</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <pager pagecount="model.violation.pageCount" current="1" pagesize="10" pagechange="model.updateReviews"></page>
+  <pager
+    pagecount="model.violation.pageCount"
+    current="model.currentPage"
+    pagesize="10"
+    pagechange="model.updateReviews"
+    ng-show="model.violation.pageCount > 10"
+  ></page>
 
   </div>
 </div>
