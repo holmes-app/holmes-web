@@ -1,23 +1,23 @@
 'use strict'
 
 class ReviewPipelineCtrl
-  constructor: (@scope) ->
+  constructor: (@scope, @NextJobsFcty) ->
     @reviews = []
-    @reviewCount = 20
+    @reviewCount = 0
 
-    for i in [1..10]
-      @reviews.push(
-        id: "12345-12345-12345-12345-#{ i }",
-        pageId: '12345-12345-12345-12345-12345',
-        domainName: 'globoesporte.globo.com',
-        url: 'http://g1.globo.com/rio-de-janeiro/noticia/2014/01/sobrevivi-disse-isis-valver-
-de-em-hospital-apos-acidente-conta-assessor.html',
-        date: '2014-02-16T18:42:50Z'
-      )
+    @getReviews()
 
-  updateReviews: (currentPage, pageSize) ->
+
+  getReviews: (currentPage, pageSize) ->
+    @NextJobsFcty.one('').get({current_page: currentPage, page_size: pageSize}).then( (data) =>
+      @reviews = data.pages
+      @reviewCount = data.reviewCount
+    )
+
+  updateReviews: (currentPage, pageSize) =>
+    @getReviews(currentPage, pageSize)
 
 
 angular.module('holmesApp')
-  .controller 'ReviewPipelineCtrl', ($scope) ->
-    $scope.model = new ReviewPipelineCtrl($scope)
+  .controller 'ReviewPipelineCtrl', ($scope, NextJobsFcty) ->
+    $scope.model = new ReviewPipelineCtrl($scope, NextJobsFcty)

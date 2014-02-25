@@ -17,11 +17,11 @@
     </tbody>
   </table>
 
-  <pager 
+  <pager
     pagecount="model.reviewCount"
-    current="1"
+    current="model.currentPage"
     pagesize="10"
     pagechange="model.updateReviews"
-    ng-show="model.reviewCount > 10"
-  ></page>
+    ng-show="model.reviewCount > 10">
+  </page>
 </div>
