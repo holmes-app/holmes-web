@@ -5,7 +5,8 @@ app = angular.module('holmesApp', [
   'ngSanitize',
   'ngRoute',
   'angularMoment',
-  'restangular'
+  'restangular',
+  'reconnectingWebSocket'
 ])
   .config ($routeProvider, RestangularProvider, ConfigConst) ->
     $routeProvider
