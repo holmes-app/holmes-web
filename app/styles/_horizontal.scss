@@ -14,9 +14,6 @@
     font-size: 21px;
     line-height: 30px;
     background-color: $blue;
-
-    @include background-image(linear-gradient(top, #318d90 0%,#3dafb3 50%,#318d90 100%));
-
     color: $light-grey;
     text-align: right;
     padding-right: 10px;
