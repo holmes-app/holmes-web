@@ -3,12 +3,17 @@
   <div class="add-page-form" ng-class="model.addPageFormVisible ? 'visible' : ''">
     <div class="container">
       <div class="title"><strong>Add a new</strong> website</div>
-      <form>
-        <input 
-          type="text"
+      <form class="add-page" name="addPageForm" novalidate data-ng-submit="addPageForm.url.$valid && addPage()">
+        <input
+          required
+          type="url"
+          name="url"
+          id="url"
+          ng-model="model.url"
+          ng-disabled="model.isAddingPage"
           placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
-          name="page" />
-        <div class="arrow"><i></i></div>
+        />
+        <div class="arrow" ng-click="addPage()"><i></i></div>
       </form>
     </div>
   </div>
