@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainCtrl
-  constructor: (@scope, @DomainsFcty, @domainName) ->
+  constructor: (@scope, @DomainsFcty, @domainName, @WebSocketFcty) ->
     @selectedCategory = null
     @numberOfPages = 0
     @reviewCount = 0
@@ -12,6 +12,12 @@ class DomainCtrl
     @getReviewsData()
     @getDomainDetails()
     @watchScope()
+
+    @WebSocketFcty.on((message) =>
+      if message.type == 'new-page' or message.type == 'new-review'
+        @getDomainDetails()
+        @getReviewsData()
+    )
 
     @domainCategories = [
       { id: 1, label: 'SEO Violations', value: 31.79, pageCount: 198542, color: 'color1' },
@@ -80,5 +86,5 @@ class DomainCtrl
     @scope.$watch('model.reviewFilter', updateReviewData)
 
 angular.module('holmesApp')
-  .controller 'DomainCtrl', ($scope, DomainsFcty, $routeParams) ->
-    $scope.model = new DomainCtrl($scope, DomainsFcty, $routeParams.domainName)
+  .controller 'DomainCtrl', ($scope, DomainsFcty, $routeParams, WebSocketFcty) ->
+    $scope.model = new DomainCtrl($scope, DomainsFcty, $routeParams.domainName, WebSocketFcty)
