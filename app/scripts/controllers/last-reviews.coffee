@@ -6,13 +6,16 @@ class LastReviewsCtrl
 
     @getLastReviews()
 
-    @WebSocketFcty.on((message) ->
-      @lastReviews()
+    @WebSocketFcty.on((message) =>
+      @getLastReviews()
     )
 
+  _fillReviews: (reviews) =>
+    @lastReviews = reviews
 
   getLastReviews: ->
-    @lastReviews = @LastReviewsFcty.all('').getList().$object
+    @LastReviewsFcty.one('').get().then((@_fillReviews))
+
 
 angular.module('holmesApp')
   .controller 'LastReviewsCtrl', ($scope, LastReviewsFcty, WebSocketFcty) ->
