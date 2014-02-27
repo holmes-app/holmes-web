@@ -1,11 +1,15 @@
 'use strict'
 
 class WorkersCtrl
-  constructor: (@scope, @WorkersFcty) ->
+  constructor: (@scope, @WorkersFcty, @WebSocketFcty) ->
     @workers = []
     @activeWorkersPercentage = 0
 
     @getWorkers()
+
+    @WebSocketFcty.on((message) =>
+      @getWorkers() if message.type == 'worker-status'
+    )
 
 
   getWorkers: ->
@@ -16,14 +20,7 @@ class WorkersCtrl
       @activeWorkersPercentage = @activeWorkers / @workerCount
     )
 
+
 angular.module('holmesApp')
-  .controller 'WorkersCtrl',  ($scope, WorkersFcty) ->
-    $scope.model = new WorkersCtrl($scope, WorkersFcty)
-
-    #randomizePercentage = ->
-      #percentage = Math.random()
-      #console.log percentage
-      #$scope.model.activeWorkersPercentage = percentage
-      #$timeout(randomizePercentage, 1000)
-
-    #randomizePercentage()
+  .controller 'WorkersCtrl',  ($scope, WorkersFcty, WebSocketFcty) ->
+    $scope.model = new WorkersCtrl($scope, WorkersFcty, WebSocketFcty)
