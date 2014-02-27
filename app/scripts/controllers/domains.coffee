@@ -1,13 +1,17 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @DomainsFcty, @MostCommonViolationsFcty) ->
+  constructor: (@scope, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
 
     @getDomainData()
     @getMostCommonViolations()
+
+    @WebSocketFcty.on((message) =>
+      @getDomainData()
+    )
 
   _fillDomains: (domains) =>
     @domains = domains
@@ -36,6 +40,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, DomainsFcty, MostCommonViolationsFcty) ->
+  .controller 'DomainsCtrl', ($scope, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty) ->
 
-    $scope.model = new DomainsCtrl($scope, DomainsFcty, MostCommonViolationsFcty)
+    $scope.model = new DomainsCtrl($scope, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty)
