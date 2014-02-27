@@ -52,17 +52,21 @@ class DomainCtrl
       color: @domainCategories[0].color
       violations: @violationData[@domainCategories[0].id]
 
+  _fillReviews: (data) =>
+    @reviews = data
+    @reviewCount = @reviews.reviewCount
+    @numberOfPages = @reviewCount
+
+  _fillDomainDetails: (data) =>
+    @domain_details = data
+    @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
+
   getReviewsData: (currentPage, pageSize) ->
     filter = @domain_url + @reviewFilter
-    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: filter}).then (data) =>
-      @reviews = data
-      @reviewCount = @reviews.reviewCount
-      @numberOfPages = @reviewCount
+    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: filter}).then(@_fillReviews)
 
   getDomainDetails: ->
-    @DomainsFcty.one(@domainName).get().then (data) =>
-      @domain_details = data
-      @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
+    @DomainsFcty.one(@domainName).get().then(@_fillDomainDetails)
 
   onSelect: (value, data) =>
     if data?
