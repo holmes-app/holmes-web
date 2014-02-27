@@ -11,14 +11,14 @@ class WorkersCtrl
       @getWorkers() if message.type == 'worker-status'
     )
 
+  _fillWorkers: (data) =>
+    @workers = data
+    @workerCount = @workers.length
+    @activeWorkers = _.filter(@workers, {'working': true}).length
+    @activeWorkersPercentage = @activeWorkers / @workerCount
 
   getWorkers: ->
-    @WorkersFcty.all('').getList().then( (data) =>
-      @workers = data
-      @workerCount = @workers.length
-      @activeWorkers = _.filter(@workers, {'working': true}).length
-      @activeWorkersPercentage = @activeWorkers / @workerCount
-    )
+    @WorkersFcty.all('').getList().then(@_fillWorkers)
 
 
 angular.module('holmesApp')
