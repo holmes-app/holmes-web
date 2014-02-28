@@ -6,6 +6,7 @@
 
   .value {
     position: relative;
+    z-index: 1;
     @include box-sizing(border-box);
     @include transition(width 400ms ease-out);
 
