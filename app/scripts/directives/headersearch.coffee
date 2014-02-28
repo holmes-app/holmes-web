@@ -8,4 +8,19 @@ angular.module('holmesApp')
     link: (scope, element, attrs) ->
       body = $('body')
       body.append($(element).find('.search-form').detach())
+    controller: ($scope, Restangular, $location) ->
+      $scope.model =
+        term: ''
+
+      $scope.search = () ->
+        term = $scope.model.term
+        Restangular.one('search').get({term: term}).then((page) ->
+          page = JSON.parse(page) if typeof page == 'string'
+          if page?
+            $location.path('/page/' + page.uuid + '/review/' + page.reviewId)
+            $scope.toggleSearch()
+          else
+            console.log("Page with URL " + term + " was not found or does not have any reviews associated with it!")
+          $scope.model.term = ''
+        )
   )

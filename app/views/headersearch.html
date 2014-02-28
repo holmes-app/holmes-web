@@ -4,11 +4,12 @@
     <div class="container">
       <div class="title"><strong>Search a</strong> website</div>
       <form>
-        <input 
+        <input
+          required
           type="text"
-          placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
-          name="page" />
-        <div class="arrow"><i></i></div>
+          ng-model="model.term"
+          placeholder="Page URL" />
+        <div class="arrow" ng-click="search()"><i></i></div>
       </form>
     </div>
   </div>
