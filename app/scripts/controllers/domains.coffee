@@ -19,7 +19,7 @@ class DomainsCtrl
 
   _fillDomainsDetails: (domains) =>
     @domains = domains
- 
+
   _fillViolations: (mostCommonViolations) =>
     @mostFrequentViolations = mostCommonViolations.slice(0, 10)
     @leastFrequentViolations = mostCommonViolations.slice(10)
