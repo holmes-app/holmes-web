@@ -1,0 +1,23 @@
+<div class="view status-view status-concurrent-view">
+  <h1>Status</h1>
+  <statusbar index="5"></statusbar>
+
+  <ul class="boxes domains">
+    <li class="box domains" ng-repeat="limiter in model.limiters track by limiter.name">
+      <a name="limiter.name">
+        <h2 class="blue ellipsis" title="{{ limiter.name }}">{{ limiter.name.replace('http://', '').replace('https://', '') }}</h2>
+        <div class="toolbar">
+          <horizontal
+            percentage="limiter.concurrentRequestsPercentage"
+            value="limiter.concurrentRequests"
+            total="limiter.maxConcurrentRequests"
+            showtotal="true"
+            valuelabel="active requests"
+            totallabel="available requests"
+          >
+          </horizontal>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

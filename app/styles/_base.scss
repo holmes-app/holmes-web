@@ -331,3 +331,10 @@ div.td {
   font-style: italic;
   color: #989898;
 }
+
+.ellipsis {
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

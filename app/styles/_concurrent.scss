@@ -1,0 +1,20 @@
+.status-concurrent-view {
+  .toolbar {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .horizontal-bar {
+    background-color: #dddddd;
+
+    .value-label {
+      right: auto;
+      left: 0;
+    }
+
+    .total-label {
+      right: 0;
+      top: -34px;
+    }
+  }
+}

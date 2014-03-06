@@ -21,6 +21,8 @@ angular.module('holmesApp')
       maxWidth = element.width()
       width = scope.percentage * maxWidth
       valueElement.css('width', width)
+      valueLabelWidth = null
+      totalLabelWidth = null
 
       setElementValue = (value) ->
         valueLabel = ''
@@ -28,6 +30,7 @@ angular.module('holmesApp')
           valueLabel = '<div class="value-label">' + scope.valuelabel + '</div>'
 
         valueElement.html(value + valueLabel)
+        valueLabelWidth = valueElement.find('.value-label').width()
 
       setElementValue(scope.value)
 
@@ -35,8 +38,12 @@ angular.module('holmesApp')
       if scope.totallabel?
         totalLabel = angular.element('<div class="total-label">' + scope.totallabel + '</div>')
         element.append(totalLabel)
+        totalLabelWidth = totalLabel.width()
 
-      element.append(angular.element('<div class="total">' + (scope.total - scope.value) + '</div>')) if showTotal
+      totalValue = null
+      if showTotal
+        totalValue = angular.element('<div class="total">' + (scope.total - scope.value) + '</div>')
+        element.append(totalValue)
 
       scope.$watch('value', (newValue, oldValue) ->
         setElementValue(newValue)
@@ -47,14 +54,16 @@ angular.module('holmesApp')
         valueElement.css('width', width)
 
         if totalLabel?
-          if width > 890
+          if width > maxWidth - totalLabelWidth
             totalLabel.fadeOut()
+            totalValue.fadeOut() if totalValue?
           else
             totalLabel.fadeIn()
+            totalValue.fadeIn() if totalValue?
 
         if scope.valuelabel?
           label = valueElement.find('.value-label')
-          if width < 160
+          if width < label.width()
             label.fadeOut()
           else
             label.fadeIn()

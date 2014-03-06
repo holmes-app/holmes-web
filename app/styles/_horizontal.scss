@@ -21,11 +21,13 @@
   }
 
   .value-label {
+    white-space: nowrap;
     top: -40px;
     @include transition(right 400ms ease-in);
   }
 
   .total-label {
+    white-space: nowrap;
     top: -24px;
   }
 

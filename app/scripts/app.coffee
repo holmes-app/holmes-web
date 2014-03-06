@@ -38,6 +38,9 @@ app = angular.module('holmesApp', [
       .when '/status/requests',
         templateUrl: 'views/last-requests.html'
         controller: 'LastRequestsCtrl'
+      .when '/status/concurrent',
+        templateUrl: 'views/concurrent.html'
+        controller: 'ConcurrentCtrl'
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)
