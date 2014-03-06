@@ -63,10 +63,14 @@ class DomainCtrl
 
   getReviewsData: (currentPage, pageSize) ->
     filter = @domain_url + @reviewFilter
-    @DomainsFcty.one(@domainName).one('reviews').get({current_page: currentPage, page_size: pageSize, term: filter}).then(@_fillReviews)
+    params =
+      current_page: currentPage
+      page_size: pageSize
+      term: filter
+    @DomainsFcty.getDomainReviews(@domainName, params).then(@_fillReviews)
 
   getDomainDetails: ->
-    @DomainsFcty.one(@domainName).get().then(@_fillDomainDetails)
+    @DomainsFcty.getDomainData(@domainName).then(@_fillDomainDetails)
 
   onSelect: (value, data) =>
     if data?

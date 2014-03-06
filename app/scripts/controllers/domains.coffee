@@ -9,24 +9,45 @@ class DomainsCtrl
     @getDomainData()
     @getMostCommonViolations()
 
-    @WebSocketFcty.on((message) =>
-      @getDomainData()
-    )
+    @WebSocketFcty.on (message) =>
+      if message.type == 'new-page' or message.type == 'new-review'
+        @getDomainData()
 
-  _fillDomains: (domains) =>
-    @domains = domains
-    @DomainsFcty.getDomainsDetails().then(@_fillDomainsDetails)
+  _fillDomains: (@domainList) =>
+    @domains = _.mapValues(_.groupBy(@domainList, 'name'), 0) # 0 is the index of the _only one_ element of the array
 
-  _fillDomainsDetails: (domains) =>
-    @domains = domains
+    for domain in @domainList[0..3]
+      @DomainsFcty.getDomainPageCount(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainViolationCount(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainErrorPercentage(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainResponseTimeAvg(domain).then(@_fillDomainDetails)
+
+    @_extraDomainsDetailsLoaded = false
+    if @domainsVisible
+      @_loadExtraDomainsDetails()
+
+  _fillDomainDetails: (domainDetails) =>
+    @domains[domainDetails.name] = _.merge(@domains[domainDetails.name], domainDetails)
+
+  _loadExtraDomainsDetails: ->
+    return if @_extraDomainsDetailsLoaded
+
+    for domain in @domainList[4..]
+      @DomainsFcty.getDomainPageCount(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainViolationCount(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainErrorPercentage(domain).then(@_fillDomainDetails)
+      @DomainsFcty.getDomainResponseTimeAvg(domain).then(@_fillDomainDetails)
+
+    @_extraDomainsDetailsLoaded = true
 
   _fillViolations: (mostCommonViolations) =>
-    @mostFrequentViolations = mostCommonViolations.slice(0, 10)
-    @leastFrequentViolations = mostCommonViolations.slice(10)
+    @mostFrequentViolations = mostCommonViolations[0..10]
+    @leastFrequentViolations = mostCommonViolations[10..]
     @groupData = _.groupBy(mostCommonViolations, 'category')
 
   toggleDomainVisibility: ->
     @domainsVisible = !@domainsVisible
+    @_loadExtraDomainsDetails()
 
   showGroups: ->
     @groupsVisible = true

@@ -1,9 +1,9 @@
 <div class="view domains-view">
   <h1>Domains</h1>
 
-  <div class="domains-container" nodata="model.domains" style="max-height: {{ model.domainsVisible ? (model.domains.length * 155) : 326 }}px">
+  <div class="domains-container" style="max-height: {{ model.domainsVisible ? (model.domainList.length * 155) : 326 }}px">
     <ul class="boxes domains">
-      <li class="box ib" ng-repeat="domain in model.domains track by domain.id">
+      <li class="box ib" ng-repeat="(name, domain) in model.domains track by name">
 
         <a href="#/domains/{{ domain.name }}">
           <h2 class="blue">{{ domain.name }}</h2>
@@ -35,7 +35,7 @@
     </ul>
   </div>
 
-  <div ng-show="model.domains.length > 4">
+  <div ng-show="model.domainList.length > 4">
     <a class="pull-right blue hide-domains fs0" ng-show="model.domainsVisible" ng-click="model.toggleDomainVisibility()">
       <span class="text ib">HIDE</span>
       <span class="icon ib blue-border blue-bg round-button"><i></i></span>
