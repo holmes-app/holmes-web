@@ -14,7 +14,7 @@ class LastReviewsCtrl
     @lastReviews = reviews
 
   getLastReviews: ->
-    @LastReviewsFcty.one('').get().then((@_fillReviews))
+    @LastReviewsFcty.getLastReviews().then(@_fillReviews)
 
 
 angular.module('holmesApp')

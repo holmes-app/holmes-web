@@ -1,6 +1,12 @@
 'use strict'
 
+class LastReviewsFactory
+  constructor: (@restangular) ->
+
+  getLastReviews: ->
+    @restangular.one('last-reviews').get()
+
+
 angular.module('holmesApp')
   .factory 'LastReviewsFcty', (Restangular) ->
-    Restangular.withConfig (RestangularConfigurer) ->
-      RestangularConfigurer.setBaseUrl(RestangularConfigurer.baseUrl + '/last-reviews')
+    return new LastReviewsFactory(Restangular)
