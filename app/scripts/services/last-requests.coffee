@@ -1,6 +1,12 @@
 'use strict'
 
+class LastRequestsFactory
+  constructor: (@restangular) ->
+
+  getLastRequests: (params) ->
+    @restangular.one('last-requests').get(params)
+
+
 angular.module('holmesApp')
   .factory 'LastRequestsFcty', (Restangular) ->
-    Restangular.withConfig (RestangularConfigurer) ->
-      RestangularConfigurer.setBaseUrl(RestangularConfigurer.baseUrl + '/last-requests')
+    return new LastRequestsFactory(Restangular)

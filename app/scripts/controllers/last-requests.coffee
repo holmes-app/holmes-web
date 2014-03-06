@@ -16,7 +16,7 @@ class LastRequestsCtrl
     @requestsCount = data.requestsCount
 
   getLastRequests: (currentPage, pageSize) ->
-    @LastRequestsFcty.one('').get({current_page: currentPage, page_size: pageSize}).then(@_fillRequests)
+    @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then(@_fillRequests)
 
   updateLastRequests: (currentPage, pageSize) =>
     @getLastRequests(currentPage, pageSize)
