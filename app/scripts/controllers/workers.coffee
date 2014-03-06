@@ -18,7 +18,7 @@ class WorkersCtrl
     @activeWorkersPercentage = @activeWorkers / @workerCount
 
   getWorkers: ->
-    @WorkersFcty.all('').getList().then(@_fillWorkers)
+    @WorkersFcty.getWorkers().then(@_fillWorkers)
 
 
 angular.module('holmesApp')
