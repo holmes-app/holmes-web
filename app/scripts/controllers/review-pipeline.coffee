@@ -16,7 +16,7 @@ class ReviewPipelineCtrl
     @reviewCount = data.reviewCount
 
   getReviews: (currentPage, pageSize) ->
-    @NextJobsFcty.one('').get({current_page: currentPage, page_size: pageSize}).then(@_fillReviews)
+    @NextJobsFcty.getNextJobs({current_page: currentPage, page_size: pageSize}).then(@_fillReviews)
 
   updateReviews: (currentPage, pageSize) =>
     @getReviews(currentPage, pageSize)
