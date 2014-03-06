@@ -170,7 +170,7 @@ table {
   }
 }
 
-input[type='text'], input[type='number'], input[type='numeric'] {
+input[type='text'], input[type='number'], input[type='numeric'], input[type='url'] {
   @include box-sizing(border-box);
   height: 30px;
   border: solid 1px #ddd;
