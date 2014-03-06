@@ -15,7 +15,11 @@ class DomainsCtrl
 
   _fillDomains: (domains) =>
     @domains = domains
+    @DomainsFcty.getDomainsDetails().then(@_fillDomainsDetails)
 
+  _fillDomainsDetails: (domains) =>
+    @domains = domains
+ 
   _fillViolations: (mostCommonViolations) =>
     @mostFrequentViolations = mostCommonViolations.slice(0, 10)
     @leastFrequentViolations = mostCommonViolations.slice(10)
@@ -33,7 +37,7 @@ class DomainsCtrl
     @mostFrequentVisible = true
 
   getDomainData: ->
-    @DomainsFcty.all('').getList().then(@_fillDomains)
+    @DomainsFcty.getDomains().then(@_fillDomains)
 
   getMostCommonViolations: ->
     @MostCommonViolationsFcty.all('').getList().then(@_fillViolations)
