@@ -1,3 +1,5 @@
+'use strict'
+
 class WebSocketService
   constructor: (@wsUrl, @WebSocket) ->
     @ws = new @WebSocket(@wsUrl)
