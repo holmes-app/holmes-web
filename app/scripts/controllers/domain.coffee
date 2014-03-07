@@ -39,13 +39,6 @@ class DomainCtrl
         color: 'color' + (i + 1)
       data)
 
-    @selectedCategory =
-      title: @domainGroupedViolations[0].label
-      percentage: @domainGroupedViolations[0].value
-      pageCount: @domainGroupedViolations[0].pageCount
-      color: @domainGroupedViolations[0].color
-      violations: @violationData[@domainGroupedViolations[0].id]
-
   _fillReviews: (data) =>
     @reviews = data
     @reviewCount = @reviews.reviewCount
