@@ -1,4 +1,11 @@
 .status-concurrent-view {
+  & > h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
   .toolbar {
     width: 100%;
     margin-top: 50px;
@@ -15,6 +22,62 @@
     .total-label {
       right: 0;
       top: -34px;
+    }
+  }
+
+  .add-new-limit {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+    width: 100%;
+
+    a {
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .form-row {
+      margin: 10px 0;
+    }
+
+    label {
+      margin-right: 5px;
+    }
+
+    .path {
+      width: 350px;
+    }
+  }
+
+  .box {
+    .concurrent-container {
+      position: relative;
+    }
+
+    .concurrent {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .current-value {
+      width: 60px;
+      position: absolute;
+      top: 50px;
+      text-align: center;
+      left: 50%;
+      margin-left: -30px;
+      background: #ddd;
+      padding: 10px;
+      border-radius: 3px;
+      opacity: 0;
+      @include transition(opacity 200ms linear);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+
+      &.visible {
+        opacity: 1;
+      }
     }
   }
 }
