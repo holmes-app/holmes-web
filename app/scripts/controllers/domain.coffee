@@ -9,6 +9,7 @@ class DomainCtrl
     @reviewFilter = ''
     @reviews = {}
 
+    @getDomainViolations()
     @getReviewsData()
     @getDomainDetails()
     @watchScope()
@@ -19,38 +20,31 @@ class DomainCtrl
         @getReviewsData()
     )
 
-    @domainCategories = [
-      { id: 1, label: 'SEO Violations', value: 31.79, pageCount: 198542, color: 'color1' },
-      { id: 2, label: 'Semantics Violations', value: 27.76, pageCount: 173356, color: 'color2' },
-      { id: 3, label: 'Performance Violations', value: 22.79, pageCount: 142345, color: 'color3' },
-      { id: 4, label: 'HTTP Violations', value: 17.65, pageCount: 110230, color: 'color4' },
-    ]
+    @violationData = {}
 
-    mockViolations = [
-      { occurrences: 23253, title: 'Broken link(s) found.' },
-      { occurrences: 35288, title: 'CSS size in kb is too big.' },
-      { occurrences: 31128, title: 'Disallow in Robots not found.' },
-      { occurrences: 19547, title: 'Disallow: / in Robots.' },
-      { occurrences: 17354, title: 'Domain Blacklisted.' },
-      { occurrences: 14225, title: 'Empty anchor(s) found.' },
-      { occurrences: 12125, title: 'Image not found.' },
-      { occurrences: 10251, title: 'Image(s) without alt attribute.' },
-      { occurrences: 7245, title: 'itemscope attribute missing in body.' },
-      { occurrences: 7245, title: 'itemtype attribute is invalid.' },
-    ]
+  _fillViolationData: (data) =>
+    @violationData[data.categoryId] = data.violations
 
-    @violationData =
-      1: mockViolations
-      2: mockViolations
-      3: mockViolations
-      4: mockViolations
+  _fillDomainGroupedViolations: (data) =>
+    for violation in data.violations
+      @DomainsFcty.getDomainMostCommonViolations(data.domainName, violation.categoryId).then(@_fillViolationData)
+
+    @domainGroupedViolations = _.map(
+      data.violations,
+      (violation, i) ->
+        id: violation.categoryId
+        label: violation.categoryName + ' Violations'
+        value: 100 * violation.count / this.total
+        pageCount: violation.count
+        color: 'color' + (i + 1)
+      data)
 
     @selectedCategory =
-      title: @domainCategories[0].label
-      percentage: @domainCategories[0].value
-      pageCount: @domainCategories[0].pageCount
-      color: @domainCategories[0].color
-      violations: @violationData[@domainCategories[0].id]
+      title: @domainGroupedViolations[0].label
+      percentage: @domainGroupedViolations[0].value
+      pageCount: @domainGroupedViolations[0].pageCount
+      color: @domainGroupedViolations[0].color
+      violations: @violationData[@domainGroupedViolations[0].id]
 
   _fillReviews: (data) =>
     @reviews = data
@@ -60,6 +54,9 @@ class DomainCtrl
   _fillDomainDetails: (data) =>
     @domain_details = data
     @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
+
+  getDomainViolations: ->
+    @DomainsFcty.getDomainGroupedViolations(@domainName).then(@_fillDomainGroupedViolations)
 
   getReviewsData: (currentPage, pageSize) ->
     filter = @domain_url + @reviewFilter

@@ -25,23 +25,23 @@
   </div>
 
   <div class="violations-container">
-    <div class="chart-container ib">
-      <donut label="violation types" data="model.domainCategories" onselect="model.onSelect"></donut>
+    <div class="chart-container ib" ng-if="model.domainGroupedViolations">
+      <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
       <ul class="categories" ng-hide="model.selectedCategory">
-        <li ng-repeat="category in model.domainCategories track by category.label">
-          <h4 ng-class="'color' + ($index + 1)">{{ category.value }}% {{category.label}}</h4>
+        <li ng-repeat="category in model.domainGroupedViolations track by category.label">
+          <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
           <p class="grey">{{ category.pageCount | number }} pages</p>
         </li>
       </ul>
 
       <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
-        <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage }}% {{ model.selectedCategory.title }}</h4>
+        <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
         <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} pages</p>
         <ul class="category">
-          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
-            <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.occurrences | number }}</p>
+          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations">
+            <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
             <p class="dark-grey ib title">{{ detail.title }}</p>
           </li>
         </ul>
