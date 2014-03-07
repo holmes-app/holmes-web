@@ -10,6 +10,7 @@ class ViolationCtrl
 
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
+    @reviewsCount = violation.reviewsCount
 
   _fillViolation: (violation) =>
     max_value = _.map(
