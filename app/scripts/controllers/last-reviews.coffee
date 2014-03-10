@@ -7,7 +7,7 @@ class LastReviewsCtrl
     @getLastReviews()
 
     @WebSocketFcty.on((message) =>
-      @getLastReviews()
+      @getLastReviews() if message.type == 'new-review'
     )
 
   _fillReviews: (reviews) =>
