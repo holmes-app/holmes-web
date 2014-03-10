@@ -40,13 +40,22 @@ angular.module('holmesApp')
         element.append(totalLabel)
         totalLabelWidth = totalLabel.width()
 
-      totalValue = null
+      totalValueElement = null
       if showTotal
-        totalValue = angular.element('<div class="total">' + (scope.total - scope.value) + '</div>')
-        element.append(totalValue)
+        totalValueElement = angular.element('<div class="total">' + (scope.total - scope.value) + '</div>')
+        element.append(totalValueElement)
+
+      setElementTotalValue = (totalValue) ->
+        totalValueElement.html(totalValue)
+
+      setElementTotalValue(scope.total)
 
       scope.$watch('value', (newValue, oldValue) ->
         setElementValue(newValue)
+      )
+
+      scope.$watch('total', (newValue, oldValue) ->
+        setElementTotalValue(newValue)
       )
 
       scope.$watch('percentage', (newValue, oldValue) ->
