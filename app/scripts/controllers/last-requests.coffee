@@ -8,7 +8,7 @@ class LastRequestsCtrl
     @getLastRequests()
 
     @WebSocketFcty.on((message) =>
-      @getLastRequests()
+      @getLastRequests() if message.type == 'new-request'
     )
 
   _fillRequests: (data) =>
