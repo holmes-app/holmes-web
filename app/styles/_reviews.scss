@@ -188,7 +188,13 @@
       }
 
       .fact-value {
+        width: 800px;
         font-family: 'Open Sans', sans-serif;
+
+        div {
+          width: 770px;
+          padding: 10px 0 10px;
+        }
       }
     }
   }
