@@ -153,8 +153,16 @@
           line-height: 20px;
           margin-bottom: 20px;
         }
-      }
 
+        a {
+          color: $blue;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+
+      }
     }
 
     .fact-category {
