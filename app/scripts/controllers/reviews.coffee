@@ -33,8 +33,6 @@ class ReviewsCtrl
         data
       )
 
-      console.log(@violations)
-
       @facts = _.groupBy(data.facts, 'category')
     )
 
