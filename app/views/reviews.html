@@ -92,7 +92,51 @@
               <tbody>
                 <tr ng-repeat="fact in facts_list track by fact.key">
                   <td class="title grey"><div>{{ fact.title }}</div></td>
-                  <td class="fact-value grey"><div>{{ fact.value }}</div></td>
+                  <td class="fact-value grey">
+                    <div class="content" ng-if="fact.unit == 'value'">{{ fact.value }}</div>
+                    <div class="content" ng-if="fact.unit == 'kb'">{{ fact.value | number }}kb</div>
+                    <div class="content" ng-if="fact.unit == 'css' || fact.unit == 'js' || fact.unit == 'links'">
+                      <ul>
+                        <li ng-repeat="value in fact.value" class="url">
+                          <a href="{{ value }}" title="{{ value }}" target="_blank">{{ value }}</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="content" ng-if="fact.unit == 'images'">
+                      <ul class="fs0 group images">
+                        <li ng-repeat="value in fact.value" class="ib">
+                          <a href="{{ value }}" target="_blank">
+                            <div class="img-container">
+                              <img src="{{ value }}" title="{{ value }}" alt="{{ value }}" />
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="content" ng-if="fact.unit == 'values'">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Key</th>
+                            <th>Content</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="value in fact.value">
+                            <td class="unit-values">{{ value.key }}</td>
+                            <td>{{ value.content }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="content" ng-if="fact.unit == 'heading-hierarchy'">
+                      <ul>
+                        <li ng-repeat="value in fact.value">
+                          {{ value.0 }} - {{ value.1 }}
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
