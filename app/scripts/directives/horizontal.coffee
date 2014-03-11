@@ -48,14 +48,16 @@ angular.module('holmesApp')
       setElementTotalValue = (totalValue) ->
         totalValueElement.html(totalValue)
 
-      setElementTotalValue(scope.total)
+      if totalValueElement
+        setElementTotalValue(scope.total)
 
       scope.$watch('value', (newValue, oldValue) ->
         setElementValue(newValue)
       )
 
       scope.$watch('total', (newValue, oldValue) ->
-        setElementTotalValue(newValue)
+        if totalValueElement
+          setElementTotalValue(newValue)
       )
 
       scope.$watch('percentage', (newValue, oldValue) ->
