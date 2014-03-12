@@ -11,6 +11,7 @@
           id="url"
           ng-model="model.url"
           ng-disabled="model.isAddingPage"
+          focus-if="model.addPageFormVisible"
           placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
         />
         <div class="arrow" ng-click="addPage()"><i></i></div>
