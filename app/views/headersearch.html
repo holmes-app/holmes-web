@@ -9,6 +9,7 @@
           type="text"
           ng-model="model.term"
           focus-if="model.searchFormVisible"
+          ng-keyup="model.searchFormVisible = $event.keyCode != 27"
           placeholder="Page URL" />
         <div class="arrow" ng-click="search()"><i></i></div>
       </form>
