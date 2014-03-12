@@ -11,7 +11,6 @@ class DomainCtrl
     @domainStatus = false
 
     @getDomainViolations()
-    @getReviewsData()
     @getDomainDetails()
     @watchScope()
 
@@ -57,8 +56,8 @@ class DomainCtrl
   getDomainViolations: ->
     @DomainsFcty.getDomainGroupedViolations(@domainName).then(@_fillDomainGroupedViolations)
 
-  getReviewsData: (currentPage, pageSize) ->
-    filter = @domain_url + @reviewFilter
+  getReviewsData: (currentPage, pageSize) =>
+    filter = if @reviewFilter then @domain_url + @reviewFilter else ''
     params =
       current_page: currentPage
       page_size: pageSize
@@ -78,9 +77,6 @@ class DomainCtrl
         violations: @violationData[data.id]
     else
       @selectedCategory = null
-
-  updateReviews: (currentPage, pageSize) =>
-    @getReviewsData(currentPage, pageSize)
 
   watchScope: ->
     updateReviewData = $.debounce(500, =>
