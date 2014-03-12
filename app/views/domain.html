@@ -80,3 +80,9 @@
 
   <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="10" pagechange="model.updateReviews" ng-show="model.numberOfPages > 1"></page>
 </div>
+
+<div class="stop-review-button" ng-show="model.numberOfPages > 0">
+  <button ng-click="model.changeDomainStatus()">
+    {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
+  </button>
+</div>

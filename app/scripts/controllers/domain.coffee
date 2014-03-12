@@ -8,6 +8,7 @@ class DomainCtrl
     @domain_url = ''
     @reviewFilter = ''
     @reviews = {}
+    @domainStatus = false
 
     @getDomainViolations()
     @getReviewsData()
@@ -46,7 +47,12 @@ class DomainCtrl
 
   _fillDomainDetails: (data) =>
     @domain_details = data
+    @domainStatus = data.is_active
     @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
+
+  _fillChangeDomainStatus: =>
+    @domainStatus = !@domainStatus
+
 
   getDomainViolations: ->
     @DomainsFcty.getDomainGroupedViolations(@domainName).then(@_fillDomainGroupedViolations)
@@ -82,6 +88,10 @@ class DomainCtrl
     )
 
     @scope.$watch('model.reviewFilter', updateReviewData)
+
+  changeDomainStatus: ->
+    @DomainsFcty.postChangeDomainStatus(@domainName).then(@_fillChangeDomainStatus)
+
 
 angular.module('holmesApp')
   .controller 'DomainCtrl', ($scope, DomainsFcty, $routeParams, WebSocketFcty) ->

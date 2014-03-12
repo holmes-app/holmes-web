@@ -36,6 +36,9 @@ class DomainsFactory
   getDomainData: (domainName) ->
     @restangular.one('domains', domainName).get()
 
+  postChangeDomainStatus: (domainName) ->
+    @restangular.one('domains', domainName).post('change-status')
+
 
 angular.module('holmesApp')
   .factory 'DomainsFcty', (Restangular) ->
