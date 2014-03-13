@@ -43,7 +43,7 @@ class DomainsCtrl
     @_extraDomainsDetailsLoaded = true
 
   _fillViolations: (mostCommonViolations) =>
-    @mostFrequentViolations = mostCommonViolations[0..10]
+    @mostFrequentViolations = mostCommonViolations[0..9]
     @leastFrequentViolations = mostCommonViolations[10..]
     @groupData = _.groupBy(mostCommonViolations, 'category')
 
