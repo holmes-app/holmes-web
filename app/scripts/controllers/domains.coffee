@@ -17,31 +17,6 @@ class DomainsCtrl
     @domainList = _.sortBy(@domainList.reverse(), 'is_active').reverse()
     @domains = @domainList
 
-    for domain in @domainList[0..3]
-      @DomainsFcty.getDomainPageCount(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainViolationCount(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainErrorPercentage(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainResponseTimeAvg(domain).then(@_fillDomainDetails)
-
-    @_extraDomainsDetailsLoaded = false
-    if @domainsVisible
-      @_loadExtraDomainsDetails()
-
-  _fillDomainDetails: (domainDetails) =>
-    whichDomain = _.find(@domains, {id: domainDetails.id})
-    whichDomain = _.merge(whichDomain, domainDetails)
-
-  _loadExtraDomainsDetails: ->
-    return if @_extraDomainsDetailsLoaded
-
-    for domain in @domainList[4..]
-      @DomainsFcty.getDomainPageCount(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainViolationCount(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainErrorPercentage(domain).then(@_fillDomainDetails)
-      @DomainsFcty.getDomainResponseTimeAvg(domain).then(@_fillDomainDetails)
-
-    @_extraDomainsDetailsLoaded = true
-
   _fillViolations: (mostCommonViolations) =>
     @mostFrequentViolations = mostCommonViolations[0..9]
     @leastFrequentViolations = mostCommonViolations[10..]
