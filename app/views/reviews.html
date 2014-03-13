@@ -129,10 +129,10 @@
                         </tbody>
                       </table>
                     </div>
-                    <div class="content" ng-if="fact.unit == 'heading-hierarchy'">
+                    <div class="content" ng-if="fact.unit == 'heading-hierarchy' || fact.unit == 'google-analytics'">
                       <ul>
                         <li ng-repeat="value in fact.value">
-                          {{ value.0 }} - {{ value.1 }}
+                          {{ value.0 }}: {{ value.1 }}
                         </li>
                       </ul>
                     </div>
