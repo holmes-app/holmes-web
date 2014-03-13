@@ -1,6 +1,6 @@
 {
   "name": "holmes",
-  "version": "2.2.26",
+  "version": "0.3.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
