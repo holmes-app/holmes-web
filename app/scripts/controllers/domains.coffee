@@ -24,7 +24,6 @@ class DomainsCtrl
 
   toggleDomainVisibility: ->
     @domainsVisible = !@domainsVisible
-    @_loadExtraDomainsDetails()
 
   showGroups: ->
     @groupsVisible = true
