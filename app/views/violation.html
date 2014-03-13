@@ -38,7 +38,7 @@
           </tr></thead>
           <tbody>
             <tr ng-repeat="review in model.violation.reviews" class="ng-scope">
-              <td class="url"><a href="#/domains/{{review.domain_name}}/reviews/{{review.uuid}}">{{review.page.url}}</a></td>
+              <td class="url"><a href="#/page/{{review.page.uuid}}/review/{{review.uuid}}">{{review.page.url}}</a></td>
               <td class="finished-at center"><span am-time-ago="review.page.completedAt * 1000"></span> ago</td>
             </tr>
           </tbody>

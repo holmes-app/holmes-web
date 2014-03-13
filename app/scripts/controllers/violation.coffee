@@ -4,7 +4,6 @@ class ViolationCtrl
   constructor: (@scope, @violationKey, @ViolationFcty) ->
     @pageFilter = null
     @violation = {}
-    @ViolationFcty.one(@violationKey).get({page_size: 10}).then(@_fillReviews)
     @ViolationFcty.one(@violationKey, 'domains').get('').then(@_fillViolation)
     @watchScope()
 
@@ -26,6 +25,7 @@ class ViolationCtrl
       max_value)
     @violation.label = violation.title
     @violation.pageCount = violation.total
+    @ViolationFcty.one(@violationKey).get({page_size: 10}).then(@_fillReviews)
 
   updateReviews: (currentPage, pageSize) =>
     @ViolationFcty.one(@violationKey).get({page_size: pageSize, current_page: currentPage, page_filter: @pageFilter}).then(@_fillReviews)
