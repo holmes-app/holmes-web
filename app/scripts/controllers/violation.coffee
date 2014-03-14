@@ -13,13 +13,16 @@ class ViolationCtrl
 
   _fillViolation: (violation) =>
     violation.domains = _.sortBy(violation.domains, 'count').reverse()
-    max_value = violation.domains[0].count
-    others = _.reduce violation.domains[4..], (others, domain) ->
+    max_value = if violation.domains.length > 0 then violation.domains[0].count else 0
+    splitIndex = _.findIndex violation.domains, (domain) ->
+      return domain.count < (0.12 * max_value)
+    others = _.reduce violation.domains[splitIndex..], (others, domain) ->
       return {
         name: 'others'
         count: others.count + domain.count
       }
-    violation.domains = violation.domains[0..3].concat(others)
+    @violation.domainsCount = violation.domains.length
+    violation.domains = violation.domains[0..splitIndex - 1].concat(others) if others?
     @violation.domains = _.map(
       violation.domains
       (domain) -> {

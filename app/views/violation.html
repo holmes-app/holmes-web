@@ -4,11 +4,11 @@
     <div class="fs0 abs abs-right toolbar">
       <div class="ib">
         <h3 class="mid-grey">domains</h3>
-        <p class="grey">{{ model.violation.domains.length }}</p>
+        <p class="grey">{{ model.violation.domainsCount }}</p>
       </div>
       <div class="ib">
         <h3 class="mid-grey">pages</h3>
-        <p class="grey">{{ model.violation.pageCount }}</p>
+        <p class="grey">{{ model.violation.pageCount | number }}</p>
       </div>
     </div>
   </div>
