@@ -7,6 +7,7 @@ class LastRequestsCtrl
 
     @getLastRequests()
 
+    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getLastRequests() if message.type == 'new-request'
     )

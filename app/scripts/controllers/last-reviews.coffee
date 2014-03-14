@@ -6,6 +6,7 @@ class LastReviewsCtrl
 
     @getLastReviews()
 
+    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getLastReviews() if message.type == 'new-review'
     )

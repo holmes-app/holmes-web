@@ -7,6 +7,7 @@ class WorkersCtrl
 
     @getWorkers()
 
+    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getWorkers() if message.type == 'worker-status'
     )

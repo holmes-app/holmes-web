@@ -7,6 +7,7 @@ class ReviewPipelineCtrl
 
     @getReviews()
 
+    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getReviews()
     )

@@ -10,6 +10,9 @@ class WebSocketService
     @throttledReview = $.throttle(500, @sendMessage)
     @throttledSendMessage = $.throttle(1000, @sendMessage)
 
+  clearHandlers: () ->
+    @handlers[..] = []
+
   on: (callback) ->
     @handlers.push(callback)
 
