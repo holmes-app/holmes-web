@@ -7,20 +7,8 @@ angular.module('holmesApp')
     replace: true,
     link: (scope, element, attrs) ->
       scope.model = scope.model or {}
-
       scope.model.addPageFormVisible = false
-      scope.toggleAddPage = ->
-        scope.model.addPageFormVisible = !scope.model.addPageFormVisible
-        scope.model.searchFormVisible = false
-        if scope.model.addPageFormVisible
-          scope.toggleBar()
-
       scope.model.searchFormVisible = false
-      scope.toggleSearch = ->
-        scope.model.addPageFormVisible = false
-        scope.model.searchFormVisible = !scope.model.searchFormVisible
-        if scope.model.searchFormVisible
-          scope.toggleBar()
 
       scope.toggleBar = ->
         if scope.model.addPageFormVisible or scope.model.searchFormVisible
@@ -30,12 +18,29 @@ angular.module('holmesApp')
           $window.onclick = null
           scope.$apply()
 
-      _hideBar = (event, element, obj) ->
-        Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
-        if event.y > Ythreshold
-          scope.model[obj] = false
+      _toggle = (obj) ->
+        headers = ['searchFormVisible', 'addPageFormVisible']
+        headers.splice(headers.indexOf(obj), 1)
+        scope.model[obj] = !scope.model[obj]
+
+        for x in headers
+            scope.model[x] = false
+
+        if scope.model[obj]
+          scope.toggleBar()
+
+      scope.toggleAddPage = ->
+        _toggle('addPageFormVisible')
+
+      scope.toggleSearch = ->
+        _toggle('searchFormVisible')
 
       scope.hideBarIfClickOutside = (event, callback) ->
+        _hideBar = (event, element, obj) ->
+          Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
+          if event.y > Ythreshold
+            scope.model[obj] = false
+
         if scope.model.addPageFormVisible
           _hideBar(event, '.add-page-form', 'addPageFormVisible')
         else if scope.model.searchFormVisible
