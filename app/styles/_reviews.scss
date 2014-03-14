@@ -225,10 +225,6 @@
           }
         }
 
-        .group {
-          @include column-count(5);
-        }
-
         .url {
           margin: 2px 0 2px;
           font-size: 12px;
