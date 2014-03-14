@@ -12,9 +12,14 @@ class ViolationCtrl
     @reviewsCount = violation.reviewsCount
 
   _fillViolation: (violation) =>
-    max_value = _.map(
-      violation.domains
-      (domain) -> domain.count).sort((x, y) -> x - y).pop()
+    violation.domains = _.sortBy(violation.domains, 'count').reverse()
+    max_value = violation.domains[0].count
+    others = _.reduce violation.domains[4..], (others, domain) ->
+      return {
+        name: 'others'
+        count: others.count + domain.count
+      }
+    violation.domains = violation.domains[0..3].concat(others)
     @violation.domains = _.map(
       violation.domains
       (domain) -> {
