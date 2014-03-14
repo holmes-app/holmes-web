@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .directive('horizontal', () ->
+  .directive('horizontal', ($filter) ->
     template: '<div class="horizontal-bar"></div>'
     replace: true
     restrict: 'E'
@@ -29,7 +29,7 @@ angular.module('holmesApp')
         if scope.valuelabel?
           valueLabel = '<div class="value-label">' + scope.valuelabel + '</div>'
 
-        valueElement.html(value + valueLabel)
+        valueElement.html($filter('number')(value) + valueLabel)
         valueLabelWidth = valueElement.find('.value-label').width()
 
       setElementValue(scope.value)
@@ -42,7 +42,8 @@ angular.module('holmesApp')
 
       totalValueElement = null
       if showTotal
-        totalValueElement = angular.element('<div class="total">' + (scope.total - scope.value) + '</div>')
+        total = $filter('number')(scope.total - scope.value)
+        totalValueElement = angular.element('<div class="total">' + total + '</div>')
         element.append(totalValueElement)
 
       setElementTotalValue = (totalValue) ->
