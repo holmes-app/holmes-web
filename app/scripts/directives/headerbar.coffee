@@ -30,13 +30,14 @@ angular.module('holmesApp')
           $window.onclick = null
           scope.$apply()
 
+      _hideBar = (event, element, obj) ->
+        Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
+        if event.y > Ythreshold
+          scope.model[obj] = false
+
       scope.hideBarIfClickOutside = (event, callback) ->
         if scope.model.addPageFormVisible
-          Ythreshold = Math.abs($('.add-page-form').position().top) + $('.add-page-form').height() - $($window).scrollTop()
-          if event.y > Ythreshold
-            scope.model.addPageFormVisible = false
-        else
-          Ythreshold = Math.abs($('.search-form').position().top) + $('.search-form').height() - $($window).scrollTop()
-          if event.y > Ythreshold
-            scope.model.searchFormVisible = false
+          _hideBar(event, '.add-page-form', 'addPageFormVisible')
+        else if scope.model.searchFormVisible
+          _hideBar(event, '.search-form', 'searchFormVisible')
         callback()
