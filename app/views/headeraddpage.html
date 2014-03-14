@@ -15,7 +15,7 @@
           ng-keyup="model.addPageFormVisible = $event.keyCode != 27"
           placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
         />
-        <div class="arrow" ng-click="addPage()"><i></i></div>
+        <div class="arrow" ng-click="addPageForm.url.$valid && addPage()"><i></i></div>
       </form>
     </div>
   </div>

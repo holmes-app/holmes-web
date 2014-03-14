@@ -11,7 +11,7 @@
           focus-if="model.searchFormVisible"
           ng-keyup="model.searchFormVisible = $event.keyCode != 27"
           placeholder="Page URL" />
-        <div class="arrow" ng-click="search()"><i></i></div>
+        <div class="arrow" ng-click="searchForm.$valid && search()"><i></i></div>
       </form>
     </div>
   </div>
