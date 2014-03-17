@@ -8,6 +8,7 @@
           required
           type="text"
           ng-model="model.term"
+          ng-disabled="!model.searchFormVisible"
           focus-if="model.searchFormVisible"
           ng-keyup="model.searchFormVisible = $event.keyCode != 27"
           placeholder="Page URL" />

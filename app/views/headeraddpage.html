@@ -10,7 +10,7 @@
           name="url"
           id="url"
           ng-model="model.url"
-          ng-disabled="model.isAddingPage"
+          ng-disabled="model.isAddingPage || !model.addPageFormVisible"
           focus-if="model.addPageFormVisible"
           ng-keyup="model.addPageFormVisible = $event.keyCode != 27"
           placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
