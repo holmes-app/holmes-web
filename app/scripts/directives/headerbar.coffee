@@ -9,9 +9,23 @@ angular.module('holmesApp')
       scope.model = scope.model or {}
       scope.model.addPageFormVisible = false
       scope.model.searchFormVisible = false
+      scope.model.alertMessageVisible = false
+
+      scope.hideBarIfClickOutside = (event, callback) ->
+        _hideBar = (event, element, obj) ->
+          Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
+          if event.y > Ythreshold
+            scope.model[obj] = false
+            scope.hideAlertMessage()
+
+        if scope.model.addPageFormVisible
+          _hideBar(event, '.add-page-form', 'addPageFormVisible')
+        else if scope.model.searchFormVisible
+          _hideBar(event, '.search-form', 'searchFormVisible')
+        callback()
 
       scope.toggleBar = ->
-        if scope.model.addPageFormVisible or scope.model.searchFormVisible
+        if scope.model.addPageFormVisible or scope.model.searchFormVisible or scope.model.alertMessageVisible
           $window.onclick = (event) ->
             scope.hideBarIfClickOutside(event, scope.toggleBar)
         else
@@ -19,15 +33,14 @@ angular.module('holmesApp')
           scope.$apply()
 
       _toggle = (obj) ->
-        headers = ['searchFormVisible', 'addPageFormVisible']
+        headers = ['searchFormVisible', 'addPageFormVisible', 'alertMessageVisible']
         headers.splice(headers.indexOf(obj), 1)
         scope.model[obj] = !scope.model[obj]
 
         for x in headers
             scope.model[x] = false
 
-        if scope.model[obj]
-          scope.toggleBar()
+        scope.toggleBar()
 
       scope.toggleAddPage = ->
         _toggle('addPageFormVisible')
@@ -35,14 +48,7 @@ angular.module('holmesApp')
       scope.toggleSearch = ->
         _toggle('searchFormVisible')
 
-      scope.hideBarIfClickOutside = (event, callback) ->
-        _hideBar = (event, element, obj) ->
-          Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
-          if event.y > Ythreshold
-            scope.model[obj] = false
-
-        if scope.model.addPageFormVisible
-          _hideBar(event, '.add-page-form', 'addPageFormVisible')
-        else if scope.model.searchFormVisible
-          _hideBar(event, '.search-form', 'searchFormVisible')
-        callback()
+      scope.hideAlertMessage = (headerWitchOne) ->
+        if headerWitchOne == 'success_page'
+          scope.toggleAddPage()
+        scope.model.alertMessageVisible = false

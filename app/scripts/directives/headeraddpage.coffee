@@ -22,6 +22,8 @@ angular.module('holmesApp')
         Restangular.all('page').post({url: url}).then((page) ->
           $scope.clearForm()
           $scope.toggleAddPage()
+          $scope.model.alertMessageVisible = true
+          $scope.model.headerWitchOne = 'success_page'
         , (response) ->
           if response.status == 400
             if response.data.reason == 'invalid_url'
@@ -29,5 +31,8 @@ angular.module('holmesApp')
 
             if response.data.reason == 'redirect'
               $scope.model.turnsOut = response.data.effectiveUrl
+
+            $scope.model.alertMessageVisible = true
+            $scope.model.headerWitchOne = response.data.reason
         )
   )
