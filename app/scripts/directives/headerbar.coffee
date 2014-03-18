@@ -27,10 +27,9 @@ angular.module('holmesApp')
       scope.toggleBar = ->
         if scope.model.addPageFormVisible or scope.model.searchFormVisible or scope.model.alertMessageVisible
           $window.onclick = (event) ->
-            scope.hideBarIfClickOutside(event, scope.toggleBar)
-        else
-          $window.onclick = null
-          scope.$apply()
+            scope.hideBarIfClickOutside event, ->
+              $window.onclick = null
+              scope.$apply()
 
       _toggle = (obj) ->
         headers = ['searchFormVisible', 'addPageFormVisible', 'alertMessageVisible']
