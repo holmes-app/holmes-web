@@ -6,7 +6,7 @@
       <form name="searchForm" novalidate onsubmit="javascript: return false;" data-ng-submit="searchForm.$valid && search()">
         <input
           required
-          type="text"
+          type="url"
           ng-model="model.term"
           ng-disabled="!model.searchFormVisible"
           focus-if="model.searchFormVisible"
