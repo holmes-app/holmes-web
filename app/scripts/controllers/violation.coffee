@@ -3,6 +3,7 @@
 class ViolationCtrl
   constructor: (@scope, @violationKey, @ViolationFcty) ->
     @pageFilter = null
+    @pageSize = 10
     @violation = {}
     @ViolationFcty.one(@violationKey, 'domains').get('').then(@_fillViolation)
     @watchScope()
@@ -36,6 +37,7 @@ class ViolationCtrl
     @ViolationFcty.one(@violationKey).get({page_size: 10}).then(@_fillReviews)
 
   updateReviews: (currentPage, pageSize) =>
+    pageSize = if not pageSize then @pageSize
     @ViolationFcty.one(@violationKey).get({page_size: pageSize, current_page: currentPage, page_filter: @pageFilter}).then(@_fillReviews)
 
   watchScope: ->

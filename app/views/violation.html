@@ -49,7 +49,7 @@
   <pager
     pagecount="model.reviewsCount"
     current="model.currentPage"
-    pagesize="10"
+    pagesize="model.pageSize"
     pagechange="model.updateReviews"
     ng-show="model.violation.pageCount > 10"
   ></page>

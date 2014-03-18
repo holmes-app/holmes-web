@@ -79,7 +79,7 @@
   </div>
 
   <div ng-hide="model.reviewFilter">
-    <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="10" pagechange="model.getReviewsData" ng-show="model.numberOfPages > 1"></pager>
+    <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="model.pageSize" pagechange="model.getReviewsData" ng-show="model.numberOfPages > 1"></pager>
   </div>
 </div>
 

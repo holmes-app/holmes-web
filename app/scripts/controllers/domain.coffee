@@ -9,6 +9,7 @@ class DomainCtrl
     @reviewFilter = ''
     @reviews = {}
     @domainStatus = false
+    @pageSize = 10
 
     @getDomainViolations()
     @getDomainDetails()
@@ -61,7 +62,7 @@ class DomainCtrl
     filter = if @reviewFilter then @domain_url + @reviewFilter else ''
     params =
       current_page: currentPage
-      page_size: pageSize
+      page_size: if not pageSize then @pageSize
       term: filter
     @DomainsFcty.getDomainReviews(@domainName, params).then(@_fillReviews)
 

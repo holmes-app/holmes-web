@@ -4,6 +4,7 @@ class LastRequestsCtrl
   constructor: (@scope, @LastRequestsFcty, @WebSocketFcty) ->
     @requests = []
     @requestsCount = 0
+    @pageSize = 10
 
     @getLastRequests()
 
@@ -17,9 +18,11 @@ class LastRequestsCtrl
     @requestsCount = data.requestsCount
 
   getLastRequests: (currentPage, pageSize) ->
+    pageSize = if not pageSize then @pageSize
     @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then(@_fillRequests)
 
   updateLastRequests: (currentPage, pageSize) =>
+    pageSize = if not pageSize then @pageSize
     @getLastRequests(currentPage, pageSize)
 
 
