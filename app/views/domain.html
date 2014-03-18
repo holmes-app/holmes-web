@@ -78,7 +78,9 @@
     </div>
   </div>
 
-  <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="10" pagechange="model.getReviewsData" ng-show="model.numberOfPages > 1"></page>
+  <div ng-hide="model.reviewFilter">
+    <pager pagecount="model.numberOfPages" current="model.currentPage" pagesize="10" pagechange="model.getReviewsData" ng-show="model.numberOfPages > 1"></page>
+  </div>
 </div>
 
 <div class="stop-review-button" ng-show="model.numberOfPages > 0">
