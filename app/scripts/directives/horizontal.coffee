@@ -1,5 +1,83 @@
 'use strict'
 
+class HorizontalCtrl
+  constructor: (@scope, @element, @attrs, @filter) ->
+    @showTotal = false
+    @showTotal = @scope.showtotal if @scope.showtotal?
+    @elements = {}
+
+    @buildElements()
+
+    @setElementValue(@scope.value)
+    @setElementTotalValue(@scope.total)
+
+    @watchForChanges()
+
+  setElementValue: (value) ->
+    valueLabel = ''
+    if @scope.valuelabel?
+      valueLabel = '<div class="value-label">' + @scope.valuelabel + '</div>'
+
+    @elements.value.html(@filter('number')(value) + valueLabel)
+    @setElementTotalValue(@scope.total)
+
+  setElementTotalValue: (totalValue) ->
+    return unless @elements.totalValue?
+
+    total = @filter('number')(totalValue - @scope.value)
+    @elements.totalValue.html(total)
+
+  buildElements: ->
+    @element.html('<div class="value"></div>')
+    @elements.value = @element.find('.value')
+    @maxWidth = @element.width()
+    @width = @scope.percentage * @maxWidth
+    @elements.value.css('width', @width)
+
+    @elements.totalLabel = null
+    if @scope.totallabel?
+      @elements.totalLabel = angular.element('<div class="total-label">' + @scope.totallabel + '</div>')
+      @element.append(@elements.totalLabel)
+      @totalLabelWidth = @elements.totalLabel.width()
+
+    @elements.totalValue = null
+    if @showTotal
+      @elements.totalValue = angular.element('<div class="total"></div>')
+      @element.append(@elements.totalValue)
+
+  watchForChanges: ->
+    @scope.$watch('value', (newValue, oldValue) =>
+      @setElementValue(newValue)
+    )
+
+    @scope.$watch('total', (newValue, oldValue) =>
+      @setElementTotalValue(newValue)
+    )
+
+    @scope.$watch('percentage', @updatePercentage)
+
+  updatePercentage: =>
+    idealdx = (Math.floor(Math.log(@scope.value) / Math.log(1000))) * 0.012
+    idealRatio = idealdx + (Math.floor(Math.log(@scope.value) / Math.log(10)) + 1) * 0.024
+    @width = if @scope.percentage > idealRatio then @scope.percentage * @maxWidth else idealRatio * @maxWidth
+    @elements.value.css('width', @width)
+
+    if totalLabel?
+      if @width > @maxWidth - @totalLabelWidth
+        @elements.totalLabel.fadeOut()
+        @elements.totalValue.fadeOut() if @elements.totalValue?
+      else
+        @elements.totalLabel.fadeIn()
+        @elements.totalValue.fadeIn() if @elements.totalValue?
+
+    if @scope.valuelabel?
+      label = @elements.value.find('.value-label')
+      if @width < label.width()
+        label.fadeOut()
+      else
+        label.fadeIn()
+
+
 angular.module('holmesApp')
   .directive('horizontal', ($filter) ->
     template: '<div class="horizontal-bar"></div>'
@@ -13,73 +91,5 @@ angular.module('holmesApp')
       valuelabel: '@'
       totallabel: '@'
     link: (scope, element, attrs) ->
-      showTotal = false
-      showTotal = scope.showtotal if scope.showtotal?
-
-      element.html('<div class="value"></div>')
-      valueElement = element.find('.value')
-      maxWidth = element.width()
-      width = scope.percentage * maxWidth
-      valueElement.css('width', width)
-      valueLabelWidth = null
-      totalLabelWidth = null
-
-      setElementValue = (value) ->
-        valueLabel = ''
-        if scope.valuelabel?
-          valueLabel = '<div class="value-label">' + scope.valuelabel + '</div>'
-
-        valueElement.html($filter('number')(value) + valueLabel)
-        valueLabelWidth = valueElement.find('.value-label').width()
-
-      setElementValue(scope.value)
-
-      totalLabel = null
-      if scope.totallabel?
-        totalLabel = angular.element('<div class="total-label">' + scope.totallabel + '</div>')
-        element.append(totalLabel)
-        totalLabelWidth = totalLabel.width()
-
-      totalValueElement = null
-      if showTotal
-        total = $filter('number')(scope.total - scope.value)
-        totalValueElement = angular.element('<div class="total">' + total + '</div>')
-        element.append(totalValueElement)
-
-      setElementTotalValue = (totalValue) ->
-        totalValueElement.html(totalValue)
-
-      if totalValueElement
-        setElementTotalValue(scope.total)
-
-      scope.$watch('value', (newValue, oldValue) ->
-        setElementValue(newValue)
-      )
-
-      scope.$watch('total', (newValue, oldValue) ->
-        if totalValueElement
-          setElementTotalValue(newValue)
-      )
-
-      scope.$watch('percentage', (newValue, oldValue) ->
-        idealdx = (Math.floor(Math.log(scope.value) / Math.log(1000))) * 0.012
-        idealRatio = idealdx + (Math.floor(Math.log(scope.value) / Math.log(10)) + 1) * 0.024
-        width = if scope.percentage > idealRatio then scope.percentage * maxWidth else idealRatio * maxWidth
-        valueElement.css('width', width)
-
-        if totalLabel?
-          if width > maxWidth - totalLabelWidth
-            totalLabel.fadeOut()
-            totalValue.fadeOut() if totalValue?
-          else
-            totalLabel.fadeIn()
-            totalValue.fadeIn() if totalValue?
-
-        if scope.valuelabel?
-          label = valueElement.find('.value-label')
-          if width < label.width()
-            label.fadeOut()
-          else
-            label.fadeIn()
-      )
+      ctrl = new HorizontalCtrl(scope, element, attrs, $filter)
   )
