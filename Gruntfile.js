@@ -18,6 +18,18 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    ngconstant: {
+      dist: {
+        options: {
+          dest: '.tmp/scripts/constants/package.json.js',
+          name: 'HolmesWebPackageJson',
+        },
+        constants: {
+          packageJson: grunt.file.readJSON('package.json')
+        }
+      }
+    },
+
     // Project settings
     yeoman: {
       // configurable paths
@@ -379,6 +391,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant',
       'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -402,6 +415,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
