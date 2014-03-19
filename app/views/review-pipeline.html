@@ -1,8 +1,12 @@
-<div class="view status-view status-review-pipeline-view">
+<div class="view status-view status-workers-view">
   <h1>Status</h1>
   <statusbar index="3"></statusbar>
 
-  <table>
+  <div ng-hide="model.reviews">
+    <p>No available review pipeline.</p>
+  </div>
+
+  <table ng-show="model.reviews">
     <thead>
       <tr>
         <th class="dark-grey">URL</th>

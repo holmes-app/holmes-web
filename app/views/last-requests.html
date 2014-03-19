@@ -1,8 +1,12 @@
-<div class="view status-view status-last-requests-view">
+<div class="view status-view status-workers-view">
   <h1>Status</h1>
   <statusbar index="4"></statusbar>
 
-  <table>
+  <div ng-hide="model.requests">
+    <p>No available requests.</p>
+  </div>
+
+  <table ng-show="model.requests">
     <thead>
       <tr>
         <th class="dark-grey">URL</th>
