@@ -2,6 +2,10 @@
   <h1>Status</h1>
   <statusbar index="1"></statusbar>
 
+  <div ng-hide="model.workers">
+    <p>No available workers.</p>
+  </div>
+
   <div ng-if="model.workerCount">
     <horizontal
       percentage="model.activeWorkersPercentage"
