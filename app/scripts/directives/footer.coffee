@@ -6,7 +6,7 @@ angular.module('holmesApp')
     template: """
     <footer>
       <div class="container light-grey fs0">
-        <p class="ib">holmes is a free open-source project and is composed of <a class="blue under-hover" href="http://github.com/heynemann/holmes-web/">holmes-web (v1.0.2)</a> and <a class="blue under-hover" href="http://github.com/heynemann/holmes-api/">holmes-api</a> <a class="blue under-hover" href="http://github.com/heynemann/holmes-api/">(click to view version)</a>.</p>
+        <p class="ib">holmes is a free open-source project and is composed of <a class="blue under-hover" href="http://github.com/heynemann/holmes-web/">holmes-web (v1.0.2)</a> and <a class="blue under-hover" href="http://github.com/heynemann/holmes-api/">holmes-api ({{ apiVersion }})</a>.</p>
         <p class="ib pull-right login" ng-switch on="isFormVisible">
           <a ng-switch-when="false" class="blue under-hover" href="javascript:void(0);" ng-click="login()">Login</a>
           <a ng-switch-when="true" class="blue under-hover" href="javascript:void(0);" ng-click="logout()">Logout</a>
@@ -16,7 +16,11 @@ angular.module('holmesApp')
     </footer>
     """
     restrict: 'E'
-    controller: ($scope, $cookieStore, GooglePlus) ->
+    controller: ($scope, $cookieStore, GooglePlus, APIVersionFcty) ->
+      APIVersionFcty.getAPIVersion().then( (version) ->
+        $scope.apiVersion = version
+      )
+
       $scope.isFormVisible = if $cookieStore.get('HOLMES_AUTH_TOKEN') then true else false
 
       $scope.logout = () ->
