@@ -1,7 +1,7 @@
 <div class="view violation-view">
   <div class="header rel">
     <h2>{{ model.violation.label }}</h2>
-    <div class="fs0 abs abs-right toolbar">
+    <div class="fs0 abs abs-right toolbar" ng-show="model.violation.pageCount">
       <div class="ib">
         <h3 class="mid-grey">domains</h3>
         <p class="grey">{{ model.violation.domainsCount }}</p>
