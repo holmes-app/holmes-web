@@ -19,7 +19,7 @@
   </div>
 
   <ul class="boxes workers">
-    <li class="box worker" ng-repeat="worker in model.workers track by worker.uuid">
+    <li class="box worker" ng-repeat="worker in model.workers | orderBy:'-last_ping' track by worker.uuid">
       <a href="{{ worker.current_url }}">
         <h2 class="blue ng-binding">{{ worker.domain_name || "idle" }}</h2>
         <p class="url">{{ worker.current_url || "Waiting for new jobs..." }}</p>
