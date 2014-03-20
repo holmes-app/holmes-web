@@ -10,13 +10,13 @@
     <thead>
       <tr>
         <th class="dark-grey">URL</th>
-        <th class="dark-grey center">estimated time</th>
+        <th class="dark-grey center" ng-show="review.date">estimated time</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="review in model.reviews">
         <td class="url blue"><a href="{{ review.url }}"><span>{{ review.url }}</span></td>
-        <td class="timeago dark-grey center"><span class="time" am-time-ago="review.date"></span> ago</td>
+        <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> ago</td>
       </tr>
     </tbody>
   </table>
