@@ -62,10 +62,9 @@ class HorizontalCtrl
     @width = if @scope.percentage > idealRatio then @scope.percentage * @maxWidth else idealRatio * @maxWidth
     @elements.value.css('width', @width)
 
-    if totalLabel?
+    if @elements.totalLabel?
       if @width > @maxWidth - @totalLabelWidth
         @elements.totalLabel.fadeOut()
-        @elements.totalValue.fadeOut() if @elements.totalValue?
       else
         @elements.totalLabel.fadeIn()
         @elements.totalValue.fadeIn() if @elements.totalValue?
