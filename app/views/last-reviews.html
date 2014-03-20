@@ -7,7 +7,7 @@
   </div>
 
   <ul class="boxes last-reviews" ng-show="model.lastReviews">
-    <li class="box worker" data-ng-repeat="review in model.lastReviews track by review.uuid">
+    <li class="box worker" data-ng-repeat="review in model.lastReviews | orderBy:'-completedAt' track by review.uuid">
       <a href="#/page/{{ review.page.uuid }}/review/{{ review.uuid }}">
         <h2 class="blue ng-binding">{{ review.domain }}</h2>
         <p class="url">{{ review.page.url }}</p>
