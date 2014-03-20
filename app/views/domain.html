@@ -1,5 +1,5 @@
 <div class="view domain-view">
-  <div class="info rel">
+  <div class="info rel" ng-show="model.domain_details.pageCount">
     <h2 class="blue">{{ model.domain_details.name }}</h2>
 
     <div class="fs0 abs abs-right toolbar">
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="page-reviews-container">
+  <div class="page-reviews-container" ng-show="model.reviews.pages">
     <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs">
