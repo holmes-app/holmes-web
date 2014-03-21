@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="request in model.requests">
-        <td class="url blue"><a href="{{ request.url }}"><span>{{ request.url }}</span></td>
+        <td class="url blue"><a href="{{ request.url }}" target="_blank"><span>{{ request.url }}</span></td>
         <td class="dark-grey center">{{ request.response_time | number }}ms</td>
         <td class="dark-grey center">{{ request.status_code }}</td>
       </tr>
