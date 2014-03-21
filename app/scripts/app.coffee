@@ -24,6 +24,7 @@ app = angular.module('holmesApp', [
       .when '/page/:pageId/review/:reviewId',
         templateUrl: 'views/reviews.html'
         controller: 'ReviewsCtrl'
+        reloadOnSearch: false
       .when '/violations/:violationKey',
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'

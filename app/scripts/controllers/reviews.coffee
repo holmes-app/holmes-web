@@ -1,9 +1,11 @@
 'use strict'
 
 class ReviewsCtrl
-  constructor: (@scope, @sce, @ReviewsFcty, @pageId, @reviewId) ->
-    @factsVisible = false
-    @violationsVisible = true
+  constructor: (@scope, @sce, @ReviewsFcty, @pageId, @reviewId, @location) ->
+    if @location.hash() == 'facts'
+      @showFacts()
+    else
+      @showViolations()
 
     @getReviewDetails()
     @getReviews()
@@ -11,10 +13,12 @@ class ReviewsCtrl
   showFacts: ->
     @factsVisible = true
     @violationsVisible = false
+    @location.url('#facts')
 
   showViolations: ->
     @factsVisible = false
     @violationsVisible = true
+    @location.url('#violations')
 
   getReviewDetails: ->
     @ReviewsFcty.getReview(@pageId, @reviewId).then( (data) =>
@@ -44,8 +48,8 @@ class ReviewsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty) ->
+  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty, $location) ->
     pageId = $routeParams.pageId
     reviewId = $routeParams.reviewId
 
-    $scope.model = new ReviewsCtrl($scope, $sce, ReviewsFcty, pageId, reviewId)
+    $scope.model = new ReviewsCtrl($scope, $sce, ReviewsFcty, pageId, reviewId, $location)
