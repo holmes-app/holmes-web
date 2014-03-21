@@ -1,6 +1,15 @@
 'use strict'
 
+class ViolationFactory
+  constructor: (@restangular) ->
+
+  getDomainViolations: (violationKey) ->
+    @restangular.one('violation').one(violationKey, 'domains').get()
+
+  getViolations: (violationKey, params) ->
+    @restangular.one('violation').one(violationKey).get(params)
+
+
 angular.module('holmesApp')
   .factory 'ViolationFcty', (Restangular) ->
-    Restangular.withConfig (RestangularConfigurer) ->
-      RestangularConfigurer.setBaseUrl(RestangularConfigurer.baseUrl + '/violation')
+    return new ViolationFactory(Restangular)
