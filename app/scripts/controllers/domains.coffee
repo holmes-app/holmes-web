@@ -38,7 +38,7 @@ class DomainsCtrl
     @DomainsFcty.getDomains().then(@_fillDomains)
 
   getMostCommonViolations: ->
-    @MostCommonViolationsFcty.all('').getList().then(@_fillViolations)
+    @MostCommonViolationsFcty.getMostCommonViolations().then(@_fillViolations)
 
 
 angular.module('holmesApp')
