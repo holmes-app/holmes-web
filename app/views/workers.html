@@ -20,7 +20,7 @@
 
   <ul class="boxes workers">
     <li class="box worker" ng-repeat="worker in model.workers | orderBy:'-last_ping' track by worker.uuid">
-      <a href="{{ worker.current_url }}">
+      <a href="{{ worker.current_url }}" target="_blank">
         <h2 class="blue ng-binding">{{ worker.domain_name || "idle" }}</h2>
         <p class="url">{{ worker.current_url || "Waiting for new jobs..." }}</p>
         <p class="timeago">last ping: <span class="time" am-time-ago="worker.last_ping*1000"></span> ago</p>
