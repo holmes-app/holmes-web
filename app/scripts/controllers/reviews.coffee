@@ -17,7 +17,7 @@ class ReviewsCtrl
     @violationsVisible = true
 
   getReviewDetails: ->
-    @ReviewsFcty.one(@pageId).one('review', @reviewId).get().then( (data) =>
+    @ReviewsFcty.getReview(@pageId, @reviewId).then( (data) =>
       @review_details = data
       violations_by_category = _.toArray(_.groupBy(data.violations, 'category'))
       @violations = _.map(
@@ -37,7 +37,7 @@ class ReviewsCtrl
     )
 
   getReviews: ->
-    @reviews = @ReviewsFcty.one(@pageId).one('reviews').getList().$object
+    @reviews = @ReviewsFcty.getPageReviews(@pageId)
 
   asHtml: (text) ->
     @sce.trustAsHtml(text)
