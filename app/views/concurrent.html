@@ -20,11 +20,7 @@
 
   <h2 class="grey current-limits">Current Limits</h2>
 
-  <div ng-hide="model.limiters">
-    <p>No limiters found.</p>
-  </div>
-
-  <ul class="boxes limits" ng-show="model.limiters">
+  <ul class="boxes limits" nodata="model.limiters">
     <li class="box limit" ng-repeat="limiter in model.limiters track by limiter.url">
       <a name="limiter.url">
         <h2 class="blue ellipsis" title="{{ limiter.url }}">{{ limiter.url.replace('http://', '').replace('https://', '') }}</h2>
