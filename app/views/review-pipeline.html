@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="review in model.reviews">
-        <td class="url blue"><a href="{{ review.url }}" target="_blank"><span>{{ review.url }}</span></td>
+        <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
         <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> ago</td>
       </tr>
     </tbody>
