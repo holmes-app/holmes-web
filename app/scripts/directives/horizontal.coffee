@@ -57,6 +57,8 @@ class HorizontalCtrl
     @scope.$watch('percentage', @updatePercentage)
 
   updatePercentage: =>
+    @scope.percentage = 1 if @scope.percentage > 1
+
     idealdx = (Math.floor(Math.log(@scope.value) / Math.log(1000))) * 0.012
     idealRatio = idealdx + (Math.floor(Math.log(@scope.value) / Math.log(10)) + 1) * 0.024
     @width = if @scope.percentage > idealRatio then @scope.percentage * @maxWidth else idealRatio * @maxWidth
