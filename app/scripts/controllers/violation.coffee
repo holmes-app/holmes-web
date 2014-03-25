@@ -5,12 +5,14 @@ class ViolationCtrl
     @pageFilter = null
     @pageSize = 10
     @violation = {}
-    @ViolationFcty.getDomainViolations(@violationKey).then(@_fillViolation)
+    @ViolationFcty.getDomainViolations(@violationKey).then @_fillViolation, =>
+      @loadedViolation = null
     @watchScope()
 
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
     @reviewsCount = violation.reviewsCount
+    @loadedReviews = violation.reviews.length
 
   _fillViolation: (violation) =>
     violation.domains = _.sortBy(violation.domains, 'count').reverse()
@@ -36,7 +38,9 @@ class ViolationCtrl
     @violation.pageCount = violation.total
     params =
       page_size: @pageSize
-    @ViolationFcty.getViolations(@violationKey, params).then(@_fillReviews)
+    @ViolationFcty.getViolations(@violationKey, params).then @_fillReviews, =>
+      @loadedReviews = null
+    @loadedViolation = @violation.domains.length
 
   updateReviews: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
@@ -44,7 +48,9 @@ class ViolationCtrl
       page_size: pageSize
       current_page: currentPage
       page_filter: @pageFilter
-    @ViolationFcty.getViolations(@violationKey, params).then(@_fillReviews)
+    delete(@loadedReviews)
+    @ViolationFcty.getViolations(@violationKey, params).then @_fillReviews, =>
+      @loadedReviews = null
 
   watchScope: ->
     updateReviews = $.debounce 500, => @updateReviews()

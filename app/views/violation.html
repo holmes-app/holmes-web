@@ -1,7 +1,7 @@
 <div class="view violation-view">
-  <div class="header rel">
+  <div class="header rel" nodata="model.violation.label" nodata-height="67" nodata-size="40">
     <h2>{{ model.violation.label }}</h2>
-    <div class="fs0 abs abs-right toolbar" ng-show="model.violation.pageCount">
+    <div class="fs0 abs abs-right toolbar">
       <div class="ib">
         <h3 class="mid-grey">domains</h3>
         <p class="grey">{{ model.violation.domainsCount }}</p>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="domains">
-    <ul nodata="model.violation.domains">
+    <ul nodata="model.loadedViolation" nodata-height="230" nodata-size="60">
       <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.name">
         <h3 class="grey ib">{{ domain.name }}</h3>
         <p class="ib"><horizontal percentage="domain.percentage" value="domain.value"></horizontal></p>
@@ -22,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="reviews" ng-show="model.violation.reviews">
+  <div class="reviews">
     <div class="page-reviews-container">
       <div class="header rel light-grey-border">
         <div class="title ib">Reviews with this violation</div>
@@ -30,7 +30,7 @@
           <span class="directory ib rel"><input type="text" ng-model="model.pageFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
         </div>
       </div>
-      <div class="data">
+      <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no">
         <table>
           <thead>
             <tr><th class="url">URL</th>
