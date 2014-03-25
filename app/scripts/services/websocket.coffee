@@ -6,9 +6,7 @@ class WebSocketService
     @handlers = []
 
     @ws.onmessage = @_onmessage.bind(this)
-    @throttledStatus = $.throttle(2000, @sendMessage)
-    @throttledReview = $.throttle(500, @sendMessage)
-    @throttledSendMessage = $.throttle(1000, @sendMessage)
+    @throttledSendMessage = $.throttle(500, @sendMessage)
 
   clearHandlers: () ->
     @handlers[..] = []
@@ -23,14 +21,7 @@ class WebSocketService
       handler(obj)
 
   _onmessage: (message) ->
-    if message.type == 'worker-status'
-      @throttledStatus(message)
-
-    else if message.type == 'new-review'
-      @throttledReview(message)
-
-    else
-      @throttledSendMessage(message)
+    @throttledSendMessage(message)
 
 angular.module('holmesApp')
   .factory('WebSocketFcty', (ConfigConst, WebSocket) ->
