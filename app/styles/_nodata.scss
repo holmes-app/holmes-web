@@ -1,0 +1,85 @@
+.no-data {
+  margin-bottom: 25px;
+  font-style: italic;
+  color: #989898;
+}
+
+.no-data .spinner {
+  position: relative!important;
+}
+
+.nodata-container.ng-hide-add {
+  @include transition(all 500ms ease-in-out);
+  display: block!important; // must have this
+  opacity: 1;
+}
+
+.nodata-container.ng-hide-remove {
+  @extend .nodata-container.ng-hide-add;
+}
+
+.nodata-container.ng-hide {
+  opacity: 0;
+}
+
+#fountainG {
+  position: relative;
+  left: 50%;
+  top: 50%;
+}
+
+.fountainG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #DDD;
+  animation-name: bounce_fountainG;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  transform: scale(.1);
+}
+
+#fountainG_1 {
+  animation-delay: 0.52s;
+}
+
+#fountainG_2 {
+  animation-delay: 0.65s;
+}
+
+#fountainG_3 {
+  animation-delay: 0.78s;
+}
+
+#fountainG_4 {
+  animation-delay: 0.91s;
+}
+
+#fountainG_5 {
+  animation-delay: 1.04s;
+}
+
+#fountainG_6 {
+  animation-delay: 1.17s;
+}
+
+#fountainG_7 {
+  animation-delay: 1.3s;
+}
+
+#fountainG_8 {
+  animation-delay: 1.43s;
+}
+
+@keyframes bounce_fountainG {
+  0% {
+    transform: scale(.7);
+    background-color: #318D90;
+  }
+
+  100% {
+    transform: scale(.1);
+    background-color: #DDD;
+  }
+}

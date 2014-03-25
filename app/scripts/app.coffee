@@ -9,7 +9,8 @@ app = angular.module('holmesApp', [
   'reconnectingWebSocket',
   'ngCookies',
   'googleplus',
-  'HolmesWebPackageJson'
+  'HolmesWebPackageJson',
+  'ngAnimate'
 ])
   .config ($routeProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
     $routeProvider
