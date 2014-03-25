@@ -13,40 +13,45 @@ angular.module('holmesApp')
       nodataFailed: '@nodataFailed'
       nodataHeight: '@nodataHeight'
       nodataSize: '@nodataSize'
-    template:
-      '<div>
-        <div ng-show="nodataFlagger === undefined" class="{{nodataClass ? nodataClass : \'no-data\'}}">
-          <div class="loading" ng-if="!nodataSize">{{nodataLoading ? nodataLoading : \'Loading...\'}}</div>
-          <div id="fountainG" ng-if="nodataSize">
-            <div id="fountainG_1" class="fountainG"></div>
-            <div id="fountainG_2" class="fountainG"></div>
-            <div id="fountainG_3" class="fountainG"></div>
-            <div id="fountainG_4" class="fountainG"></div>
-            <div id="fountainG_5" class="fountainG"></div>
-            <div id="fountainG_6" class="fountainG"></div>
-            <div id="fountainG_7" class="fountainG"></div>
-            <div id="fountainG_8" class="fountainG"></div>
+    template: (element, attr) ->
+      nodeName = element[0].nodeName
+      nodataClass = if attr.nodataClass then attr.nodataClass else 'no-data'
+      nodataFadeClass = if attr.nodataFade != 'no' then 'no-data-fade' else ''
+      nodataLoading = if attr.nodataLoading then nodataLoading else 'Loading...'
+      nodataText = if attr.nodataText then nodataText else 'No data!'
+      nodataFailed = if attr.nodataFailed then nodataFailed else 'Loading failed!'
+      "<div>
+        <div ng-show='nodataFlagger === undefined' class='#{nodataClass}'>
+          <div class='loading' ng-if='!nodataSize'>#{nodataLoading}</div>
+          <div id='fountainG' ng-if='nodataSize'>
+            <div id='fountainG_1' class='fountainG'></div>
+            <div id='fountainG_2' class='fountainG'></div>
+            <div id='fountainG_3' class='fountainG'></div>
+            <div id='fountainG_4' class='fountainG'></div>
+            <div id='fountainG_5' class='fountainG'></div>
+            <div id='fountainG_6' class='fountainG'></div>
+            <div id='fountainG_7' class='fountainG'></div>
+            <div id='fountainG_8' class='fountainG'></div>
           </div>
         </div>
-        <div ng-show="nodataFlagger === false || nodataFlagger == 0" class="{{nodataClass ? nodataClass : \'no-data\'}}">
-          <div class="nodata">{{nodataText ? nodataText : \'No data!\'}}</div>
+        <div ng-show='nodataFlagger === false || nodataFlagger == 0' class='#{nodataClass}'>
+          <div class='nodata'>#{nodataText}</div>
         </div>
-        <div ng-show="nodataFlagger === null" class="{{nodataClass ? nodataClass : \'no-data\'}}">
-          <div class="failed">{{nodataFailed ? nodataFailed : \'Loading failed!\'}}</div>
+        <div ng-show='nodataFlagger === null' class='#{nodataClass}'>
+          <div class='failed'>#{nodataFailed}</div>
         </div>
-        <div ng-show="nodataFlagger" class="nodata-container" ng-transclude></div>
-      </div>'
+        <#{nodeName} ng-show='nodataFlagger' class='#{nodataFadeClass}' ng-transclude></#{nodeName}>
+      </div>"
     link: (scope, element, attr) ->
       if scope.nodataHeight?
         element.children().first().height(scope.nodataHeight)
 
       computeAndSet = (value) ->
         size = if scope.nodataSize? then scope.nodataSize else 60
-        console.log size
         width = 8 * size
         height = size - 2
         marginLeft = -width / 2
-        marginTop = -height
+        marginTop = -height * 2 / 3
         borderRadius = height * 2 / 3
 
         element.find('#fountainG').css
@@ -62,7 +67,6 @@ angular.module('holmesApp')
 
         for i in [1..7]
           elementId = '#fountainG_' + (i + 1)
-          console.log elementId
           element.find(elementId).css
             left: i * size
 

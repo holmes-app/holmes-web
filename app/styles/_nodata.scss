@@ -8,17 +8,17 @@
   position: relative!important;
 }
 
-.nodata-container.ng-hide-add {
+.no-data-fade.ng-hide-add {
   @include transition(all 500ms ease-in-out);
   display: block!important; // must have this
   opacity: 1;
 }
 
-.nodata-container.ng-hide-remove {
-  @extend .nodata-container.ng-hide-add;
+.no-data-fade.ng-hide-remove {
+  @extend .no-data-fade.ng-hide-add;
 }
 
-.nodata-container.ng-hide {
+.no-data-fade.ng-hide {
   opacity: 0;
 }
 
