@@ -2,7 +2,6 @@
   .domains-container {
     margin-top: 50px;
     overflow: hidden;
-    max-height: 300px;
     @include transition(max-height 500ms ease-in-out);
 
     .inactive {
