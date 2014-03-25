@@ -17,13 +17,13 @@ class DomainsCtrl
   _fillDomains: (@domainList) =>
     @domainList = _.sortBy(@domainList.reverse(), 'is_active').reverse()
     @domains = @domainList
-    @spinnerDomains = @domainList.length
+    @loadedDomains = @domainList.length
 
   _fillViolations: (mostCommonViolations) =>
     @mostFrequentViolations = mostCommonViolations[0..9]
     @leastFrequentViolations = mostCommonViolations[10..]
     @groupData = _.groupBy(mostCommonViolations, 'category')
-    @spinnerViolations = mostCommonViolations.length
+    @loadedViolations = mostCommonViolations.length
 
   toggleDomainVisibility: ->
     @domainsVisible = !@domainsVisible
@@ -38,11 +38,11 @@ class DomainsCtrl
 
   getDomainData: ->
     @DomainsFcty.getDomains().then @_fillDomains, =>
-      @spinnerDomains = null
+      @loadedDomains = null
 
   getMostCommonViolations: ->
     @MostCommonViolationsFcty.getMostCommonViolations().then @_fillViolations, =>
-      @spinnerViolations = null
+      @loadedViolations = null
 
 
 angular.module('holmesApp')

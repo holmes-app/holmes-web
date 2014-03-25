@@ -4,7 +4,7 @@
   <div
     class="domains-container"
     style="max-height: {{ model.domainsVisible ? (model.domainList.length * 155) : 326 }}px;"
-    nodata="model.spinnerDomains" nodata-height="326" nodata-size="60">
+    nodata="model.loadedDomains" nodata-height="326" nodata-size="60">
     <ul class="boxes domains">
       <li class="box ib" ng-repeat="domain in model.domains track by domain.id | orderBy: '-is_active'" ng-class="domain.is_active ? '': 'inactive'">
 
@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="groups-container" ng-class="model.groupsVisible ? '' : 'hidden'" nodata="model.spinnerViolations" nodata-height="163" nodata-size="60">
+    <div class="groups-container" ng-class="model.groupsVisible ? '' : 'hidden'" nodata="model.loadedViolations" nodata-height="163" nodata-size="60">
       <ul class="group">
         <li ng-repeat="(name, group) in model.groupData track by name" ng-class="'color' + ($index + 1) + '-border'">
           <h3 ng-class="'color' + ($index + 1)">{{ name }}</h3>
