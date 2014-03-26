@@ -2,24 +2,22 @@
   <h1>Status</h1>
   <statusbar index="3"></statusbar>
 
-  <div ng-hide="model.reviews">
-    <p>No available review pipeline.</p>
+  <div nodata="model.reviewsLoaded" nodata-height="451" nodata-size="30" nodata-text="No reviews data available" nodata-fade="no">
+    <table>
+      <thead>
+        <tr>
+          <th class="dark-grey">URL</th>
+          <th class="dark-grey center" ng-show="review.date">estimated time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="review in model.reviews">
+          <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
+          <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> ago</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <table ng-show="model.reviews">
-    <thead>
-      <tr>
-        <th class="dark-grey">URL</th>
-        <th class="dark-grey center" ng-show="review.date">estimated time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="review in model.reviews">
-        <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
-        <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> ago</td>
-      </tr>
-    </tbody>
-  </table>
 
   <pager
     pagecount="model.reviewCount"

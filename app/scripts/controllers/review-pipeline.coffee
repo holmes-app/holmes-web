@@ -16,10 +16,13 @@ class ReviewPipelineCtrl
   _fillReviews: (data) =>
     @reviews = data.pages
     @reviewCount = data.reviewCount
+    @reviewsLoaded = data.pages.length
 
   getReviews: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
-    @NextJobsFcty.getNextJobs({current_page: currentPage, page_size: pageSize}).then(@_fillReviews)
+    delete(@reviewsLoaded)
+    @NextJobsFcty.getNextJobs({current_page: currentPage, page_size: pageSize}).then @_fillReviews, =>
+      @reviewsLoaded = null
 
   updateReviews: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
