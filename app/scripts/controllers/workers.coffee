@@ -17,9 +17,11 @@ class WorkersCtrl
     @workerCount = @workers.length
     @activeWorkers = _.filter(@workers, {'working': true}).length
     @activeWorkersPercentage = @activeWorkers / @workerCount
+    @loadedWorkers = true
 
   getWorkers: ->
-    @WorkersFcty.getWorkers().then(@_fillWorkers)
+    @WorkersFcty.getWorkers().then @_fillWorkers, =>
+      @loadedWorkers = null
 
 
 angular.module('holmesApp')

@@ -2,12 +2,8 @@
   <h1>Status</h1>
   <statusbar index="1"></statusbar>
 
-  <div ng-hide="model.workers">
-    <p>No available workers.</p>
-  </div>
-
-  <div ng-if="model.workerCount">
-    <horizontal
+  <div nodata="model.loadedWorkers" nodata-height="350" nodata-size="30" nodata-text="No workers data available">
+    <horizontal ng-if="model.workerCount"
       percentage="model.activeWorkersPercentage"
       value="model.activeWorkers"
       total="model.workerCount"
@@ -16,15 +12,16 @@
       totallabel="inactive workers"
     >
     </horizontal>
+
+    <ul class="boxes workers">
+      <li class="box worker" ng-repeat="worker in model.workers | orderBy:'-last_ping' track by worker.uuid">
+        <a href="{{ worker.current_url }}" target="_blank">
+          <h2 class="blue ng-binding">{{ worker.domain_name || "idle" }}</h2>
+          <p class="url">{{ worker.current_url || "Waiting for new jobs..." }}</p>
+          <p class="timeago">last ping: <span class="time" am-time-ago="worker.last_ping*1000"></span> ago</p>
+        </a>
+      </li>
+    </ul>
   </div>
 
-  <ul class="boxes workers">
-    <li class="box worker" ng-repeat="worker in model.workers | orderBy:'-last_ping' track by worker.uuid">
-      <a href="{{ worker.current_url }}" target="_blank">
-        <h2 class="blue ng-binding">{{ worker.domain_name || "idle" }}</h2>
-        <p class="url">{{ worker.current_url || "Waiting for new jobs..." }}</p>
-        <p class="timeago">last ping: <span class="time" am-time-ago="worker.last_ping*1000"></span> ago</p>
-      </a>
-    </li>
-  </ul>
 </div>
