@@ -16,10 +16,13 @@ class LastRequestsCtrl
   _fillRequests: (data) =>
     @requests = data.requests
     @requestsCount = data.requestsCount
+    @requestsLoaded = data.requests.length
 
   getLastRequests: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
-    @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then(@_fillRequests)
+    delete(@requestsLoaded)
+    @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then @_fillRequests, =>
+      @requestsLoaded = null
 
   updateLastRequests: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
