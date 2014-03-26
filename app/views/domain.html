@@ -1,5 +1,5 @@
 <div class="view domain-view">
-  <div class="info rel" ng-show="model.domain_details.pageCount">
+  <div class="info rel" nodata="model.domain_details" nodata-height="71" nodata-size="40">
     <h2 class="blue">{{ model.domain_details.name }}</h2>
 
     <div class="fs0 abs abs-right toolbar">
@@ -24,8 +24,8 @@
     <div class="cb"></div>
   </div>
 
-  <div class="violations-container">
-    <div class="chart-container ib" ng-if="model.domainGroupedViolations">
+  <div class="violations-container" nodata="model.loadedViolations" nodata-height="501" nodata-size="40">
+    <div class="chart-container ib" ng-if="model.loadedViolations">
       <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="page-reviews-container" ng-show="model.reviews.pages">
+  <div class="page-reviews-container">
     <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs">
@@ -57,7 +57,7 @@
         <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
     </div>
-    <div class="data">
+    <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews found">
       <table>
         <thead>
           <th class="url">URL</th>

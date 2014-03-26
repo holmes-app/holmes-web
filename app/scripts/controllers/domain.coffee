@@ -40,11 +40,13 @@ class DomainCtrl
         pageCount: violation.count
         color: 'color' + (i + 1)
       data)
+    @loadedViolations = true
 
   _fillReviews: (data) =>
     @reviews = data
     @reviewCount = @reviews.reviewCount
     @numberOfPages = @reviewCount
+    @loadedReviews = data.pages.length
 
   _fillDomainDetails: (data) =>
     @domain_details = data
@@ -56,7 +58,9 @@ class DomainCtrl
 
 
   getDomainViolations: ->
-    @DomainsFcty.getDomainGroupedViolations(@domainName).then(@_fillDomainGroupedViolations)
+    delete(@loadedViolations)
+    @DomainsFcty.getDomainGroupedViolations(@domainName).then @_fillDomainGroupedViolations, =>
+      @loadedViolations = null
 
   getReviewsData: (currentPage, pageSize) =>
     filter = if @reviewFilter then @domain_url + @reviewFilter else ''
@@ -64,7 +68,9 @@ class DomainCtrl
       current_page: currentPage
       page_size: if not pageSize then @pageSize
       term: filter
-    @DomainsFcty.getDomainReviews(@domainName, params).then(@_fillReviews)
+    delete(@loadedReviews)
+    @DomainsFcty.getDomainReviews(@domainName, params).then @_fillReviews, =>
+      @loadedReviews = null
 
   getDomainDetails: ->
     @DomainsFcty.getDomainData(@domainName).then(@_fillDomainDetails)
