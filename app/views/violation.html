@@ -2,11 +2,11 @@
   <div class="header rel" nodata="model.violation.label" nodata-height="67" nodata-size="40">
     <h2>{{ model.violation.label }}</h2>
     <div class="fs0 abs abs-right toolbar">
-      <div class="ib">
+      <div class="ib" ng-show="model.violation.domainsCount">
         <h3 class="mid-grey">domains</h3>
         <p class="grey">{{ model.violation.domainsCount }}</p>
       </div>
-      <div class="ib">
+      <div class="ib" ng-show="model.violation.pageCount">
         <h3 class="mid-grey">pages</h3>
         <p class="grey">{{ model.violation.pageCount | number }}</p>
       </div>
@@ -26,7 +26,7 @@
     <div class="page-reviews-container">
       <div class="header rel light-grey-border">
         <div class="title ib">Reviews with this violation</div>
-        <div class="search fs0 abs">
+        <div class="search fs0 abs" ng-show="model.violation.reviews">
           <span class="directory ib rel"><input type="text" ng-model="model.pageFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
         </div>
       </div>
