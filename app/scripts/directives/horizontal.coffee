@@ -24,7 +24,9 @@ class HorizontalCtrl
   setElementTotalValue: (totalValue) ->
     return unless @elements.totalValue?
 
-    total = @filter('number')(totalValue - @scope.value)
+    totalValue = if totalValue > @scope.value then totalValue - @scope.value else 0
+
+    total = @filter('number')(totalValue)
     @elements.totalValue.html(total)
 
   buildElements: ->
