@@ -15,9 +15,16 @@ class LastReviewsCtrl
     @lastReviews = reviews
     @loadedReviews = reviews.length
 
+  _fillReviewsInLastHour: (reviews) =>
+    @lastReviewsInLastHour = reviews.count
+    @loadedReviewsInLastHour = true
+
   getLastReviews: ->
     @LastReviewsFcty.getLastReviews().then @_fillReviews, =>
       @loadedReviews = null
+
+    @LastReviewsFcty.getReviewsInLastHour().then @_fillReviewsInLastHour, =>
+      @loadedReviewsInLastHour = null
 
 
 angular.module('holmesApp')

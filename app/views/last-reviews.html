@@ -2,6 +2,24 @@
   <h1>Status</h1>
   <statusbar index="2"></statusbar>
 
+  <div class="inlasthour blue" nodata="model.loadedReviewsInLastHour" nodata-height="28" nodata-size="20" nodata-text="No reviews data available">
+    <ng-pluralize
+      count="model.lastReviewsInLastHour"
+      when="{
+        '0': 'No reviews in the last hour',
+        'one': '1 review in the last hour',
+        'other': '{{model.lastReviewsInLastHour|number:0}} reviews in the last hour',
+      }"></ng-pluralize>
+    <ng-pluralize
+      ng-init="perHour=model.lastReviewsInLastHour/3600"
+      ng-if="model.lastReviewsInLastHour > 0"
+      count="perHour"
+      when="{
+        'one': '(1 review per second)',
+        'other': '({{perHour|number:2}} reviews per second)',
+      }"></ng-pluralize>
+  </div>
+
   <div nodata="model.loadedReviews" nodata-height="350" nodata-size="30" nodata-text="No reviews data available">
     <ul class="boxes last-reviews">
       <li class="box worker" data-ng-repeat="review in model.lastReviews | orderBy:'-completedAt' track by review.uuid">

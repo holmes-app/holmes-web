@@ -6,6 +6,9 @@ class LastReviewsFactory
   getLastReviews: ->
     @restangular.one('last-reviews').get()
 
+  getReviewsInLastHour: ->
+    @restangular.one('reviews-in-last-hour').get()
+
 
 angular.module('holmesApp')
   .factory 'LastReviewsFcty', (Restangular) ->
