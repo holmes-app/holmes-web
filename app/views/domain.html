@@ -32,13 +32,13 @@
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="category in model.domainGroupedViolations track by category.label">
           <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
-          <p class="grey">{{ category.pageCount | number }} pages</p>
+          <p class="grey">{{ category.pageCount | number }} violations</p>
         </li>
       </ul>
 
       <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
         <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
-        <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} pages</p>
+        <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} violations</p>
         <ul class="category">
           <li class="fs0" ng-repeat="detail in model.selectedCategory.violations">
             <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
