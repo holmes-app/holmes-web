@@ -20,7 +20,6 @@ class ReviewPipelineCtrl
 
   getReviews: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
-    delete(@reviewsLoaded)
     @NextJobsFcty.getNextJobs({current_page: currentPage, page_size: pageSize}).then @_fillReviews, =>
       @reviewsLoaded = null
 

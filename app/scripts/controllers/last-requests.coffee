@@ -20,7 +20,6 @@ class LastRequestsCtrl
 
   getLastRequests: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
-    delete(@requestsLoaded)
     @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then @_fillRequests, =>
       @requestsLoaded = null
 

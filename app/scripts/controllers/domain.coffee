@@ -56,9 +56,7 @@ class DomainCtrl
   _fillChangeDomainStatus: =>
     @domainStatus = !@domainStatus
 
-
   getDomainViolations: ->
-    delete(@loadedViolations)
     @DomainsFcty.getDomainGroupedViolations(@domainName).then @_fillDomainGroupedViolations, =>
       @loadedViolations = null
 
@@ -68,7 +66,6 @@ class DomainCtrl
       current_page: currentPage
       page_size: if not pageSize then @pageSize
       term: filter
-    delete(@loadedReviews)
     @DomainsFcty.getDomainReviews(@domainName, params).then @_fillReviews, =>
       @loadedReviews = null
 
@@ -88,6 +85,7 @@ class DomainCtrl
 
   watchScope: ->
     updateReviewData = $.debounce(500, =>
+      delete(@loadedReviews)
       @getReviewsData()
     )
 
