@@ -16,7 +16,9 @@ class LastReviewsCtrl
     @loadedReviews = reviews.length
 
   _fillReviewsInLastHour: (reviews) =>
-    @lastReviewsInLastHour = reviews.count
+    @lastReviewsInLastHour = reviews
+    @lastReviewsInLastHour.perHour = @lastReviewsInLastHour.count / @lastReviewsInLastHour.ellapsed
+
     @loadedReviewsInLastHour = true
 
   getLastReviews: ->
