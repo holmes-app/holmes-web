@@ -6,7 +6,7 @@
     style="max-height: {{ model.domainsVisible ? (model.domainList.length * 155) : 326 }}px;"
     nodata="model.loadedDomains" nodata-height="326" nodata-size="60">
     <ul class="boxes domains">
-      <li class="box ib" ng-repeat="domain in model.domains track by domain.id | orderBy: '-is_active'" ng-class="domain.is_active ? '': 'inactive'">
+      <li class="box ib" ng-repeat="domain in model.domains | orderBy: '-is_active' track by domain.id" ng-class="domain.is_active ? '': 'inactive'">
 
       <a href="#/domains/{{ domain.name }}">
           <h2 class="blue">{{ domain.name }}</h2>
@@ -63,7 +63,7 @@
           <span class="round-button blue-border ib"><i></i></span>
           <span class="blue label ib">FREQUENCY</span>
         </a>
-        <div class="option ib search"><input class="light-grey-border grey" type="text" name="q" placeholder="Enter a violation name…" /><i></i></div>
+        <div class="option ib search"><input class="light-grey-border grey" type="text" ng-model="model.violationFilter" name="q" placeholder="Enter a violation name…" /><i></i></div>
       </div>
     </div>
 
@@ -72,7 +72,7 @@
         <li ng-repeat="(name, group) in model.groupData track by name" ng-class="'color' + ($index + 1) + '-border'">
           <h3 ng-class="'color' + ($index + 1)">{{ name }}</h3>
           <ul class="group-violations">
-            <li ng-repeat="violation in group track by violation.key | orderBy:'count':desc">
+            <li ng-repeat="violation in group | orderBy:'count':desc track by violation.key">
               <a href="#/violations/{{ violation.key }}">
                 <div class="name dark-grey ib">{{ violation.name }}</div>
               </a>
@@ -86,7 +86,7 @@
 
       <div class="most-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.mostFrequentViolations track by violation.key | orderBy:'count':desc">
+          <li ng-repeat="violation in model.mostFrequentViolations | filter:model.violationFilter | orderBy:'count':desc track by violation.key">
             <a href="#/violations/{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 1 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
@@ -97,7 +97,7 @@
 
       <div class="least-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.leastFrequentViolations track by violation.key | orderBy:'count':desc">
+          <li ng-repeat="violation in model.leastFrequentViolations | filter:model.violationFilter | orderBy:'count':desc track by violation.key">
             <a href="#/violations/{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 11 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
