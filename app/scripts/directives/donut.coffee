@@ -69,7 +69,7 @@ angular.module('holmesApp')
         )
 
         deselect = ->
-          for segment in donut.segments
+          for segment in donut.segments?
             segment.deselect()
 
           executeOnSelect(null, null)
