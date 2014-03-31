@@ -24,27 +24,29 @@
     <div class="cb"></div>
   </div>
 
-  <div class="violations-container" nodata="model.domainGroupedViolations" nodata-height="501" nodata-size="40">
-    <div class="chart-container ib" ng-if="model.domainGroupedViolations">
-      <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
-    </div>
-    <div class="details ib">
-      <ul class="categories" ng-hide="model.selectedCategory">
-        <li ng-repeat="category in model.domainGroupedViolations track by category.label">
-          <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
-          <p class="grey">{{ category.pageCount | number }} violations</p>
-        </li>
-      </ul>
-
-      <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
-        <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
-        <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} violations</p>
-        <ul class="category">
-          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
-            <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
-            <p class="dark-grey ib title">{{ detail.title }}</p>
+  <div nodata="model.loadedViolations" nodata-height="501" nodata-size="40" nodata-text="">
+    <div class="violations-container" ng-if="model.loadedViolations">
+      <div class="chart-container ib">
+        <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
+      </div>
+      <div class="details ib">
+        <ul class="categories" ng-hide="model.selectedCategory">
+          <li ng-repeat="category in model.domainGroupedViolations track by category.label">
+            <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
+            <p class="grey">{{ category.pageCount | number }} violations</p>
           </li>
         </ul>
+
+        <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
+          <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
+          <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} violations</p>
+          <ul class="category">
+            <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
+              <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
+              <p class="dark-grey ib title">{{ detail.title }}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

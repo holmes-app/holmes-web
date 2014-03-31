@@ -29,25 +29,28 @@ class DomainCtrl
     @violationData[data.categoryId] = data.violations
 
   _fillDomainGroupedViolations: (data) =>
-    for violation in data.violations
-      @DomainsFcty.getDomainMostCommonViolations(data.domainName, violation.categoryId).then(@_fillViolationData)
+    if data.violations?
+      for violation in data.violations
+        @DomainsFcty.getDomainMostCommonViolations(data.domainName, violation.categoryId).then(@_fillViolationData)
+      @loadedViolations = data.violations.length
 
-    @domainGroupedViolations = _.map(
-      data.violations,
-      (violation, i) ->
-        id: violation.categoryId
-        label: violation.categoryName + ' Violations'
-        value: 100 * violation.count / this.total
-        pageCount: violation.count
-        color: 'color' + (i + 1)
-      data)
-    @loadedViolations = true
+      @domainGroupedViolations = _.map(
+        data.violations,
+        (violation, i) ->
+          id: violation.categoryId
+          label: violation.categoryName + ' Violations'
+          value: 100 * violation.count / this.total
+          pageCount: violation.count
+          color: 'color' + (i + 1)
+        data)
+    else
+      @loadedViolations = 0
 
   _fillReviews: (data) =>
     @reviews = data
     @reviewCount = @reviews.reviewCount
     @numberOfPages = @reviewCount
-    @loadedReviews = data.pages.length
+    @loadedReviews = if data.pages? then data.pages.length else 0
 
   _fillDomainDetails: (data) =>
     @domain_details = data
