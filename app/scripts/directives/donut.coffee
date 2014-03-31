@@ -33,7 +33,7 @@ angular.module('holmesApp')
         '#f2ce51',
         '#ffd955'
       ]
-      
+
       executeOnSelect = (value, data) ->
         return unless onSelect?
 
