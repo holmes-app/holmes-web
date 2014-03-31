@@ -24,8 +24,8 @@
     <div class="cb"></div>
   </div>
 
-  <div class="violations-container" nodata="model.loadedViolations" nodata-height="501" nodata-size="40">
-    <div class="chart-container ib" ng-if="model.loadedViolations">
+  <div class="violations-container" nodata="model.domainGroupedViolations" nodata-height="501" nodata-size="40">
+    <div class="chart-container ib" ng-if="model.domainGroupedViolations">
       <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
@@ -51,13 +51,13 @@
 
   <div class="page-reviews-container">
     <div class="header rel light-grey-border">
-      <div class="title ib">Page Reviews <span class="percentage">({{ model.domain_details.reviewPercentage }}%)</span></div>
-      <div class="search fs0 abs">
+      <div class="title ib">Page Reviews <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
+      <div class="search fs0 abs" ng-show="model.reviews.pages">
         <span class="domain ib">{{ model.domain_details.name }}/</span>
         <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
     </div>
-    <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews found">
+    <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews made for this domain yet.">
       <table>
         <thead>
           <th class="url">URL</th>
@@ -65,9 +65,6 @@
           <th class="finished-at center">Finished at</th>
         </thead>
         <tbody>
-          <tr ng-hide="model.reviews">
-            <td colspan="3">No reviews made for this domain yet.</td>
-          </tr>
           <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
             <td class="url"><a href="#/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.url }}</a></td>
             <td class="violations center"><a href="#/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
