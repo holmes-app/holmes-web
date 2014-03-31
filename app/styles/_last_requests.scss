@@ -1,7 +1,47 @@
-.response-time {
-  width: 150px;
-}
+.last-requests-view {
 
-.status-code {
-  width: 150px;
+  .response-time {
+    width: 150px;
+  }
+
+  .status-code {
+    width: 150px;
+  }
+
+  .chart-container {
+    margin-left: 155px;
+    margin-right: 142px;
+    margin-bottom: 20px;
+
+    .donut {
+
+    }
+
+    .donut-label {
+      max-height: 30px!important;
+      text-transform: lowercase;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .details {
+    margin-bottom: 20px;
+
+    li {
+      font-family: 'Open Sans', sans-serif;
+
+      h4 {
+        font-weight: 700;
+        font-size: 21px;
+        margin-bottom: 5px;
+        max-width: 400px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 14px;
+      }
+    }
+  }
+
 }

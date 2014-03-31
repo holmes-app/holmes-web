@@ -1,8 +1,22 @@
-<div class="view status-view status-workers-view">
+<div class="view status-view last-requests-view">
   <h1>Status</h1>
   <statusbar index="4"></statusbar>
 
-  <div nodata="model.requestsLoaded" nodata-height="451" nodata-size="30" nodata-text="No requests data available" nodata-fade="no">
+  <div class="failed-requests-container" nodata="model.loadedRequestsInLastDay" nodata-height="501" nodata-size="40" nodata-text="No reviews in last day">
+    <div class="chart-container ib" ng-if="model.loadedRequestsInLastDay">
+      <donut label="failed requests" data="model.failedRequests" onselect="model.onSelect"></donut>
+    </div>
+    <div class="details ib">
+      <ul class="categories" ng-hide="model.selectedCategory">
+        <li ng-repeat="failedRequest in model.failedRequests">
+          <h4 ng-class="'color' + ($index + 1)">{{failedRequest.percentage | number}}% {{failedRequest.label}}</h4>
+          <p class="grey">{{failedRequest.value | number}} failed requests</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div nodata="model.loadedRequests" nodata-height="451" nodata-size="30" nodata-text="No requests data available" nodata-fade="no">
     <table>
       <thead>
         <tr>

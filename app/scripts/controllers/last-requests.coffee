@@ -7,6 +7,7 @@ class LastRequestsCtrl
     @pageSize = 10
 
     @getLastRequests()
+    @getRequestsInLastDay()
 
     @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
@@ -16,12 +17,30 @@ class LastRequestsCtrl
   _fillRequests: (data) =>
     @requests = data.requests
     @requestsCount = data.requestsCount
-    @requestsLoaded = data.requests.length
+    @loadedRequests = data.requests.length
+
+  _fillRequestsInLastDay: (data) =>
+    requests = _.filter data, (request) -> request.statusCode >= 400
+    counts = _.pluck requests, 'count'
+    countSum = counts.reduce (a, b) -> a + b
+    @failedRequests = _.map(
+      requests
+      (request) ->
+        label: request.statusCode + ' - ' + request.statusCodeTitle
+        value: request.count
+        percentage: request.count / this * 100
+      countSum
+    )
+    @loadedRequestsInLastDay = requests.length
 
   getLastRequests: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
     @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then @_fillRequests, =>
-      @requestsLoaded = null
+      @loadedRequests = null
+
+  getRequestsInLastDay: ->
+    @LastRequestsFcty.getRequestsInLastDay().then @_fillRequestsInLastDay, =>
+      @loadedRequestsInLastDay = null
 
   updateLastRequests: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
