@@ -40,7 +40,7 @@
         <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
         <p class="page-count grey">{{ model.selectedCategory.pageCount | number }} violations</p>
         <ul class="category">
-          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations">
+          <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
             <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
             <p class="dark-grey ib title">{{ detail.title }}</p>
           </li>

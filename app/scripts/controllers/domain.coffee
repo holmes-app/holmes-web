@@ -20,6 +20,7 @@ class DomainCtrl
       if message.type == 'new-page' or message.type == 'new-review'
         @getDomainDetails()
         @getReviewsData()
+        @getDomainViolations()
     )
 
     @violationData = {}
