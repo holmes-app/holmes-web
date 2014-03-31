@@ -15,11 +15,11 @@ angular.module('holmesApp')
       nodataSize: '@nodataSize'
     template: (element, attr) ->
       nodeName = element[0].nodeName
-      nodataClass = if attr.nodataClass then attr.nodataClass else 'no-data'
+      nodataClass = if attr.nodataClass? then attr.nodataClass else 'no-data'
       nodataFadeClass = if attr.nodataFade != 'no' then 'no-data-fade' else ''
-      nodataLoading = if attr.nodataLoading then attr.nodataLoading else 'Loading...'
-      nodataText = if attr.nodataText then attr.nodataText else 'No data!'
-      nodataFailed = if attr.nodataFailed then attr.nodataFailed else 'Loading failed!'
+      nodataLoading = if attr.nodataLoading? then attr.nodataLoading else 'Loading...'
+      nodataText = if attr.nodataText? then attr.nodataText else 'No data!'
+      nodataFailed = if attr.nodataFailed? then attr.nodataFailed else 'Loading failed!'
       "<div>
         <div ng-show='nodataFlagger === undefined' class='#{nodataClass}'>
           <div class='loading' ng-if='!nodataSize'>#{nodataLoading}</div>
@@ -35,7 +35,7 @@ angular.module('holmesApp')
           </div>
         </div>
         <div ng-show='nodataFlagger === false || nodataFlagger == 0' class='#{nodataClass}'>
-          <div class='nodata'>#{nodataText}</div>
+          <div ng-if='nodataText' class='nodata'>#{nodataText}</div>
         </div>
         <div ng-show='nodataFlagger === null' class='#{nodataClass}'>
           <div class='failed'>#{nodataFailed}</div>
