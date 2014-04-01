@@ -23,6 +23,11 @@ class ConcurrentRequestsCtrl
 
     updateDetails()
 
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @timeout.cancel(@updateTimer) if @updateTimer?
+
   _fillConcurrentDetails: (limiters) =>
     @limiters = limiters
 
