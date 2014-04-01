@@ -15,15 +15,15 @@ angular.module('holmesApp')
       nodataSize: '@nodataSize'
     template: (element, attr) ->
       nodeName = element[0].nodeName
-      nodataClass = if attr.nodataClass? then attr.nodataClass else 'no-data'
+      attr.nodataClass = 'no-data' if !attr.nodataClass?
+      attr.nodataLoading = 'Loading...' if !attr.nodataLoading?
+      attr.nodataText = 'No data!' if !attr.nodataText?
+      attr.nodataFailed = 'Loading failed!' if !attr.nodataFailed?
       nodataFadeClass = if attr.nodataFade != 'no' then 'no-data-fade' else ''
-      nodataLoading = if attr.nodataLoading? then attr.nodataLoading else 'Loading...'
-      nodataText = if attr.nodataText? then attr.nodataText else 'No data!'
-      nodataFailed = if attr.nodataFailed? then attr.nodataFailed else 'Loading failed!'
       "<div>
-        <div ng-show='nodataFlagger === undefined' class='#{nodataClass}'>
-          <div class='loading' ng-if='!nodataSize'>#{nodataLoading}</div>
-          <div id='fountainG' ng-if='nodataSize'>
+        <div ng-show='nodataFlagger === undefined' class='{{nodataClass}}'>
+          <div ng-if='!nodataSize' class='loading'>{{nodataLoading}}</div>
+          <div ng-if='nodataSize' id='fountainG'>
             <div id='fountainG_1' class='fountainG'></div>
             <div id='fountainG_2' class='fountainG'></div>
             <div id='fountainG_3' class='fountainG'></div>
@@ -34,11 +34,11 @@ angular.module('holmesApp')
             <div id='fountainG_8' class='fountainG'></div>
           </div>
         </div>
-        <div ng-show='nodataFlagger === false || nodataFlagger == 0' class='#{nodataClass}'>
-          <div ng-if='nodataText' class='nodata'>#{nodataText}</div>
+        <div ng-show='nodataFlagger === false || nodataFlagger == 0' class='{{nodataClass}}'>
+          <div ng-if='nodataText' class='nodata'>{{nodataText}}</div>
         </div>
-        <div ng-show='nodataFlagger === null' class='#{nodataClass}'>
-          <div class='failed'>#{nodataFailed}</div>
+        <div ng-show='nodataFlagger === null' class='{{nodataClass}}'>
+          <div ng-if='nodataFailed' class='failed'>{{nodataFailed}}</div>
         </div>
         <#{nodeName} ng-show='nodataFlagger' class='#{nodataFadeClass}' ng-transclude></#{nodeName}>
       </div>"
