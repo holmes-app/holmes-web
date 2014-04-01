@@ -18,28 +18,31 @@
     <div class="cb"></div>
   </div>
 
-  <h2 class="grey current-limits">Current Limits</h2>
+  <div nodata="model.loadedLimiters">
 
-  <ul class="boxes limits" nodata="model.limiters">
-    <li class="box limit" ng-repeat="limiter in model.limiters track by limiter.url">
-      <a name="limiter.url">
-        <h2 class="blue ellipsis" title="{{ limiter.url }}">{{ limiter.url.replace('http://', '').replace('https://', '') }}</h2>
-        <div class="toolbar">
-          <horizontal
-            percentage="limiter.concurrentRequestsPercentage"
-            value="limiter.currentValue"
-            total="limiter.maxValue"
-            showtotal="true"
-            valuelabel="active requests"
-            totallabel="available requests"
-          >
-          </horizontal>
-        </div>
-        <div class="concurrent-container" ng-hide="!model.isFormVisible">
-          <input name="concurrent" id="concurrent" class="concurrent" type="range" min="1" max="200" ng-model="limiter.maxValue" ng-change="model.saveNewLimit(limiter)">
-          <div class="current-value grey" ng-class="limiter.isCurrentValueVisible ? 'visible' : ''" ng-model="limiter.maxValue">{{ limiter.maxValue }}</div>
-        </div>
-      </a>
-    </li>
-  </ul>
+    <h2 class="grey current-limits" ng-hide="!model.isFormVisible">Current Limits</h2>
+
+    <ul class="boxes limits" >
+      <li class="box limit" ng-repeat="limiter in model.limiters track by limiter.url">
+        <a name="limiter.url">
+          <h2 class="blue ellipsis" title="{{ limiter.url }}">{{ limiter.url.replace('http://', '').replace('https://', '') }}</h2>
+          <div class="toolbar">
+            <horizontal
+              percentage="limiter.concurrentRequestsPercentage"
+              value="limiter.currentValue"
+              total="limiter.maxValue"
+              showtotal="true"
+              valuelabel="active requests"
+              totallabel="available requests"
+            >
+            </horizontal>
+          </div>
+          <div class="concurrent-container" ng-hide="!model.isFormVisible">
+            <input name="concurrent" id="concurrent" class="concurrent" type="range" min="1" max="200" ng-model="limiter.maxValue" ng-change="model.saveNewLimit(limiter)">
+            <div class="current-value grey" ng-class="limiter.isCurrentValueVisible ? 'visible' : ''" ng-model="limiter.maxValue">{{ limiter.maxValue }}</div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

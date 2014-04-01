@@ -30,9 +30,12 @@ class ConcurrentRequestsCtrl
 
   _fillConcurrentDetails: (limiters) =>
     @limiters = limiters
+    @loadedLimiters = limiters.length
 
   updateConcurrentDetails: ->
-    @LimitersFcty.getLimiters().then(@_fillConcurrentDetails)
+    @LimitersFcty.getLimiters().then(@_fillConcurrentDetails, =>
+      @loadedLimiters = null
+    )
 
   clearForm: =>
     @newLimitPath = ''
