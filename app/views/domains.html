@@ -4,7 +4,7 @@
   <div
     class="domains-container"
     style="max-height: {{ model.domainsVisible ? (model.domainList.length * 155) : 326 }}px;"
-    nodata="model.loadedDomains" nodata-height="326" nodata-size="60">
+    nodata="model.loadedDomains" nodata-height="326" nodata-size="60" nodata-text="No domains yet. Add a new one!">
     <ul class="boxes domains">
       <li class="box ib" ng-repeat="domain in model.domains | orderBy: '-is_active' track by domain.id" ng-class="domain.is_active ? '': 'inactive'">
 
