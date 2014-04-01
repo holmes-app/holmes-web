@@ -7,10 +7,14 @@ class WorkersCtrl
 
     @getWorkers()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getWorkers() if message.type == 'worker-status'
     )
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillWorkers: (data) =>
     @workers = data

@@ -15,7 +15,6 @@ class DomainCtrl
     @getDomainDetails()
     @watchScope()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       if message.type == 'new-page' or message.type == 'new-review'
         @getDomainDetails()
@@ -24,6 +23,11 @@ class DomainCtrl
     )
 
     @violationData = {}
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillViolationData: (data) =>
     @violationData[data.categoryId] = data.violations

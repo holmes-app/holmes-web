@@ -9,10 +9,14 @@ class LastRequestsCtrl
     @getLastRequests()
     @getRequestsInLastDay()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getLastRequests() if message.type == 'new-request'
     )
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillRequests: (data) =>
     @requests = data.requests

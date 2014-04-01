@@ -11,10 +11,14 @@ class DomainsCtrl
 
     @watchScope()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on (message) =>
       if message.type == 'new-page' or message.type == 'new-review'
         @getDomainData()
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillDomains: (@domainList) =>
     @domainList = _.sortBy(@domainList.reverse(), 'is_active').reverse()

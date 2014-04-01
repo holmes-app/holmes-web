@@ -6,10 +6,14 @@ class LastReviewsCtrl
 
     @getLastReviews()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getLastReviews() if message.type == 'new-review'
     )
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillReviews: (reviews) =>
     @lastReviews = reviews

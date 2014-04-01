@@ -8,10 +8,14 @@ class ReviewPipelineCtrl
 
     @getReviews()
 
-    @WebSocketFcty.clearHandlers()
     @WebSocketFcty.on((message) =>
       @getReviews()
     )
+
+    @scope.$on '$destroy', @_cleanUp
+
+  _cleanUp: =>
+    @WebSocketFcty.clearHandlers()
 
   _fillReviews: (data) =>
     @reviews = data.pages
