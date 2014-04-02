@@ -27,19 +27,20 @@ angular.module('holmesApp')
 
         _toggleHideOnClick()
 
-      _hideBarOnClickOutside = (event) ->
-        _hideBar = (event, element, obj) ->
-          Ythreshold = Math.abs($(element).position().top) + $(element).height() - $($window).scrollTop()
-          if event.y > Ythreshold
+      _hideBarOnClickOutside = (ev) ->
+        _hideBar = (ev, XThresElem, YThresElem, obj) ->
+          Ythreshold = Math.abs($(YThresElem).position().top) + $(YThresElem).height() - $($window).scrollTop()
+          Xthreshold = Math.abs($(XThresElem).position().left)
+          if ev.y > Ythreshold or ev.x < Xthreshold
             scope.model[obj] = false
             scope.hideAlertMessage()
             scope.$apply()
             _toggleHideOnClick()
 
         if scope.model.addPageFormVisible
-          _hideBar(event, '.add-page-form', 'addPageFormVisible')
+          _hideBar(ev, '.header-add-page', '.add-page-form', 'addPageFormVisible')
         else if scope.model.searchFormVisible
-          _hideBar(event, '.search-form', 'searchFormVisible')
+          _hideBar(ev, '.header-add-page', '.search-form', 'searchFormVisible')
 
       scope.toggleAddPage = ->
         _toggle('addPageFormVisible')
