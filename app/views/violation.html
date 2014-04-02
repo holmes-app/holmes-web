@@ -22,6 +22,20 @@
     </ul>
   </div>
 
+  <div ng-if="model.showDetails" class="details-container" nodata="model.loadedDetails" nodata-height="501" nodata-size="40" nodata-text="">
+    <div class="chart-container ib" ng-if="model.loadedDetails">
+      <donut label="{{model.violationKey.replace('.', ' ')}} details" data="model.details" onselect="model.onSelect"></donut>
+    </div>
+    <div class="details ib">
+      <ul class="categories" ng-hide="model.selectedCategory">
+        <li ng-repeat="failedRequest in model.details">
+          <h4 ng-class="'color' + ($index + 1)">{{failedRequest.percentage | number}}% {{failedRequest.label}}</h4>
+          <p class="grey">{{failedRequest.value | number}} links</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="reviews">
     <div class="page-reviews-container">
       <div class="header rel light-grey-border">
