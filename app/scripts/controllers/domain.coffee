@@ -78,7 +78,8 @@ class DomainCtrl
       @loadedReviews = null
 
   getDomainDetails: ->
-    @DomainsFcty.getDomainData(@domainName).then(@_fillDomainDetails)
+    @DomainsFcty.getDomainData(@domainName).then @_fillDomainDetails, =>
+      @loadedDomainDetails = null
 
   onSelect: (value, data) =>
     if data?

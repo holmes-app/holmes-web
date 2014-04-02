@@ -1,5 +1,5 @@
 <div class="view domain-view">
-  <div class="info rel" nodata="model.domain_details" nodata-height="71" nodata-size="40">
+  <div class="info rel" nodata="model.loadedDomainDetails" nodata-height="71" nodata-size="40">
     <h2 class="blue">{{ model.domain_details.name }}</h2>
 
     <div class="fs0 abs abs-right toolbar">
@@ -24,7 +24,7 @@
     <div class="cb"></div>
   </div>
 
-  <div nodata="model.loadedViolations" nodata-height="501" nodata-size="40" nodata-text="">
+  <div nodata="model.loadedViolations" nodata-height="501" nodata-size="40" nodata-failed="">
     <div class="violations-container" ng-if="model.loadedViolations">
       <div class="chart-container ib">
         <donut label="violation types" data="model.domainGroupedViolations" onselect="model.onSelect"></donut>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="page-reviews-container">
+  <div class="page-reviews-container" ng-if="model.loadedDomainDetails">
     <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs" ng-hide="model.reviews.pages == '' && model.reviewFilter == ''">

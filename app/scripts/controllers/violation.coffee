@@ -10,6 +10,7 @@ class ViolationCtrl
     @ViolationFcty.getDomainViolations(@violationKey).then @_fillViolation, =>
       @loadedViolation = null
       @loadedDetails = null
+      @loadedReviews = null
     @watchScope()
 
   _fillReviews: (violation) =>
