@@ -19,7 +19,7 @@
       }"></ng-pluralize>
   </div>
 
-  <div nodata="model.loadedReviews" nodata-height="350" nodata-size="30" nodata-text="No reviews data available">
+  <div nodata="model.loadedReviews" nodata-height="350" nodata-size="30" nodata-text="" nodata-failed="" nodata-fade="no">
     <ul class="boxes last-reviews">
       <li class="box worker" data-ng-repeat="review in model.lastReviews | orderBy:'-completedAt' track by review.uuid">
         <a href="#/page/{{ review.page.uuid }}/review/{{ review.uuid }}">
