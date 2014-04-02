@@ -30,7 +30,7 @@
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.details">
           <h4 ng-class="'color' + ($index + 1)">{{failedRequest.percentage | number}}% {{failedRequest.label}}</h4>
-          <p class="grey">{{failedRequest.value | number}} links</p>
+          <p class="grey">{{failedRequest.value | number}} occurrences</p>
         </li>
       </ul>
     </div>
