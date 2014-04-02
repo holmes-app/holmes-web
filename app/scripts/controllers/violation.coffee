@@ -20,7 +20,7 @@ class ViolationCtrl
 
   _fillDetails: (details) =>
     counts = _.pluck details, 'count'
-    countSum = counts.reduce (a, b) -> a + b
+    countSum = if counts.length > 0 then counts.reduce (a, b) -> a + b else 0
     @details = _.map(
       details
       (detail) ->

@@ -1,7 +1,7 @@
 <div class="view violation-view">
-  <div class="header rel" nodata="model.loadedViolation" nodata-height="67" nodata-size="40">
+  <div class="header rel">
     <h2>{{ model.violation.label }}</h2>
-    <div class="fs0 abs abs-right toolbar">
+    <div class="fs0 abs abs-right toolbar" nodata="model.loadedViolation" nodata-height="47" nodata-size="10" nodata-failed="">
       <div class="ib" ng-show="model.violation.domainsCount">
         <h3 class="mid-grey">domains</h3>
         <p class="grey">{{ model.violation.domainsCount }}</p>
