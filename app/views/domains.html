@@ -54,7 +54,7 @@
   <div class="violations-container">
     <div class="toolbar">
       <h2>Violations</h2>
-      <div class="options">
+      <div class="options" ng-show="model.loadedViolations">
         <a class="option ib button-group groups fs0" ng-class="model.groupsVisible ? 'selected' : ''" ng-click="model.showGroups()">
           <span class="round-button blue-border ib"><i></i></span>
           <span class="blue label ib">GROUPS</span>
