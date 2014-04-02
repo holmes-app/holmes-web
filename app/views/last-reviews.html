@@ -4,9 +4,9 @@
 
   <div class="inlasthour blue" nodata="model.loadedReviewsInLastHour" nodata-height="28" nodata-size="20" nodata-text="No reviews data available">
     <ng-pluralize
+      ng-if="model.lastReviewsInLastHour.count > 0"
       count="model.lastReviewsInLastHour.count"
       when="{
-        '0': 'No reviews in the last hour',
         'one': '1 review in the last hour',
         'other': '{{ model.lastReviewsInLastHour.count | number:0 }} reviews in the last hour',
       }"></ng-pluralize>
