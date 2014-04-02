@@ -60,6 +60,7 @@ class DomainCtrl
     @domain_details = data
     @domainStatus = data.is_active
     @domain_url = if data.url.slice(-1) == '/' then data.url else "#{ data.url }/"
+    @loadedDomainDetails = if data? then data.pageCount else 0
 
   _fillChangeDomainStatus: =>
     @domainStatus = !@domainStatus
