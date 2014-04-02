@@ -21,7 +21,7 @@ class WorkersCtrl
     @workerCount = @workers.length
     @activeWorkers = _.filter(@workers, {'working': true}).length
     @activeWorkersPercentage = @activeWorkers / @workerCount
-    @loadedWorkers = true
+    @loadedWorkers = @workerCount
 
   getWorkers: ->
     @WorkersFcty.getWorkers().then @_fillWorkers, =>
