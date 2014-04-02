@@ -26,7 +26,7 @@ class LastRequestsCtrl
   _fillRequestsInLastDay: (data) =>
     requests = _.filter data, (request) -> request.statusCode >= 400
     counts = _.pluck requests, 'count'
-    countSum = counts.reduce (a, b) -> a + b
+    countSum = if counts.length > 0 then counts.reduce (a, b) -> a + b else 0
     @failedRequests = _.map(
       requests
       (request) ->
