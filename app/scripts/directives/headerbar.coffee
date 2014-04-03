@@ -29,9 +29,10 @@ angular.module('holmesApp')
 
       _hideBarOnClickOutside = (ev) ->
         _hideBar = (ev, XThresElem, YThresElem, obj) ->
-          Ythreshold = Math.abs($(YThresElem).position().top) + $(YThresElem).height() - $($window).scrollTop()
+          YUpperThreshold = Math.abs($(YThresElem).position().top) - $($window).scrollTop()
+          YLowerThreshold = Math.abs($(YThresElem).position().top) + $(YThresElem).height() - $($window).scrollTop()
           Xthreshold = Math.abs($(XThresElem).position().left)
-          if ev.y > Ythreshold or ev.x < Xthreshold
+          if ev.y > YLowerThreshold or ev.y < YUpperThreshold and ev.x < Xthreshold
             scope.model[obj] = false
             scope.hideAlertMessage()
             scope.$apply()
