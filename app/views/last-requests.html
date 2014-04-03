@@ -4,13 +4,19 @@
 
   <div class="failed-requests-container" nodata="model.loadedRequestsInLastDay" nodata-height="501" nodata-size="40" nodata-text="">
     <div class="chart-container ib" ng-if="model.loadedRequestsInLastDay">
-      <donut label="requests" data="model.failedRequests" onselect="model.onSelect"></donut>
+      <donut label="failed responses" data="model.failedRequests" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
+      <div class="title ib">Failed responses in the last day</div>
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.failedRequests">
           <h4 ng-class="'color' + ($index + 1)">{{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}</h4>
-          <p class="grey">{{failedRequest.value | number}} requests</p>
+          <p class="grey" ng-pluralize
+            count="failedRequest.value"
+            when="{
+              'one': '1 response',
+              'other': '{{ failedRequest.value | number:0 }} responses',
+            }"></p>
         </li>
       </ul>
     </div>

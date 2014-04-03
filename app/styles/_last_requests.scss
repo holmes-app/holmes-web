@@ -25,7 +25,7 @@
   }
 
   .details {
-    margin-bottom: 20px;
+    margin: 20px 0;
 
     li {
       font-family: 'Open Sans', sans-serif;
@@ -42,6 +42,20 @@
         margin-bottom: 14px;
       }
     }
+  }
+
+  .title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 21px;
+    padding-bottom: 10px;
+    border-width: 0;
+    border-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $light-grey;
   }
 
 }
