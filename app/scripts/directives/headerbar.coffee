@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .directive 'headerbar', ($window) ->
+  .directive 'headerbar', ($window, $location, $interval) ->
     templateUrl: 'views/headerbar.html'
     restrict: 'E'
     replace: true,
@@ -55,3 +55,23 @@ angular.module('holmesApp')
         scope.model.alertMessageVisible = false
         if headerWitchOne == 'success_page'
           scope.toggleAddPage()
+
+      _scrollToElement = (el) ->
+        srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) * 2
+        dy = Math.abs($window.pageYOffset - srcollY)
+        $window.scrollTo(0, srcollY)
+        return dy
+
+      scope.scrollToViolations = ->
+        el = element.parent().find('#violations')
+        if el.length == 1
+          _scrollToElement(el)
+        else
+          $location.path('/domains')
+          scrollInterval = $interval(=>
+            el = element.parent().find('#violations')
+            if el.length == 1
+              dy = _scrollToElement(el)
+              if dy == 0
+                $interval.cancel(scrollInterval)
+          100)
