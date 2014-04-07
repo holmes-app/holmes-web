@@ -30,7 +30,12 @@
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.details">
           <h4 ng-class="'color' + ($index + 1)">{{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}</h4>
-          <p class="grey">{{failedRequest.value | number}} occurrences</p>
+          <p class="grey" ngpluralize
+            count="failedRequest.value"
+            when="{
+              'one': '1 occurrence',
+              'other': '{{ failedRequest.value | number:0 }} occurrences',
+            }"></p>
         </li>
       </ul>
     </div>

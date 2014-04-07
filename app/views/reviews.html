@@ -61,7 +61,12 @@
             <ul class="violations">
               <li ng-repeat="violations in model.violations | orderBy: '-value'">
               <h4 ng-class="'color' + ($index + 1)">{{ violations.value | number:2 }}% {{ violations.label }}</h4>
-                <p class="grey">{{ violations.violations.length | number }} violations</p>
+                <p class="grey" ng-pluralize
+                  count="violations.violations.length"
+                  when="{
+                    'one': '1 violation',
+                    'other': '{{ violations.violations.length | number:0 }} violations',
+                  }"></p>
               </li>
             </ul>
           </div>
