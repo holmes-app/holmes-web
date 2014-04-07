@@ -72,7 +72,7 @@
         <li ng-repeat="(name, group) in model.groupData track by name" ng-class="'color' + ($index + 1) + '-border'">
           <h3 ng-class="'color' + ($index + 1)">{{ name }}</h3>
           <ul class="group-violations">
-            <li ng-repeat="violation in group | orderBy:'count':desc track by violation.key">
+            <li ng-repeat="violation in group | orderBy:'name':desc track by violation.key">
               <a href="#/violations/{{ violation.key }}">
                 <div class="name dark-grey ib">{{ violation.name }}</div>
               </a>
