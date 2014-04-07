@@ -32,7 +32,7 @@ angular.module('holmesApp')
           YUpperThreshold = Math.abs($(YThresElem).position().top) - $($window).scrollTop()
           YLowerThreshold = Math.abs($(YThresElem).position().top) + $(YThresElem).height() - $($window).scrollTop()
           Xthreshold = Math.abs($(XThresElem).position().left)
-          if ev.y > YLowerThreshold or ev.y < YUpperThreshold and ev.x < Xthreshold
+          if ev.clientY > YLowerThreshold or ev.clientY < YUpperThreshold and ev.clientX < Xthreshold
             scope.model[obj] = false
             scope.hideAlertMessage()
             scope.$apply()
@@ -44,12 +44,14 @@ angular.module('holmesApp')
           _hideBar(ev, '.header-add-page', '.search-form', 'searchFormVisible')
 
       scope.toggleAddPage = ->
+        if scope.model.alertMessageVisible and scope.model.addPageFormVisible
+          _toggle('alertMessageVisible')
         _toggle('addPageFormVisible')
 
       scope.toggleSearch = ->
         _toggle('searchFormVisible')
 
       scope.hideAlertMessage = (headerWitchOne) ->
+        scope.model.alertMessageVisible = false
         if headerWitchOne == 'success_page'
           scope.toggleAddPage()
-        scope.model.alertMessageVisible = false
