@@ -14,8 +14,8 @@
       ng-if="model.lastReviewsInLastHour.count > 0"
       count="model.lastReviewsInLastHour.perHour"
       when="{
-        'one': '(1 review per second)',
-        'other': '({{ model.lastReviewsInLastHour.perHour | number:2 }} reviews per second)',
+        'one': ' (1 review per second)',
+        'other': ' ({{ model.lastReviewsInLastHour.perHour | number:2 }} reviews per second)',
       }"></ng-pluralize>
   </div>
 
