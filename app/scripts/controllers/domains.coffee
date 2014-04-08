@@ -26,10 +26,10 @@ class DomainsCtrl
     @loadedDomains = @domainList.length
 
   _fillViolations: (mostCommonViolations) =>
+    @groupData = @groupDataFull = _.groupBy(mostCommonViolations, 'category')
+    mostCommonViolations = _.sortBy mostCommonViolations, (violation) -> -violation.count
     @mostFrequentViolations = mostCommonViolations[0..9]
     @leastFrequentViolations = mostCommonViolations[10..]
-    @groupDataFull = _.groupBy(mostCommonViolations, 'category')
-    @groupData = @groupDataFull
     @loadedViolations = mostCommonViolations.length
 
   toggleDomainVisibility: ->

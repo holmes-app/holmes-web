@@ -86,7 +86,7 @@
 
       <div class="most-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.mostFrequentViolations | filter:model.violationFilter | orderBy:'count':desc track by violation.key">
+          <li ng-repeat="violation in model.mostFrequentViolations | filter:model.violationFilter track by violation.key">
             <a href="#/violations/{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 1 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
@@ -97,7 +97,7 @@
 
       <div class="least-frequent">
         <ul class="fs0">
-          <li ng-repeat="violation in model.leastFrequentViolations | filter:model.violationFilter | orderBy:'count':desc track by violation.key">
+          <li ng-repeat="violation in model.leastFrequentViolations | filter:model.violationFilter track by violation.key">
             <a href="#/violations/{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 11 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
