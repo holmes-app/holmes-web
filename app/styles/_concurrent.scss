@@ -33,7 +33,7 @@
 
   .add-new-limit {
     font-family: 'Open Sans', sans-serif;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     width: 100%;
 
     a {
@@ -86,4 +86,9 @@
       }
     }
   }
+
+  .current-limits {
+    border-bottom: none;
+  }
+
 }
