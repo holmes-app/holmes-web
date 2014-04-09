@@ -21,7 +21,10 @@ class WebSocketService
       handler(obj)
 
   _onmessage: (message) ->
-    @throttledSendMessage(message)
+    if message.type == "worker-status"
+      @_onMessage(message)
+    else
+      @throttledSendMessage(message)
 
 angular.module('holmesApp')
   .factory('WebSocketFcty', (ConfigConst, WebSocket) ->

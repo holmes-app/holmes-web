@@ -5,29 +5,24 @@ class WorkersCtrl
     @workers = []
     @activeWorkersPercentage = 0
 
-    @getWorkers()
-
-    @WebSocketFcty.on((message) =>
-      @getWorkers() if message.type == 'worker-status'
-    )
-
     @scope.$on '$destroy', @_cleanUp
 
-  _cleanUp: =>
-    @WebSocketFcty.clearHandlers()
+    @WorkersFcty.listen(@getWorkers)
 
-  _fillWorkers: (data) =>
-    @workers = data
+
+  _cleanUp: =>
+    @WorkersFcty.stopListen()
+
+  _fillWorkers: (activeWorkers, idleWorkers) =>
+    @workers = activeWorkers.concat(idleWorkers)
     @workerCount = @workers.length
-    @activeWorkers = _.filter(@workers, {'working': true}).length
+    @activeWorkers = activeWorkers.length
     @activeWorkersPercentage = @activeWorkers / @workerCount
     @loadedWorkers = @workerCount
 
-  getWorkers: ->
-    @WorkersFcty.getWorkers().then @_fillWorkers, =>
-      @loadedWorkers = null
-
+  getWorkers: (activeWorkers, idleWorkers) =>
+    @_fillWorkers(activeWorkers, idleWorkers)
 
 angular.module('holmesApp')
-  .controller 'WorkersCtrl',  ($scope, WorkersFcty, WebSocketFcty) ->
+  .controller 'WorkersCtrl', ($scope, WorkersFcty, WebSocketFcty) ->
     $scope.model = new WorkersCtrl($scope, WorkersFcty, WebSocketFcty)
