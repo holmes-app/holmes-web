@@ -8,6 +8,8 @@ class ConcurrentRequestsCtrl
     @access_token = ''
     @newLimitConcurrentConnections = 5
 
+    @limiterToRemove = null
+
     @clearForm()
     @updateConcurrentDetails()
 
@@ -52,6 +54,15 @@ class ConcurrentRequestsCtrl
 
   addLimiter: ->
     @limiterSaveData(url: @scope.model.newLimitPath, value: @scope.model.value)
+
+  removeLimiter: (limiter) =>
+    @LimitersFcty.deleteLimiter(limiter).then =>
+      @clearForm()
+      @updateConcurrentDetails()
+    , (response) ->
+      if response.status == 403
+        if response.data.reason == 'Empty access token'
+          console.log('Empty access token!')
 
   saveNewLimit: (limiter) ->
     limiter.isCurrentValueVisible = true

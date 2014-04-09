@@ -85,6 +85,67 @@
         opacity: 1;
       }
     }
+
+  }
+
+  button {
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+    position: relative;
+    float: right;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 24px;
+    background: none;
+    color: $blue;
+    line-height: 24px;
+    text-align: center;
+    @include transition(all 75ms linear);
+
+    &:hover, &:focus {
+      font-weight: bold;
+      color: $color3;
+      outline: 0;
+    }
+  }
+
+  .remove-confirm {
+    font-family: 'Open Sans', sans-serif;
+    color: $color1;
+    width: 100%;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 3px;
+    border-bottom: solid 1px $light-grey;
+    box-sizing: border-box;
+
+    div {
+      position: relative;
+      float: right;
+
+      button {
+        font-size: inherit;
+        font-weight: inherit;
+        width: auto;
+        height: auto;
+        margin-left: 10px;
+        margin-top: -3px;
+        color: inherit;
+        line-height: 30px;
+
+        &.yes:hover, &.yes:focus {
+          color: $color3;
+        }
+
+        &.cancel:hover, &.cancel:focus {
+          color: $blue;
+        }
+      }
+    }
+
   }
 
   .current-limits {
