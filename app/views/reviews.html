@@ -99,7 +99,7 @@
                   <td class="title grey"><div>{{ fact.title }}</div></td>
                   <td class="fact-value grey">
                     <div class="content" ng-if="fact.unit == 'value'">{{ fact.value }}</div>
-                    <div class="content" ng-if="fact.unit == 'kb'">{{ fact.value | number:2 }}kb</div>
+                    <div class="content" ng-if="fact.unit == 'kb'">{{ fact.value | bytes }}</div>
                     <div class="content" ng-if="fact.unit == 'css' || fact.unit == 'js' || fact.unit == 'links'">
                       <ul>
                         <li ng-repeat="value in fact.value" class="url">
