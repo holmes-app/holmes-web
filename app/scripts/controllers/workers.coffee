@@ -4,6 +4,8 @@ class WorkersCtrl
   constructor: (@scope, @WorkersFcty, @WebSocketFcty) ->
     @workers = []
     @activeWorkersPercentage = 0
+    @activeWorkers = []
+    @loadedWorkers = false
 
     @scope.$on '$destroy', @_cleanUp
 
