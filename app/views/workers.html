@@ -14,7 +14,7 @@
     </horizontal>
 
     <ul class="boxes workers">
-      <li class="box worker" ng-repeat="worker in model.workers | orderBy:'-dt' track by worker.workerId">
+      <li class="box worker" ng-repeat="worker in model.workers | orderBy:'workerId' track by worker.workerId">
         <a href="{{ worker.url }}" target="_blank">
           <h2 class="blue ng-binding">{{ worker.domainName || "idle" }}</h2>
           <p class="url">{{ worker.url || "Waiting for new jobs..." }}</p>
