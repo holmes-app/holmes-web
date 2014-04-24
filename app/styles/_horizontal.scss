@@ -18,6 +18,10 @@
     color: $light-grey;
     text-align: right;
     padding-right: 10px;
+
+    &.value-zero {
+      display: none;
+    }
   }
 
   .value-label {

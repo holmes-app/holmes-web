@@ -19,6 +19,10 @@ class HorizontalCtrl
       valueLabel = '<div class="value-label">' + @scope.valuelabel + '</div>'
 
     @elements.value.html(@filter('number')(value) + valueLabel)
+    if value is 0
+      @elements.value.addClass('value-zero')
+    else
+      @elements.value.removeClass('value-zero')
     @setElementTotalValue(@scope.total)
 
   setElementTotalValue: (totalValue) ->
