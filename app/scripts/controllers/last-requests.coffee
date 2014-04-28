@@ -27,10 +27,15 @@ class LastRequestsCtrl
     requests = _.filter data, (request) -> request.statusCode >= 400
     counts = _.pluck requests, 'count'
     countSum = if counts.length > 0 then counts.reduce (a, b) -> a + b else 0
+    if requests.length > 5
+      requests[4..] = requests[4..].reduce (req1, req2) ->
+        count: req1.count + req2.count
+        statusCode: ''
+        statusCodeTitle: 'Others'
     @failedRequests = _.map(
       requests
       (request) ->
-        label: request.statusCode + ' - ' + request.statusCodeTitle
+        label: request.statusCode + ' ' + request.statusCodeTitle
         value: request.count
         percentage: request.count / this * 100
       countSum
