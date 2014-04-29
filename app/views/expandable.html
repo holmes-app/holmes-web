@@ -1,0 +1,9 @@
+<div class="expandable">
+  <div ng-transclude class="expandable-content" style="{{ model.getMaxHeight() }}"></div>
+  <a class="expand-action pull-right" ng-click="model.expandContent()" ng-show="model.isExpandable()">
+    <span class="icon ib blue-border round-button"><i></i></span>
+  </a>
+  <a class="collapse-action pull-right" ng-click="model.collapseContent()" ng-show="model.isCollapsable()">
+    <span class="icon ib blue-border blue-bg round-button"><i></i></span>
+  </a>
+</div>

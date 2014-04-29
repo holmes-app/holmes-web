@@ -1,0 +1,31 @@
+.expandable {
+  .expandable-content {
+    margin: 10px 0;
+    overflow: hidden;
+    max-height: 325px;
+    max-width: 800px;
+    @include transition(all 500ms linear);
+  }
+
+  .expand-action, .collapse-action {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    margin-top: -38px;
+    right: 0;
+    margin-right: 6px;
+
+  }
+  .expand-action {
+    .icon i {
+      @include common-sprite(arrow-down, $dimensions: true);
+    }
+  }
+  .collapse-action {
+    .icon i {
+      top: 10px;
+      left: 10px;
+      @include common-sprite(arrow-up, $dimensions: true);
+    }
+  }
+}
