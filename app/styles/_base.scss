@@ -83,6 +83,10 @@ h2 {
   position: relative;
   cursor: pointer;
 
+  &.white-bg {
+    background-color: white;
+  }
+
   i {
     display: block;
     position: absolute;
