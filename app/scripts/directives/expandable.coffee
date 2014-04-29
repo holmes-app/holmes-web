@@ -20,7 +20,7 @@ class ExpandableCtrl
     if @hasOverflow() and !@expanded then true else false
 
   isCollapsable: ->
-    if @expanded then true else false
+    @hasOverflow() and @expanded
 
   expandContent: (doScroll=true) ->
     @expanded = true
