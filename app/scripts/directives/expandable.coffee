@@ -2,22 +2,20 @@
 
 class ExpandableCtrl
   constructor: (@scope, @contentHeight, @elementHeight, @scrollToOffset) ->
-    @inverse = false
-    @inverse = @scope.inverse if @scope.inverse?
+    @inverse = if @scope.inverse? then @scope.inverse else false
     if !@inverse
-      @expanded = false
+      @collapseContent(false)
     else
-      @expanded = true
       @expandContent(false)
 
   getMaxHeight: ->
-    return if @expanded then "max-height: #{@contentHeight}px" else ''
+    if @expanded then "max-height: #{@contentHeight}px" else ''
 
   hasOverflow: ->
-    return @contentHeight > @elementHeight
+    @contentHeight > @elementHeight
 
   isExpandable: ->
-    if @hasOverflow() and !@expanded then true else false
+    @hasOverflow() and !@expanded
 
   isCollapsable: ->
     @hasOverflow() and @expanded
