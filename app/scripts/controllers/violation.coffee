@@ -21,6 +21,10 @@ class ViolationCtrl
   _fillDetails: (details) =>
     counts = _.pluck details, 'count'
     countSum = if counts.length > 0 then counts.reduce (a, b) -> a + b else 0
+    if details.length > 7
+      details[6..] = details[6..].reduce (detail1, detail2) ->
+        count: detail1.count + detail2.count
+        domain: 'others'
     @details = _.map(
       details
       (detail) ->
