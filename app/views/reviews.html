@@ -99,6 +99,8 @@
                   <td class="title grey"><div>{{ fact.title }}</div></td>
                   <td class="fact-value grey">
                     <div class="content" ng-if="fact.unit == 'value'">{{ fact.value }}</div>
+                    <div class="content" ng-if="fact.unit == 'number'">{{ fact.value | number }}</div>
+                    <div class="content" ng-if="fact.unit == 'datetime'">{{ fact.value * 1000 | date:'medium' }}</div>
                     <div class="content" ng-if="fact.unit == 'kb'">{{ fact.value * 1024 | bytes }}</div>
                     <expandable ng-if="fact.unit == 'css' || fact.unit == 'js' || fact.unit == 'links'">
                     <ul>
