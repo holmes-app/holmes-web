@@ -54,7 +54,6 @@ app = angular.module('holmesApp', [
       apiKey: '68129569472-1smbhidqeo3kpdj029cehmnp8qh808kv.apps.googleusercontent.com',
       scopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
     })
-
   .run(($rootScope, $window) ->
     $rootScope.$on('$viewContentLoaded', ->
       $window.scrollTo(0, 0)

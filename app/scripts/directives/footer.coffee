@@ -22,6 +22,9 @@ angular.module('holmesApp')
     """
     restrict: 'E'
     controller: ($scope, $cookieStore, GooglePlus, APIVersionFcty, packageJson) ->
+      reloadPage = ->
+        window.location.reload(true)
+
       APIVersionFcty.getAPIVersion().then( (version) ->
         $scope.apiVersion = version
       )
@@ -32,16 +35,15 @@ angular.module('holmesApp')
 
       $scope.logout = () ->
         $cookieStore.remove('HOLMES_AUTH_TOKEN')
-        $scope.isFormVisible = false
+        reloadPage()
 
       $scope.login = () ->
         GooglePlus.login().then((data) =>
           authResult = GooglePlus.getToken()
           $cookieStore.put('HOLMES_AUTH_TOKEN', authResult.access_token)
-          $scope.isFormVisible = true
+          reloadPage()
         , (err) ->
           $scope.logout()
         )
 
   )
-
