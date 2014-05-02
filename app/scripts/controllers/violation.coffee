@@ -1,7 +1,7 @@
 'use strict'
 
 class ViolationCtrl
-  constructor: (@scope, @violationKey, @ViolationFcty) ->
+  constructor: (@scope, @violationKey, @ViolationFcty, @WebSocketFcty) ->
     if @violationKey in ['blacklist.domains']
       @showDetails = true
     @pageFilter = null
@@ -80,5 +80,5 @@ class ViolationCtrl
     @scope.$watch('model.pageFilter', updateReviews)
 
 angular.module('holmesApp')
-  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty) ->
-    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty)
+  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, WebSocketFcty) ->
+    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty, WebSocketFcty)

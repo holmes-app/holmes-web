@@ -1,7 +1,7 @@
 'use strict'
 
 class ConcurrentRequestsCtrl
-  constructor: (@scope, @timeout, @LimitersFcty, @cookieStore) ->
+  constructor: (@scope, @timeout, @LimitersFcty, @cookieStore, @WebSocketFcty) ->
     @isFormVisible = false
     @newLimitPath = ''
     @limiters = []
@@ -79,5 +79,5 @@ class ConcurrentRequestsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, $cookieStore) ->
-    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, $cookieStore)
+  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, $cookieStore, WebSocketFcty) ->
+    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, $cookieStore, WebSocketFcty)

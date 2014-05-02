@@ -1,7 +1,7 @@
 'use strict'
 
 class ReviewsFactory
-  constructor: (@restangular) ->
+  constructor: (@restangular, @WebSocketFcty) ->
 
   getReview: (pageId, reviewId) ->
     @restangular.one('page', pageId).one('review', reviewId).get()
@@ -10,5 +10,5 @@ class ReviewsFactory
     @restangular.one('page', pageId).all('reviews').getList().$object
 
 angular.module('holmesApp')
-  .factory 'ReviewsFcty', (Restangular) ->
-    return new ReviewsFactory(Restangular)
+  .factory 'ReviewsFcty', (Restangular, WebSocketFcty) ->
+    return new ReviewsFactory(Restangular, WebSocketFcty)
