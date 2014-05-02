@@ -14,6 +14,11 @@ angular.module('holmesApp')
           <a ng-switch-when="false" class="blue under-hover" href="javascript:void(0);" ng-click="login()">Login</a>
           <a ng-switch-when="true" class="blue under-hover" href="javascript:void(0);" ng-click="logout()">Logout</a>
         </p>
+        <p class="ib pull-right login" ng-switch on="wsOpened">
+          <span class="ws-label">API Status:</span>
+          <span ng-switch-when="true" class="ws-opened">Opened</span>
+          <span ng-switch-when="false" class="ws-closed">Closed</span>
+        </p>
         <p class="ib pull-right">
           Copyright <a target="_blank" class="blue under-hover" href="http://opensource.globo.com">globo.com</a> - MIT Licensed - 2013
         </p>

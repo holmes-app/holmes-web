@@ -1,11 +1,14 @@
 'use strict'
 
 class WebSocketService
-  constructor: (@wsUrl, @WebSocket) ->
+  constructor: (@wsUrl, @WebSocket, @rootScope) ->
     @ws = new @WebSocket(@wsUrl)
     @handlers = []
 
+    @rootScope.wsOpened = false
     @ws.onmessage = @_onmessage.bind(this)
+    @ws.onopen = @_onopen.bind(this)
+    @ws.onclose = @_onclose.bind(this)
     @throttledSendMessage = $.throttle(500, @sendMessage)
 
   clearHandlers: () ->
@@ -26,7 +29,14 @@ class WebSocketService
     else
       @throttledSendMessage(message)
 
+  _onopen: (event) ->
+    @rootScope.wsOpened = true
+
+  _onclose: (event) ->
+    @rootScope.wsOpened = false
+
+
 angular.module('holmesApp')
-  .factory('WebSocketFcty', (ConfigConst, WebSocket) ->
-    new WebSocketService(ConfigConst.wsUrl, WebSocket)
+  .factory('WebSocketFcty', (ConfigConst, WebSocket, $rootScope) ->
+    new WebSocketService(ConfigConst.wsUrl, WebSocket, $rootScope)
   )
