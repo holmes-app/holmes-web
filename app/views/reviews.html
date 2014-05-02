@@ -136,6 +136,11 @@
                         </tbody>
                       </table>
                     </expandable>
+                    <expandable ng-if="fact.unit == 'invalid-links'">
+                      <ul>
+                        <li ng-repeat="value in fact.value">{{ value }}</li>
+                      </ul>
+                    </expandable>
                     <expandable ng-if="fact.unit == 'heading-hierarchy' || fact.unit == 'google-analytics'">
                       <ul>
                         <li ng-repeat="value in fact.value">
