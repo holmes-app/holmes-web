@@ -65,7 +65,7 @@
     <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs" ng-hide="model.reviews.pages == '' && model.reviewFilter == ''">
-        <span class="domain ib">{{ model.domain_details.name }}/</span>
+        <span class="domain ib"><a class="blue" href="#/page/{{ model.domain_details.homepageId }}/review/{{ model.domain_details.homepageReviewId }}/">{{ model.domain_details.name }}/</a></span>
         <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
     </div>
