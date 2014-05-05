@@ -5,7 +5,7 @@ angular.module('holmesApp')
     replace: true
     templateUrl: 'views/footer.html'
     restrict: 'E'
-    controller: ($scope, $cookieStore, GooglePlus, APIVersionFcty, packageJson) ->
+    controller: ($scope, $cookieStore, GooglePlus, APIVersionFcty, packageJson, WebSocketFcty) ->
       reloadPage = ->
         window.location.reload(true)
 
