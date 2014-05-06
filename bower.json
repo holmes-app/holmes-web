@@ -16,7 +16,8 @@
     "jquery-throttle-debounce": "*",
     "angular-reconnecting-websocket": "~0.1.1",
     "angular-google-plus": "~0.1.1",
-    "angular-animate": "~1.2.15"
+    "angular-animate": "~1.2.15",
+    "angular-dropdowns": "~0.1.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

@@ -2,6 +2,16 @@
   <h1>Status</h1>
   <statusbar index="2"></statusbar>
 
+  <div dropdown-select="model.domainsOptions"
+       dropdown-model="model.domainsSelected"
+       dropdown-item-label="text"
+       dropdown-onchange="model.getLastReviews()"
+       class="dropdown-wrapper">
+  </div>
+  <button class="dropdown-clear"
+          ng-hide="model.domainsSelected.placeholder == true"
+          ng-click="model.clearDomainDropdown()">X</button>
+
   <div class="inlasthour blue" nodata="model.loadedReviewsInLastHour" nodata-height="28" nodata-size="20" nodata-text="No reviews data available">
     <ng-pluralize
       ng-if="model.lastReviewsInLastHour.count > 0"

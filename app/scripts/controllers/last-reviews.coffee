@@ -1,9 +1,10 @@
 'use strict'
 
 class LastReviewsCtrl
-  constructor: (@scope, @LastReviewsFcty, @WebSocketFcty) ->
+  constructor: (@scope, @LastReviewsFcty, @DomainsFcty, @WebSocketFcty) ->
     @lastReviews = []
 
+    @getDomainsList()
     @getLastReviews()
 
     @WebSocketFcty.on((message) =>
@@ -25,14 +26,34 @@ class LastReviewsCtrl
 
     @loadedReviewsInLastHour = true
 
+  hasSelectedDomain: ->
+    not @domainsSelected.placeholder?
+
+  clearDomainDropdown: ->
+    @domainsSelected = {text: 'Filter domain', placeholder: true}
+
+  _fillDomainsList: (domains) =>
+    @domainsOptions = ({text: domain.name} for domain in domains)
+
+  getDomainsList: ->
+    @DomainsFcty.getDomains().then @_fillDomainsList, =>
+      @domainsOptions = []
+    @clearDomainDropdown()
+
+  getDomainParams: ->
+    if @domainsSelected.placeholder == true
+      {}
+    else
+      {domain_filter: @domainsSelected.text}
+
   getLastReviews: ->
-    @LastReviewsFcty.getLastReviews().then @_fillReviews, =>
+    @LastReviewsFcty.getLastReviews(@getDomainParams()).then @_fillReviews, =>
       @loadedReviews = null
 
-    @LastReviewsFcty.getReviewsInLastHour().then @_fillReviewsInLastHour, =>
+    @LastReviewsFcty.getReviewsInLastHour(@getDomainParams()).then @_fillReviewsInLastHour, =>
       @loadedReviewsInLastHour = null
 
 
 angular.module('holmesApp')
-  .controller 'LastReviewsCtrl', ($scope, LastReviewsFcty, WebSocketFcty) ->
-    $scope.model = new LastReviewsCtrl($scope, LastReviewsFcty, WebSocketFcty)
+  .controller 'LastReviewsCtrl', ($scope, LastReviewsFcty, DomainsFcty, WebSocketFcty) ->
+    $scope.model = new LastReviewsCtrl($scope, LastReviewsFcty, DomainsFcty, WebSocketFcty)

@@ -3,11 +3,11 @@
 class LastReviewsFactory
   constructor: (@restangular) ->
 
-  getLastReviews: ->
-    @restangular.one('last-reviews').get()
+  getLastReviews: (params) ->
+    @restangular.one('last-reviews').get(params)
 
-  getReviewsInLastHour: ->
-    @restangular.one('reviews-in-last-hour').get()
+  getReviewsInLastHour: (params) ->
+    @restangular.one('reviews-in-last-hour').get(params)
 
 
 angular.module('holmesApp')
