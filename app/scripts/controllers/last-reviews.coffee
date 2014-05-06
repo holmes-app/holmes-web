@@ -31,6 +31,7 @@ class LastReviewsCtrl
 
   clearDomainDropdown: ->
     @domainsSelected = {text: 'Filter domain', placeholder: true}
+    @getLastReviews()
 
   _fillDomainsList: (domains) =>
     @domainsOptions = ({text: domain.name} for domain in domains)
