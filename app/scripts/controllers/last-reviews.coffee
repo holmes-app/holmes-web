@@ -26,9 +26,6 @@ class LastReviewsCtrl
 
     @loadedReviewsInLastHour = true
 
-  hasSelectedDomain: ->
-    not @domainsSelected.placeholder?
-
   clearDomainDropdown: ->
     @domainsSelected = {text: 'Filter domain', placeholder: true}
     @getLastReviews()
