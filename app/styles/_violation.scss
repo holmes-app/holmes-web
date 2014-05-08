@@ -124,6 +124,16 @@
         color: #9b9b9b;
         margin-right: 15px;
       }
+
+      .dropdown-wrapper {
+        height: 30px;
+        margin-top: -3px;
+        margin-right: 5px;
+
+        .dropdown {
+          margin-top: 29px;
+        }
+      }
     }
   }
 

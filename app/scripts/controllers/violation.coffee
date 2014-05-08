@@ -7,15 +7,21 @@ class ViolationCtrl
     @pageFilter = null
     @pageSize = 10
     @violation = {}
+    @hasReviews = false
     @ViolationFcty.getDomainViolations(@violationKey).then @_fillViolation, =>
       @loadedViolation = null
       @loadedDetails = null
       @loadedReviews = null
     @watchScope()
 
+    @domainFilter = 'all domains'
+    @ddPlaceHolder = {name: 'all domains'}
+
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
     @reviewsCount = violation.reviewsCount
+    if violation.reviewsCount > 0 and not @hasReviews
+      @hasReviews = true
     @loadedReviews = violation.reviews.length
 
   _fillDetails: (details) =>
@@ -47,6 +53,7 @@ class ViolationCtrl
         count: others.count + domain.count
       }
     @violation.domainsCount = violation.domains.length
+    @domains = [{name: 'all domains'}].concat(violation.domains)
     violation.domains = violation.domains[0..splitIndex - 1].concat(others) if others?
     @violation.domains = _.map(
       violation.domains
@@ -64,20 +71,43 @@ class ViolationCtrl
       @loadedReviews = null
     @loadedViolation = @violation.domains.length
 
-  updateReviews: (currentPage, pageSize) =>
-    return if !currentPage? and !pageSize? and !@pageFilter?
-    pageSize = if not pageSize then @pageSize
-    params =
-      page_size: pageSize
-      current_page: currentPage
-      page_filter: @pageFilter
-    delete(@loadedReviews)
-    @ViolationFcty.getViolations(@violationKey, params).then @_fillReviews, =>
-      @loadedReviews = null
+  _updateReviews: (params, force=false) =>
+    if 'current_page' of params or 'domain_filter' of params or force
+      delete(@loadedReviews)
+      @ViolationFcty.getViolations(@violationKey, params).then @_fillReviews, =>
+        @loadedReviews = null
+
+  _addFilters: (params) =>
+    if @domainFilter == 'all domains'
+      delete(params['domain_filter'])
+      delete(params['page_filter'])
+    else
+      params['domain_filter'] = @domainFilter
+      params['page_filter'] = @pageFilter
+    return params
+
+  onPageFilterChange: =>
+    params = @_addFilters {}
+    @_updateReviews(params)
+
+  onDomainFilterChange: (newVal, oldVal) =>
+    @pageFilter = null
+    params = @_addFilters {}
+    @_updateReviews(params, newVal != oldVal)
+
+  onPageChange: (currentPage, pageSize) =>
+    if currentPage? and pageSize?
+      pageSize = @pageSize if not pageSize
+      params = @_addFilters {}
+      params['page_size'] = pageSize
+      params['current_page'] = currentPage
+      @_updateReviews(params)
 
   watchScope: ->
-    updateReviews = $.debounce 500, => @updateReviews()
-    @scope.$watch('model.pageFilter', updateReviews)
+    onPageFilterChange = $.debounce 500, => @onPageFilterChange()
+    @scope.$watch('model.pageFilter', onPageFilterChange)
+    @scope.$watch('model.domainFilter', @onDomainFilterChange)
+
 
 angular.module('holmesApp')
   .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty) ->

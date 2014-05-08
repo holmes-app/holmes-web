@@ -44,9 +44,23 @@
   <div class="reviews">
     <div class="page-reviews-container">
       <div class="header rel light-grey-border">
-        <div class="title ib">Reviews with this violation</div>
-        <div class="search fs0 abs" ng-show="model.violation.reviews">
-          <span class="directory ib rel"><input type="text" ng-model="model.pageFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
+        <div class="title ib">Reviews</div>
+        <div class="search fs0 abs" ng-show="model.hasReviews">
+          <div dropdown-select="model.domains"
+               dropdown-model="model.ddPlaceHolder"
+               dropdown-item-label="name"
+               dropdown-onchange="model.domainFilter = selected.name"
+               class="dropdown-wrapper ib rel">
+          </div>
+          <span class="directory ib rel">
+            <input type="text"
+              ng-model="model.pageFilter"
+              ng-disabled="model.domainFilter == 'all domains'"
+              placeholder="{{ model.domainFilter == 'all domains' ?
+                'select a domain on the left...'
+                : 'enter a directory to filter reviews...'
+              }}"/><i></i>
+          </span>
         </div>
       </div>
       <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews found">
@@ -69,8 +83,8 @@
     pagecount="model.reviewsCount"
     current="model.currentPage"
     pagesize="model.pageSize"
-    pagechange="model.updateReviews"
-    ng-show="model.reviewsCount > 10 && !model.pageFilter"
+    pagechange="model.onPageChange"
+    ng-show="model.reviewsCount > 10"
   ></pager>
 
   </div>
