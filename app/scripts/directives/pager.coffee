@@ -12,7 +12,8 @@ class Pager
     @watchScope()
 
   getOptions: ->
-    @options.visiblePageCount = @scope.visiblepagecount || 10
+    @options.noCount = @scope.nocount == true
+    @options.visiblePageCount = if @options.noCount then 1 else @scope.visiblepagecount || 10
     @options.pageSize = @scope.pagesize || 10
     @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
     @options.currentPage = @scope.current || 1
@@ -33,7 +34,7 @@ class Pager
 
     @elements.previous.on 'click', (ev) =>
       @options.currentPage -= @options.visiblePageCount
-      @options.currentPage = 1 if @options.currentPage < 0
+      @options.currentPage = 1 if @options.currentPage <= 1
       @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
 
@@ -58,7 +59,10 @@ class Pager
     @elements.pages.html('')
     halfPages = (@options.visiblePageCount / 2)
 
-    if @options.currentPage <= halfPages
+    if @options.noCount
+      start = @options.currentPage
+      end = @options.currentPage
+    else if @options.currentPage <= halfPages
       start = 1
       end = @options.visiblePageCount
     else if @options.currentPage > @options.pageCount - halfPages
@@ -88,6 +92,7 @@ angular.module('holmesApp')
     restrict: 'E'
     replace: true
     scope:
+        nocount: '='
         pagecount: '='
         current: '='
         pagesize: '='
