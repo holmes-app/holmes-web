@@ -3,7 +3,6 @@
 class LastRequestsCtrl
   constructor: (@scope, @LastRequestsFcty, @WebSocketFcty) ->
     @requests = []
-    @requestsCount = 0
     @pageSize = 10
 
     @getLastRequests()
@@ -20,7 +19,6 @@ class LastRequestsCtrl
 
   _fillRequests: (data) =>
     @requests = data.requests
-    @requestsCount = data.requestsCount
     @loadedRequests = data.requests.length
 
   _fillRequestsInLastDay: (data) =>
