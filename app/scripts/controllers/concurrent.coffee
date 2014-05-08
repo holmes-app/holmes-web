@@ -1,7 +1,7 @@
 'use strict'
 
 class ConcurrentRequestsCtrl
-  constructor: (@scope, @timeout, @LimitersFcty, @cookieStore) ->
+  constructor: (@scope, @timeout, @LimitersFcty, @DomainsFcty, @cookieStore) ->
     @isFormVisible = false
     @newLimitPath = ''
     @limiters = []
@@ -11,6 +11,7 @@ class ConcurrentRequestsCtrl
     @limiterToRemove = null
 
     @clearForm()
+    @getDomainsList()
     @updateConcurrentDetails()
 
     @isFormVisible = if @cookieStore.get('HOLMES_AUTH_TOKEN') then true else false
@@ -35,7 +36,7 @@ class ConcurrentRequestsCtrl
     @loadedLimiters = limiters.length
 
   updateConcurrentDetails: ->
-    @LimitersFcty.getLimiters().then(@_fillConcurrentDetails, =>
+    @LimitersFcty.getLimiters(@getDomainParams()).then(@_fillConcurrentDetails, =>
       @loadedLimiters = null
     )
 
@@ -77,7 +78,24 @@ class ConcurrentRequestsCtrl
       limiter.currentTimer = null
     , 1000)
 
+  clearDomainDropdown: ->
+    @domainsSelected = {text: 'Filter domain', placeholder: true}
+    @updateConcurrentDetails()
+
+  _fillDomainsList: (domains) =>
+    @domainsOptions = ({text: domain.name} for domain in domains)
+
+  getDomainsList: ->
+    @DomainsFcty.getDomains().then @_fillDomainsList, =>
+      @domainsOptions = []
+    @clearDomainDropdown()
+
+  getDomainParams: ->
+    if @domainsSelected.placeholder == true
+      {}
+    else
+      {domain_filter: @domainsSelected.text}
 
 angular.module('holmesApp')
-  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, $cookieStore) ->
-    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, $cookieStore)
+  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, DomainsFcty, $cookieStore) ->
+    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, DomainsFcty, $cookieStore)

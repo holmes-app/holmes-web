@@ -2,6 +2,7 @@
   <h1>Status</h1>
   <statusbar index="5"></statusbar>
 
+
   <div ng-hide="!model.isFormVisible">
     <h2 class="grey">Add new limit</h2>
 
@@ -21,15 +22,27 @@
 
     <h2 class="grey current-limits" ng-hide="!model.isFormVisible">Current Limits</h2>
 
+    <div class="mb">
+      <div dropdown-select="model.domainsOptions"
+           dropdown-model="model.domainsSelected"
+           dropdown-item-label="text"
+           dropdown-onchange="model.updateConcurrentDetails()"
+           class="dropdown-wrapper">
+      </div>
+      <button class="dropdown-clear"
+              ng-hide="model.domainsSelected.placeholder == true"
+              ng-click="model.clearDomainDropdown()">X</button>
+    </div>
+
     <ul class="boxes limits" >
       <li class="box limit" ng-repeat="limiter in model.limiters track by limiter.url">
         <a name="limiter.url">
-          <h2 ng-hide="model.limiterToRemove == limiter.id" class="blue ellipsis" title="{{ limiter.url }}">{{ limiter.url.replace('http://', '').replace('https://', '') }}<button ng-hide="!model.isFormVisible" ng-click="model.limiterToRemove = limiter.id" title="Remove this limit">×</button></h2>
+          <h2 ng-hide="model.limiterToRemove == limiter.id" class="blue ellipsis" title="{{ limiter.url }}">{{ limiter.url.replace('http://', '').replace('https://', '') }}<button class="btn" ng-hide="!model.isFormVisible" ng-click="model.limiterToRemove = limiter.id" title="Remove this limit">×</button></h2>
           <div class="remove-confirm" ng-show="model.limiterToRemove == limiter.id">
             Really remove this limiter?
             <div>
-              <button class="cancel" ng-click="model.limiterToRemove = 0">cancel</button>
-              <button class="yes" ng-click="model.removeLimiter(limiter)">yes</button>
+              <button class="btn cancel" ng-click="model.limiterToRemove = 0">cancel</button>
+              <button class="btn yes" ng-click="model.removeLimiter(limiter)">yes</button>
             </div>
           </div>
           <div class="toolbar">

@@ -18,6 +18,10 @@
   right: 0;
 }
 
+.mb {
+  margin-bottom: 20px;
+}
+
 .rel {
   position: relative;
 }
@@ -352,6 +356,7 @@ div.td {
 
 .dropdown-wrapper {
 
+  font-family: 'Open Sans', sans-serif;
   right: 0;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -417,7 +422,8 @@ div.td {
   }
 }
 
-button.dropdown-clear {
+.dropdown-clear {
+  font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   display: inline-block;
   border: 0;

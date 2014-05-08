@@ -3,8 +3,8 @@
 class LimitersFactory
   constructor: (@restangular, @cookieStore) ->
 
-  getLimiters: ->
-    @restangular.one('limiters').get()
+  getLimiters: (params) ->
+    @restangular.one('limiters').get(params)
 
   postLimiters: (data) ->
     @restangular.all('limiters').post(data, {}, {'X-AUTH-HOLMES': @cookieStore.get('HOLMES_AUTH_TOKEN')})
