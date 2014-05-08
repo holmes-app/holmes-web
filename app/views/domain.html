@@ -88,18 +88,16 @@
     </div>
   </div>
 
-  <div ng-hide="model.reviewFilter">
-    <pager
-      pagecount="model.numberOfPages"
-      current="model.currentPage"
-      pagesize="model.pageSize"
-      pagechange="model.getReviewsData"
-      ng-show="model.numberOfPages > 10"
-    ></pager>
-  </div>
+  <pager
+    pagecount="model.reviews.reviewsCount"
+    current="model.currentPage"
+    pagesize="model.pageSize"
+    pagechange="model.getReviewsData"
+    ng-show="model.reviews.reviewsCount > 10"
+  ></pager>
 </div>
 
-<div class="stop-review-button" ng-show="model.numberOfPages > 0">
+<div class="stop-review-button" ng-show="model.reviews.reviewsCount > 0">
   <button ng-click="model.changeDomainStatus()">
     {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
   </button>

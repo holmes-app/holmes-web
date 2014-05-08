@@ -3,7 +3,6 @@
 class DomainCtrl
   constructor: (@scope, @DomainsFcty, @domainName, @WebSocketFcty) ->
     @selectedCategory = null
-    @numberOfPages = 0
     @reviewCount = 0
     @domain_url = ''
     @reviewFilter = ''
@@ -52,8 +51,6 @@ class DomainCtrl
 
   _fillReviews: (data) =>
     @reviews = data
-    @reviewCount = @reviews.reviewCount
-    @numberOfPages = @reviewCount
     @loadedReviews = if data.pages? then data.pages.length else 0
 
   _fillDomainDetails: (data) =>
@@ -70,7 +67,7 @@ class DomainCtrl
       @loadedViolations = null
 
   getReviewsData: (currentPage, pageSize) =>
-    filter = if @reviewFilter then @domain_url + @reviewFilter else ''
+    filter = if @reviewFilter then @reviewFilter else ''
     params =
       current_page: currentPage
       page_size: if not pageSize then @pageSize
