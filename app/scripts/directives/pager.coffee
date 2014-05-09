@@ -12,7 +12,7 @@ class Pager
     @watchScope()
 
   getOptions: ->
-    @options.noCount = @scope.nocount
+    @options.noCount = @scope.pagecount == null or @scope.pagecount == false or @scope.pagecount == undefined
     @options.visiblePageCount = if @options.noCount then 1 else @scope.visiblepagecount || 10
     @options.pageSize = @scope.pagesize || 10
     @options.pageCount = if @scope.pagecount? then Math.ceil(@scope.pagecount / @options.pageSize) else null
@@ -49,6 +49,7 @@ class Pager
 
   watchScope: ->
     @scope.$watch('pagecount', (tits) =>
+      @options.noCount = @scope.pagecount == null or @scope.pagecount == false or @scope.pagecount == undefined
       @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
       @getOptions()
       @gatherElements()
@@ -56,11 +57,6 @@ class Pager
     )
     @scope.$watch('pagesize', (tits) =>
       @options.pageSize = @scope.pagesize || 10
-      @getOptions()
-      @gatherElements()
-      @updatePager()
-    )
-    @scope.$watch('nocount', (tits) =>
       @getOptions()
       @gatherElements()
       @updatePager()
@@ -103,7 +99,6 @@ angular.module('holmesApp')
     restrict: 'E'
     replace: true
     scope:
-        nocount: '='
         pagecount: '='
         current: '='
         pagesize: '='
