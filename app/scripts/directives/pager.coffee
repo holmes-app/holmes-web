@@ -12,10 +12,10 @@ class Pager
     @watchScope()
 
   getOptions: ->
-    @options.noCount = @scope.nocount == true
+    @options.noCount = @scope.nocount
     @options.visiblePageCount = if @options.noCount then 1 else @scope.visiblepagecount || 10
     @options.pageSize = @scope.pagesize || 10
-    @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
+    @options.pageCount = if @scope.pagecount? then Math.ceil(@scope.pagecount / @options.pageSize) else null
     @options.currentPage = @scope.current || 1
     @options.onPageChange = @scope.pagechange
 
@@ -27,31 +27,42 @@ class Pager
   bindEvents: ->
     @elements.pages.on 'click', 'a', (ev) =>
       link = $(ev.currentTarget)
-      page = link.attr('data-current-page')
-      @options.currentPage = parseInt(page, 10)
+      page = parseInt(link.attr('data-current-page'), 10)
+      return if page == @options.currentPage
+      @options.currentPage = page
       @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
 
     @elements.previous.on 'click', (ev) =>
+      return if @options.currentPage == 1
       @options.currentPage -= @options.visiblePageCount
-      @options.currentPage = 1 if @options.currentPage <= 1
+      @options.currentPage = 1 if @options.currentPage < 2
       @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
 
     @elements.next.on 'click', (ev) =>
+      return if @options.pageCount? and @options.currentPage >= @options.pageCount
       @options.currentPage += @options.visiblePageCount
-      @options.currentPage = @options.pageCount if @options.currentPage > @options.pageCount
+      @options.currentPage = @options.pageCount if @options.pageCount? and @options.currentPage > @options.pageCount
       @options.onPageChange(@options.currentPage, @options.pageSize)
       @updatePager()
 
   watchScope: ->
-    @scope.$watch('pagecount', =>
+    @scope.$watch('pagecount', (tits) =>
       @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
+      @getOptions()
+      @gatherElements()
       @updatePager()
     )
-    @scope.$watch('pagesize', =>
+    @scope.$watch('pagesize', (tits) =>
       @options.pageSize = @scope.pagesize || 10
-      @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
+      @getOptions()
+      @gatherElements()
+      @updatePager()
+    )
+    @scope.$watch('nocount', (tits) =>
+      @getOptions()
+      @gatherElements()
       @updatePager()
     )
 
@@ -73,18 +84,18 @@ class Pager
       end = @options.currentPage + halfPages
 
     start = 1 if start < 0
-    end = @options.pageCount if end > @options.pageCount
+    if @options.pageCount? and end > @options.pageCount
+      end = @options.pageCount
 
     for i in [start..end]
-      kls = ''
-      kls = ' current' if i == @options.currentPage
+      kls = if i == @options.currentPage then ' current' else ''
       @elements.pages.append("<li class=\"page#{ kls }\"><a data-current-page=\"#{i}\">#{ i }</a></li>")
 
-    @elements.previous.addClass('hidden') if @options.currentPage <= 1
-    @elements.previous.removeClass('hidden') unless @options.currentPage <= 1
+    @elements.previous.addClass('hidden') if @options.currentPage < 2
+    @elements.previous.removeClass('hidden') unless @options.currentPage < 2
 
-    @elements.next.addClass('hidden') if @options.currentPage >= @options.pageCount
-    @elements.next.removeClass('hidden') unless @options.currentPage >= @options.pageCount
+    @elements.next.addClass('hidden') if @options.pageCount? and @options.currentPage >= @options.pageCount
+    @elements.next.removeClass('hidden') unless @options.pageCount? and @options.currentPage >= @options.pageCount
 
 angular.module('holmesApp')
   .directive('pager', () ->
