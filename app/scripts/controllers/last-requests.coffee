@@ -1,10 +1,11 @@
 'use strict'
 
 class LastRequestsCtrl
-  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty) ->
+  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty, @DomainsFcty) ->
     @requests = []
     @pageSize = 10
 
+    @getDomainsList()
     @getLastRequests()
     @getRequestsInLastDay()
 
@@ -42,9 +43,27 @@ class LastRequestsCtrl
     )
     @loadedRequestsInLastDay = requests.length
 
+  clearDomainDropdown: ->
+    @domainsSelected = {text: 'Filter domain', placeholder: true}
+    @getLastRequests()
+
+  _fillDomainsList: (domains) =>
+    @domainsOptions = ({text: domain.name} for domain in domains)
+
+  getDomainsList: ->
+    @DomainsFcty.getDomains().then @_fillDomainsList, =>
+      @domainsOptions = []
+    @clearDomainDropdown()
+
+  appendDomainParams: (params) ->
+    if @domainsSelected.placeholder != true
+      params['domain_filter'] = @domainsSelected.text
+    return params
+
   getLastRequests: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
-    @LastRequestsFcty.getLastRequests({current_page: currentPage, page_size: pageSize}).then @_fillRequests, =>
+    params = {current_page: currentPage, page_size: pageSize}
+    @LastRequestsFcty.getLastRequests(@appendDomainParams(params)).then @_fillRequests, =>
       @loadedRequests = null
 
   getRequestsInLastDay: ->
@@ -57,5 +76,5 @@ class LastRequestsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty) ->
-    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty)
+  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty, DomainsFcty) ->
+    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty, DomainsFcty)
