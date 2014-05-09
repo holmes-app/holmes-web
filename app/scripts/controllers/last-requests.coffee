@@ -20,6 +20,8 @@ class LastRequestsCtrl
   _fillRequests: (data) =>
     @requests = data.requests
     @loadedRequests = data.requests.length
+    if @loadedRequests > 0 and not @hasRequests
+      @hasRequests = true
 
   _fillRequestsInLastDay: (data) =>
     requests = _.filter data, (request) -> request.statusCode >= 400

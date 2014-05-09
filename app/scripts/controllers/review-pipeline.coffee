@@ -19,6 +19,8 @@ class ReviewPipelineCtrl
   _fillReviews: (data) =>
     @reviews = data.pages
     @reviewsLoaded = data.pages.length
+    if @reviewsLoaded > 0 and not @hasReviews
+      @hasReviews = true
 
   getReviews: (currentPage, pageSize) ->
     pageSize = if not pageSize then @pageSize
