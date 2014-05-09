@@ -87,16 +87,19 @@ class ViolationCtrl
     return params
 
   onPageFilterChange: =>
+    @currentPage = 1
     params = @_addFilters {}
     @_updateReviews(params)
 
   onDomainFilterChange: (newVal, oldVal) =>
+    @currentPage = 1
     @pageFilter = null
     params = @_addFilters {}
     @_updateReviews(params, newVal != oldVal)
 
   onPageChange: (currentPage, pageSize) =>
     if currentPage? and pageSize?
+      @currentPage = currentPage
       pageSize = @pageSize if not pageSize
       params = @_addFilters {}
       params['page_size'] = pageSize

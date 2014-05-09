@@ -67,6 +67,7 @@ class DomainCtrl
       @loadedViolations = null
 
   getReviewsData: (currentPage, pageSize) =>
+    @currentPage = currentPage
     filter = if @reviewFilter then @reviewFilter else ''
     params =
       current_page: currentPage
@@ -93,7 +94,7 @@ class DomainCtrl
   watchScope: ->
     updateReviewData = $.debounce(500, =>
       delete(@loadedReviews)
-      @getReviewsData()
+      @getReviewsData(1)
     )
 
     @scope.$watch('model.reviewFilter', updateReviewData)

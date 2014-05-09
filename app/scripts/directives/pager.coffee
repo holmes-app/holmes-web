@@ -5,18 +5,13 @@ class Pager
     @elements = {}
     @options = {}
 
-    @getOptions()
-    @gatherElements()
     @updatePager()
     @bindEvents()
     @watchScope()
 
   getOptions: ->
-    @options.noCount = @scope.pagecount == null or @scope.pagecount == false or @scope.pagecount == undefined
     @options.visiblePageCount = if @options.noCount then 1 else @scope.visiblepagecount || 10
     @options.pageSize = @scope.pagesize || 10
-    @options.pageCount = if @scope.pagecount? then Math.ceil(@scope.pagecount / @options.pageSize) else null
-    @options.currentPage = @scope.current || 1
     @options.onPageChange = @scope.pagechange
 
   gatherElements: ->
@@ -50,21 +45,24 @@ class Pager
       @updatePager()
 
   watchScope: ->
-    @scope.$watch('pagecount', (tits) =>
+    @scope.$watch('pagecount', =>
       @options.noCount = @scope.pagecount == null or @scope.pagecount == false or @scope.pagecount == undefined
-      @options.pageCount = Math.ceil(@scope.pagecount / @options.pageSize)
-      @getOptions()
-      @gatherElements()
+      @options.pageCount = if @scope.pagecount? then Math.ceil(@scope.pagecount / @options.pageSize) else null
       @updatePager()
     )
-    @scope.$watch('pagesize', (tits) =>
+    @scope.$watch('pagesize', =>
       @options.pageSize = @scope.pagesize || 10
-      @getOptions()
-      @gatherElements()
+      @updatePager()
+    )
+    @scope.$watch('current', =>
+      @options.currentPage = @scope.current || 1
       @updatePager()
     )
 
   updatePager: ->
+    @getOptions()
+    @gatherElements()
+
     @elements.pages.html('')
     halfPages = (@options.visiblePageCount / 2)
 
