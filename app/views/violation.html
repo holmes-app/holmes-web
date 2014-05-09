@@ -80,11 +80,11 @@
     </div>
 
   <pager
+    ng-show="model.loadedReviews !== null && (model.reviewsCount === null || model.reviewsCount > 10)"
     pagecount="model.reviewsCount"
     current="model.currentPage"
     pagesize="model.pageSize"
     pagechange="model.onPageChange"
-    ng-show="model.reviewsCount > 10"
   ></pager>
 
   </div>

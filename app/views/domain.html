@@ -89,12 +89,13 @@
   </div>
 
   <pager
+    ng-show="model.loadedReviews !== null && (model.reviews.reviewsCount === null || model.reviews.reviewsCount > 10)"
     pagecount="model.reviews.reviewsCount"
     current="model.currentPage"
     pagesize="model.pageSize"
     pagechange="model.getReviewsData"
-    ng-show="model.reviews.reviewsCount > 10"
   ></pager>
+
 </div>
 
 <div class="stop-review-button" ng-show="model.reviews.reviewsCount > 0">

@@ -42,9 +42,10 @@
   </div>
 
   <pager
-    nocount="true"
     current="model.currentPage"
     pagesize="model.pageSize"
     pagechange="model.updateLastRequests"
+    ng-show="model.loadedRequests"
   ></pager>
+
 </div>

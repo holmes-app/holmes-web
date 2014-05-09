@@ -20,7 +20,7 @@ class ViolationCtrl
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
     @reviewsCount = violation.reviewsCount
-    if violation.reviewsCount > 0 and not @hasReviews
+    if violation.reviewsCount != 0 and not @hasReviews
       @hasReviews = true
     @loadedReviews = violation.reviews.length
 
