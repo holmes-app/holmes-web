@@ -25,26 +25,28 @@ class Pager
     @elements.next = @element.find('.next')
 
   bindEvents: ->
+    onPageUpdate = $.debounce 200, => @options.onPageChange(@options.currentPage, @options.pageSize)
+
     @elements.pages.on 'click', 'a', (ev) =>
       link = $(ev.currentTarget)
       page = parseInt(link.attr('data-current-page'), 10)
       return if page == @options.currentPage
       @options.currentPage = page
-      @options.onPageChange(@options.currentPage, @options.pageSize)
+      onPageUpdate()
       @updatePager()
 
     @elements.previous.on 'click', (ev) =>
       return if @options.currentPage == 1
       @options.currentPage -= @options.visiblePageCount
       @options.currentPage = 1 if @options.currentPage < 2
-      @options.onPageChange(@options.currentPage, @options.pageSize)
+      onPageUpdate()
       @updatePager()
 
     @elements.next.on 'click', (ev) =>
       return if @options.pageCount? and @options.currentPage >= @options.pageCount
       @options.currentPage += @options.visiblePageCount
       @options.currentPage = @options.pageCount if @options.pageCount? and @options.currentPage > @options.pageCount
-      @options.onPageChange(@options.currentPage, @options.pageSize)
+      onPageUpdate()
       @updatePager()
 
   watchScope: ->
