@@ -5,7 +5,7 @@
   <div dropdown-select="model.domainsOptions"
        dropdown-model="model.domainsSelected"
        dropdown-item-label="text"
-       dropdown-onchange="model.getLastRequests()"
+       dropdown-onchange="model.onPageChange()"
        class="dropdown-wrapper">
   </div>
   <button class="dropdown-clear"
@@ -54,7 +54,7 @@
   <pager
     current="model.currentPage"
     pagesize="model.pageSize"
-    pagechange="model.updateLastRequests"
+    pagechange="model.onPageChange"
     ng-show="model.hasRequests"
   ></pager>
 
