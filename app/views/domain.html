@@ -89,11 +89,12 @@
   </div>
 
   <pager
-    ng-show="model.loadedReviews !== null && (model.reviews.reviewsCount === null || model.reviews.reviewsCount > 10)"
+    ng-show="model.loadedReviews !== null && (model.reviews.reviewsCount === null || model.reviews.reviewsCount > model.pageSize)"
     pagecount="model.reviews.reviewsCount"
     current="model.currentPage"
     pagesize="model.pageSize"
     pagechange="model.getReviewsData"
+    hasnext="model.reviews.pages.length >= model.pageSize"
   ></pager>
 
 </div>
