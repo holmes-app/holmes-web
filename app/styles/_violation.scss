@@ -125,7 +125,7 @@
         margin-right: 15px;
       }
 
-      .dropdown-wrapper {
+      .dropdown-wrapper, .slash {
         height: 30px;
         margin-top: -3px;
         margin-right: 5px;
@@ -134,6 +134,12 @@
           margin-top: 29px;
         }
       }
+
+      .slash {
+        line-height: 30px;
+        font-size: 18px;
+      }
+
     }
   }
 
