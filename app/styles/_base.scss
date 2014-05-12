@@ -404,19 +404,21 @@ div.td {
       &:first {
         border-top: none;
       }
+
       margin-top: -1px;
       border: solid 1px $light-grey;
+      padding: 5px;
+
       &:hover {
+        background-color: #eee;
         a {
           color: $blue;
-          background-color: #eee;
         }
       }
       a {
         color: $grey;
-        width: 290px;
         display: inline-block;
-        padding: 5px;
+        width: 100%;
       }
     }
   }
