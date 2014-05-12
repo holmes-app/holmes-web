@@ -407,7 +407,6 @@ div.td {
 
       margin-top: -1px;
       border: solid 1px $light-grey;
-      padding: 8px;
 
       &:hover {
         background-color: #eee;
@@ -419,6 +418,8 @@ div.td {
         color: $grey;
         display: inline-block;
         width: 100%;
+        line-height: 30px;
+        margin-left: 5px;
       }
     }
   }
