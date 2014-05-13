@@ -10,7 +10,7 @@ class LastRequestsCtrl
     @getRequestsInLastDay()
 
     @WebSocketFcty.on((message) =>
-      @getLastRequests() if message.type == 'new-request'
+      @getLastRequests(@currentPage, @pageSize) if message.type == 'new-request'
     )
 
     @scope.$on '$destroy', @_cleanUp

@@ -9,7 +9,7 @@ class ReviewPipelineCtrl
     @getReviews()
 
     @WebSocketFcty.on((message) =>
-      @getReviews()
+      @getReviews(@currentPage, @pageSize)
     )
 
     @scope.$on '$destroy', @_cleanUp

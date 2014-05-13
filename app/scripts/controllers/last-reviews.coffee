@@ -8,7 +8,7 @@ class LastReviewsCtrl
     @getLastReviews()
 
     @WebSocketFcty.on((message) =>
-      @getLastReviews() if message.type == 'new-review'
+      @getLastReviews(@currentPage, @pageSize) if message.type == 'new-review'
     )
 
     @scope.$on '$destroy', @_cleanUp

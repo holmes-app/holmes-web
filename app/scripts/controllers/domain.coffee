@@ -17,7 +17,7 @@ class DomainCtrl
     @WebSocketFcty.on((message) =>
       if message.type == 'new-page' or message.type == 'new-review'
         @getDomainDetails()
-        @getReviewsData()
+        @getReviewsData(if @currentPage? then @currentPage else 1)
         @getDomainViolations()
     )
 
