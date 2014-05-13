@@ -51,6 +51,11 @@ a {
   text-decoration: none;
 }
 
+input[type="text"]:disabled {
+  background-color: #eee;
+  opacity: 0.9;
+}
+
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 38px;
