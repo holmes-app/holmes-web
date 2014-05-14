@@ -5,9 +5,13 @@ class LastRequestsCtrl
     @requests = []
     @pageSize = 10
 
+    @defaultDomainDropdown()
+    @defaultStatusCodeDropdown()
+
     @getDomainsList()
     @getLastRequests()
     @getRequestsInLastDay()
+    @getStatusCode()
 
     @WebSocketFcty.on((message) =>
       @getLastRequests(@currentPage, @pageSize) if message.type == 'new-request'
@@ -43,23 +47,45 @@ class LastRequestsCtrl
     )
     @loadedRequestsInLastDay = requests.length
 
-  clearDomainDropdown: ->
-    @domainsSelected = {text: 'Filter domain', placeholder: true}
-    @onPageChange()
+  _fillStatusCode: (status_code) =>
+    @statusCodeOptions = ({label: item.statusCode + ' ' + item.statusCodeTitle, text: item.statusCode} for item in status_code)
 
   _fillDomainsList: (domains) =>
     @domainsOptions = ({text: domain.name} for domain in domains)
+
+  defaultDomainDropdown: =>
+    @domainsSelected = {text: 'Filter domain', placeholder: true}
+
+  defaultStatusCodeDropdown: =>
+    @statusCodeSelected = {label: 'Filter status code', placeholder: true}
+
+  clearDomainDropdown: ->
+    @defaultDomainDropdown()
+    @onPageChange()
+
+  clearStatusCodeDropdown: ->
+    @defaultStatusCodeDropdown()
+    @onPageChange()
 
   getDomainsList: ->
     @DomainsFcty.getDomains().then @_fillDomainsList, =>
       @domainsOptions = []
     @clearDomainDropdown()
+    @clearStatusCodeDropdown()
+
+  getStatusCode: ->
+    @LastRequestsFcty.getStatusCode().then @_fillStatusCode, =>
+      @statusCodeOptions = []
 
   appendDomainParams: (params) ->
     if not params?
       params = {}
     if @domainsSelected.placeholder != true
       params['domain_filter'] = @domainsSelected.text
+
+    if @statusCodeSelected.placeholder != true
+      params['status_code_filter'] = @statusCodeSelected.text
+
     return params
 
   getLastRequests: (currentPage, pageSize) =>

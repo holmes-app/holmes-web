@@ -2,15 +2,28 @@
   <h1>Status</h1>
   <statusbar index="4"></statusbar>
 
-  <div dropdown-select="model.domainsOptions"
-       dropdown-model="model.domainsSelected"
-       dropdown-item-label="text"
-       dropdown-onchange="model.onPageChange()"
-       class="dropdown-wrapper">
+  <div class="mb">
+    <div dropdown-select="model.domainsOptions"
+         dropdown-model="model.domainsSelected"
+         dropdown-item-label="text"
+         dropdown-onchange="model.onPageChange()"
+         class="dropdown-wrapper">
+    </div>
+    <button class="dropdown-clear"
+            ng-hide="model.domainsSelected.placeholder == true"
+            ng-click="model.clearDomainDropdown()">×</button>
+
+    <div dropdown-select="model.statusCodeOptions"
+         dropdown-model="model.statusCodeSelected"
+         dropdown-item-label="label"
+         dropdown-onchange="model.onPageChange()"
+         class="dropdown-wrapper">
+    </div>
+    <button class="dropdown-clear"
+            ng-hide="model.statusCodeSelected.placeholder == true"
+            ng-click="model.clearStatusCodeDropdown()">×</button>
+
   </div>
-  <button class="dropdown-clear"
-          ng-hide="model.domainsSelected.placeholder == true"
-          ng-click="model.clearDomainDropdown()">×</button>
 
   <div class="failed-requests-container" nodata="model.loadedRequestsInLastDay" nodata-height="501" nodata-size="40" nodata-text="">
     <div class="chart-container ib" ng-if="model.loadedRequestsInLastDay">

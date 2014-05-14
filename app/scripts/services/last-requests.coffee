@@ -9,6 +9,9 @@ class LastRequestsFactory
   getRequestsInLastDay: (params) ->
     @restangular.one('requests-in-last-day').get(params)
 
+  getStatusCode: ->
+    @restangular.one('last-requests').one('status-code').get()
+
 
 angular.module('holmesApp')
   .factory 'LastRequestsFcty', (Restangular) ->
