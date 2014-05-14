@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .directive('donut', ($rootScope) ->
+  .directive 'donut', ($rootScope) ->
     restrict: 'E'
     template: '<div class="donut"><div class="donut-chart"></div><div class="donut-label"></div></div>'
     replace: true
@@ -56,17 +56,17 @@ angular.module('holmesApp')
             labelElement.stop(true, true).html(label).fadeIn(200)
         )
 
-      setData = ->
+      setData = (val) ->
+        return if typeof val == 'undefined'
         element.css('width', width).css('height', height)
-        donut = Morris.Donut(
+        donut = Morris.Donut
           element: chartElement
-          data: data
+          data: val
           colors: colors
           formatter: (value, data) ->
             executeOnSelect(value, data)
             setLabel(data.label)
             return Morris.commas(value, data)
-        )
 
         deselect = ->
           for segment in donut.segments
@@ -78,7 +78,6 @@ angular.module('holmesApp')
         element.bind('mouseleave', deselect)
         deselect()
 
-      attrs.$observe('data', setData); # lets just observe only the data because it is 
-                                       # bad to use many observers, anyway this won't work
-                                       # without supplied data
-  )
+      scope.$watch 'data', setData # lets just observe only the data because it is
+                                   # bad to use many observers, anyway this won't work
+                                   # without supplied data
