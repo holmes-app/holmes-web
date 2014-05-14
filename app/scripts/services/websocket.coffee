@@ -5,7 +5,7 @@ class WebSocketService
     @ws = new @WebSocket(@wsUrl)
     @handlers = []
 
-    @rootScope.wsOpened = false
+    @rootScope.wsConnected = false
     @ws.onmessage = @_onmessage.bind(this)
     @ws.onopen = @_onopen.bind(this)
     @ws.onclose = @_onclose.bind(this)
@@ -30,10 +30,10 @@ class WebSocketService
       @throttledSendMessage(message)
 
   _onopen: (event) ->
-    @rootScope.wsOpened = true
+    @rootScope.wsConnected = true
 
   _onclose: (event) ->
-    @rootScope.wsOpened = false
+    @rootScope.wsConnected = false
 
 
 angular.module('holmesApp')
