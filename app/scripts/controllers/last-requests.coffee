@@ -56,6 +56,8 @@ class LastRequestsCtrl
     @clearDomainDropdown()
 
   appendDomainParams: (params) ->
+    if not params?
+      params = {}
     if @domainsSelected.placeholder != true
       params['domain_filter'] = @domainsSelected.text
     return params
@@ -67,12 +69,14 @@ class LastRequestsCtrl
       @loadedRequests = null
 
   getRequestsInLastDay: ->
-    @LastRequestsFcty.getRequestsInLastDay().then @_fillRequestsInLastDay, =>
+    console.log 'getRequestsInLastDay'
+    @LastRequestsFcty.getRequestsInLastDay(@appendDomainParams()).then @_fillRequestsInLastDay, =>
       @loadedRequestsInLastDay = null
 
   onPageChange: (currentPage, pageSize) =>
     @currentPage = if currentPage? then currentPage else 1
     @getLastRequests(@currentPage, pageSize)
+    @getRequestsInLastDay()
 
 
 angular.module('holmesApp')

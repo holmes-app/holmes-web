@@ -6,8 +6,8 @@ class LastRequestsFactory
   getLastRequests: (params) ->
     @restangular.one('last-requests').get(params)
 
-  getRequestsInLastDay: ->
-    @restangular.one('requests-in-last-day').getList()
+  getRequestsInLastDay: (params) ->
+    @restangular.one('requests-in-last-day').get(params)
 
 
 angular.module('holmesApp')
