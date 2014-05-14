@@ -69,7 +69,6 @@ class LastRequestsCtrl
       @loadedRequests = null
 
   getRequestsInLastDay: ->
-    console.log 'getRequestsInLastDay'
     @LastRequestsFcty.getRequestsInLastDay(@appendDomainParams()).then @_fillRequestsInLastDay, =>
       @loadedRequestsInLastDay = null
 
