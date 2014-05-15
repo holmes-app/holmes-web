@@ -1,17 +1,17 @@
 'use strict'
 
 class ConcurrentRequestsCtrl
-  constructor: (@scope, @timeout, @LimitersFcty, @DomainsFcty, @cookieStore) ->
+  constructor: (@scope, @timeout, @LimitersFcty, @cookieStore) ->
     @isFormVisible = false
     @newLimitPath = ''
     @limiters = []
     @access_token = ''
     @newLimitConcurrentConnections = 5
+    @domainFilter = ''
 
     @limiterToRemove = null
 
     @clearForm()
-    @getDomainsList()
     @updateConcurrentDetails()
 
     @isFormVisible = if @cookieStore.get('HOLMES_AUTH_TOKEN') then true else false
@@ -28,6 +28,8 @@ class ConcurrentRequestsCtrl
 
     @scope.$on '$destroy', @_cleanUp
 
+    @watchScope()
+
   _cleanUp: =>
     @timeout.cancel(@updateTimer) if @updateTimer?
 
@@ -36,7 +38,7 @@ class ConcurrentRequestsCtrl
     @loadedLimiters = limiters.length
 
   updateConcurrentDetails: ->
-    @LimitersFcty.getLimiters(@getDomainParams()).then(@_fillConcurrentDetails, =>
+    @LimitersFcty.getLimiters({domain_filter: @domainFilter}).then(@_fillConcurrentDetails, =>
       @loadedLimiters = null
     )
 
@@ -78,24 +80,12 @@ class ConcurrentRequestsCtrl
       limiter.currentTimer = null
     , 1000)
 
-  clearDomainDropdown: ->
-    @domainsSelected = {text: 'Filter domain', placeholder: true}
+  onDomainFilterChange: =>
     @updateConcurrentDetails()
 
-  _fillDomainsList: (domains) =>
-    @domainsOptions = ({text: domain.name} for domain in domains)
-
-  getDomainsList: ->
-    @DomainsFcty.getDomains().then @_fillDomainsList, =>
-      @domainsOptions = []
-    @clearDomainDropdown()
-
-  getDomainParams: ->
-    if @domainsSelected.placeholder == true
-      {}
-    else
-      {domain_filter: @domainsSelected.text}
+  watchScope: ->
+    @scope.$watch('model.domainFilter', @onDomainFilterChange)
 
 angular.module('holmesApp')
-  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, DomainsFcty, $cookieStore) ->
-    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, DomainsFcty, $cookieStore)
+  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, $cookieStore) ->
+    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, $cookieStore)

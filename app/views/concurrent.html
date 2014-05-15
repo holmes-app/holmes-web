@@ -23,15 +23,7 @@
     <h2 class="grey current-limits" ng-hide="!model.isFormVisible">Current Limits</h2>
 
     <div class="mb">
-      <div dropdown-select="model.domainsOptions"
-           dropdown-model="model.domainsSelected"
-           dropdown-item-label="text"
-           dropdown-onchange="model.updateConcurrentDetails()"
-           class="dropdown-wrapper">
-      </div>
-      <button class="dropdown-clear"
-              ng-hide="model.domainsSelected.placeholder == true"
-              ng-click="model.clearDomainDropdown()">×</button>
+      <domainDropdown onchange="model.domainFilter"></domainDropdown>
     </div>
 
     <ul class="boxes limits" >
