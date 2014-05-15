@@ -3,15 +3,7 @@
   <statusbar index="3"></statusbar>
 
   <div class="mb">
-    <div dropdown-select="model.domainsOptions"
-         dropdown-model="model.domainsSelected"
-         dropdown-item-label="text"
-         dropdown-onchange="model.onPageChange()"
-         class="dropdown-wrapper">
-    </div>
-    <button class="dropdown-clear"
-            ng-hide="model.domainsSelected.placeholder == true"
-            ng-click="model.clearDomainDropdown()">×</button>
+    <domainDropdown onchange="model.domainFilter"></domainDropdown>
   </div>
 
   <div nodata="model.reviewsLoaded" nodata-height="451" nodata-size="30" nodata-text="No reviews data available" nodata-fade="no">
