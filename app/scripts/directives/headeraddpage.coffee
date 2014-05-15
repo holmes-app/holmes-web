@@ -14,6 +14,8 @@ angular.module('holmesApp')
           url: ''
           turnsOut: ''
           urlHttpSuggest: ''
+          urlHttpSuggestMethod: ''
+          urlHttpSuggestAct: ''
         if $scope.addPageForm and $scope.addPageForm.url
           $scope.addPageForm.url.$pristine = true
 
@@ -30,6 +32,8 @@ angular.module('holmesApp')
                 $scope.model.headerWitchOne = 'form_invalid'
               else
                 $scope.model.urlHttpSuggest = 'http://' + value
+                $scope.model.urlHttpSuggestMethod = $scope.addPage
+                $scope.model.urlHttpSuggestAct = 'add'
                 $scope.model.headerWitchOne = 'missing_protocol'
           else
             Restangular.all('page').post({url: $scope.model.url}).then((page) ->
