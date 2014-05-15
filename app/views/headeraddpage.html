@@ -1,9 +1,9 @@
 <div class="header-add-page">
-  <a class="add-page-button" ng-click="toggleAddPage()"><i></i></a>
+  <a class="add-page-button" ng-click="clearForm(); toggleAddPage()"><i></i></a>
   <div class="add-page-form" ng-class="model.addPageFormVisible ? 'visible' : ''">
     <div class="container">
       <div class="title"><strong>Add a new</strong> website</div>
-      <form class="add-page" name="addPageForm" novalidate onsubmit="javascript: return false;" data-ng-submit="addPageForm.url.$valid && addPage()">
+      <form class="add-page" name="addPageForm" novalidate onsubmit="javascript: return false;" data-ng-submit="addPage()">
         <input
           required
           type="url"
@@ -15,7 +15,7 @@
           ng-keyup="model.addPageFormVisible = $event.keyCode != 27"
           placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
         />
-        <div class="arrow" ng-click="addPageForm.url.$valid && addPage()"><i></i></div>
+        <div class="arrow" ng-click="addPage()"><i></i></div>
       </form>
     </div>
   </div>

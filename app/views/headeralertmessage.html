@@ -6,6 +6,8 @@
       <p ng-switch-when="redirect">The website you added is actually a redirect to {{ model.turnsOut }}. <a href="javascript:" ng-click="model.url = model.turnsOut; addPage()">Do you want to add it instead?</a></p>
       <p ng-switch-when="invalid_url">The website you added could not be found. Maybe you mispelled it?</p>
       <p ng-switch-when="success_page">Page successfully saved!</p>
+      <p ng-switch-when="form_invalid">The URL you entered is invalid!</p>
+      <p ng-switch-when="missing_protocol">The URL you entered is missing the protocol prefix. <a href="javascript:" ng-click="model.url = model.urlHttpSuggest; addPage();">Do you want to add {{ model.urlHttpSuggest }} instead?</a></p>
     </div>
   </div>
 </div>
