@@ -1,0 +1,11 @@
+<div class="ib">
+  <div dropdown-select="domainsOptions"
+       dropdown-model="domainsSelected"
+       dropdown-item-label="text"
+       dropdown-onchange="domainsOnChange()"
+       class="dropdown-wrapper">
+  </div>
+  <button class="dropdown-clear"
+          ng-hide="domainsSelected.placeholder == true"
+          ng-click="clearDomainDropdown()">×</button>
+</div>

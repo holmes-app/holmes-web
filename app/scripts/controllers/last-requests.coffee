@@ -1,14 +1,13 @@
 'use strict'
 
 class LastRequestsCtrl
-  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty, @DomainsFcty) ->
+  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty) ->
     @requests = []
     @pageSize = 10
+    @domainFilter = ''
 
-    @defaultDomainDropdown()
     @defaultStatusCodeDropdown()
 
-    @getDomainsList()
     @getLastRequests()
     @getRequestsInLastDay()
     @getStatusCode()
@@ -18,6 +17,8 @@ class LastRequestsCtrl
     )
 
     @scope.$on '$destroy', @_cleanUp
+
+    @watchScope()
 
   _cleanUp: =>
     @WebSocketFcty.clearHandlers()
@@ -50,28 +51,12 @@ class LastRequestsCtrl
   _fillStatusCode: (status_code) =>
     @statusCodeOptions = ({label: item.statusCode + ' ' + item.statusCodeTitle, text: item.statusCode} for item in status_code)
 
-  _fillDomainsList: (domains) =>
-    @domainsOptions = ({text: domain.name} for domain in domains)
-
-  defaultDomainDropdown: =>
-    @domainsSelected = {text: 'Filter domain', placeholder: true}
-
   defaultStatusCodeDropdown: =>
     @statusCodeSelected = {label: 'Filter status code', placeholder: true}
-
-  clearDomainDropdown: ->
-    @defaultDomainDropdown()
-    @onPageChange()
 
   clearStatusCodeDropdown: ->
     @defaultStatusCodeDropdown()
     @onPageChange()
-
-  getDomainsList: ->
-    @DomainsFcty.getDomains().then @_fillDomainsList, =>
-      @domainsOptions = []
-    @clearDomainDropdown()
-    @clearStatusCodeDropdown()
 
   getStatusCode: ->
     @LastRequestsFcty.getStatusCode().then @_fillStatusCode, =>
@@ -80,8 +65,6 @@ class LastRequestsCtrl
   appendDomainParams: (params) ->
     if not params?
       params = {}
-    if @domainsSelected.placeholder != true
-      params['domain_filter'] = @domainsSelected.text
 
     if @statusCodeSelected.placeholder != true
       params['status_code_filter'] = @statusCodeSelected.text
@@ -90,7 +73,7 @@ class LastRequestsCtrl
 
   getLastRequests: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
-    params = {current_page: currentPage, page_size: pageSize}
+    params = {current_page: currentPage, page_size: pageSize, domain_filter: @domainFilter}
     @LastRequestsFcty.getLastRequests(@appendDomainParams(params)).then @_fillRequests, =>
       @loadedRequests = null
 
@@ -103,7 +86,13 @@ class LastRequestsCtrl
     @getLastRequests(@currentPage, pageSize)
     @getRequestsInLastDay()
 
+  onDomainFilterChange: =>
+    @onPageChange()
+
+  watchScope: ->
+    @scope.$watch('model.domainFilter', @onDomainFilterChange)
+
 
 angular.module('holmesApp')
-  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty, DomainsFcty) ->
-    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty, DomainsFcty)
+  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty) ->
+    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty)

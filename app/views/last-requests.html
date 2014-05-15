@@ -3,15 +3,8 @@
   <statusbar index="4"></statusbar>
 
   <div class="mb">
-    <div dropdown-select="model.domainsOptions"
-         dropdown-model="model.domainsSelected"
-         dropdown-item-label="text"
-         dropdown-onchange="model.onPageChange()"
-         class="dropdown-wrapper">
-    </div>
-    <button class="dropdown-clear"
-            ng-hide="model.domainsSelected.placeholder == true"
-            ng-click="model.clearDomainDropdown()">×</button>
+
+    <domainDropdown onchange="model.domainFilter"></domainDropdown>
 
     <div dropdown-select="model.statusCodeOptions"
          dropdown-model="model.statusCodeSelected"
