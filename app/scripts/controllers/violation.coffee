@@ -14,9 +14,6 @@ class ViolationCtrl
       @loadedReviews = null
     @watchScope()
 
-    @domainFilter = 'all domains'
-    @ddPlaceHolder = {name: 'all domains'}
-
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
     @reviewsCount = violation.reviewsCount
@@ -53,7 +50,6 @@ class ViolationCtrl
         count: others.count + domain.count
       }
     @violation.domainsCount = violation.domains.length
-    @domains = [{name: 'all domains'}].concat(violation.domains)
     violation.domains = violation.domains[0..splitIndex - 1].concat(others) if others?
     @violation.domains = _.map(
       violation.domains

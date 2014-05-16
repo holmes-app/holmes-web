@@ -46,12 +46,9 @@
       <div class="header rel light-grey-border">
         <div class="title ib">Reviews</div>
         <div class="search fs0 abs" ng-show="model.hasReviews">
-          <div dropdown-select="model.domains"
-               dropdown-model="model.ddPlaceHolder"
-               dropdown-item-label="name"
-               dropdown-onchange="model.domainFilter = selected.name"
-               class="dropdown-wrapper ib rel">
-          </div>
+
+          <domainDropdown showclose="false" autoload="false" options="model.violation.domains" placeholder="all domains" onchange="model.domainFilter"></domainDropdown>
+
           <p class="slash grey directory ib rel">/</p>
           <span class="directory ib rel">
             <input type="text"
