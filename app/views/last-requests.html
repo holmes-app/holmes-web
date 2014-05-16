@@ -28,7 +28,7 @@
   </div>
 
   <div nodata="model.loadedRequests" nodata-height="451" nodata-size="30" nodata-failed="" nodata-fade="no">
-    <table>
+    <table class="last-requests-table">
       <thead>
         <tr>
           <th class="dark-grey">URL</th>
@@ -37,10 +37,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="request in model.requests">
+        <tr ng-repeat-start="request in model.requests">
           <td class="url blue"><a href="{{ request.url }}" target="_blank"><span>{{ request.url }}</span></td>
           <td class="dark-grey center response-time">{{ request.response_time * 1000 | timeUnit }}</td>
-          <td class="dark-grey center status-code">{{ request.status_code }}</td>
+          <td class="dark-grey center status-code">
+            <span ng-click="model.toggleExpanded(request)"
+              ng-class="{'status-code-error': request.status_code > 399, 'expanded': request.expanded}">{{ request.status_code }}</span>
+          </td>
+        </tr>
+        <tr class="mid-grey" ng-repeat-end ng-show="request.status_code > 399" ng-class="request.expanded ? 'expanded' : ''">
+          <td colspan="3" class="status-code-info">
+            {{ request.id }}
+            <dl>
+              <dt>{{ request.statusCodeTitle }}</dt>
+              <dd>{{ request.statusCodeDesc }}</dd>
+            </dl>
+            <dl>
+              <dt>Detected in</dt>
+              <dd><a target="_blank" href="{{ request.review_url }}">{{ request.review_url }}</a></dd>
+            </dl>
+          </td>
         </tr>
       </tbody>
     </table>

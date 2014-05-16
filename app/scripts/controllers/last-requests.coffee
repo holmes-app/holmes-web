@@ -1,7 +1,7 @@
 'use strict'
 
 class LastRequestsCtrl
-  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty) ->
+  constructor: (@scope, @LastRequestsFcty, @WebSocketFcty, @StatusCodeFactory) ->
     @requests = []
     @pageSize = 10
     @domainFilter = ''
@@ -18,11 +18,18 @@ class LastRequestsCtrl
 
     @watchScope()
 
+  toggleExpanded: (request) ->
+    request.expanded = not request.expanded
+
   _cleanUp: =>
     @WebSocketFcty.clearHandlers()
 
   _fillRequests: (data) =>
     @requests = data.requests
+    _.map @requests, (request) =>
+      request.expanded = false
+      request.statusCodeTitle = @StatusCodeFactory.getTitle(request.status_code)
+      request.statusCodeDesc = @StatusCodeFactory.getDescription(request.status_code)
     @loadedRequests = data.requests.length
     if @loadedRequests > 0 and not @hasRequests
       @hasRequests = true
@@ -74,5 +81,5 @@ class LastRequestsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty) ->
-    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty)
+  .controller 'LastRequestsCtrl', ($scope, LastRequestsFcty, WebSocketFcty, StatusCodeFactory) ->
+    $scope.model = new LastRequestsCtrl($scope, LastRequestsFcty, WebSocketFcty, StatusCodeFactory)
