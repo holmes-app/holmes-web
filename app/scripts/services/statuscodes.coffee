@@ -375,5 +375,5 @@ class StatusCodeFactory
 
 
 angular.module('holmesApp')
-  .factory 'StatusCodeFactory', () ->
+  .factory 'StatusCodeFcty', () ->
     return new StatusCodeFactory()
