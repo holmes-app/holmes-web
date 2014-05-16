@@ -3,19 +3,8 @@
   <statusbar index="4"></statusbar>
 
   <div class="mb">
-
     <domainDropdown onchange="model.domainFilter"></domainDropdown>
-
-    <div dropdown-select="model.statusCodeOptions"
-         dropdown-model="model.statusCodeSelected"
-         dropdown-item-label="label"
-         dropdown-onchange="model.onPageChange()"
-         class="dropdown-wrapper">
-    </div>
-    <button class="dropdown-clear"
-            ng-hide="model.statusCodeSelected.placeholder == true"
-            ng-click="model.clearStatusCodeDropdown()">×</button>
-
+    <statusCodeDropdown onchange="model.statusCodeFilter"></statusCodeDropdown>
   </div>
 
   <div class="failed-requests-container" nodata="model.loadedRequestsInLastDay" nodata-height="501" nodata-size="40" nodata-text="">

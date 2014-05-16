@@ -1,0 +1,11 @@
+<div class="ib">
+  <div dropdown-select="statusCodeOptions"
+       dropdown-model="statusCodeSelected"
+       dropdown-item-label="label"
+       dropdown-onchange="statusCodeOnChange()"
+       class="dropdown-wrapper">
+  </div>
+  <button class="dropdown-clear"
+          ng-hide="statusCodeSelected.placeholder == true"
+          ng-click="clearStatusCodeDropdown()">×</button>
+</div>

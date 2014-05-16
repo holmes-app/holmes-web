@@ -5,12 +5,10 @@ class LastRequestsCtrl
     @requests = []
     @pageSize = 10
     @domainFilter = ''
-
-    @defaultStatusCodeDropdown()
+    @statusCodeFilter = ''
 
     @getLastRequests()
     @getRequestsInLastDay()
-    @getStatusCode()
 
     @WebSocketFcty.on((message) =>
       @getLastRequests(@currentPage, @pageSize) if message.type == 'new-request'
@@ -48,33 +46,10 @@ class LastRequestsCtrl
     )
     @loadedRequestsInLastDay = requests.length
 
-  _fillStatusCode: (status_code) =>
-    @statusCodeOptions = ({label: item.statusCode + ' ' + item.statusCodeTitle, text: item.statusCode} for item in status_code)
-
-  defaultStatusCodeDropdown: =>
-    @statusCodeSelected = {label: 'Filter status code', placeholder: true}
-
-  clearStatusCodeDropdown: ->
-    @defaultStatusCodeDropdown()
-    @onPageChange()
-
-  getStatusCode: ->
-    @LastRequestsFcty.getStatusCode().then @_fillStatusCode, =>
-      @statusCodeOptions = []
-
-  appendDomainParams: (params) ->
-    if not params?
-      params = {}
-
-    if @statusCodeSelected.placeholder != true
-      params['status_code_filter'] = @statusCodeSelected.text
-
-    return params
-
   getLastRequests: (currentPage, pageSize) =>
     pageSize = if not pageSize then @pageSize
-    params = {current_page: currentPage, page_size: pageSize, domain_filter: @domainFilter}
-    @LastRequestsFcty.getLastRequests(@appendDomainParams(params)).then @_fillRequests, =>
+    params = {current_page: currentPage, page_size: pageSize, domain_filter: @domainFilter, status_code_filter: @statusCodeFilter}
+    @LastRequestsFcty.getLastRequests(params).then @_fillRequests, =>
       @loadedRequests = null
 
   getRequestsInLastDay: ->
@@ -90,8 +65,12 @@ class LastRequestsCtrl
   onDomainFilterChange: =>
     @onPageChange()
 
+  onStatusCodeFilterChange: =>
+    @onPageChange()
+
   watchScope: ->
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
+    @scope.$watch('model.statusCodeFilter', @onStatusCodeFilterChange)
 
 
 angular.module('holmesApp')
