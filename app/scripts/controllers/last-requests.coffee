@@ -78,7 +78,8 @@ class LastRequestsCtrl
       @loadedRequests = null
 
   getRequestsInLastDay: ->
-    @LastRequestsFcty.getRequestsInLastDay(@appendDomainParams()).then @_fillRequestsInLastDay, =>
+    params = {domain_filter: @domainFilter}
+    @LastRequestsFcty.getRequestsInLastDay(params).then @_fillRequestsInLastDay, =>
       @loadedRequestsInLastDay = null
 
   onPageChange: (currentPage, pageSize) =>
