@@ -43,7 +43,7 @@ class DomainCtrl
           id: violation.categoryId
           label: violation.categoryName + ' Violations'
           value: 100 * violation.count / this.total
-          pageCount: violation.count
+          violationCount: violation.count
           color: 'color' + (i + 1)
         data)
     else
@@ -85,7 +85,7 @@ class DomainCtrl
       @selectedCategory =
         title: data.label
         percentage: data.value
-        pageCount: data.pageCount
+        violationCount: data.violationCount
         color: data.color
         violations: @violationData[data.id]
     else
