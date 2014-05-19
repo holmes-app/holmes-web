@@ -8,23 +8,23 @@ class DomainDropdown
       @scope.showclose = true
 
     @scope.domainsOnChange = () =>
-      @scope.onchange = @scope.domainsSelected.text
+      @scope.onchange = @scope.domainsSelected.value
 
     @scope.clearDomainDropdown = () =>
       if @scope.placeholder?
-        @scope.domainsSelected = {text: @scope.placeholder, placeholder: true}
+        @scope.domainsSelected = {label: @scope.placeholder, value: @scope.placeholder, placeholder: true}
       else
-        @scope.domainsSelected = {text: 'Filter domain', placeholder: true}
+        @scope.domainsSelected = {label: 'Filter domain', value: '', placeholder: true}
       @scope.domainsOnChange()
 
     @getDomainsList()
 
   _fillOptions: (domains) =>
     if not @scope.placeholder?
-      ({text: domain.name, placeholder: false} for domain in domains)
+      ({label: domain.name, value: domain.name, placeholder: false} for domain in domains)
     else
-      values = ({text: domain.name, placeholder: true} for domain in domains)
-      values.unshift({text: @scope.placeholder, placeholder: true})
+      values = ({label: domain.name, value: domain.name, placeholder: true} for domain in domains)
+      values.unshift({label: @scope.placeholder, value: @scope.placeholder, placeholder: true})
       values
 
   _fillDomainsList: (domains) =>
