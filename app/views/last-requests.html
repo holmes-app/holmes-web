@@ -12,7 +12,7 @@
       <donut label="failed responses" data="model.failedRequests" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
-      <div class="title ib">Failed responses in the last day</div>
+      <div class="title ib">Latest failed responses</div>
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.failedRequests">
           <h4 ng-class="'color' + ($index + 1)">{{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}</h4>

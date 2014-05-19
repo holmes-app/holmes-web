@@ -7,7 +7,7 @@ class LastRequestsFactory
     @restangular.one('last-requests').get(params)
 
   getRequestsInLastDay: (params) ->
-    @restangular.one('requests-in-last-day').get(params)
+    @restangular.one('last-requests').one('failed-responses').get(params)
 
   getStatusCode: ->
     @restangular.one('last-requests').one('status-code').get()
