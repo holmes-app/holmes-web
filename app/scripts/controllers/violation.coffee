@@ -62,6 +62,8 @@ class ViolationCtrl
       }
       max_value)
     @violation.label = violation.title
+    @violation.description = violation.description
+    @violation.category = violation.category
     @violation.pageCount = violation.total
 
     params = @_addFilters {}
