@@ -7,12 +7,19 @@
     color: #888;
     border: none;
     padding-bottom: 0;
+    max-width: 850px;
   }
 
   .header {
     padding-bottom: 38px;
     border-bottom: solid 1px $light-grey;
     margin-bottom: 25px;
+
+    .description {
+      margin-top: 25px;
+      line-height: 22px;
+      display: block;
+    }
   }
 
   .domains {

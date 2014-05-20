@@ -1,6 +1,7 @@
 <div class="view violation-view">
   <div class="header rel">
-    <h2>{{ model.violation.label }}</h2>
+    <h2>{{ model.violation.category }}: {{ model.violation.label }}</h2>
+    <span class="description grey">{{ model.violation.description }}</span>
     <div class="fs0 abs abs-right toolbar" nodata="model.loadedViolation" nodata-height="47" nodata-size="10" nodata-failed="">
       <div class="ib" ng-show="model.violation.domainsCount">
         <h3 class="mid-grey">domains</h3>
