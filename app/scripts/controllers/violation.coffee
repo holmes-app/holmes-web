@@ -1,7 +1,7 @@
 'use strict'
 
 class ViolationCtrl
-  constructor: (@scope, @violationKey, @ViolationFcty) ->
+  constructor: (@scope, @violationKey, @ViolationFcty, @location) ->
     if @violationKey in ['blacklist.domains']
       @showDetails = true
     @pageFilter = null
@@ -13,6 +13,8 @@ class ViolationCtrl
       @loadedDetails = null
       @loadedReviews = null
     @watchScope()
+
+    @domainFilter = @location.search().domain_filter
 
   _fillReviews: (violation) =>
     @violation.reviews = violation.reviews
@@ -61,10 +63,9 @@ class ViolationCtrl
       max_value)
     @violation.label = violation.title
     @violation.pageCount = violation.total
-    params =
-      page_size: @pageSize
-    @ViolationFcty.getViolations(@violationKey, params).then @_fillReviews, =>
-      @loadedReviews = null
+
+    params = @_addFilters {}
+
     @loadedViolation = @violation.domains.length
 
   _updateReviews: (params, force=false) =>
@@ -88,10 +89,12 @@ class ViolationCtrl
     @_updateReviews(params)
 
   onDomainFilterChange: (newVal, oldVal) =>
-    @currentPage = 1
-    @pageFilter = null
-    params = @_addFilters {}
-    @_updateReviews(params, newVal != oldVal)
+    # FIXME: The follwing verification should not be necessary
+    if newVal != oldVal
+      @currentPage = 1
+      @pageFilter = null
+      params = @_addFilters {}
+      @_updateReviews(params, newVal != oldVal)
 
   onPageChange: (currentPage, pageSize) =>
     if currentPage? and pageSize?
@@ -109,5 +112,5 @@ class ViolationCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty) ->
-    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty)
+  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, $location) ->
+    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty, $location)

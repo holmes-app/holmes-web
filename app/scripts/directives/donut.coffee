@@ -75,7 +75,7 @@ angular.module('holmesApp')
           executeOnSelect(null, null)
           setLabel(label)
 
-        element.bind('mouseleave', deselect)
+        element.bind('mouseleave', $.debounce(10000, deselect))
         deselect()
 
       scope.$watch 'data', setData # lets just observe only the data because it is

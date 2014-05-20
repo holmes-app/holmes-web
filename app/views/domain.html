@@ -53,7 +53,7 @@
           <ul class="category">
             <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
               <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
-              <p class="dark-grey ib title">{{ detail.title }}</p>
+              <p class="dark-grey ib title"><a href="#/violations/{{ detail.key }}/?domain_filter={{ model.domain_details.name }}" class="blue">{{ detail.title }}</a></p>
             </li>
           </ul>
         </div>

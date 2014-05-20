@@ -4,6 +4,9 @@ class DomainDropdown
   constructor: (@scope, @element, @attrs, @DomainsFcty) ->
     @scope.domainsOptions = []
 
+    if @scope.selected?
+      @scope.domainsSelected = @scope.selected
+
     if not @scope.showclose?
       @scope.showclose = true
 
@@ -11,7 +14,9 @@ class DomainDropdown
       @scope.onchange = @scope.domainsSelected.value
 
     @scope.clearDomainDropdown = () =>
-      if @scope.placeholder?
+     if @scope.selected?
+       @scope.domainsSelected = {label: @scope.selected, value: @scope.selected,  placeholder: true}
+     else if @scope.placeholder?
         @scope.domainsSelected = {label: @scope.placeholder, value: @scope.placeholder, placeholder: true}
       else
         @scope.domainsSelected = {label: 'Filter domain', value: '', placeholder: true}
@@ -30,6 +35,7 @@ class DomainDropdown
   _fillDomainsList: (domains) =>
     @scope.domainsOptions =  @_fillOptions(domains)
     @watchScope()
+    @scope.clearDomainDropdown()
 
   getDomainsList: =>
     if @scope.autoload != false
@@ -39,7 +45,7 @@ class DomainDropdown
   setDomainsList: =>
     if @scope.options
       @scope.domainsOptions = @_fillOptions(@scope.options)
-    @scope.clearDomainDropdown()
+      @scope.clearDomainDropdown()
 
   watchScope: ->
     @scope.$watch('options', @setDomainsList)
