@@ -453,3 +453,31 @@ div.td {
     outline: 0;
   }
 }
+
+.breadcrumbs {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: $mid-grey;
+  line-height: 20px;
+  padding: 5px;
+  a {
+    color: $blue;
+  }
+  li {
+
+    &:after {
+      margin: 0 8px 0 5px;
+      content: '>';
+      color: grey;
+    }
+
+    &.active {
+      &:after {
+        content: '';
+        margin: 0;
+        display: none;
+      }
+    }
+
+  }
+}

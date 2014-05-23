@@ -1,4 +1,7 @@
 <div class="view domain-view">
+
+  <breadcrumbs labels="{'Domain': model.domain_details.name}"></breadcrumbs>
+
   <div class="info rel" nodata="model.loadedDomainDetails" nodata-height="71" nodata-size="40">
     <h2 class="blue">{{ model.domain_details.name }}</h2>
 
@@ -65,7 +68,7 @@
     <div class="header rel light-grey-border">
       <div class="title ib">Page Reviews <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs" ng-hide="model.reviews.pages == '' && model.reviewFilter == ''">
-        <span ng-if="model.domain_details.homepageId && model.domain_details.homepageReviewId" class="domain ib"><a class="blue" ng-href="#/page/{{ model.domain_details.homepageId }}/review/{{ model.domain_details.homepageReviewId }}/">{{ model.domain_details.name }}/</a></span>
+        <span ng-if="model.domain_details.homepageId && model.domain_details.homepageReviewId" class="domain ib"><a class="blue" ng-href="#/domains/{{ model.domain_details.name }}/page/{{ model.domain_details.homepageId }}/review/{{ model.domain_details.homepageReviewId }}/">{{ model.domain_details.name }}/</a></span>
         <span ng-if="!model.domain_details.homepageId || !model.domain_details.homepageReviewId " class="domain ib">{{ model.domain_details.name }}/</span>
         <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
@@ -79,9 +82,9 @@
         </thead>
         <tbody>
           <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
-            <td class="url"><a href="#/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.url }}</a></td>
-            <td class="violations center"><a href="#/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
-            <td class="finished-at center"><a href="#/page/{{ page.uuid }}/review/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
+            <td class="url"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.url }}</a></td>
+            <td class="violations center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
+            <td class="finished-at center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
           </tr>
         </tbody>
       </table>

@@ -11,7 +11,8 @@ app = angular.module('holmesApp', [
   'googleplus',
   'HolmesWebPackageJson',
   'ngAnimate',
-  'ngDropdowns'
+  'ngDropdowns',
+  'ng-breadcrumbs'
 ])
   .config ($routeProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
     $routeProvider
@@ -20,33 +21,46 @@ app = angular.module('holmesApp', [
       .when '/domains',
         templateUrl: 'views/domains.html'
         controller: 'DomainsCtrl'
+        label: 'Domains'
       .when '/domains/:domainName',
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
-      .when '/page/:pageId/review/:reviewId',
+        label: 'Domain'
+      .when '/domains/:domainName/page/:pageId/review/:reviewId',
         templateUrl: 'views/reviews.html'
         controller: 'ReviewsCtrl'
         reloadOnSearch: false
+        label: 'Review'
+      .when '/violations',
+        redirectTo: -> '/'
+        label: 'Violations'
       .when '/violations/:violationKey',
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'
+        label: 'Violation'
       .when '/status',
         redirectTo: '/status/workers'
+        label: 'Status'
       .when '/status/workers',
         templateUrl: 'views/workers.html'
         controller: 'WorkersCtrl'
+        label: 'Workers'
       .when '/status/last-reviews',
         templateUrl: 'views/last-reviews.html'
         controller: 'LastReviewsCtrl'
+        label: 'Last Reviews'
       .when '/status/pipeline',
         templateUrl: 'views/review-pipeline.html'
         controller: 'ReviewPipelineCtrl'
+        label: 'Review Pipeline'
       .when '/status/requests',
         templateUrl: 'views/last-requests.html'
         controller: 'LastRequestsCtrl'
+        label: 'Last Requests'
       .when '/status/concurrent',
         templateUrl: 'views/concurrent.html'
         controller: 'ConcurrentCtrl'
+        label: 'Concurrent Requests'
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)

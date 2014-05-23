@@ -1,4 +1,7 @@
 <div class="view violation-view">
+
+  <breadcrumbs labels="{'Violation': model.violation.label}"></breadcrumbs>
+
   <div class="header rel">
     <h2>{{ model.violation.label }}</h2>
     <div class="fs0 abs abs-right toolbar" nodata="model.loadedViolation" nodata-height="47" nodata-size="10" nodata-failed="">
@@ -69,7 +72,7 @@
           </tr></thead>
           <tbody>
             <tr ng-repeat="review in model.violation.reviews" class="ng-scope">
-              <td class="url"><a href="#/page/{{review.page.uuid}}/review/{{review.uuid}}">{{review.page.url}}</a></td>
+              <td class="url"><a href="#/domains/{{review.domain}}/page/{{review.page.uuid}}/review/{{review.uuid}}">{{review.page.url}}</a></td>
               <td class="finished-at center"><span am-time-ago="review.page.completedAt * 1000"></span> ago</td>
             </tr>
           </tbody>
