@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Language: es_ES
+"
+
+#: .tmp/scripts/app.js
+msgid "Concurrent Requests"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Domains"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Last Requests"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Last Reviews"
+msgstr ""
+
+#: app/views/domain.html
+msgid "One violation"
+msgid_plural "{{ model.selectedCategory.violationCount | number }} violations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/domain.html
+msgid "Page Reviews"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Review Pipeline"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Status"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Violations"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "Workers"
+msgstr ""
+

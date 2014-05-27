@@ -1,7 +1,7 @@
 'use strict'
 
 class BreadcrumbsCtrl
-  constructor: (@scope, @breadcrumbs) ->
+  constructor: (@scope, @breadcrumbs, @gettext) ->
     @breadcrumbs.options = {}
     @scope.$watch('labels', (newValue, oldValue) =>
       @setBreadcrumbsOptions()
@@ -17,7 +17,7 @@ class BreadcrumbsCtrl
 
 
 angular.module('holmesApp')
-  .directive('breadcrumbs', (breadcrumbs, $timeout) ->
+  .directive('breadcrumbs', (breadcrumbs, $timeout, gettextCatalog) ->
     replace: true
     transclude: true
     restrict: 'E'
@@ -28,5 +28,5 @@ angular.module('holmesApp')
     templateUrl: 'views/breadcrumbs.html'
     link: (scope, element, attrs) ->
       $timeout ->
-        scope.model = new BreadcrumbsCtrl(scope, breadcrumbs)
+        scope.model = new BreadcrumbsCtrl(scope, breadcrumbs, gettextCatalog)
   )

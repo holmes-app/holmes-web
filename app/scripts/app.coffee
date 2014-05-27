@@ -12,16 +12,20 @@ app = angular.module('holmesApp', [
   'HolmesWebPackageJson',
   'ngAnimate',
   'ngDropdowns',
-  'ng-breadcrumbs'
+  'ng-breadcrumbs',
+  'gettext'
 ])
   .config ($routeProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
+    gettextCatalog =
+      getString: (message) -> message
+
     $routeProvider
       .when '/',
         redirectTo: '/domains'
       .when '/domains',
         templateUrl: 'views/domains.html'
         controller: 'DomainsCtrl'
-        label: 'Domains'
+        label: gettextCatalog.getString("Domains")
       .when '/domains/:domainName',
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
@@ -33,34 +37,34 @@ app = angular.module('holmesApp', [
         label: 'Review'
       .when '/violations',
         redirectTo: -> '/'
-        label: 'Violations'
+        label: gettextCatalog.getString("Violations")
       .when '/violations/:violationKey',
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'
         label: 'Violation'
       .when '/status',
         redirectTo: '/status/workers'
-        label: 'Status'
+        label: gettextCatalog.getString("Status")
       .when '/status/workers',
         templateUrl: 'views/workers.html'
         controller: 'WorkersCtrl'
-        label: 'Workers'
+        label: gettextCatalog.getString("Workers")
       .when '/status/last-reviews',
         templateUrl: 'views/last-reviews.html'
         controller: 'LastReviewsCtrl'
-        label: 'Last Reviews'
+        label: gettextCatalog.getString("Last Reviews")
       .when '/status/pipeline',
         templateUrl: 'views/review-pipeline.html'
         controller: 'ReviewPipelineCtrl'
-        label: 'Review Pipeline'
+        label: gettextCatalog.getString("Review Pipeline")
       .when '/status/requests',
         templateUrl: 'views/last-requests.html'
         controller: 'LastRequestsCtrl'
-        label: 'Last Requests'
+        label: gettextCatalog.getString("Last Requests")
       .when '/status/concurrent',
         templateUrl: 'views/concurrent.html'
         controller: 'ConcurrentCtrl'
-        label: 'Concurrent Requests'
+        label: gettextCatalog.getString("Concurrent Requests")
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)
@@ -69,8 +73,15 @@ app = angular.module('holmesApp', [
       apiKey: '68129569472-1smbhidqeo3kpdj029cehmnp8qh808kv.apps.googleusercontent.com',
       scopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
     })
-  .run(($rootScope, $window) ->
+  .run(($rootScope, $window, gettextCatalog) ->
+    gettextCatalog.currentLanguage = 'en_US'
+    gettextCatalog.debug = true
+
     $rootScope.$on('$viewContentLoaded', ->
       $window.scrollTo(0, 0)
     )
   )
+
+  #.factory('httpRequestInterceptor', ->
+    #request: (config) ->
+      #config.headers['Accept-Language'] = 'en_US'

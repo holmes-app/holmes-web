@@ -67,6 +67,22 @@ module.exports = function (grunt) {
       }
     },
 
+    nggettext_extract: {
+      pot: {
+        files: {
+          '<%= yeoman.app %>/i18n/sources/web.pot': ['<%= yeoman.app %>/views/**/*.html', '.tmp/scripts/**/*.js']
+        }
+      },
+    },
+
+    nggettext_compile: {
+      all: {
+        files: {
+          '<%= yeoman.app %>/scripts/translations.js': ['<%= yeoman.app %>/i18n/locale/**/*.po']
+        }
+      },
+    },
+
     // The actual grunt server settings
     connect: {
       options: {
@@ -435,5 +451,14 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('extract_translations', [
+    'coffee:dist',
+    'nggettext_extract'
+  ]);
+
+  grunt.registerTask('compile_translations', [
+    'nggettext_compile'
   ]);
 };

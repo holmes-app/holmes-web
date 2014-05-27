@@ -47,12 +47,10 @@
 
         <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
           <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
-          <p class="page-count grey" ng-pluralize
-              count="model.selectedCategory.violationCount"
-              when="{
-                'one': '1 violation',
-                'other': '{{ model.selectedCategory.violationCount | number }} violations',
-              }"></p>
+          <p class="page-count grey" translate
+              translate-n="model.selectedCategory.violationCount"
+              translate-plural="{{ model.selectedCategory.violationCount | number }} violations"
+              >One violation</p>
           <ul class="category">
             <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
               <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
@@ -66,7 +64,7 @@
 
   <div class="page-reviews-container" ng-if="model.loadedDomainDetails">
     <div class="header rel light-grey-border">
-      <div class="title ib">Page Reviews <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
+      <div class="title ib"><span translate>Page Reviews</span> <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs" ng-hide="model.reviews.pages == '' && model.reviewFilter == ''">
         <span ng-if="model.domain_details.homepageId && model.domain_details.homepageReviewId" class="domain ib"><a class="blue" ng-href="#/domains/{{ model.domain_details.name }}/page/{{ model.domain_details.homepageId }}/review/{{ model.domain_details.homepageReviewId }}/">{{ model.domain_details.name }}/</a></span>
         <span ng-if="!model.domain_details.homepageId || !model.domain_details.homepageReviewId " class="domain ib">{{ model.domain_details.name }}/</span>

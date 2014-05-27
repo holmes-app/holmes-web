@@ -1,0 +1,8 @@
+project_identifier: holmes
+api_key: insert-api-key
+base_path: .
+
+files:
+  -
+    source: '/app/i18n/sources/**/*.pot'
+    translation: '/app/i18n/locale/%locale_with_underscore%/%file_name%.po'
