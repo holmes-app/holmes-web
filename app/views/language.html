@@ -1,0 +1,6 @@
+<div class="ib languages">
+  <div class="selected-language" ng-click="model.dropDownVisible = !model.dropDownVisible" ng-class="model.selectedLanguage"><span></span></div>
+  <ul class="dropdown" ng-class="model.dropDownVisible ? 'visible' : ''">
+    <li ng-repeat="language in model.supportedLanguages" class="flag flag-{{ language }}" ng-click="model.selectLanguage(language)"></li>
+  </ul>
+</div>

@@ -1,0 +1,47 @@
+.languages {
+
+  /* Icons come from this collection https://www.iconfinder.com/icons/91992/brazil_parts_icon#size=32 */
+  .flag-en_US, .selected-language.en_US span {
+    background: image-url('../images/flags/en_US.png') 0 0 no-repeat;
+  }
+  .flag-pt_BR, .selected-language.pt_BR span {
+    background: image-url('../images/flags/pt_BR.png') 0 0 no-repeat;
+  }
+
+  .dropdown {
+    visibility: hidden;
+    opacity: 0;
+    @include transition(all 100ms linear);
+    width: 40px;
+    margin-top: 16px;
+
+    &.visible {
+      visibility: visible;
+      opacity: .99;
+    }
+
+    li {
+      margin-left: 4px;
+      height: 32px;
+      width: 32px;
+      margin-top: -5px;
+      cursor: pointer;
+    }
+
+  }
+
+  .selected-language {
+    @include box-sizing(border-box);
+    width: 40px;
+    height: 40px;
+    display: block;
+    padding-top: 9px;
+    padding-left: 4px;
+
+    span {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
+  }
+}

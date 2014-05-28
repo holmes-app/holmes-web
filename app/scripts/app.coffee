@@ -68,6 +68,16 @@ app = angular.module('holmesApp', [
       .otherwise
         redirectTo: '/'
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)
+    RestangularProvider.addFullRequestInterceptor(
+      (element, operation, what, url, headers, query) ->
+        storage = window.sessionStorage
+
+        selectedLanguage = storage.getItem('selectedLanguage')
+        if not selectedLanguage?
+          selectedLanguage = "en_US"
+
+        headers['Accept-Language'] = selectedLanguage
+    )
     GooglePlusProvider.init({
       clientId: '968129569472-1smbhidqeo3kpdj029cehmnp8qh808kv',
       apiKey: '68129569472-1smbhidqeo3kpdj029cehmnp8qh808kv.apps.googleusercontent.com',
@@ -81,7 +91,3 @@ app = angular.module('holmesApp', [
       $window.scrollTo(0, 0)
     )
   )
-
-  #.factory('httpRequestInterceptor', ->
-    #request: (config) ->
-      #config.headers['Accept-Language'] = 'en_US'
