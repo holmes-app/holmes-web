@@ -1,4 +1,5 @@
 .languages {
+  position: relative;
 
   /* Icons come from this collection https://www.iconfinder.com/icons/91992/brazil_parts_icon#size=32 */
   .flag-en_US, .selected-language.en_US span {
@@ -14,6 +15,9 @@
     @include transition(all 100ms linear);
     width: 40px;
     margin-top: 16px;
+    position: absolute;
+    top: 28px;
+    left: 0;
 
     &.visible {
       visibility: visible;
