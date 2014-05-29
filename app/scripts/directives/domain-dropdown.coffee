@@ -11,8 +11,8 @@ class DomainDropdown
       @scope.onchange = @scope.domainsSelected.value
 
     @scope.clearDomainDropdown = () =>
-     if @scope.selected?
-        @scope.domainsSelected = {label: @scope.selected, value: @scope.selected,  placeholder: true}
+     if @scope.preselected?
+        @scope.domainsSelected = {label: @scope.preselected, value: @scope.preselected,  placeholder: true}
      else if @scope.placeholder?
         @scope.domainsSelected = {label: @scope.placeholder, value: @scope.placeholder, placeholder: true}
       else
@@ -46,7 +46,7 @@ class DomainDropdown
 
   watchScope: ->
     @scope.$watch('options', @setDomainsList)
-    @scope.$watch('selected', @scope.clearDomainDropdown)
+    @scope.$watch('preselected', @scope.clearDomainDropdown)
 
 
 angular.module('holmesApp')
@@ -55,7 +55,7 @@ angular.module('holmesApp')
     restrict: 'E'
     replace: true
     scope:
-      selected: '='
+      preselected: '='
       options: '='
       onchange: '='
       placeholder: '@'
