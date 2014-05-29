@@ -91,7 +91,7 @@ class ViolationCtrl
     @_updateReviews(params)
 
   onDomainFilterChange: (newVal, oldVal) =>
-    # FIXME: The follwing verification should not be necessary
+    # FIXME: The following verification shouldn't be necessary
     if newVal != oldVal
       @currentPage = 1
       @pageFilter = null

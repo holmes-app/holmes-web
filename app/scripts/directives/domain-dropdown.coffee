@@ -4,9 +4,6 @@ class DomainDropdown
   constructor: (@scope, @element, @attrs, @DomainsFcty) ->
     @scope.domainsOptions = []
 
-    if @scope.selected?
-      @scope.domainsSelected = @scope.selected
-
     if not @scope.showclose?
       @scope.showclose = true
 
@@ -15,7 +12,7 @@ class DomainDropdown
 
     @scope.clearDomainDropdown = () =>
      if @scope.selected?
-       @scope.domainsSelected = {label: @scope.selected, value: @scope.selected,  placeholder: true}
+        @scope.domainsSelected = {label: @scope.selected, value: @scope.selected,  placeholder: true}
      else if @scope.placeholder?
         @scope.domainsSelected = {label: @scope.placeholder, value: @scope.placeholder, placeholder: true}
       else
@@ -49,6 +46,7 @@ class DomainDropdown
 
   watchScope: ->
     @scope.$watch('options', @setDomainsList)
+    @scope.$watch('selected', @scope.clearDomainDropdown)
 
 
 angular.module('holmesApp')
