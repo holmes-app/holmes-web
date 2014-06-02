@@ -4,6 +4,9 @@ class DomainsFactory
   constructor: (@restangular) ->
 
   getDomains: ->
+    @restangular.all('domains').getList()
+
+  getDomainsDetails: ->
     @restangular.all('domains-details').getList()
 
   getDomainReviews: (domainName, params) ->

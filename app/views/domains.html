@@ -14,22 +14,22 @@
 
             <div class="stat ib">
               <p class="label">pages</p>
-              <p class="value">{{ domain.pageCount | number }}</p>
+              <p class="value">{{ domain.details.pageCount | number }}</p>
             </div>
 
             <div class="stat ib">
               <p class="label">violations</p>
-              <p class="value">{{ domain.violationCount | number }}</p>
+              <p class="value">{{ domain.details.violationCount | number }}</p>
             </div>
 
             <div class="stat ib center">
               <p class="label">error %</p>
-              <p class="value">{{ domain.errorPercentage | number }}%</p>
+              <p class="value">{{ domain.details.errorPercentage | number }}%</p>
             </div>
 
             <div class="stat ib right">
               <p class="label">avg resp time</p>
-              <p class="value">{{ domain.averageResponseTime * 1000 | timeUnit }}</p>
+              <p class="value">{{ domain.details.averageResponseTime * 1000 | timeUnit }}</p>
             </div>
 
           </div>

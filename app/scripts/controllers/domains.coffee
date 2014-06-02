@@ -24,6 +24,11 @@ class DomainsCtrl
     @domainList = _.sortBy(@domainList.reverse(), 'is_active').reverse()
     @domains = @domainList
     @loadedDomains = @domainList.length
+    @DomainsFcty.getDomainsDetails().then @_fillDomainsDetails
+
+  _fillDomainsDetails: (domainsDetails) =>
+    for domain in @domains
+      domain.details = _.find domainsDetails, {id: domain.id}
 
   _fillViolations: (mostCommonViolations) =>
     @groupData = @groupDataFull = _.groupBy(mostCommonViolations, 'category')
