@@ -13,7 +13,10 @@ app = angular.module('holmesApp', [
   'ngAnimate',
   'ngDropdowns',
   'ng-breadcrumbs',
-  'gettext'
+  'gettext',
+  'ngTagsInput',
+  'growlNotifications',
+  'qtip2'
 ])
   .config ($routeProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
     gettextCatalog =
@@ -30,6 +33,10 @@ app = angular.module('holmesApp', [
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
         label: 'Domain'
+      .when '/domains/:domainName/violations/prefs',
+        templateUrl: 'views/domain-violations-prefs.html'
+        controller: 'DomainsViolationsPrefsCtrl'
+        label: 'Violations preferences'
       .when '/domains/:domainName/page/:pageId/review/:reviewId',
         templateUrl: 'views/reviews.html'
         controller: 'ReviewsCtrl'

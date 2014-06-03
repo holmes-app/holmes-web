@@ -1,0 +1,26 @@
+<div class="view domains-violations-prefs-view">
+
+  <breadcrumbs labels="{'Domain': model.domain_details.name}"></breadcrumbs>
+
+  <div class="mb">
+    <h1 class="blue">Violations Preferences</h1>
+  </div>
+
+  <div class="tabs mb">
+    <div class="tab-header ib grey" ng-repeat="(category, elements) in model.domain_violations_prefs" ng-class="model.currentTab == category ? 'selected' : ''">
+      <a ng-click="model.onClickTab(category)">{{ category }}</a>
+    </div>
+  </div>
+
+  <div growl-notifications></div>
+
+  <form name="updatePrefsForm">
+    <div class="tabs-container" ng-repeat="(category, elements) in model.domain_violations_prefs">
+      <div ng-class="category == model.currentTab ? 'selected' : 'unselected'" class="mb" ng-repeat="pref in elements track by pref.key">
+        <domainsviolationsprefsunit pref-data="pref"></domainsviolationsprefsunit>
+      </div>
+    </div>
+    <button class="btn" ng-click="model.updatePrefs()">Update preferences</button>
+  </form>
+
+</div>

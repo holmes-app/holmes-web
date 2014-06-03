@@ -1,0 +1,86 @@
+.domains-violations-prefs-view {
+
+  h2 {
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+  }
+
+  .tabs {
+    margin-top: 50px;
+  }
+
+  .tabs-container {
+    margin-top: 10px;
+    @include column-count(2);
+    column-gap: 70px;
+  }
+
+  .unselected {
+    display: none !important;
+  }
+
+  .selected {
+    display: inline-block !important;
+  }
+
+  label {
+    font-family: 'Open Sans', sans-serif;
+    color: #989898;
+    margin: 0px 0px 5px;
+  }
+
+  input[type="text"], input[type="number"], input[type="email"], input[type="url"], textarea, select, .tags {
+    border: 1px solid #dadada;
+    color: #888;
+    margin-top: 2px;
+    width: 490px;
+  }
+
+  /* FIXME */
+  .tags {
+    box-shadow: none !important;
+    @include appearance(none);
+  }
+
+  /* FIXME */
+  tags-input .tags .input {
+    font: 14px 'Open Sans', sans-serif !important;
+  }
+
+  /* FIXME */
+  .tags.focused {
+    -webkit-box-shadow: 0 0 3px 2px #66afe9 !important;
+  }
+
+ .tags .tag-item {
+    background: #efefef;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    color: #555;
+  }
+
+  .tags .tag-item.selected {
+    background: #efefef;
+    border-radius: 4px;
+    color: #555;
+  }
+
+  .tags .tag-item button {
+    background: transparent;
+    color: #555;
+    opacity: .4;
+  }
+
+  .tooltip {
+    cursor: help;
+    background-color: #efefef;
+    color: #585858;
+    padding: 1px 4px;
+    border-radius: 8px;
+    border: 1px solid #dadada;
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+  }
+
+}

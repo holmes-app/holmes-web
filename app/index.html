@@ -16,6 +16,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -38,7 +39,7 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -56,6 +57,10 @@
     <script src="bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
     <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
     <script src="bower_components/angular-gettext/dist/angular-gettext.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+    <script src="bower_components/angular-growl-notifications/dist/growl-notifications.js"></script>
+    <script src="bower_components/qtip2/jquery.qtip.js"></script>
+    <script src="bower_components/angular-qtip2-directive/qtip2.js"></script>
     <!-- endbower -->
     <script src="bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
     <!-- endbuild -->
@@ -83,6 +88,7 @@
     <script src="scripts/services/limiters.js"></script>
     <script src="scripts/services/api-version.js"></script>
     <script src="scripts/services/statuscodes.js"></script>
+    <script src="scripts/services/domains-violations-prefs.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/headerbar.js"></script>
     <script src="scripts/directives/headersearch.js"></script>
@@ -95,6 +101,7 @@
     <script src="scripts/directives/domain-dropdown.js"></script>
     <script src="scripts/directives/status-code-dropdown.js"></script>
     <script src="scripts/directives/breadcrumbs.js"></script>
+    <script src="scripts/directives/domains-violations-prefs-units.js"></script>
     <script src="scripts/controllers/domains.js"></script>
     <script src="scripts/controllers/domain.js"></script>
     <script src="scripts/directives/pager.js"></script>
@@ -108,6 +115,7 @@
     <script src="scripts/controllers/review-pipeline.js"></script>
     <script src="scripts/controllers/last-requests.js"></script>
     <script src="scripts/controllers/concurrent.js"></script>
+    <script src="scripts/controllers/domains-violations-prefs.js"></script>
     <script src="scripts/filters/time_unit.js"></script>
     <script src="scripts/filters/bytes_unit.js"></script>
     <script src="scripts/directives/language.js"></script>

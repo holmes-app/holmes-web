@@ -1,0 +1,31 @@
+<div>
+
+  <div ng-if="prefData.unit == ''">
+    <label for="{{ prefData.key }}">{{ prefData.key }}</label>
+    <div class="tooltip ib" qtip data-class="qtip-holmes"
+         data-content="{{ prefData.title }}<br /><br /> <strong>Default</strong>: {{ prefData.default_value }}">?</div>
+    <input type="text" ng-model="prefData.value" />
+  </div>
+
+  <div ng-if="prefData.unit == 'number'">
+    <label for="{{ prefData.key }}">{{ prefData.key }}</label>
+    <div class="tooltip ib" qtip data-class="qtip-holmes"
+         data-content="{{ prefData.title }}<br /><br /> <strong>Default</strong>: {{ prefData.default_value }}">?</div>
+    <input type="number" ng-model="prefData.value" />
+  </div>
+
+  <div ng-if="prefData.unit == 'list'">
+    <label for="{{ prefData.key }}">{{ prefData.key }}</label>
+    <div class="tooltip ib" qtip data-class="qtip-holmes"
+         data-content="{{ prefData.title }}<br /><br /> <strong>Default</strong>: <ul><li>{{ prefData.default_value.join('</li><li>') }}</li></ul>"}>?</div>
+    <tags-input ng-model="prefData.value" placeholder="Add new value"></tags-input>
+  </div>
+
+  <div ng-if="prefData.unit == 'boolean'">
+    <input type="checkbox" ng-model="prefData.value">
+    <label for="{{ prefData.key }}">{{ prefData.key }}</label>
+    <div class="tooltip ib" qtip data-class="qtip-holmes"
+         data-content="{{ prefData.title}}<br /><br /> <strong>Default</strong>: {{ prefData.default_value }}">?</div>
+  </div>
+
+</div>

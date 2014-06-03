@@ -100,8 +100,12 @@
 
 </div>
 
-<div class="stop-review-button" ng-show="model.reviews.reviewsCount > 0">
-  <button ng-click="model.changeDomainStatus()">
+<div class="domain-actions mb ib">
+
+  <button class="btn" ng-click="model.changeDomainStatus()" ng-show="model.reviews.reviewsCount > 0">
     {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
   </button>
+
+  <a class="btn" href="#/domains/{{ model.domain_details.name }}/violations/prefs">Violations Preferences</a>
+
 </div>
