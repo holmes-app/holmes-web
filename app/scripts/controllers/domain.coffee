@@ -88,6 +88,7 @@ class DomainCtrl
         violationCount: data.violationCount
         color: data.color
         violations: @violationData[data.id]
+      @scope.scopeViolationCount = data.violationCount
     else
       @selectedCategory = null
 

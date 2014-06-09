@@ -2,12 +2,12 @@
   <div class="alert-message {{ model.headerWitchOne }}" ng-class="model.alertMessageVisible ? 'visible' : ''">
     <div class="container" ng-switch on="model.headerWitchOne">
       <button ng-click="hideAlertMessage(model.headerWitchOne)">×</button>
-      <p ng-switch-when="invalid_page">Page with URL '{{ model.url }}' was not found or does not have any reviews associated with it!</p>
-      <p ng-switch-when="redirect">The website you added is actually a redirect to {{ model.turnsOut }}. <a href="javascript:" ng-click="model.url = model.turnsOut; addPage()">Do you want to add it instead?</a></p>
-      <p ng-switch-when="invalid_url">The website you added could not be found. Maybe you mispelled it?</p>
-      <p ng-switch-when="success_page">Page successfully saved!</p>
-      <p ng-switch-when="form_invalid">The URL you entered is invalid!</p>
-      <p ng-switch-when="missing_protocol">The URL you entered is missing the protocol prefix. <a href="javascript:" ng-click="model.url = model.urlHttpSuggest; model.urlHttpSuggestMethod();">Do you want to {{ model.urlHttpSuggestAct }} {{ model.urlHttpSuggest }} instead?</a></p>
+      <p ng-switch-when="invalid_page"><span translate>Page with URL '{{ model.url }}' was not found or does not have any reviews associated with it!</span></p>
+      <p ng-switch-when="redirect"><span translate>The website you added is actually a redirect to {{ model.turnsOut }}.</span> <a href="javascript:;" ng-click="model.url = model.turnsOut; addPage()" translate>Do you want to add it instead?</a></p>
+      <p ng-switch-when="invalid_url"><span translate>The website you added could not be found. Maybe you mispelled it?</span></p>
+      <p ng-switch-when="success_page"><span translate>Page successfully saved!</span></p>
+      <p ng-switch-when="form_invalid"><span translate>The URL you entered is invalid!</span></p>
+      <p ng-switch-when="missing_protocol"><span translate>The URL you entered is missing the protocol prefix.</span> <a href="javascript:;" ng-click="model.url = model.urlHttpSuggest; model.urlHttpSuggestMethod();" translate>Do you want to {{ model.urlHttpSuggestAct }} {{ model.urlHttpSuggest }} instead?</a></p>
     </div>
   </div>
 </div>

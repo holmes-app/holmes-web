@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('holmesApp')
-  .directive 'nodata', ($rootScope) ->
+  .directive 'nodata', ($rootScope, gettextCatalog) ->
     restrict: 'A'
     replace: true
     transclude: true
@@ -16,9 +16,9 @@ angular.module('holmesApp')
     template: (element, attr) ->
       nodeName = element[0].nodeName
       attr.nodataClass = 'no-data' if !attr.nodataClass?
-      attr.nodataLoading = 'Loading...' if !attr.nodataLoading?
-      attr.nodataText = 'No data!' if !attr.nodataText?
-      attr.nodataFailed = 'Loading failed!' if !attr.nodataFailed?
+      attr.nodataLoading = gettextCatalog.getString('Loading...') if !attr.nodataLoading?
+      attr.nodataText = gettextCatalog.getString('No data!') if !attr.nodataText?
+      attr.nodataFailed = gettextCatalog.getString('Loading failed!') if !attr.nodataFailed?
       nodataFadeClass = if attr.nodataFade != 'no' then 'no-data-fade' else ''
       "<div>
         <div ng-show='nodataFlagger === undefined' class='{{nodataClass}}'>
@@ -35,10 +35,10 @@ angular.module('holmesApp')
           </div>
         </div>
         <div ng-show='nodataFlagger === false || nodataFlagger == 0' class='{{nodataClass}}'>
-          <div ng-if='nodataText' class='nodata'>{{nodataText}}</div>
+          <div ng-if='nodataText' class='nodata'>{{ nodataText }}</div>
         </div>
         <div ng-show='nodataFlagger === null' class='{{nodataClass}}'>
-          <div ng-if='nodataFailed' class='failed'>{{nodataFailed}}</div>
+          <div ng-if='nodataFailed' class='failed'>{{ nodataFailed }}</div>
         </div>
         <#{nodeName} ng-show='nodataFlagger' class='#{nodataFadeClass}' ng-transclude></#{nodeName}>
       </div>"

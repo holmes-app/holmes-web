@@ -7,31 +7,31 @@
   <div class="info rel">
 
     <div class="violations ib">
-      <p class="title mid-grey">violations</p>
+      <p class="title mid-grey" translate>violations</p>
       <p class="value grey">{{ model.review_details.violationCount | number }}</p>
     </div>
 
     <div class="points ib">
-      <p class="title mid-grey">points</p>
+      <p class="title mid-grey" translate>points</p>
       <p class="value grey">{{ model.review_details.violationPoints| number }}</p>
     </div>
 
     <div class="reviews ib pull-right fs0">
       <div class="review-count ib">
-        <p class="title mid-grey">reviews</p>
+        <p class="title mid-grey" translate>reviews</p>
         <p class="value grey">{{ model.reviews.length | number }}</p>
       </div>
 
       <div class="violations ib">
         <div class="table">
           <div class="tr row first">
-            <div class="td title">violations</div>
+            <div class="td title" translate>violations</div>
             <div ng-repeat="review in model.reviews" class="td value">
               <a ng-if="model.review_details.domain" data-named-route="review" data-args="['{{ model.review_details.domain }}', '{{ model.pageId }}', '{{ review.uuid }}']">{{ review.violationCount }}</a>
             </div>
           </div>
           <div class="tr row">
-            <div class="td title">finished at</div>
+            <div class="td title" translate>finished at</div>
             <div ng-repeat="review in model.reviews" class="td value">
               <a ng-if="model.review_details.domain" data-named-route="review" data-args="['{{ model.review_details.domain }}', '{{ model.pageId }}', '{{ review.uuid }}']">
                 <span class="time" am-time-ago="review.completedAt*1000"></span>
@@ -47,10 +47,10 @@
     <div class="review-data">
       <div class="tabs">
         <div class="tab-header ib grey" ng-class="model.violationsVisible ? 'selected' : ''">
-          <a ng-click="model.showViolations()">violations</a>
+          <a ng-click="model.showViolations()" translate>violations</a>
         </div>
         <div class="tab-header ib" ng-class="model.factsVisible ? 'selected' : ''">
-          <a ng-click="model.showFacts()">facts</a>
+          <a ng-click="model.showFacts()" translate>facts</a>
         </div>
       </div>
 
@@ -62,13 +62,13 @@
           <div class="details ib">
             <ul class="violations">
               <li ng-repeat="violations in model.violations | orderBy: '-value'">
-              <h4 ng-class="'color' + ($index + 1)">{{ violations.value | number:2 }}% {{ violations.label }}</h4>
-                <p class="grey" ng-pluralize
-                  count="violations.violations.length"
-                  when="{
-                    'one': '1 violation',
-                    'other': '{{ violations.violations.length | number:0 }} violations',
-                  }"></p>
+                <div ng-init="scopeViolationCount = violations.violations.length">
+                  <h4 ng-class="'color' + ($index + 1)">{{ violations.value | number:2 }}% {{ violations.label }}</h4>
+                    <p class="grey"
+                      translate
+                      translate-n='scopeViolationCount'
+                      translate-plural='{{ scopeViolationCount | number }} violations'>One violation</p>
+                </div>
               </li>
             </ul>
           </div>
@@ -96,8 +96,8 @@
             <table>
               <thead>
                 <tr>
-                  <th>title</th>
-                  <th>value</th>
+                  <th translate>title</th>
+                  <th translate>value</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,8 +131,8 @@
                       <table>
                         <thead>
                           <tr>
-                            <th>Key</th>
-                            <th>Content</th>
+                            <th translate>Key</th>
+                            <th translate>Content</th>
                           </tr>
                         </thead>
                         <tbody>

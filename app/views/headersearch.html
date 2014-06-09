@@ -2,7 +2,7 @@
   <a class="search-button" ng-click="clearForm(); toggleSearch()"><i></i></a>
   <div class="search-form" ng-class="model.searchFormVisible ? 'visible' : ''">
     <div class="container">
-      <div class="title"><strong>Search a</strong> website</div>
+      <div class="title" translate><strong>Search a</strong> website</div>
       <form name="searchForm" novalidate onsubmit="javascript: return false;" data-ng-submit="search()">
         <input
           required
@@ -12,7 +12,7 @@
           ng-disabled="!model.searchFormVisible"
           focus-if="model.searchFormVisible"
           ng-keyup="model.searchFormVisible = $event.keyCode != 27"
-          placeholder="Page URL" />
+          placeholder="{{ 'Page URL' | translate }}" />
         <div class="arrow" ng-click="search()"><i></i></div>
       </form>
     </div>

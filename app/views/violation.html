@@ -7,11 +7,11 @@
     <span class="description grey">{{ model.violation.description }}</span>
     <div class="fs0 abs abs-right toolbar" nodata="model.loadedViolation" nodata-height="47" nodata-size="10" nodata-failed="">
       <div class="ib" ng-show="model.violation.domainsCount">
-        <h3 class="mid-grey">domains</h3>
+        <h3 class="mid-grey" translate>domains</h3>
         <p class="grey">{{ model.violation.domainsCount }}</p>
       </div>
       <div class="ib" ng-show="model.violation.pageCount">
-        <h3 class="mid-grey">pages</h3>
+        <h3 class="mid-grey" translate>pages</h3>
         <p class="grey">{{ model.violation.pageCount | number }}</p>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.name">
         <h3 class="blue ib">
           <a ng-if="domain.name.length" data-named-route="domain-details" data-args="{{ domain.name }}">{{ domain.name }}</a>
-          <span ng-if="!domain.name.length" class="grey">others</span>
+          <span ng-if="!domain.name.length" class="grey"><span translate>others</span></span>
           <small
             ng-if="!domain.name.length"
             class="tooltip"
@@ -37,10 +37,9 @@
       </li>
     </ul>
   </div>
-
   <div ng-if="model.showDetails" class="details-container" nodata="model.loadedDetails" nodata-height="501" nodata-size="40" nodata-text="">
     <div class="chart-container ib" ng-if="model.loadedDetails">
-      <donut label="{{model.violationKey | replace : '\\.' : ' ' : 'g'}} details" data="model.details" onselect="model.onSelect"></donut>
+      <donut label="{{model.violationKey | replace : '\\.' : ' ' : 'g'}} {{ 'details' | translate }}" data="model.details" onselect="model.onSelect"></donut>
     </div>
     <div class="details ib">
       <ul class="categories" ng-hide="model.selectedCategory">
@@ -70,10 +69,10 @@
   <div class="reviews">
     <div class="page-reviews-container">
       <div class="header rel light-grey-border">
-        <div class="title ib">Reviews</div>
+        <div class="title ib" translate>Reviews</div>
         <div class="search fs0 abs" ng-show="model.hasReviews">
 
-          <domainDropdown showclose="false" autoload="false" preselected="model.domainFilter" options="model.domains" placeholder="all domains" onchange="model.domainFilter"></domainDropdown>
+          <domainDropdown showclose="false" autoload="false" preselected="model.domainFilter" options="model.domains" placeholder="{{ 'all domains' | translate }}" onchange="model.domainFilter"></domainDropdown>
 
           <p class="slash grey directory ib rel">/</p>
           <span class="directory ib rel">
@@ -87,17 +86,17 @@
           </span>
         </div>
       </div>
-      <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews found">
+      <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="{{ 'No reviews found' | translate }}">
         <table>
           <thead>
-            <tr><th class="url">URL</th>
-            <th class="finished-at center">Finished at</th>
+            <tr><th class="url" translate>URL</th>
+            <th class="finished-at center" translate>Finished at</th>
             <th class="anchor center"><i></i></th>
           </tr></thead>
           <tbody>
             <tr ng-repeat="review in model.violation.reviews" class="ng-scope">
               <td class="url"><a data-named-route="review" data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']">{{review.page.url}}</a></td>
-              <td class="finished-at center"><a data-named-route="review" data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']"><span am-time-ago="review.page.completedAt * 1000"></span> ago</a></td>
+              <td class="finished-at center"><a data-named-route="review" data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']"><span am-time-ago="review.page.completedAt * 1000"></span> <span translate>ago</span></a></td>
               <td class="anchor center">
                 <a href="{{ review.page.url }}" target="_blank"><i></i></a>
               </td>

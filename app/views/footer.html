@@ -1,19 +1,19 @@
 <footer>
   <div class="container light-grey fs0">
-    <p class="ib">holmes is a free open-source project and is composed of
-      <a target="_blank" class="blue under-hover" href="http://github.com/holmes-app/holmes-web/">holmes-web ({{ holmesWebVersion }})</a> and
+    <p class="ib"><span translate>holmes is a free open-source project and is composed of</span>
+      <a target="_blank" class="blue under-hover" href="http://github.com/holmes-app/holmes-web/">holmes-web ({{ holmesWebVersion }})</a> <span translate>and</span>
       <a target="_blank" class="blue under-hover" href="http://github.com/holmes-app/holmes-api/">holmes-api ({{ apiVersion ? apiVersion : 'unavailable' }})</a>.
     </p>
     <p class="ib pull-right login" ng-if="isLoggedIn">
-      <a class="blue under-hover" href="javascript:void(0);" ng-click="auth.logout()">Logout</a>
+      <a class="blue under-hover" href="javascript:void(0);" ng-click="auth.logout()"><span translate>Logout</span></a>
     </p>
     <p class="ib pull-right login" ng-switch on="wsConnected" ng-if="isLoggedIn">
-      <span class="ws-label">API Status:</span>
-      <span ng-switch-when="true" class="ws-connected">Connected</span>
-      <span ng-switch-when="false" class="ws-disconnected">Disconnected</span>
+      <span class="ws-label" translate>API Status:</span>
+      <span ng-switch-when="true" class="ws-connected"><span translate>Connected</span></span>
+      <span ng-switch-when="false" class="ws-disconnected"><span translate>Disconnected</span></span>
     </p>
     <p class="ib pull-right">
-      Copyright <a target="_blank" class="blue under-hover" href="http://opensource.globo.com">globo.com</a> - MIT Licensed - 2013
+      <span translate>Copyright</span> <a target="_blank" class="blue under-hover" href="http://opensource.globo.com">globo.com</a> - <span translate>MIT Licensed</span> - 2013
     </p>
   </div>
 </footer>

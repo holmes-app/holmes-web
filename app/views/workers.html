@@ -19,7 +19,7 @@
         <a href="{{ worker.url }}" target="_blank">
           <h2 class="blue ng-binding">{{ worker.domainName || "idle" }}</h2>
           <p class="url">{{ worker.url || "Waiting for new jobs..." }}</p>
-          <p class="timeago">last ping: <span class="time" am-time-ago="worker.dt * 1000"></span> ago</p>
+          <p class="timeago"><span translate>last ping</span>: <span class="time" am-time-ago="worker.dt * 1000"></span> ago</p>
         </a>
       </li>
     </ul>

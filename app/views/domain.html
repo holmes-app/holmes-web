@@ -7,19 +7,19 @@
 
     <div class="fs0 abs abs-right toolbar">
       <div class="ib">
-        <h3 class="mid-grey">pages</h3>
+        <h3 class="mid-grey" translate>pages</h3>
         <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.pageCount | number }}</p>
       </div>
       <div class="ib">
-        <h3 class="mid-grey">violations</h3>
+        <h3 class="mid-grey" translate>violations</h3>
         <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.violationCount | number }}</p>
       </div>
       <div class="ib">
-        <h3 class="mid-grey">error</h3>
+        <h3 class="mid-grey" translate>error</h3>
         <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.errorPercentage | number }}%</p>
       </div>
       <div class="ib">
-        <h3 class="mid-grey">avg resp time</h3>
+        <h3 class="mid-grey" translate>avg resp time</h3>
         <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.averageResponseTime * 1000 | timeUnit }}</p>
       </div>
     </div>
@@ -35,22 +35,22 @@
       <div class="details ib">
         <ul class="categories" ng-hide="model.selectedCategory">
           <li ng-repeat="category in model.domainGroupedViolations track by category.label">
-            <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
-            <p class="grey" ng-pluralize
-              count="category.violationCount"
-              when="{
-                'one': '1 violation',
-                'other': '{{ category.violationCount | number }} violations',
-              }"></p>
+            <div ng-init="scopeViolationCount = category.violationCount">
+              <h4 ng-class="'color' + ($index + 1)">{{ category.value | number:2:2 }}% {{category.label}}</h4>
+              <p class="grey"
+                translate
+                translate-n="scopeViolationCount"
+                translate-plural="{{ scopeViolationCount | number }} violations">One violation</p>
+            </div>
           </li>
         </ul>
 
         <div class="selected-category" ng-show="model.selectedCategory" ng-class="model.selectedCategory.color + '-border'">
           <h4 ng-class="model.selectedCategory.color">{{ model.selectedCategory.percentage | number:2:2 }}% {{ model.selectedCategory.title }}</h4>
-          <p class="page-count grey" translate
-              translate-n="model.selectedCategory.violationCount"
-              translate-plural="{{ model.selectedCategory.violationCount | number }} violations"
-              >One violation</p>
+          <p class="page-count grey"
+            translate
+            translate-n="scopeViolationCount"
+            translate-plural="{{ scopeViolationCount | number }} violations">One violation</p>
           <ul class="category">
             <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
               <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
@@ -70,15 +70,15 @@
             <a class="blue" data-named-route="review" data-args="['{{ model.domain_details.name }}', '{{ model.domain_details.homepageId }}', '{{ model.domain_details.homepageReviewId }}']">{{ model.domain_details.name }}/</a>
         </span>
         <span ng-if="!model.domain_details.homepageId || !model.domain_details.homepageReviewId " class="domain ib">{{ model.domain_details.name }}/</span>
-        <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
+        <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="{{ 'enter a directory to filter reviews...' | translate }}" /><i></i></span>
       </div>
     </div>
-    <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="No reviews made for this domain yet.">
+    <div class="data" nodata="model.loadedReviews" nodata-height="457" nodata-size="40" nodata-fade="no" nodata-text="{{ 'No reviews made for this domain yet.' | translate }}">
       <table>
         <thead>
-          <th class="url">URL</th>
-          <th class="violations center">Violations</th>
-          <th class="finished-at center">Finished at</th>
+          <th class="url" translate>URL</th>
+          <th class="violations center" translate>Violations</th>
+          <th class="finished-at center" translate>Finished at</th>
           <th class="anchor center"><i></i></th>
         </thead>
         <tbody>
@@ -95,7 +95,7 @@
             </td>
             <td class="finished-at center">
               <a data-named-route="review" data-args="['{{ model.domainName }}', '{{ page.uuid }}', '{{ page.reviewId }}']">
-                <span am-time-ago="page.completedAt*1000"></span> ago
+                <span am-time-ago="page.completedAt*1000"></span> <span translate>ago</span>
               </a>
             </td>
             <td class="anchor center">
@@ -120,10 +120,10 @@
 
 <div class="domain-actions mb ib">
 
-  <button class="btn" ng-click="model.changeDomainStatus()" ng-show="model.reviews.reviewsCount > 0">
-    {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
-  </button>
-
-  <a data-named-route="domain-violations-prefs" data-args="{{ model.domainName }}" class="btn" ng-if="isLoggedIn && isSuperUser">Violations Preferences</a>
+  <span ng-if="model.reviews.reviewsCount > 0">
+    <button class="btn" ng-click="model.changeDomainStatus()" ng-show="model.domainStatus" translate>Stop reviewing</button>
+    <button class="btn" ng-click="model.changeDomainStatus()" ng-hide="model.domainStatus" translate>Start reviewing</button>
+  </span>
+  <a data-named-route="domain-violations-prefs" data-args="{{ model.domainName }}" class="btn" ng-if="isLoggedIn && isSuperUser"><span translate>Violations Preferences</span></a>
 
 </div>

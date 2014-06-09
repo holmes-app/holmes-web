@@ -1,5 +1,5 @@
 <div class="view domains-view">
-  <h1>Domains</h1>
+  <h1 translate>Domains</h1>
 
   <div
     class="domains-container"
@@ -13,22 +13,22 @@
           <div class="stats">
 
             <div class="stat ib">
-              <p class="label">pages</p>
+              <p class="label" translate>pages</p>
               <p class="value">{{ domain.details.pageCount | number }}</p>
             </div>
 
             <div class="stat ib">
-              <p class="label">violations</p>
+              <p class="label" translate>violations</p>
               <p class="value">{{ domain.details.violationCount | number }}</p>
             </div>
 
             <div class="stat ib center">
-              <p class="label">error %</p>
+              <p class="label" translate>error %</p>
               <p class="value">{{ domain.details.errorPercentage | number }}%</p>
             </div>
 
             <div class="stat ib right">
-              <p class="label">avg resp time</p>
+              <p class="label" translate>avg resp time</p>
               <p class="value">{{ domain.details.averageResponseTime * 1000 | timeUnit }}</p>
             </div>
 
@@ -40,11 +40,11 @@
 
   <div ng-show="model.domainList.length > 4">
     <a class="pull-right blue hide-domains fs0" ng-show="model.domainsVisible" ng-click="model.toggleDomainVisibility()">
-      <span class="text ib">HIDE</span>
+      <span class="text ib" translate>HIDE</span>
       <span class="icon ib blue-border blue-bg round-button"><i></i></span>
     </a>
     <a class="pull-right blue show-domains fs0" ng-hide="model.domainsVisible" ng-click="model.toggleDomainVisibility()">
-      <span class="text ib">SHOW ALL</span>
+      <span class="text ib" translate>SHOW ALL</span>
       <span class="icon ib blue-border round-button"><i></i></span>
     </a>
   </div>
@@ -53,20 +53,20 @@
 
   <div id="violations" class="violations-container">
     <div class="toolbar">
-      <h2>Violations</h2>
+      <h2 translate>Violations</h2>
       <div class="options" ng-show="model.loadedViolations">
         <a class="option ib button-group groups fs0" ng-class="model.groupsVisible ? 'selected' : ''" ng-click="model.showGroups()">
           <span class="round-button blue-border ib"><i></i></span>
-          <span class="blue label ib">GROUPS</span>
+          <span class="blue label ib" translate>GROUPS</span>
         </a>
         <a class="option ib frequency fs0" ng-class="model.mostFrequentVisible ? 'selected' : ''" ng-click="model.showMostFrequent()">
           <span class="round-button blue-border ib"><i></i></span>
-          <span class="blue label ib">FREQUENCY</span>
+          <span class="blue label ib" translate>FREQUENCY</span>
         </a>
         <div class="ib blue prefsfilter">
-          <input id="prefsFilter" class="pointer" type="checkbox" ng-model="model.prefsFilter" /><label for="prefsFilter" class="pointer"><span>Show All</span></label>
+          <input id="prefsFilter" class="pointer" type="checkbox" ng-model="model.prefsFilter" /><label for="prefsFilter" class="pointer"><span translate>Show All</span></label>
         </div>
-        <div class="option ib search"><input class="light-grey-border grey" type="text" ng-model="model.violationFilter" name="q" placeholder="Enter a violation name…" /><i></i></div>
+        <div class="option ib search"><input class="light-grey-border grey" type="text" ng-model="model.violationFilter" name="q" placeholder="{{ 'Enter a violation name…' | translate }}" /><i></i></div>
       </div>
     </div>
 

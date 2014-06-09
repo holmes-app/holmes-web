@@ -1,7 +1,7 @@
 <div class="view user-violations-prefs-view">
 
   <div class="mb">
-    <h1 class="blue">User Violations Preferences</h1>
+    <h1 class="blue" translate>User Violations Preferences</h1>
   </div>
 
   <form name="updatePrefsForm">
@@ -11,8 +11,8 @@
           <div>
             <h3 ng-class="'color' + ($index + 1)">{{ category }}</h3>
             <div ng-click="model.selectToggle(category)" class="ib toggle">
-              <span ng-hide="model.selectedFlag[category]">select all</span>
-              <span ng-show="model.selectedFlag[category]">unselect all</span>
+              <span ng-hide="model.selectedFlag[category]" translate>select all</span>
+              <span ng-show="model.selectedFlag[category]" translate>unselect all</span>
             </div>
           </div>
           <ul class="group-violations">
@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div growl-notifications></div>
-    <button class="btn" ng-click="model.updatePrefs()">Update preferences</button>
+    <button class="btn" ng-click="model.updatePrefs()" translate>Update preferences</button>
   </form>
 
 </div>

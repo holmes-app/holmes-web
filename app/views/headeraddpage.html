@@ -2,7 +2,7 @@
   <a class="add-page-button" ng-click="clearForm(); toggleAddPage()"><i></i></a>
   <div class="add-page-form" ng-class="model.addPageFormVisible ? 'visible' : ''">
     <div class="container">
-      <div class="title"><strong>Add a new</strong> website</div>
+      <div class="title" translate><strong>Add a new</strong> website</div>
       <form class="add-page" name="addPageForm" novalidate onsubmit="javascript: return false;" data-ng-submit="addPage()">
         <input
           required
@@ -13,7 +13,7 @@
           ng-disabled="model.isAddingPage || !model.addPageFormVisible"
           focus-if="model.addPageFormVisible"
           ng-keyup="model.addPageFormVisible = $event.keyCode != 27"
-          placeholder="Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
+          placeholder="{{ 'Enter the complete URL for the website you want holmes to crawl. It might take a few minutes.' | translate }}"
         />
         <div class="arrow" ng-click="addPage()"><i></i></div>
       </form>
