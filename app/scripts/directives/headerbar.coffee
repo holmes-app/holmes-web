@@ -72,6 +72,6 @@ angular.module('holmesApp')
             el = element.parent().find('#violations')
             if el.length == 1
               dy = _scrollToElement(el)
-              if dy == 0
+              if dy <= 4
                 $interval.cancel(scrollInterval)
           100)
