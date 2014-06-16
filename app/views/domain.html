@@ -82,7 +82,7 @@
           <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
             <td class="url"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.url }}</a></td>
             <td class="violations center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
-            <td class="finished-at center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span></a></td>
+            <td class="finished-at center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span> ago</a></td>
           </tr>
         </tbody>
       </table>
