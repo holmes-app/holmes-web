@@ -48,7 +48,7 @@ class ViolationCtrl
       return domain.count < (0.12 * max_value)
     others = _.reduce @domains[splitIndex..], (others, domain) ->
       return {
-        name: 'others'
+        name: ''
         count: others.count + domain.count
       }
     @violation.domainsCount = @domains.length

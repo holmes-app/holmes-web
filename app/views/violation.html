@@ -20,7 +20,8 @@
   <div class="domains">
     <ul nodata="model.loadedViolation" nodata-height="230" nodata-size="60">
       <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.name">
-        <h3 class="grey ib">{{ domain.name }}</h3>
+        <h3 class="blue ib" ng-if="domain.name.length"><a href="#/domains/{{ domain.name }}">{{ domain.name }}</a></h3>
+        <h3 class="grey ib" ng-if="!domain.name.length">others</h3>
         <p class="ib"><horizontal percentage="domain.percentage" value="domain.value"></horizontal></p>
       </li>
     </ul>
