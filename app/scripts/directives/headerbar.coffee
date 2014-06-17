@@ -57,7 +57,7 @@ angular.module('holmesApp')
           scope.toggleAddPage()
 
       _scrollToElement = (el) ->
-        srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) * 2
+        srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) / 2
         dy = Math.abs($window.pageYOffset - srcollY)
         $window.scrollTo(0, srcollY)
         return dy
