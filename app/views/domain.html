@@ -2,25 +2,25 @@
 
   <breadcrumbs labels="{'Domain': model.domain_details.name}"></breadcrumbs>
 
-  <div class="info rel" nodata="model.loadedDomainDetails" nodata-height="71" nodata-size="40">
-    <h2 class="blue">{{ model.domain_details.name }}</h2>
+  <div class="info rel">
+    <h2 class="blue">{{ model.domainName }}</h2>
 
     <div class="fs0 abs abs-right toolbar">
       <div class="ib">
         <h3 class="mid-grey">pages</h3>
-        <p class="grey ng-binding">{{ model.domain_details.pageCount | number }}</p>
+        <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.pageCount | number }}</p>
       </div>
       <div class="ib">
         <h3 class="mid-grey">violations</h3>
-        <p class="grey ng-binding">{{ model.domain_details.violationCount | number }}</p>
+        <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.violationCount | number }}</p>
       </div>
       <div class="ib">
         <h3 class="mid-grey">error</h3>
-        <p class="grey ng-binding">{{ model.domain_details.errorPercentage | number }}%</p>
+        <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.errorPercentage | number }}%</p>
       </div>
       <div class="ib">
         <h3 class="mid-grey">avg resp time</h3>
-        <p class="grey ng-binding">{{ model.domain_details.averageResponseTime * 1000 | timeUnit }}</p>
+        <p class="grey ng-binding" nodata="model.loadedDomainDetails" nodata-height="20" nodata-size="8">{{ model.domain_details.averageResponseTime * 1000 | timeUnit }}</p>
       </div>
     </div>
 
