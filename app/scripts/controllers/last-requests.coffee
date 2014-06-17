@@ -41,12 +41,12 @@ class LastRequestsCtrl
     if requests.length > 5
       requests[4..] = requests[4..].reduce (req1, req2) ->
         count: req1.count + req2.count
-        statusCode: ''
-        statusCodeTitle: 'Others'
+        statusCode: null
+        statusCodeTitle: null
     @failedRequests = _.map(
       requests
       (request) ->
-        label: request.statusCode + ' ' + request.statusCodeTitle
+        label: if request.statusCode then request.statusCode + ' ' + request.statusCodeTitle else 'Others'
         value: request.count
         percentage: request.count / this * 100
       countSum
