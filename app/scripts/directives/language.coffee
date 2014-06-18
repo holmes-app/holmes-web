@@ -22,6 +22,7 @@ class LanguageDirective
     @storage.setItem("selectedLanguage", @selectedLanguage)
     @languageDropdownVisible = false
     @gettext.currentLanguage = @selectedLanguage
+    @reloadPage()
 
   toggleDropDown: (ev) =>
     @languageDropdownVisible = not @languageDropdownVisible
@@ -34,6 +35,9 @@ class LanguageDirective
         @languageDropdownVisible = false
       )
     )
+
+  reloadPage: ->
+    window.location.reload(true)
 
 angular.module('holmesApp')
   .directive('language', (gettextCatalog, $window) ->
