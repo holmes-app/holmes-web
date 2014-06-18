@@ -1,6 +1,6 @@
 <div class="view review-view">
 
-  <breadcrumbs labels="{'Review': model.review_details.page.url, 'Domain': model.review_details.domain }" ></breadcrumbs>
+  <breadcrumbs labels="{'Review': model.review_details.page.uuid, 'Domain': model.review_details.domain }"></breadcrumbs>
 
   <h2 title="{{ model.review_details.page.url }}"><a target="_blank" class="blue" href="{{ model.review_details.page.url }}">{{ model.review_details.page.url }}</a></h2>
 
@@ -27,13 +27,13 @@
           <div class="tr row first">
             <div class="td title">violations</div>
             <div ng-repeat="review in model.reviews" class="td value">
-              <a href="#/page/{{ model.pageId }}/review/{{ review.uuid }}">{{ review.violationCount }}</a>
+              <a ng-if="model.review_details.domain" data-named-route="review" data-args="['{{ model.review_details.domain }}', '{{ model.pageId }}', '{{ review.uuid }}']">{{ review.violationCount }}</a>
             </div>
           </div>
           <div class="tr row">
             <div class="td title">finished at</div>
             <div ng-repeat="review in model.reviews" class="td value">
-              <a href="#/page/{{ model.pageId }}/review/{{ review.uuid }}">
+              <a ng-if="model.review_details.domain" data-named-route="review" data-args="['{{ model.review_details.domain }}', '{{ model.pageId }}', '{{ review.uuid }}']">
                 <span class="time" am-time-ago="review.completedAt*1000"></span>
               </a>
             </div>

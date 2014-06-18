@@ -8,7 +8,7 @@
     <ul class="boxes domains">
       <li class="box ib" ng-repeat="domain in model.domains | orderBy: '-is_active' track by domain.id" ng-class="domain.is_active ? '': 'inactive'">
 
-      <a href="#/domains/{{ domain.name }}">
+      <a data-named-route="domain-details" data-args="{{ domain.name }}">
           <h2 class="blue">{{ domain.name }}</h2>
           <div class="stats">
 
@@ -73,7 +73,7 @@
           <h3 ng-class="'color' + ($index + 1)">{{ name }}</h3>
           <ul class="group-violations">
             <li ng-repeat="violation in group | orderBy:'name':desc track by violation.key">
-              <a href="#/violations/{{ violation.key }}">
+              <a data-named-route="violation-details" data-args="{{ violation.key }}">
                 <div class="name dark-grey ib">{{ violation.name }}</div>
               </a>
             </li>
@@ -87,7 +87,7 @@
       <div class="most-frequent">
         <ul class="fs0">
           <li ng-repeat="violation in model.mostFrequentViolations | filter:model.violationFilter track by violation.key">
-            <a href="#/violations/{{ violation.key }}" class="fs0">
+            <a data-named-route="violation-details" data-args="{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 1 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
             </a>
@@ -98,7 +98,7 @@
       <div class="least-frequent">
         <ul class="fs0">
           <li ng-repeat="violation in model.leastFrequentViolations | filter:model.violationFilter track by violation.key">
-            <a href="#/violations/{{ violation.key }}" class="fs0">
+            <a data-named-route="violation-details" data-args="{{ violation.key }}" class="fs0">
               <div class="number mid-grey ib">#{{ $index + 11 }}</div>
               <div class="name dark-grey ib">{{ violation.name }}</div>
             </a>

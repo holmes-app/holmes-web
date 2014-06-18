@@ -1,5 +1,5 @@
 <ol class="breadcrumbs mb">
   <li ng-repeat="breadcrumb in model.breadcrumbs.get() track by breadcrumb.path" class="ib" ng-class="{ active: $last }" ng-hide="!breadcrumb.label">
-    <a ng-if="!$last" ng-href="#{{ breadcrumb.path }}" ng-bind="model.gettext.getString(breadcrumb.label)" class="margin-right-xs"></a>
+    <a ng-if="!$last" data-named-route="{{ breadcrumb.name }}" data-args="{{ breadcrumb.param }}" ng-bind="model.gettext.getString(breadcrumb.label)" class="margin-right-xs"></a>
   </li>
 </ol>

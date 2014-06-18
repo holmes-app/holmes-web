@@ -18,11 +18,12 @@
     "angular-google-plus": "~0.1.2",
     "angular-animate": "~1.2.15",
     "angular-dropdowns": "~0.1.0",
-    "ng-breadcrumbs": "~0.1.0",
+    "ng-breadcrumbs": "https://github.com/holmes-app/ng-breadcrumbs.git#4493e6287790c18d1b8827be1e72015d53a535a8",
     "angular-gettext": "~0.2.9",
     "ng-tags-input": "~2.0.1",
     "angular-growl-notifications": "~0.7.0",
-    "angular-qtip2-directive": "~0.1.2"
+    "angular-qtip2-directive": "~0.1.2",
+    "angular-named-routes": "8344d13f3aebc06b623b0f1bfc6a341d41de7653"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

@@ -8,19 +8,19 @@ angular.module('holmesApp')
     template: """
       <div class="tabs status-bar">
         <div class="tab-header ib grey">
-          <a href="#/status/workers">workers</a>
+          <a data-named-route="workers">workers</a>
         </div>
         <div class="tab-header ib">
-          <a href="#/status/last-reviews">last reviews</a>
+          <a data-named-route="last-reviews">last reviews</a>
         </div>
         <div class="tab-header ib">
-          <a href="#/status/pipeline">review pipeline</a>
+          <a data-named-route="pipeline">review pipeline</a>
         </div>
         <div class="tab-header ib">
-          <a href="#/status/requests">last requests</a>
+          <a data-named-route="last-requests">last requests</a>
         </div>
         <div class="tab-header ib">
-          <a href="#/status/concurrent">concurrent requests</a>
+          <a data-named-route="concurrent">concurrent requests</a>
         </div>
       </div>
     """

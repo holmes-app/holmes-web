@@ -16,59 +16,78 @@ app = angular.module('holmesApp', [
   'gettext',
   'ngTagsInput',
   'growlNotifications',
-  'qtip2'
+  'qtip2',
+  'zj.namedRoutes'
 ])
-  .config ($routeProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
+  .config ($routeProvider, $locationProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
+
+    $locationProvider
+      .hashPrefix("!")
+      .html5Mode(false)
+
     gettextCatalog =
       getString: (message) -> message
 
     $routeProvider
       .when '/',
+        name: 'home'
         redirectTo: '/domains'
       .when '/domains',
+        name: 'domains'
         templateUrl: 'views/domains.html'
         controller: 'DomainsCtrl'
         label: gettextCatalog.getString("Domains")
       .when '/domains/:domainName',
+        name: 'domain-details'
         templateUrl: 'views/domain.html'
         controller: 'DomainCtrl'
         label: 'Domain'
       .when '/domains/:domainName/violations/prefs',
+        name: 'domain-violations-prefs'
         templateUrl: 'views/domain-violations-prefs.html'
         controller: 'DomainsViolationsPrefsCtrl'
         label: 'Violations preferences'
       .when '/domains/:domainName/page/:pageId/review/:reviewId',
+        name: 'review'
         templateUrl: 'views/reviews.html'
         controller: 'ReviewsCtrl'
         reloadOnSearch: false
         label: 'Review'
       .when '/violations',
+        name: 'violations'
         redirectTo: -> '/'
         label: gettextCatalog.getString("Violations")
       .when '/violations/:violationKey',
+        name: 'violation-details'
         templateUrl: 'views/violation.html'
         controller: 'ViolationCtrl'
         label: 'Violation'
       .when '/status',
+        name: 'status'
         redirectTo: '/status/workers'
         label: gettextCatalog.getString("Status")
       .when '/status/workers',
+        name: 'workers'
         templateUrl: 'views/workers.html'
         controller: 'WorkersCtrl'
         label: gettextCatalog.getString("Workers")
       .when '/status/last-reviews',
+        name: 'last-reviews'
         templateUrl: 'views/last-reviews.html'
         controller: 'LastReviewsCtrl'
         label: gettextCatalog.getString("Last Reviews")
       .when '/status/pipeline',
+        name: 'pipeline'
         templateUrl: 'views/review-pipeline.html'
         controller: 'ReviewPipelineCtrl'
         label: gettextCatalog.getString("Review Pipeline")
       .when '/status/requests',
+        name: 'last-requests'
         templateUrl: 'views/last-requests.html'
         controller: 'LastRequestsCtrl'
         label: gettextCatalog.getString("Last Requests")
       .when '/status/concurrent',
+        name: 'concurrent'
         templateUrl: 'views/concurrent.html'
         controller: 'ConcurrentCtrl'
         label: gettextCatalog.getString("Concurrent Requests")

@@ -54,7 +54,7 @@
           <ul class="category">
             <li class="fs0" ng-repeat="detail in model.selectedCategory.violations track by detail.title">
               <p class="ib occurrences" ng-class="model.selectedCategory.color">{{ detail.count | number }}</p>
-              <p class="dark-grey ib title"><a href="#/violations/{{ detail.key }}/?domain_filter={{ model.domain_details.name }}" class="blue">{{ detail.title }}</a></p>
+              <p class="dark-grey ib title"><a data-named-route="violation-details" data-args="{{ detail.key }}/?domain_filter={{ model.domain_details.name }}" class="blue">{{ detail.title }}</a></p>
             </li>
           </ul>
         </div>
@@ -66,7 +66,9 @@
     <div class="header rel light-grey-border">
       <div class="title ib"><span translate>Page Reviews</span> <span class="percentage" ng-show="model.reviews.pages">({{ model.domain_details.reviewPercentage }}%)</span></div>
       <div class="search fs0 abs" ng-hide="model.reviews.pages == '' && model.reviewFilter == ''">
-        <span ng-if="model.domain_details.homepageId && model.domain_details.homepageReviewId" class="domain ib"><a class="blue" ng-href="#/domains/{{ model.domain_details.name }}/page/{{ model.domain_details.homepageId }}/review/{{ model.domain_details.homepageReviewId }}/">{{ model.domain_details.name }}/</a></span>
+        <span ng-if="model.domain_details.homepageId && model.domain_details.homepageReviewId" class="domain ib">
+            <a class="blue" data-named-route="review" data-args="['{{ model.domain_details.name }}', '{{ model.domain_details.homepageId }}', '{{ model.domain_details.homepageReviewId }}']">{{ model.domain_details.name }}/</a>
+        </span>
         <span ng-if="!model.domain_details.homepageId || !model.domain_details.homepageReviewId " class="domain ib">{{ model.domain_details.name }}/</span>
         <span class="directory ib rel"><input type="text" name="search" id="urlFilter" ng-model="model.reviewFilter" placeholder="enter a directory to filter reviews..." /><i></i></span>
       </div>
@@ -80,9 +82,21 @@
         </thead>
         <tbody>
           <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
-            <td class="url"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.url }}</a></td>
-            <td class="violations center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/">{{ page.violationCount }}</a></td>
-            <td class="finished-at center"><a href="#/domains/{{ model.domain_details.name }}/page/{{ page.uuid }}/review/{{ page.reviewId }}/"><span am-time-ago="page.completedAt*1000"></span> ago</a></td>
+            <td class="url">
+              <a data-named-route="review" data-args="['{{ model.domainName }}', '{{ page.uuid }}', '{{ page.reviewId }}']">
+                {{ page.url }}
+              </a>
+            </td>
+            <td class="violations center">
+              <a data-named-route="review" data-args="['{{ model.domainName }}', '{{ page.uuid }}', '{{ page.reviewId }}']">
+                {{ page.violationCount }}
+              </a>
+            </td>
+            <td class="finished-at center">
+              <a data-named-route="review" data-args="['{{ model.domainName }}', '{{ page.uuid }}', '{{ page.reviewId }}']">
+                <span am-time-ago="page.completedAt*1000"></span> ago
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -106,6 +120,6 @@
     {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
   </button>
 
-  <a class="btn" href="#/domains/{{ model.domain_details.name }}/violations/prefs">Violations Preferences</a>
+  <a data-named-route="domain-violations-prefs" data-args="{{ model.domainName }}" class="btn">Violations Preferences</a>
 
 </div>
