@@ -1,0 +1,16 @@
+.login {
+  .message {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    color: $dark-grey;
+    padding: 30px 0 20px 0;
+    .strong {
+        font-weight: bold;
+    }
+  }
+
+  .signin {
+    width: 250px;
+    margin-left: -5px;
+  }
+}

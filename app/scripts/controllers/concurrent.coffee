@@ -1,7 +1,7 @@
 'use strict'
 
 class ConcurrentRequestsCtrl
-  constructor: (@scope, @timeout, @LimitersFcty, @cookieStore) ->
+  constructor: (@scope, @timeout, @LimitersFcty) ->
     @isFormVisible = false
     @newLimitPath = ''
     @limiters = []
@@ -14,7 +14,7 @@ class ConcurrentRequestsCtrl
     @clearForm()
     @updateConcurrentDetails()
 
-    @isFormVisible = if @cookieStore.get('HOLMES_AUTH_TOKEN') then true else false
+    @isFormVisible = @scope.isLoggedIn
 
     updateDetails = =>
       @updateTimer = @timeout(=>
@@ -87,5 +87,5 @@ class ConcurrentRequestsCtrl
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
 
 angular.module('holmesApp')
-  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, $cookieStore) ->
-    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty, $cookieStore)
+  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty) ->
+    $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty)

@@ -7,7 +7,6 @@ app = angular.module('holmesApp', [
   'angularMoment',
   'restangular',
   'reconnectingWebSocket',
-  'ngCookies',
   'googleplus',
   'HolmesWebPackageJson',
   'ngAnimate',
@@ -19,7 +18,7 @@ app = angular.module('holmesApp', [
   'qtip2',
   'zj.namedRoutes'
 ])
-  .config ($routeProvider, $locationProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
+  .config ($routeProvider, $httpProvider, $locationProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
 
     $locationProvider
       .hashPrefix("!")
@@ -32,6 +31,10 @@ app = angular.module('holmesApp', [
       .when '/',
         name: 'home'
         redirectTo: '/domains'
+      .when '/login',
+        name: 'login'
+        templateUrl: 'views/login.html'
+        controller: 'LoginCtrl'
       .when '/domains',
         name: 'domains'
         templateUrl: 'views/domains.html'
@@ -92,24 +95,29 @@ app = angular.module('holmesApp', [
         controller: 'ConcurrentCtrl'
         label: gettextCatalog.getString("Concurrent Requests")
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/login'
+
+    $httpProvider.responseInterceptors.push('httpResponseInterceptor')
+
     RestangularProvider.setBaseUrl(ConfigConst.baseUrl)
+    RestangularProvider.setDefaultHttpFields(
+      withCredentials: true
+    )
     RestangularProvider.addFullRequestInterceptor(
       (element, operation, what, url, headers, query) ->
-        storage = window.sessionStorage
+        storage = window.localStorage
 
         selectedLanguage = storage.getItem('selectedLanguage')
         if not selectedLanguage?
           selectedLanguage = "en_US"
-
-        headers['Accept-Language'] = selectedLanguage
     )
-    GooglePlusProvider.init({
+
+    GooglePlusProvider.init(
       clientId: '968129569472-1smbhidqeo3kpdj029cehmnp8qh808kv',
       apiKey: '68129569472-1smbhidqeo3kpdj029cehmnp8qh808kv.apps.googleusercontent.com',
       scopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-    })
-  .run(($rootScope, $window, ConfigConst, gettextCatalog) ->
+    )
+  .run(($rootScope, $window, ConfigConst, gettextCatalog, AuthSrvc) ->
     gettextCatalog.currentLanguage = ConfigConst.currentLanguage
     gettextCatalog.debug = ConfigConst.gettextDebug
 
@@ -120,5 +128,18 @@ app = angular.module('holmesApp', [
     $rootScope.$on('$locationChangeStart', (e, next, prev) ->
       $rootScope.prevUrl = prev
       $rootScope.prevHash = $window.location.hash
+
+      AuthSrvc.logoutIfNotAuthenticated()
     )
+  )
+  .factory("httpResponseInterceptor", ($q, $rootScope) ->
+
+    onError = (response) ->
+      if response.status is 401
+        $rootScope.$broadcast('unauthorized-request')
+      $q.reject response
+
+    promise = (promise) ->
+      promise.then(((response) -> response), onError)
+
   )

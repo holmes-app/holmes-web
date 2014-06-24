@@ -4,11 +4,10 @@
       <a target="_blank" class="blue under-hover" href="http://github.com/holmes-app/holmes-web/">holmes-web ({{ holmesWebVersion }})</a> and
       <a target="_blank" class="blue under-hover" href="http://github.com/holmes-app/holmes-api/">holmes-api ({{ apiVersion ? apiVersion : 'unavailable' }})</a>.
     </p>
-    <p class="ib pull-right login" ng-switch on="isFormVisible">
-      <a ng-switch-when="false" class="blue under-hover" href="javascript:void(0);" ng-click="login()">Login</a>
-      <a ng-switch-when="true" class="blue under-hover" href="javascript:void(0);" ng-click="logout()">Logout</a>
+    <p class="ib pull-right login" ng-if="isLoggedIn">
+      <a class="blue under-hover" href="javascript:void(0);" ng-click="auth.logout()">Logout</a>
     </p>
-    <p class="ib pull-right login" ng-switch on="wsConnected">
+    <p class="ib pull-right login" ng-switch on="wsConnected" ng-if="isLoggedIn">
       <span class="ws-label">API Status:</span>
       <span ng-switch-when="true" class="ws-connected">Connected</span>
       <span ng-switch-when="false" class="ws-disconnected">Disconnected</span>

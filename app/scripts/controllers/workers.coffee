@@ -1,15 +1,18 @@
 'use strict'
 
 class WorkersCtrl
-  constructor: (@scope, @WorkersFcty, @WebSocketFcty) ->
-    @workers = []
-    @activeWorkersPercentage = 0
-    @activeWorkers = []
-    @loadedWorkers = false
+  constructor: (@scope, @WorkersFcty, @WebSocketFcty, @location) ->
+    if @scope.isLoggedIn
+      @workers = []
+      @activeWorkersPercentage = 0
+      @activeWorkers = []
+      @loadedWorkers = false
 
-    @scope.$on '$destroy', @_cleanUp
+      @scope.$on '$destroy', @_cleanUp
 
-    @WorkersFcty.listen(@getWorkers)
+      @WorkersFcty.listen(@getWorkers)
+    else
+      @location.path '/login'
 
 
   _cleanUp: =>
@@ -26,5 +29,5 @@ class WorkersCtrl
     @_fillWorkers(activeWorkers, idleWorkers)
 
 angular.module('holmesApp')
-  .controller 'WorkersCtrl', ($scope, WorkersFcty, WebSocketFcty) ->
-    $scope.model = new WorkersCtrl($scope, WorkersFcty, WebSocketFcty)
+  .controller 'WorkersCtrl', ($scope, WorkersFcty, WebSocketFcty, $location) ->
+    $scope.model = new WorkersCtrl($scope, WorkersFcty, WebSocketFcty, $location)

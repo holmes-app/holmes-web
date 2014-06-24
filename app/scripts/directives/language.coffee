@@ -46,5 +46,5 @@ angular.module('holmesApp')
     restrict: 'E'
     scope: {}
     link: (scope, element, attrs) ->
-      scope.model = new LanguageDirective(scope, element, gettextCatalog, $window.sessionStorage, $window)
+      scope.model = new LanguageDirective(scope, element, gettextCatalog, $window.localStorage, $window)
   )
