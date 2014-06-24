@@ -1,28 +1,34 @@
+/* Common */
 @import "compass";
 @import "common/*.png";
 
+/* Base/Main */
 @import "colors";
 @import "base";
-@import "nodata";
 @import "footer";
 @import "main";
+
+/* Directives */
+@import "nodata";
+@import "qtip2";
+@import "expandable";
+@import "language";
 @import "headerbar";
 @import "headersearch";
 @import "headeraddpage";
 @import "horizontal";
+@import "headeralertmessage";
 @import "donut";
+@import "pager";
+
+/* Controllers */
 @import "domains";
 @import "domain";
-@import "pager";
 @import "reviews";
 @import "violation";
 @import "workers";
 @import "statusbar";
 @import "concurrent";
-@import "headeralertmessage";
 @import "last_requests";
 @import "last_reviews";
-@import "expandable";
-@import "language";
 @import "domains_violations_prefs";
-@import "qtip2";
