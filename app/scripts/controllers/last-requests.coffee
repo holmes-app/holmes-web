@@ -69,11 +69,13 @@ class LastRequestsCtrl
     @getLastRequests(@currentPage, pageSize)
     @getRequestsInLastDay()
 
-  onDomainFilterChange: =>
-    @onPageChange()
+  onDomainFilterChange: (newVal, oldVal) =>
+    if newVal != oldVal
+      @onPageChange()
 
-  onStatusCodeFilterChange: =>
-    @onPageChange()
+  onStatusCodeFilterChange: (newVal, oldVal) =>
+    if newVal != oldVal
+      @onPageChange()
 
   watchScope: ->
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
