@@ -22,7 +22,7 @@
     "angular-gettext": "~0.2.9",
     "ng-tags-input": "~2.0.1",
     "angular-growl-notifications": "~0.7.0",
-    "angular-qtip2-directive": "~0.1.2",
+    "angular-qtip2-directive": "https://github.com/holmes-app/angular-qtip2-directive.git#9a0d101e282c8db91be2f8887d73521a3ee8202d",
     "angular-named-routes": "8344d13f3aebc06b623b0f1bfc6a341d41de7653"
   },
   "devDependencies": {
