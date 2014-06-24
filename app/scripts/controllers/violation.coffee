@@ -27,13 +27,15 @@ class ViolationCtrl
     counts = _.pluck details, 'count'
     countSum = if counts.length > 0 then counts.reduce (a, b) -> a + b else 0
     if details.length > 7
+      @otherDetails = _.map details[6..], (d) ->
+        (100 * d.count / countSum).toFixed(2) + '% ' + d.domain + ' (' + d.count + ')'
       details[6..] = details[6..].reduce (detail1, detail2) ->
         count: detail1.count + detail2.count
-        domain: 'others'
+        domain: null
     @details = _.map(
       details
       (detail) ->
-        label: detail.domain
+        label: if detail.domain then detail.domain else 'others' # FIXME: improve donut to accept a “place holder” for empty labels
         value: detail.count
         percentage: detail.count / this * 100
       countSum
@@ -46,6 +48,7 @@ class ViolationCtrl
     max_value = if @domains.length > 0 then @domains[0].count else 0
     splitIndex = _.findIndex @domains, (domain) ->
       return domain.count < (0.12 * max_value)
+    @otherDomains = _.map @domains[splitIndex..], (d) -> d.name + ' (' + d.count + ')'
     others = _.reduce @domains[splitIndex..], (others, domain) ->
       return {
         name: ''

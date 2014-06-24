@@ -15,7 +15,18 @@
       <div class="title ib">Latest failed responses</div>
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.failedRequests">
-          <h4 ng-class="'color' + ($index + 1)">{{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}</h4>
+          <h4 ng-class="'color' + ($index + 1)">
+            {{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}
+            <small
+              ng-if="failedRequest.label == 'Others'"
+              class="tooltip"
+              qtip
+              data-class="qtip-holmes qtip-last-requests"
+              data-at="bottom center"
+              data-my="top center"
+              data-content="<ul><li>{{ model.otherRequests.join('</li><li>') }}</li></ul>"
+            >?</small>
+          </h4>
           <p class="grey" ng-pluralize
             count="failedRequest.value"
             when="{

@@ -143,4 +143,17 @@
     }
   }
 
+  .tooltip {
+    vertical-align: middle;
+    padding: 0 5px;
+  }
+
+}
+
+.qtip-last-requests {
+  max-width: none;
+}
+
+.qtip-last-requests ul {
+  margin-top: 0;
 }

@@ -20,8 +20,19 @@
   <div class="domains">
     <ul nodata="model.loadedViolation" nodata-height="230" nodata-size="60">
       <li class="fs0" ng-repeat="domain in model.violation.domains track by domain.name">
-        <h3 class="blue ib" ng-if="domain.name.length"><a data-named-route="domain-details" data-args="{{ domain.name }}">{{ domain.name }}</a></h3>
-        <h3 class="grey ib" ng-if="!domain.name.length">others</h3>
+        <h3 class="blue ib">
+          <a ng-if="domain.name.length" data-named-route="domain-details" data-args="{{ domain.name }}">{{ domain.name }}</a>
+          <span ng-if="!domain.name.length" class="grey">others</span>
+          <small
+            ng-if="!domain.name.length"
+            class="tooltip"
+            qtip
+            data-class="qtip-holmes qtip-violations"
+            data-at="bottom center"
+            data-my="top center"
+            data-content="<ul><li>{{ model.otherDomains.join('</li><li>') }}</li></ul>"
+          >?</small>
+        </h3>
         <p class="ib"><horizontal percentage="domain.percentage" value="domain.value"></horizontal></p>
       </li>
     </ul>
@@ -34,7 +45,18 @@
     <div class="details ib">
       <ul class="categories" ng-hide="model.selectedCategory">
         <li ng-repeat="failedRequest in model.details">
-          <h4 ng-class="'color' + ($index + 1)">{{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}</h4>
+          <h4 ng-class="'color' + ($index + 1)">
+            {{ failedRequest.percentage | number:2 }}% {{failedRequest.label}}
+            <small
+              ng-if="failedRequest.label == 'others'"
+              class="tooltip"
+              qtip
+              data-class="qtip-holmes qtip-violations"
+              data-at="bottom center"
+              data-my="top center"
+              data-content="<ul><li>{{ model.otherDetails.join('</li><li>') }}</li></ul>"
+            >?</small>
+          </h4>
           <p class="grey" ngpluralize
             count="failedRequest.value"
             when="{
