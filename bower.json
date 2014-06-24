@@ -17,7 +17,7 @@
     "angular-reconnecting-websocket": "~0.1.1",
     "angular-google-plus": "~0.1.2",
     "angular-animate": "~1.2.15",
-    "angular-dropdowns": "~0.1.0",
+    "angular-dropdowns": "0.1.0",
     "ng-breadcrumbs": "https://github.com/holmes-app/ng-breadcrumbs.git#4493e6287790c18d1b8827be1e72015d53a535a8",
     "angular-gettext": "~0.2.9",
     "ng-tags-input": "~2.0.1",
