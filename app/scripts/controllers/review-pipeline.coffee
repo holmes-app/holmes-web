@@ -36,12 +36,12 @@ class ReviewPipelineCtrl
     @currentPage = if currentPage? then currentPage else 1
     @getReviews(@currentPage, pageSize)
 
-  onDomainFilterChange: =>
-    @onPageChange()
+  onDomainFilterChange: (newVal, oldVal) =>
+    if newVal != oldVal
+      @onPageChange()
 
   watchScope: ->
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
-
 
 
 angular.module('holmesApp')

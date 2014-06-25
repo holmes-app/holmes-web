@@ -35,8 +35,9 @@ class LastReviewsCtrl
     @LastReviewsFcty.getReviewsInLastHour({domain_filter: @domainFilter}).then @_fillReviewsInLastHour, =>
       @loadedReviewsInLastHour = null
 
-  onDomainFilterChange: =>
-    @getLastReviews()
+  onDomainFilterChange: (newVal, oldVal) =>
+    if newVal != oldVal
+      @getLastReviews()
 
   watchScope: ->
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
