@@ -26,7 +26,7 @@
   <div nodata="model.loadedReviews" nodata-height="350" nodata-size="30" nodata-text="" nodata-failed="" nodata-fade="no">
     <ul class="boxes last-reviews">
       <li class="box worker" data-ng-repeat="review in model.lastReviews | orderBy:'-completedAt' track by review.uuid">
-        <a data-named-route="review"  data-args="['{{ review.page.uuid }}', '{{ review.uuid }}']">
+        <a data-named-route="review"  data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']">
           <h2 class="blue ng-binding">{{ review.domain }}</h2>
           <p class="url">{{ review.page.url }}</p>
           <p class="timeago"><span class="time" am-time-ago="review.completedAt*1000"></span> ago</p>
