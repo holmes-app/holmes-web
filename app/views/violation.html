@@ -57,12 +57,11 @@
               data-content="<ul><li>{{ model.otherDetails.join('</li><li>') }}</li></ul>"
             >?</small>
           </h4>
-          <p class="grey" ngpluralize
-            count="failedRequest.value"
-            when="{
-              'one': '1 occurrence',
-              'other': '{{ failedRequest.value | number:0 }} occurrences',
-            }"></p>
+          <p class="grey"
+            translate
+            translate-n="failedRequest.value"
+            translate-plural="{{ failedRequest.value | number:0 }} occurrences"
+          >One occurrence</p>
         </li>
       </ul>
     </div>
