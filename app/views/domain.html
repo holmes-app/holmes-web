@@ -79,6 +79,7 @@
           <th class="url">URL</th>
           <th class="violations center">Violations</th>
           <th class="finished-at center">Finished at</th>
+          <th class="anchor center"><i></i></th>
         </thead>
         <tbody>
           <tr ng-repeat="page in model.reviews.pages track by page.uuid | filter:model.reviewFilter" ng-show="model.reviews.pages">
@@ -96,6 +97,9 @@
               <a data-named-route="review" data-args="['{{ model.domainName }}', '{{ page.uuid }}', '{{ page.reviewId }}']">
                 <span am-time-ago="page.completedAt*1000"></span> ago
               </a>
+            </td>
+            <td class="anchor center">
+              <a href="{{ page.url }}" target="_blank"><i></i></a>
             </td>
           </tr>
         </tbody>

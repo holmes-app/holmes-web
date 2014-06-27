@@ -127,6 +127,14 @@
       }
     }
 
+    td.anchor a i {
+      @include common-sprite(anchor, $dimensions: true);
+      display: inline-block;
+      height: 14px;
+      width: 14px;
+      vertical-align: middle;
+    }
+
     .search {
       top: 12px;
       right: 0;

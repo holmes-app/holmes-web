@@ -92,11 +92,15 @@
           <thead>
             <tr><th class="url">URL</th>
             <th class="finished-at center">Finished at</th>
+            <th class="anchor center"><i></i></th>
           </tr></thead>
           <tbody>
             <tr ng-repeat="review in model.violation.reviews" class="ng-scope">
               <td class="url"><a data-named-route="review" data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']">{{review.page.url}}</a></td>
-              <td class="finished-at center"><span am-time-ago="review.page.completedAt * 1000"></span> ago</td>
+              <td class="finished-at center"><a data-named-route="review" data-args="['{{ review.domain }}', '{{ review.page.uuid }}', '{{ review.uuid }}']"><span am-time-ago="review.page.completedAt * 1000"></span> ago</a></td>
+              <td class="anchor center">
+                <a href="{{ review.page.url }}" target="_blank"><i></i></a>
+              </td>
             </tr>
           </tbody>
         </table>

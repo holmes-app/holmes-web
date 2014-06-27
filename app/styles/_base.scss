@@ -142,10 +142,14 @@ table {
         padding-left: 20px;
       }
 
-      &.violations {
-        width: 180px;
+      &.violations, &.finished-at {
+        padding: 0 10px;
       }
 
+      &.anchor {
+        padding: 0 20px;
+        width: 14px;
+      }
     }
   }
 
