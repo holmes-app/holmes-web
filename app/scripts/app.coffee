@@ -16,7 +16,8 @@ app = angular.module('holmesApp', [
   'ngTagsInput',
   'growlNotifications',
   'qtip2',
-  'zj.namedRoutes'
+  'zj.namedRoutes',
+  'ngStorage'
 ])
   .config ($routeProvider, $httpProvider, $locationProvider, RestangularProvider, ConfigConst, GooglePlusProvider) ->
 
@@ -94,6 +95,11 @@ app = angular.module('holmesApp', [
         templateUrl: 'views/concurrent.html'
         controller: 'ConcurrentCtrl'
         label: gettextCatalog.getString("Concurrent Requests")
+      .when '/user/violations/prefs',
+        name: 'user-violations-prefs'
+        templateUrl: 'views/user-violations-prefs.html'
+        controller: 'UserViolationsPrefsCtrl'
+        label: gettextCatalog.getString("User Violations Prefs")
       .otherwise
         redirectTo: '/login'
 

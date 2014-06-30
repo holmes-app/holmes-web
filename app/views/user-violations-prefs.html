@@ -1,0 +1,34 @@
+<div class="view user-violations-prefs-view">
+
+  <div class="mb">
+    <h1 class="blue">User Violations Preferences</h1>
+  </div>
+
+  <form name="updatePrefsForm">
+    <div class="groups-container">
+      <ul class="group">
+        <li ng-repeat="(category, elements) in model.groupData track by category" ng-class="'color' + ($index + 1) + '-border'">
+          <div>
+            <h3 ng-class="'color' + ($index + 1)">{{ category }}</h3>
+            <div ng-click="model.selectToggle(category)" class="ib toggle">
+              <span ng-hide="model.selectedFlag[category]">select all</span>
+              <span ng-show="model.selectedFlag[category]">unselect all</span>
+            </div>
+          </div>
+          <ul class="group-violations">
+            <li ng-repeat="violation in elements track by violation.key">
+              <div class="name dark-grey ib">
+                <input type="checkbox"  ng-model="violation.is_active" />
+                <span>{{ violation.name }}</span>
+                <div class="tooltip ib" qtip data-class="qtip-holmes" data-content="{{ violation.description }}">?</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div growl-notifications></div>
+    <button class="btn" ng-click="model.updatePrefs()">Update preferences</button>
+  </form>
+
+</div>

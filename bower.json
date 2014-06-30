@@ -24,7 +24,8 @@
     "angular-growl-notifications": "https://github.com/holmes-app/angular-growl-notifications.git#9361fe7f540eed17b474f77a6aa7fa8043eb8fa7",
     "angular-qtip2-directive": "https://github.com/holmes-app/angular-qtip2-directive.git#9a0d101e282c8db91be2f8887d73521a3ee8202d",
     "angular-named-routes": "~0.0.16",
-    "flag-icon-css": "~0.6.3"
+    "flag-icon-css": "~0.6.3",
+    "ngstorage": "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

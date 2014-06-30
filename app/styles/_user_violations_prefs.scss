@@ -1,0 +1,52 @@
+.user-violations-prefs-view {
+
+  font-family: 'Open Sans', sans-serif;
+
+  .toggle {
+    font-size: 10px;
+    line-height: 24px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .groups-container {
+    .group {
+      @include column-count(3);
+
+      > li {
+        border-width: 0;
+        border-style: none;
+        border-left-width: 1px;
+        border-left-style: solid;
+        padding-left: 20px;
+        margin-bottom: 42px;
+        display: inline-block;
+        vertical-align: top;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      h3 {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .group-violations {
+        > li {
+          margin-bottom: 6px;
+
+          .name {
+            font-weight: 300;
+            font-size: 14px;
+            white-space: nowrap;
+          }
+        }
+      }
+
+    }
+  }
+}

@@ -1,10 +1,12 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty, @NamedRouteService) ->
+  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty, @NamedRouteService, @localStorage) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
+
+    @storage = @localStorage
 
     @getDomainData()
     @getMostCommonViolations()
@@ -49,10 +51,9 @@ class DomainsCtrl
       domain.details = _.find domainsDetails, {id: domain.id}
 
   _fillViolations: (mostCommonViolations) =>
-    @groupData = @groupDataFull = _.groupBy(mostCommonViolations, 'category')
-    mostCommonViolations = _.sortBy mostCommonViolations, (violation) -> -violation.count
-    @mostFrequentViolations = mostCommonViolations[0..9]
-    @leastFrequentViolations = mostCommonViolations[10..]
+    groupArray = _.toArray(_.groupBy(mostCommonViolations, 'category'))
+    @groupData = @groupDataFull = _.sortBy(groupArray, (g) -> g[0].category)
+    @mostCommonViolations = _.sortBy mostCommonViolations, (violation) -> -violation.count
     @loadedViolations = mostCommonViolations.length
 
   toggleDomainVisibility: ->
@@ -95,6 +96,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService) ->
+  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage) ->
 
-    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService)
+    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage)

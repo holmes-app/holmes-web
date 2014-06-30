@@ -1,7 +1,7 @@
 'use strict'
 
 class AuthService
-  constructor: (@rootScope, @cookies, @location, @restangular, @googlePlus) ->
+  constructor: (@rootScope, @cookies, @location, @restangular, @googlePlus, @localStorage, @UserViolationsPrefsFcty) ->
     @cookieName = 'HOLMES_AUTH_TOKEN'
     @rootScope.isLoggedIn = true
     @bindEvents()
@@ -50,9 +50,15 @@ class AuthService
       @authenticate(data).then((response) =>
         if response.authenticated
           @rootScope.isLoggedIn = true
+
+          @UserViolationsPrefsFcty.getInitialUserViolationsPrefs().then((data) =>
+            @localStorage.userprefs = _.groupBy(data, 'category')
+          )
+
           if response.first_login
-            @location.path "/user/violations/prefs"
-          @location.path "/"
+            @location.url "/user/violations/prefs/"
+          else
+            @location.url "/"
         else
           @logout()
       , ->
@@ -63,6 +69,6 @@ class AuthService
     )
 
 angular.module('holmesApp')
-  .service('AuthSrvc', ($rootScope, $cookies, $location, Restangular, GooglePlus) ->
-    return new AuthService($rootScope, $cookies, $location, Restangular, GooglePlus)
+  .service('AuthSrvc', ($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty) ->
+    return new AuthService($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty)
   )

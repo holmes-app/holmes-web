@@ -74,10 +74,14 @@
           </div>
 
           <div class="categories violation-categories">
-            <div class="category" ng-repeat="violations in model.violations | orderBy : '-value' ">
+
+            <label for="prefsFilter" class="pointer">Show hidden violations:</label> <input id="prefsFilter" type="checkbox" ng-model="prefsFilter" />
+            <div class="category" nodata="filteredViolations.length" nodata-text="There were no preferred violations to show"></div>
+
+            <div class="category" ng-repeat="violations in filteredViolations = (model.violations | userviolationsprefsreviews: model.storage.userprefs:prefsFilter | orderBy: '-value')">
               <h3 ng-class="'color' + ($index + 1)">{{ violations.label }}</h3>
               <ul>
-                <li ng-repeat="violation in violations.violations">
+                <li ng-repeat="violation in violations.filteredViolations">
                   <h4>{{ violation.title }}</h4>
                   <p class="mid-grey" ng-bind-html="model.asHtml(violation.description)"></p>
                 </li>

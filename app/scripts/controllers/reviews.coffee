@@ -1,11 +1,13 @@
 'use strict'
 
 class ReviewsCtrl
-  constructor: (@scope, @sce, @ReviewsFcty, @pageId, @reviewId, @location) ->
+  constructor: (@scope, @sce, @ReviewsFcty, @pageId, @reviewId, @location, @localStorage) ->
     if @location.hash() == 'facts'
       @showFacts()
     else
       @showViolations()
+
+    @storage = @localStorage
 
     @getReviewDetails()
     @getReviews()
@@ -30,6 +32,7 @@ class ReviewsCtrl
           return {
             'label': obj[0].category + ' violations',
             'violations': _.toArray(obj),
+            'filteredViolations': _.toArray(obj),
             'value': obj.length * 100 / this.violationCount,
             'percentage': 10,
             'violationCount': 10
@@ -48,8 +51,8 @@ class ReviewsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty, $location) ->
+  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty, $location, $localStorage) ->
     pageId = $routeParams.pageId
     reviewId = $routeParams.reviewId
 
-    $scope.model = new ReviewsCtrl($scope, $sce, ReviewsFcty, pageId, reviewId, $location)
+    $scope.model = new ReviewsCtrl($scope, $sce, ReviewsFcty, pageId, reviewId, $location, $localStorage)

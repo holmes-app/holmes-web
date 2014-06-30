@@ -84,6 +84,13 @@
 
     .toolbar {
       position: relative;
+
+      .prefsfilter {
+        line-height: 33px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 12px;
+        padding-right: 30px;
+      }
     }
 
     a {
@@ -271,7 +278,7 @@
 
         .group-violations {
           > li {
-            margin-bottom: 6px;
+            margin: 0 10px 6px;
 
             a {
               display: block;
