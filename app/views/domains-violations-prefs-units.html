@@ -17,7 +17,7 @@
   <div ng-if="prefData.unit == 'list'">
     <label for="{{ prefData.key }}">{{ prefData.key }}</label>
     <div class="tooltip ib" qtip data-class="qtip-holmes"
-         data-content="{{ prefData.title }}<br /><br /> <strong>Default</strong>: <ul><li>{{ prefData.default_value.join('</li><li>') }}</li></ul>"}>?</div>
+         data-content="{{ prefData.title }}<br /><br /> <strong>Default</strong>: <ul><li>{{ prefData.default_value.join('</li><li>') }}</li></ul>">?</div>
     <tags-input ng-model="prefData.value" placeholder="Add new value"></tags-input>
   </div>
 
