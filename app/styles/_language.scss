@@ -1,14 +1,6 @@
 .languages {
   position: relative;
 
-  /* Icons come from this collection https://www.iconfinder.com/icons/91992/brazil_parts_icon#size=32 */
-  .flag-en_US, .selected-language.en_US span {
-    background: image-url('../images/flags/en_US.png') 0 0 no-repeat;
-  }
-  .flag-pt_BR, .selected-language.pt_BR span {
-    background: image-url('../images/flags/pt_BR.png') 0 0 no-repeat;
-  }
-
   .dropdown {
     visibility: hidden;
     opacity: 0;

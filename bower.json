@@ -23,7 +23,8 @@
     "ng-tags-input": "~2.0.1",
     "angular-growl-notifications": "~0.7.0",
     "angular-qtip2-directive": "https://github.com/holmes-app/angular-qtip2-directive.git#9a0d101e282c8db91be2f8887d73521a3ee8202d",
-    "angular-named-routes": "~0.0.16"
+    "angular-named-routes": "~0.0.16",
+    "flag-icon-css": "~0.6.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
