@@ -364,6 +364,15 @@ module.exports = function (grunt) {
       ]
     },
 
+    sed: {
+      replace_flags_path: {
+        path: 'dist/styles/vendor.css',
+        pattern: '../flags/',
+        replacement: 'bower_components/flag-icon-css/flags/',
+        recursive: false
+      }
+    },
+
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
@@ -442,6 +451,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'sed',
     'rev',
     'usemin',
     'htmlmin'
