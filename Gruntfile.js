@@ -368,7 +368,7 @@ module.exports = function (grunt) {
       replace_flags_path: {
         path: 'dist/styles/vendor.css',
         pattern: '../flags/',
-        replacement: 'bower_components/flag-icon-css/flags/',
+        replacement: '../bower_components/flag-icon-css/flags/',
         recursive: false
       }
     },
