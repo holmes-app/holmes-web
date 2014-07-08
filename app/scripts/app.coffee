@@ -55,7 +55,7 @@ app = angular.module('holmesApp', [
         label: 'Review'
       .when '/violations',
         name: 'violations'
-        redirectTo: -> '/'
+        redirectTo: -> '/domains'
         label: gettextCatalog.getString("Violations")
       .when '/violations/:violationKey',
         name: 'violation-details'
@@ -115,5 +115,10 @@ app = angular.module('holmesApp', [
 
     $rootScope.$on('$viewContentLoaded', ->
       $window.scrollTo(0, 0)
+    )
+
+    $rootScope.$on('$locationChangeStart', (e, next, prev) ->
+      $rootScope.prevUrl = prev
+      $rootScope.prevHash = $window.location.hash
     )
   )

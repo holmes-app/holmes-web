@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty) ->
+  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
@@ -16,6 +16,25 @@ class DomainsCtrl
         @getDomainData()
 
     @scope.$on '$destroy', @_cleanUp
+
+    @rootScope = _.find @scope, {$parent: null}
+
+    @_scrollToViolations() if @rootScope.prevHash == '#!/violations'
+
+  _scrollToElement: (el) =>
+    srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) / 2
+    dy = Math.abs(@window.pageYOffset - srcollY)
+    @window.scrollTo(0, srcollY)
+    return dy
+
+  _scrollToViolations: ->
+    el = angular.element('#violations')
+    if el.length == 1
+      scrollInterval = @interval(=>
+        dy = @_scrollToElement(el)
+        if dy <= 5
+          @interval.cancel(scrollInterval)
+      40)
 
   _cleanUp: =>
     @WebSocketFcty.clearHandlers()
@@ -77,6 +96,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty) ->
+  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty) ->
 
-    $scope.model = new DomainsCtrl($scope, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty)
+    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty)
