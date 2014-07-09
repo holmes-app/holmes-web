@@ -17,9 +17,7 @@ class DomainsCtrl
 
     @scope.$on '$destroy', @_cleanUp
 
-    @rootScope = _.find @scope, {$parent: null}
-
-    @_scrollToViolations() if @rootScope.prevHash == '#!/violations'
+    @_scrollToViolations() if @scope.$parent.prevHash == '#!/violations'
 
   _scrollToElement: (el) =>
     srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) / 2
@@ -30,9 +28,10 @@ class DomainsCtrl
   _scrollToViolations: ->
     el = angular.element('#violations')
     if el.length == 1
+      counter = 0
       scrollInterval = @interval(=>
         dy = @_scrollToElement(el)
-        if dy <= 5
+        if dy <= 5 or counter++ > 10
           @interval.cancel(scrollInterval)
       40)
 
