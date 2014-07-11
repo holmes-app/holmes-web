@@ -1,7 +1,7 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty) ->
+  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty, @NamedRouteService) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
@@ -17,7 +17,7 @@ class DomainsCtrl
 
     @scope.$on '$destroy', @_cleanUp
 
-    @_scrollToViolations() if @scope.$parent.prevHash == '#!/violations'
+    @_scrollToViolations() if @scope.$parent.prevHash == @NamedRouteService.reverse('violations')
 
   _scrollToElement: (el) =>
     srcollY = el[0].offsetTop + parseInt(el.css('margin-top'), 10) / 2
@@ -95,6 +95,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty) ->
+  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService) ->
 
-    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty)
+    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService)
