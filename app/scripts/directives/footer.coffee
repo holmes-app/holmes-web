@@ -5,7 +5,7 @@ angular.module('holmesApp')
     replace: true
     templateUrl: 'views/footer.html'
     restrict: 'E'
-    controller: ($scope, $rootScope, $location, $cookies, APIVersionFcty, packageJson, WebSocketFcty, AuthSrvc) ->
+    controller: ($scope, APIVersionFcty, packageJson, AuthSrvc) ->
 
       APIVersionFcty.getAPIVersion().then( (version) ->
         $scope.apiVersion = version
