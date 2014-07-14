@@ -1,15 +1,15 @@
 'use strict'
 
 class DomainsViolationsPrefsFactory
-  constructor: (@restangular, @cookieStore) ->
+  constructor: (@restangular) ->
 
   getDomainsViolationsPrefs: (domainName) ->
     @restangular.one('domains', domainName).one('violations-prefs').get()
 
   updateDomainsViolationsPrefs: (domainName, data) ->
-    @restangular.one('domains', domainName).post('violations-prefs', data, {}, {'X-AUTH-HOLMES': @cookieStore.get('HOLMES_AUTH_TOKEN')})
+    @restangular.one('domains', domainName).post('violations-prefs', data)
 
 
 angular.module('holmesApp')
-  .factory 'DomainsViolationsPrefsFcty', (Restangular, $cookieStore) ->
-    return new DomainsViolationsPrefsFactory(Restangular, $cookieStore)
+  .factory 'DomainsViolationsPrefsFcty', (Restangular) ->
+    return new DomainsViolationsPrefsFactory(Restangular)
