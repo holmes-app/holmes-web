@@ -119,9 +119,9 @@ app = angular.module('holmesApp', [
     )
 
     GooglePlusProvider.init(
-      clientId: '968129569472-1smbhidqeo3kpdj029cehmnp8qh808kv',
-      apiKey: '68129569472-1smbhidqeo3kpdj029cehmnp8qh808kv.apps.googleusercontent.com',
-      scopes: 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+      clientId: ConfigConst.googleClientId,
+      apiKey: ConfigConst.googleApiKey,
+      scopes: ConfigConst.googleScopes
     )
   .run(($rootScope, $window, ConfigConst, gettextCatalog, AuthSrvc) ->
     gettextCatalog.currentLanguage = ConfigConst.currentLanguage
