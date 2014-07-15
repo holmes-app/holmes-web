@@ -116,6 +116,8 @@ app = angular.module('holmesApp', [
         selectedLanguage = storage.getItem('selectedLanguage')
         if not selectedLanguage?
           selectedLanguage = "en_US"
+
+        headers['Accept-Language'] = selectedLanguage
     )
 
     GooglePlusProvider.init(
