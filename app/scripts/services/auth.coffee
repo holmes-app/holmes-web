@@ -3,7 +3,7 @@
 class AuthService
   constructor: (@rootScope, @cookies, @location, @restangular, @googlePlus) ->
     @cookieName = 'HOLMES_AUTH_TOKEN'
-    @rootScope.isLoggedIn = false
+    @rootScope.isLoggedIn = true
     @bindEvents()
 
   bindEvents: ->
