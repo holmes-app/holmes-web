@@ -2,17 +2,14 @@
 
 class WorkersCtrl
   constructor: (@scope, @WorkersFcty, @WebSocketFcty, @location) ->
-    if @scope.isLoggedIn
-      @workers = []
-      @activeWorkersPercentage = 0
-      @activeWorkers = []
-      @loadedWorkers = false
+    @workers = []
+    @activeWorkersPercentage = 0
+    @activeWorkers = []
+    @loadedWorkers = false
 
-      @scope.$on '$destroy', @_cleanUp
+    @scope.$on '$destroy', @_cleanUp
 
-      @WorkersFcty.listen(@getWorkers)
-    else
-      @location.path '/login'
+    @WorkersFcty.listen(@getWorkers)
 
 
   _cleanUp: =>

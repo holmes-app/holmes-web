@@ -1,9 +1,9 @@
 'use strict'
 
 class DomainsViolationsPrefsCtrl
-  constructor: (@scope, @DomainsFcty, @domainName, @DomainsViolationsPrefsFcty, @growlNotifications) ->
+  constructor: (@scope, @DomainsFcty, @domainName, @DomainsViolationsPrefsFcty, @growlNotifications, @AuthSrvc) ->
+    @AuthSrvc.redirectIfNotSuperUser("/domains/#{@domainName}/")
     @currentTab = ''
-
     @getDomainDetails()
     @getDomainsViolationsPrefs()
 
@@ -50,6 +50,6 @@ class DomainsViolationsPrefsCtrl
       @growlNotifications.add(error.data.reason, 'error', 2000)
 
 
-angular.module('holmesApp')
-  .controller 'DomainsViolationsPrefsCtrl', ($scope, DomainsFcty, $routeParams, DomainsViolationsPrefsFcty, growlNotifications) ->
-    $scope.model = new DomainsViolationsPrefsCtrl($scope, DomainsFcty, $routeParams.domainName, DomainsViolationsPrefsFcty, growlNotifications)
+angular.module('holmesApp') 
+  .controller 'DomainsViolationsPrefsCtrl', ($scope, DomainsFcty, $routeParams, DomainsViolationsPrefsFcty, growlNotifications, AuthSrvc) ->
+    $scope.model = new DomainsViolationsPrefsCtrl($scope, DomainsFcty, $routeParams.domainName, DomainsViolationsPrefsFcty, growlNotifications, AuthSrvc)

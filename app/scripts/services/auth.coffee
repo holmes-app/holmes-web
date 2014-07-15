@@ -3,35 +3,41 @@
 class AuthService
   constructor: (@rootScope, @cookies, @location, @restangular, @googlePlus, @localStorage, @UserViolationsPrefsFcty) ->
     @cookieName = 'HOLMES_AUTH_TOKEN'
-    @rootScope.isLoggedIn = true
+    @getAuthenticationFlags()
     @bindEvents()
 
   bindEvents: ->
-    @rootScope.$on('unauthorized-request', (event) =>
+    @rootScope.$on('unauthorizedRequest', (event) =>
       @logout()
     )
+    @rootScope.$on('$locationChangeStart', (e, n, p) =>
+      @getAuthenticationFlags()
+    )
 
-  isAuthenticated: ->
+  getAuthentication: ->
     @restangular.one('authenticate').get()
 
   authenticate: (data) ->
     @restangular.all('authenticate').post(data)
 
+  getAuthenticationFlags: ->
+    @getAuthentication().then((response) =>
+      @rootScope.isLoggedIn = response.authenticated
+      @rootScope.isSuperUser = response.isSuperUser
+      @logoutIfNotAuthenticated()
+    )
+
   logoutIfNotAuthenticated: ->
-    if @rootScope.isLoggedIn
-      @isAuthenticated().then((response) =>
-        if !response.authenticated
-          @logout()
-      )
-    else
+    if @rootScope.isLoggedIn is false
       @logout()
 
   redirectIfAuthenticated: ->
-    if @rootScope.isLoggedIn
-      @isAuthenticated().then((response) =>
-        if response.authenticated
-          @location.url '/'
-      )
+    if @rootScope.isLoggedIn is true
+      @location.url '/'
+
+  redirectIfNotSuperUser: (path) ->
+    if @rootScope.isSuperUser is false
+      @location.url path
 
   removeAuthCookie: ->
     delete @cookies[@cookieName]

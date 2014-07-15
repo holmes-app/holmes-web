@@ -134,15 +134,13 @@ app = angular.module('holmesApp', [
     $rootScope.$on('$locationChangeStart', (e, next, prev) ->
       $rootScope.prevUrl = prev
       $rootScope.prevHash = $window.location.hash
-
-      AuthSrvc.logoutIfNotAuthenticated()
     )
   )
   .factory("httpResponseInterceptor", ($q, $rootScope) ->
 
     onError = (response) ->
       if response.status is 401
-        $rootScope.$broadcast('unauthorized-request')
+        $rootScope.$broadcast('unauthorizedRequest')
       $q.reject response
 
     promise = (promise) ->

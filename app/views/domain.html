@@ -124,6 +124,6 @@
     {{ model.domainStatus ? 'Stop reviewing': 'Start reviewing' }}
   </button>
 
-  <a data-named-route="domain-violations-prefs" data-args="{{ model.domainName }}" class="btn">Violations Preferences</a>
+  <a data-named-route="domain-violations-prefs" data-args="{{ model.domainName }}" class="btn" ng-if="isLoggedIn && isSuperUser">Violations Preferences</a>
 
 </div>

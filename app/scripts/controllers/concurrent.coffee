@@ -14,7 +14,7 @@ class ConcurrentRequestsCtrl
     @clearForm()
     @updateConcurrentDetails()
 
-    @isFormVisible = @scope.isLoggedIn
+    @isFormVisible = @scope.isLoggedIn && @scope.isSuperUser
 
     updateDetails = =>
       @updateTimer = @timeout(=>
