@@ -7,6 +7,7 @@ class DomainsCtrl
     @mostFrequentVisible = false
 
     @storage = @localStorage
+    @prefsFilter = @storage.prefsFilter
 
     @getDomainData()
     @getMostCommonViolations()
@@ -93,6 +94,11 @@ class DomainsCtrl
     )
 
     @scope.$watch('model.violationFilter', filterGroupData)
+
+    updatePrefsFilter = (data) =>
+      @storage.prefsFilter = data
+
+    @scope.$watch('model.prefsFilter', updatePrefsFilter)
 
 
 angular.module('holmesApp')

@@ -8,6 +8,9 @@ class ReviewsCtrl
       @showViolations()
 
     @storage = @localStorage
+    @prefsFilter = @storage.prefsFilter
+
+    @watchScope()
 
     @getReviewDetails()
     @getReviews()
@@ -48,6 +51,12 @@ class ReviewsCtrl
 
   asHtml: (text) ->
     @sce.trustAsHtml(text)
+
+  watchScope: ->
+    updatePrefsFilter = (data) =>
+      @storage.prefsFilter = data
+
+    @scope.$watch('model.prefsFilter', updatePrefsFilter)
 
 
 angular.module('holmesApp')
