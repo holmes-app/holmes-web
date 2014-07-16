@@ -8,6 +8,7 @@ class UserViolationsPrefsCtrl
   _fillPrefs: (data) =>
     @prefs = data
     @groupData = _.groupBy(@prefs, 'category')
+    @localStorage.userprefs = @groupData
 
     for x of @groupData
       @selectedFlag[x] = ! _.some(@groupData[x], {'is_active': false})
