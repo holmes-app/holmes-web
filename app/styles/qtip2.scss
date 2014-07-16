@@ -102,30 +102,6 @@
 /* Applied on hover of tooltips i.e. added/removed on mouseenter/mouseleave respectively */
 .qtip-hover{}
 
-/* Default tooltip style */
-.qtip-default{
-	border-width: 1px;
-	border-style: solid;
-	border-color: #F1D031;
-
-	background-color: #FFFFA3;
-	color: #555;
-}
-
-.qtip-default .qtip-titlebar{
-	background-color: #FFEF93;
-}
-
-.qtip-default .qtip-icon{
-	border-color: #CCC;
-	background: #F1F1F1;
-	color: #777;
-}
-
-.qtip-default .qtip-titlebar .qtip-close{
-	border-color: #AAA;
-	color: #111;
-}
 
 /*! Holmes tooltip style */
 .qtip-holmes {
@@ -135,10 +111,11 @@
 	border-radius: 4px;
 }
 
-.qtip-holmes .qtip-content {
+.qtip-content, .qtip-holmes .qtip-content {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
-	line-height: 15px;
+	line-height: 18px;
+	font-weight: 300;
 }
 
 .qtip-holmes .qtip-titlebar {
