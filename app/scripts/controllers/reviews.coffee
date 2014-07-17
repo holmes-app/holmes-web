@@ -60,7 +60,7 @@ class ReviewsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty, $location, $localStorage) ->
+  .controller 'ReviewsCtrl', ($scope, $sce, $routeParams, ReviewsFcty, $location, $localStorage, WebSocketFcty) ->
     pageId = $routeParams.pageId
     reviewId = $routeParams.reviewId
 

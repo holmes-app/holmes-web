@@ -87,5 +87,5 @@ class ConcurrentRequestsCtrl
     @scope.$watch('model.domainFilter', @onDomainFilterChange)
 
 angular.module('holmesApp')
-  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty) ->
+  .controller 'ConcurrentCtrl', ($scope, $timeout, LimitersFcty, WebSocketFcty) ->
     $scope.model = new ConcurrentRequestsCtrl($scope, $timeout, LimitersFcty)
