@@ -2,13 +2,102 @@ msgid ""
 msgstr ""
 "Language: ca_ES
 "
+""
+
+#: app/views/last-reviews.html
+msgid "(1 review per second)"
+msgid_plural "({{ model.lastReviewsInLastHour.perHour | number:2 }} reviews per second)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/last-requests.html
+msgid "1 response"
+msgid_plural "{{ failedRequest.value | number:0 }} responses"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/last-reviews.html
+msgid "1 review in the last hour"
+msgid_plural "{{ model.lastReviewsInLastHour.count | number:0 }} reviews in the last hour"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/headeraddpage.html
+msgid "<strong>Add a new</strong> website"
+msgstr ""
+
+#: app/views/headersearch.html
+msgid "<strong>Search a</strong> website"
+msgstr ""
+
+#: app/views/footer.html
+msgid "API Status:"
+msgstr ""
 
 #: .tmp/scripts/app.js
 msgid "Concurrent Requests"
 msgstr ""
 
+#: app/views/footer.html
+msgid "Connected"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "Content"
+msgstr ""
+
+#: app/views/footer.html
+msgid "Copyright"
+msgstr ""
+
+#: app/views/last-requests.html
+msgid "Detected in"
+msgstr ""
+
+#: app/views/footer.html
+msgid "Disconnected"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "Do you want to add it instead?"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "Do you want to {{ model.urlHttpSuggestAct }} {{ model.urlHttpSuggest }} instead?"
+msgstr ""
+
+#: app/views/domains.html
 #: .tmp/scripts/app.js
 msgid "Domains"
+msgstr ""
+
+#: app/views/domains.html
+msgid "Enter a violation name…"
+msgstr ""
+
+#: app/views/headeraddpage.html
+msgid "Enter the complete URL for the website you want holmes to crawl. It might take a few minutes."
+msgstr ""
+
+#: app/views/domains.html
+msgid "FREQUENCY"
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/violation.html
+msgid "Finished at"
+msgstr ""
+
+#: app/views/domains.html
+msgid "GROUPS"
+msgstr ""
+
+#: app/views/domains.html
+msgid "HIDE"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "Key"
 msgstr ""
 
 #: .tmp/scripts/app.js
@@ -19,9 +108,56 @@ msgstr ""
 msgid "Last Reviews"
 msgstr ""
 
+#: app/views/last-requests.html
+msgid "Latest failed responses"
+msgstr ""
+
+#: .tmp/scripts/directives/nodata.js
+msgid "Loading failed!"
+msgstr ""
+
+#: .tmp/scripts/directives/nodata.js
+msgid "Loading..."
+msgstr ""
+
+#: app/views/login.html
+msgid "Login"
+msgstr ""
+
+#: app/views/footer.html
+msgid "Logout"
+msgstr ""
+
+#: app/views/footer.html
+msgid "MIT Licensed"
+msgstr ""
+
+#: .tmp/scripts/directives/nodata.js
+msgid "No data!"
+msgstr ""
+
+#: app/views/last-reviews.html
+msgid "No reviews data available"
+msgstr ""
+
+#: app/views/violation.html
+msgid "No reviews found"
+msgstr ""
+
 #: app/views/domain.html
+msgid "No reviews made for this domain yet."
+msgstr ""
+
+#: app/views/violation.html
+msgid "One occurrence"
+msgid_plural "{{ failedRequest.value | number:0 }} occurrences"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/domain.html
+#: app/views/reviews.html
 msgid "One violation"
-msgid_plural "{{ model.selectedCategory.violationCount | number }} violations"
+msgid_plural "{{ scopeViolationCount | number }} violations"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -29,19 +165,224 @@ msgstr[1] ""
 msgid "Page Reviews"
 msgstr ""
 
+#: app/views/headersearch.html
+msgid "Page URL"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "Page successfully saved!"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "Page with URL '{{ model.url }}' was not found or does not have any reviews associated with it!"
+msgstr ""
+
 #: .tmp/scripts/app.js
 msgid "Review Pipeline"
 msgstr ""
 
+#: app/views/violation.html
+msgid "Reviews"
+msgstr ""
+
+#: app/views/domains.html
+msgid "SHOW ALL"
+msgstr ""
+
+#: app/views/domains.html
+msgid "Show All"
+msgstr ""
+
+#: app/views/login.html
+msgid "Sign in with <b>Google</b>"
+msgstr ""
+
+#: app/views/login.html
+msgid "Sign in with one of the providers above"
+msgstr ""
+
+#: app/views/domain.html
+msgid "Start reviewing"
+msgstr ""
+
+#: app/views/last-requests.html
+#: app/views/last-reviews.html
+#: app/views/review-pipeline.html
 #: .tmp/scripts/app.js
 msgid "Status"
 msgstr ""
 
+#: app/views/domain.html
+msgid "Stop reviewing"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "The URL you entered is invalid!"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "The URL you entered is missing the protocol prefix."
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "The website you added could not be found. Maybe you mispelled it?"
+msgstr ""
+
+#: app/views/headeralertmessage.html
+msgid "The website you added is actually a redirect to {{ model.turnsOut }}."
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/last-requests.html
+#: app/views/review-pipeline.html
+#: app/views/violation.html
+msgid "URL"
+msgstr ""
+
+#: app/views/domain-violations-prefs.html
+#: app/views/user-violations-prefs.html
+msgid "Update preferences"
+msgstr ""
+
+#: app/views/user-violations-prefs.html
+msgid "User Violations Preferences"
+msgstr ""
+
+#: .tmp/scripts/app.js
+msgid "User Violations Prefs"
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/domains.html
 #: .tmp/scripts/app.js
 msgid "Violations"
 msgstr ""
 
+#: app/views/domain-violations-prefs.html
+#: app/views/domain.html
+msgid "Violations Preferences"
+msgstr ""
+
 #: .tmp/scripts/app.js
 msgid "Workers"
+msgstr ""
+
+#: app/views/login.html
+msgid "You are not logged in."
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/last-reviews.html
+#: app/views/review-pipeline.html
+#: app/views/violation.html
+msgid "ago"
+msgstr ""
+
+#: .tmp/scripts/controllers/violation.js
+msgid "all domains"
+msgstr ""
+
+#: app/views/footer.html
+msgid "and"
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/domains.html
+msgid "avg resp time"
+msgstr ""
+
+#: app/views/violation.html
+msgid "details"
+msgstr ""
+
+#: app/views/headerbar.html
+#: app/views/violation.html
+msgid "domains"
+msgstr ""
+
+#: app/views/domain.html
+msgid "enter a directory to filter reviews..."
+msgstr ""
+
+#: app/views/domain.html
+msgid "error"
+msgstr ""
+
+#: app/views/domains.html
+msgid "error %"
+msgstr ""
+
+#: app/views/review-pipeline.html
+msgid "estimated time"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "facts"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "finished at"
+msgstr ""
+
+#: app/views/footer.html
+msgid "holmes is a free open-source project and is composed of"
+msgstr ""
+
+#: app/views/workers.html
+msgid "last ping"
+msgstr ""
+
+#: app/views/violation.html
+msgid "others"
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/domains.html
+#: app/views/violation.html
+msgid "pages"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "points"
+msgstr ""
+
+#: app/views/headerbar.html
+msgid "preferences"
+msgstr ""
+
+#: app/views/last-requests.html
+msgid "response time"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "reviews"
+msgstr ""
+
+#: app/views/user-violations-prefs.html
+msgid "select all"
+msgstr ""
+
+#: app/views/headerbar.html
+#: app/views/last-requests.html
+msgid "status"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "title"
+msgstr ""
+
+#: app/views/user-violations-prefs.html
+msgid "unselect all"
+msgstr ""
+
+#: app/views/reviews.html
+msgid "value"
+msgstr ""
+
+#: app/views/domain.html
+#: app/views/domains.html
+#: app/views/headerbar.html
+#: app/views/reviews.html
+msgid "violations"
 msgstr ""
 
