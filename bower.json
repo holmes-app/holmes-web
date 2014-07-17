@@ -26,7 +26,7 @@
     "angular-named-routes": "~0.0.16",
     "flag-icon-css": "~0.6.3",
     "ngstorage": "~0.3.0",
-    "css3-social-signin-buttons": "necolas/css3-social-signin-buttons"
+    "css3-social-signin-buttons": "ricardodani/css3-social-signin-buttons"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
