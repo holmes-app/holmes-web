@@ -25,7 +25,8 @@
     "angular-qtip2-directive": "https://github.com/holmes-app/angular-qtip2-directive.git#9a0d101e282c8db91be2f8887d73521a3ee8202d",
     "angular-named-routes": "~0.0.16",
     "flag-icon-css": "~0.6.3",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "css3-social-signin-buttons": "necolas/css3-social-signin-buttons"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
