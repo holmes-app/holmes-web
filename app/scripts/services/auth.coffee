@@ -75,6 +75,6 @@ class AuthService
     )
 
 angular.module('holmesApp')
-  .service('AuthSrvc', ($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty) ->
+  .service('AuthSrvc', ($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty, WebSocketFcty) ->
     return new AuthService($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty)
   )

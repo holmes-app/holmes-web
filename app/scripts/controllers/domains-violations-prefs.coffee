@@ -51,5 +51,5 @@ class DomainsViolationsPrefsCtrl
 
 
 angular.module('holmesApp') 
-  .controller 'DomainsViolationsPrefsCtrl', ($scope, DomainsFcty, $routeParams, DomainsViolationsPrefsFcty, growlNotifications, AuthSrvc, WebSocketFcty) ->
+  .controller 'DomainsViolationsPrefsCtrl', ($scope, DomainsFcty, $routeParams, DomainsViolationsPrefsFcty, growlNotifications, AuthSrvc) ->
     $scope.model = new DomainsViolationsPrefsCtrl($scope, DomainsFcty, $routeParams.domainName, DomainsViolationsPrefsFcty, growlNotifications, AuthSrvc)

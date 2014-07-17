@@ -31,5 +31,5 @@ class UserViolationsPrefsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'UserViolationsPrefsCtrl', ($scope, UserViolationsPrefsFcty, growlNotifications, $localStorage, WebSocketFcty) ->
+  .controller 'UserViolationsPrefsCtrl', ($scope, UserViolationsPrefsFcty, growlNotifications, $localStorage) ->
     $scope.model = new UserViolationsPrefsCtrl($scope, UserViolationsPrefsFcty, growlNotifications, $localStorage)

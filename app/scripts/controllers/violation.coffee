@@ -117,5 +117,5 @@ class ViolationCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, $location, WebSocketFcty) ->
+  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, $location) ->
     $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty, $location)
