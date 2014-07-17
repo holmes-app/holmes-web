@@ -1,7 +1,7 @@
 'use strict'
 
 class ViolationCtrl
-  constructor: (@scope, @violationKey, @ViolationFcty, @location) ->
+  constructor: (@scope, @violationKey, @ViolationFcty, @location, @gettextCatalog) ->
     if @violationKey in ['blacklist.domains']
       @showDetails = true
     @pageFilter = null
@@ -14,6 +14,7 @@ class ViolationCtrl
       @loadedReviews = null
     @watchScope()
 
+    @allDomainsText = @gettextCatalog.getString('all domains')
     @domainFilter = @location.search().domain_filter
 
   _fillReviews: (violation) =>
@@ -80,7 +81,7 @@ class ViolationCtrl
         @loadedReviews = null
 
   _addFilters: (params) =>
-    if @domainFilter == 'all domains'
+    if @domainFilter == @allDomainsText
       delete(params['domain_filter'])
       delete(params['page_filter'])
     else
@@ -117,5 +118,5 @@ class ViolationCtrl
 
 
 angular.module('holmesApp')
-  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, $location) ->
-    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty, $location)
+  .controller 'ViolationCtrl', ($scope, $routeParams, ViolationFcty, $location, gettextCatalog) ->
+    $scope.model = new ViolationCtrl($scope, $routeParams.violationKey, ViolationFcty, $location, gettextCatalog)

@@ -72,7 +72,7 @@
         <div class="title ib" translate>Reviews</div>
         <div class="search fs0 abs" ng-show="model.hasReviews">
 
-          <domainDropdown showclose="false" autoload="false" preselected="model.domainFilter" options="model.domains" placeholder="{{ 'all domains' | translate }}" onchange="model.domainFilter"></domainDropdown>
+          <domainDropdown showclose="false" autoload="false" preselected="model.domainFilter" options="model.domains" placeholder="{{ model.allDomainsText }}" onchange="model.domainFilter"></domainDropdown>
 
           <p class="slash grey directory ib rel">/</p>
           <span class="directory ib rel">
