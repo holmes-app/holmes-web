@@ -7,14 +7,18 @@
   </div>
 
   <div class="inlasthour blue" nodata="model.loadedReviewsInLastHour" nodata-height="28" nodata-size="20" nodata-text="{{ 'No reviews data available' | translate }}">
-    <span ng-if="model.lastReviewsInLastHour.count > 0"
-      translate
-      translate-n="model.lastReviewsInLastHour.count"
-      translate-plural="{{ model.lastReviewsInLastHour.count | number:0 }} reviews in the last hour">1 review in the last hour</span>
-    <span ng-if="model.lastReviewsInLastHour.count > 0"
-      translate
-      translate-n="model.lastReviewsInLastHour.perHour"
-      translate-plural="({{ model.lastReviewsInLastHour.perHour | number:2 }} reviews per second)">(1 review per second)</span>
+    <div class="ib" ng-if="model.lastReviewsInLastHour.count > 0">
+      <span
+        translate
+        translate-n="model.lastReviewsInLastHour.count"
+        translate-plural="{{ model.lastReviewsInLastHour.count | number:0 }} reviews in the last hour">1 review in the last hour</span>
+    </div>
+    <div class="ib" ng-if="model.lastReviewsInLastHour.count > 0">
+      <span
+        translate
+        translate-n="model.lastReviewsInLastHour.perHour"
+        translate-plural="({{ model.lastReviewsInLastHour.perHour | number:2 }} reviews per second)">(1 review per second)</span>
+    </div>
   </div>
 
   <div nodata="model.loadedReviews" nodata-height="350" nodata-size="30" nodata-text="" nodata-failed="" nodata-fade="no">
