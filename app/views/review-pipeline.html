@@ -1,21 +1,19 @@
-<div class="view status-view status-workers-view">
+<div class="view status-view status-review-pipeline-view">
   <h1 translate>Status</h1>
   <statusbar index="3"></statusbar>
-
-  <div class="mb">
-    <domainDropdown onchange="model.domainFilter"></domainDropdown>
-  </div>
 
   <div nodata="model.reviewsLoaded" nodata-height="451" nodata-size="30" nodata-text="No reviews data available" nodata-fade="no">
     <table>
       <thead>
         <tr>
+          <th class="queue-position"></th>
           <th class="dark-grey" translate>URL</th>
           <th class="dark-grey center" ng-show="review.date" translate>estimated time</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="review in model.reviews">
+          <td class="center queue-position">{{ review.num }}</td>
           <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
           <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> <span translate>ago</span></td>
         </tr>

@@ -3,8 +3,7 @@
 class ReviewPipelineCtrl
   constructor: (@scope, @NextJobsFcty, @WebSocketFcty) ->
     @reviews = []
-    @pageSize = 10
-    @domainFilter = ''
+    @pageSize = 100
 
     @getReviews()
 
@@ -13,8 +12,6 @@ class ReviewPipelineCtrl
     )
 
     @scope.$on '$destroy', @_cleanUp
-
-    @watchScope()
 
   _cleanUp: =>
     @WebSocketFcty.clearHandlers()
@@ -25,23 +22,16 @@ class ReviewPipelineCtrl
     if @reviewsLoaded > 0 and not @hasReviews
       @hasReviews = true
 
-  getReviews: (currentPage, pageSize) ->
-    pageSize = if not pageSize then @pageSize
-    params = {current_page: currentPage, page_size: pageSize, domain_filter: @domainFilter}
+  getReviews: (currentPage, pageSize) =>
+    pageSize = @pageSize if not pageSize
+    params = {current_page: currentPage, page_size: pageSize}
     @NextJobsFcty.getNextJobs(params).then @_fillReviews, =>
       @reviewsLoaded = null
 
   onPageChange: (currentPage, pageSize) =>
-    pageSize = if not pageSize then @pageSize
-    @currentPage = if currentPage? then currentPage else 1
+    pageSize = @pageSize if not pageSize
+    @currentPage = if currentPage? then currentPage else @currentPage
     @getReviews(@currentPage, pageSize)
-
-  onDomainFilterChange: (newVal, oldVal) =>
-    if newVal != oldVal
-      @onPageChange()
-
-  watchScope: ->
-    @scope.$watch('model.domainFilter', @onDomainFilterChange)
 
 
 angular.module('holmesApp')
