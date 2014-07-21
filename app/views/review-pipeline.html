@@ -8,14 +8,16 @@
         <tr>
           <th class="queue-position"></th>
           <th class="dark-grey" translate>URL</th>
-          <th class="dark-grey center" ng-show="review.date" translate>estimated time</th>
+          <th class="dark-grey center" translate>estimated time</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="review in model.reviews">
           <td class="center queue-position">{{ review.num }}</td>
           <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
-          <td class="timeago dark-grey center" ng-show="review.date"><span class="time" am-time-ago="review.date"></span> <span translate>ago</span></td>
+            <td class="timeago dark-grey center">
+              <span class="time" am-time-ago="review.estimatedTime"></span>
+            </td>
         </tr>
       </tbody>
     </table>
