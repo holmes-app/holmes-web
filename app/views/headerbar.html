@@ -1,7 +1,7 @@
 <header>
   <div class="container">
     <a data-named-route="home" class="logo"><span></span><div>holmes</div></a>
-    <div class="toolbar" ng-show="isLoggedIn">
+    <div class="toolbar" ng-if="isLoggedIn">
       <navbar>
         <ul>
           <li><a data-named-route="domains" translate>domains</a></li>
