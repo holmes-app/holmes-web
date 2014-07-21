@@ -1,12 +1,22 @@
 <div class="view domains-view">
+
   <h1 translate>Domains</h1>
+
+  <div class="pull-right" ng-show="model.domains.length > 1">
+    <div class="dropdown-wrapper domain-sort"
+         dropdown-model="model.order_select"
+         dropdown-select="model.order_options"
+         dropdown-item-label="text"
+         dropdown-onchange="model.order = selected.order">
+    </div>
+  </div>
 
   <div
     class="domains-container"
     style="max-height: {{ model.domainsVisible ? (model.domainList.length * 155) : 326 }}px;"
     nodata="model.loadedDomains" nodata-height="326" nodata-size="60" nodata-text="No domains yet. Add a new one!">
     <ul class="boxes domains">
-      <li class="box ib" ng-repeat="domain in model.domains | orderBy: '-is_active' track by domain.id" ng-class="domain.is_active ? '': 'inactive'">
+      <li class="box ib" ng-repeat="domain in model.domains | orderBy:model.order track by domain.id" ng-class="domain.is_active ? '': 'inactive'">
 
       <a data-named-route="domain-details" data-args="{{ domain.name }}">
           <h2 class="blue">{{ domain.name }}</h2>
