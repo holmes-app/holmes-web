@@ -19,7 +19,11 @@ class ReviewPipelineCtrl
   _fillReviewsInLastHour: (data) =>
     reviewsPerSecond = data.count / data.ellapsed
     for review in @reviews
-      review.estimatedTime = new Date(Date.now() + review.num * (1 / reviewsPerSecond) * 1000).getTime()
+      if reviewsPerSecond > 0
+        review.estimatedTime = new Date(Date.now() + review.num * (1 / reviewsPerSecond) * 1000)
+        review.estimatedTimeFormat = moment(review.estimatedTime).fromNow(true)
+      else
+        review.estimatedTimeFormat = '-'
 
   _fillReviews: (data) =>
     @getReviewsInLastHour()

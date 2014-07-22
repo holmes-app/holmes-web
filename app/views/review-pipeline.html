@@ -16,7 +16,7 @@
           <td class="center queue-position">{{ review.num }}</td>
           <td class="url blue"><a href="{{ review.url }}" target="_blank">{{ review.url }}</td>
             <td class="timeago dark-grey center">
-              <span class="time" am-time-ago="review.estimatedTime"></span>
+              <span class="time">{{ review.estimatedTimeFormat }}</span>
             </td>
         </tr>
       </tbody>
