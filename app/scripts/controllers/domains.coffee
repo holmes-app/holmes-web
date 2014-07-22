@@ -1,21 +1,21 @@
 'use strict'
 
 class DomainsCtrl
-  constructor: (@scope, @window, @interval, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty, @NamedRouteService, @localStorage, @gettextCatalog) ->
+  constructor: (@scope, @window, @interval, @filter, @DomainsFcty, @MostCommonViolationsFcty, @WebSocketFcty, @NamedRouteService, @localStorage, @gettextCatalog) ->
     @domainsVisible = false
     @groupsVisible = true
     @mostFrequentVisible = false
 
     @storage = @localStorage
     @prefsFilter = @storage.prefsFilter
-    @order = 'is_active'
+    @order = '-is_active'
     @order_options = [
-      {text: @gettextCatalog.getString('sort by'), order:'is_active'},
-      {text: @gettextCatalog.getString('pages'), order:'details.pageCount'},
-      {text: @gettextCatalog.getString('violations'), order:'details.violationCount'},
-      {text: @gettextCatalog.getString('error %'), order:'details.errorPercentage'},
-      {text: @gettextCatalog.getString('avg resp time'), order:'details.averageResponseTime'}]
-    @order_select = @order_options[0]
+      {text: @gettextCatalog.getString('is active'), order:'-is_active'},
+      {text: @gettextCatalog.getString('pages'), order:'-details.pageCount'},
+      {text: @gettextCatalog.getString('violations'), order:'-details.violationCount'},
+      {text: @gettextCatalog.getString('error %'), order:'-details.errorPercentage'},
+      {text: @gettextCatalog.getString('avg resp time'), order:'-details.averageResponseTime'}]
+    @order_select = {text: @gettextCatalog.getString('is active'), order:'-is_active'}
 
     @getDomainData()
     @getMostCommonViolations()
@@ -56,12 +56,7 @@ class DomainsCtrl
     for domain in @domainList
       domain.details = _.find domainsDetails, {id: domain.id}
 
-    @domains = _.sortBy @domainList, (domain) =>
-      order_splitted = @order.split '.'
-      if order_splitted.length == 2
-        domain[order_splitted[0]][order_splitted[1]]
-      else
-        domain[order_splitted[0]]
+    @domains = @filter('orderBy')(@domainList,  @order)
 
     @loadedDomains = @domains.length
 
@@ -116,6 +111,6 @@ class DomainsCtrl
 
 
 angular.module('holmesApp')
-  .controller 'DomainsCtrl', ($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage, gettextCatalog) ->
+  .controller 'DomainsCtrl', ($scope, $window, $interval,  $filter, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage, gettextCatalog) ->
 
-    $scope.model = new DomainsCtrl($scope, $window, $interval, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage, gettextCatalog)
+    $scope.model = new DomainsCtrl($scope, $window, $interval, $filter, DomainsFcty, MostCommonViolationsFcty, WebSocketFcty, $NamedRouteService, $localStorage, gettextCatalog)
