@@ -14,7 +14,7 @@
       <tbody>
         <tr ng-repeat="review in model.reviews">
           <td class="center queue-position">{{ review.num }}</td>
-          <td class="url blue"><a style="{{ review.date ? '' : 'max-width:1000px' }}" href="{{ review.url }}" target="_blank"><span style="{{ review.date ? '' : 'max-width:1000px' }}">{{ review.url }}</span></td>
+          <td class="url blue"><a href="{{ review.url }}" target="_blank">{{ review.url }}</td>
             <td class="timeago dark-grey center">
               <span class="time" am-time-ago="review.estimatedTime"></span>
             </td>
