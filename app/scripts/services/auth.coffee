@@ -1,8 +1,7 @@
 'use strict'
 
 class AuthService
-  constructor: (@rootScope, @cookies, @location, @restangular, @googlePlus, @localStorage, @UserViolationsPrefsFcty) ->
-    @cookieName = 'HOLMES_AUTH_TOKEN'
+  constructor: (@rootScope, @location, @restangular, @googlePlus, @localStorage, @UserViolationsPrefsFcty) ->
     @getAuthenticationFlags()
     @bindEvents()
 
@@ -16,6 +15,9 @@ class AuthService
 
   getAuthentication: ->
     @restangular.one('authenticate').get()
+
+  removeAuthentication: ->
+    @restangular.one('authenticate').remove()
 
   authenticate: (data) ->
     @restangular.all('authenticate').post(data)
@@ -39,13 +41,12 @@ class AuthService
     if @rootScope.isSuperUser is false
       @location.url path
 
-  removeAuthCookie: ->
-    delete @cookies[@cookieName]
-
   logout: ->
-    @rootScope.isLoggedIn = false
-    @removeAuthCookie()
-    @location.url "/login"
+    @removeAuthentication().then((result) =>
+      if result.loggedOut
+        @rootScope.isLoggedIn = false
+        @location.url "/login"
+    )
 
   googleLogin: ->
     @googlePlus.login().then((authResult) =>
@@ -75,6 +76,6 @@ class AuthService
     )
 
 angular.module('holmesApp')
-  .service('AuthSrvc', ($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty, WebSocketFcty) ->
-    return new AuthService($rootScope, $cookies, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty)
+  .service('AuthSrvc', ($rootScope, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty, WebSocketFcty) ->
+    return new AuthService($rootScope, $location, Restangular, GooglePlus, $localStorage, UserViolationsPrefsFcty)
   )
