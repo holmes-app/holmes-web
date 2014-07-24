@@ -8,7 +8,7 @@ angular.module('holmesApp')
     link: (scope, element, attrs) ->
       body = $('body')
       body.append($(element).find('.search-form').detach())
-    controller: ($scope, Restangular, $location) ->
+    controller: ($scope, Restangular, $location, $NamedRouteService) ->
       $scope.clearForm = () ->
         $scope.model =
           term: ''
@@ -37,7 +37,9 @@ angular.module('holmesApp')
             Restangular.one('search').get({term: $scope.model.url}).then((page) ->
               page = JSON.parse(page) if typeof page == 'string'
               if page?
-                $location.path('/page/' + page.uuid + '/review/' + page.reviewId)
+                # FIXME: Remove replace
+                review_url = $NamedRouteService.reverse('review', [page.domain, page.uuid , page.reviewId]).replace('#!', '')
+                $location.path(review_url)
                 $scope.toggleSearch()
               else
                 $scope.model.headerWitchOne = 'invalid_page'
