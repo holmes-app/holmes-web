@@ -2,7 +2,6 @@
 
 class AuthService
   constructor: (@rootScope, @location, @restangular, @googlePlus, @localStorage, @UserViolationsPrefsFcty) ->
-    @getAuthenticationFlags()
     @bindEvents()
 
   bindEvents: ->
