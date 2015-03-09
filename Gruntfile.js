@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-file-creator');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -35,6 +37,16 @@ module.exports = function (grunt) {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist'
+    },
+
+    'file-creator': {
+      'basic': {
+        'dist/version.txt': function (fs, fd, done) {
+          var packageJson = grunt.file.readJSON('package.json');
+          fs.writeSync(fd, packageJson.version);
+          done();
+        }
+      }
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -329,7 +341,8 @@ module.exports = function (grunt) {
             'views/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'version.txt'
           ]
         }, {
           expand: true,
@@ -447,6 +460,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant',
+    'file-creator',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
